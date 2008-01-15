@@ -18,17 +18,17 @@ tar:
 	tar cvf thesis.tar $(FILES)
 	gzip thesis.tar
 
+bib:
+	echo 'for i in *.tex; do bibtex $${i/.tex/}; done' | bash
+
 thesis:
+	#ok
 	pdflatex --interaction nonstopmode thesis.tex
-	bibtex intros
-	bibtex feature_selection_03-25-07
-	bibtex gmodweb_03-25-07
-	bibtex biopackages_3-16-07
-	bibtex celsius_03-16-07
+	$(MAKE) bib
 	pdflatex thesis.tex
 	# a hack for the special formating of the TOC
-	cp thesis.toc.custom thesis.toc
-	pdflatex thesis.tex
+#	cp thesis.toc.custom thesis.toc
+#	pdflatex thesis.tex
 
 #
 # generate dvi from tex 

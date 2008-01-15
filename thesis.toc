@@ -1,0 +1,134 @@
+%XXX
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\gdef \the@ipfilectr {@-1}
+\contentsline {section}{\numberline {1.1}Proteomics}{2}
+\contentsline {subsection}{\numberline {1.1.1}Thermophiles}{2}
+\contentsline {subsection}{\numberline {1.1.2}Thermodynamics and Protein Stability}{3}
+\contentsline {subsection}{\numberline {1.1.3}Interpretation of Thermodynamic Models}{6}
+\contentsline {subsection}{\numberline {1.1.4}Disulfide Bonds \emph {in vivo}}{8}
+\contentsline {subsection}{\numberline {1.1.5}Disulfide Bonds in Prokaryotes}{8}
+\contentsline {subsection}{\numberline {1.1.6}Disulfide Bonds in Eukaryotes}{11}
+\contentsline {subsection}{\numberline {1.1.7}Disulfide Bonds in Intracellular Proteins}{11}
+\contentsline {subsection}{\numberline {1.1.8}Computational Prediction}{12}
+\contentsline {subsection}{\numberline {1.1.9}A Novel Disulfide Oxidoreductase}{13}
+\contentsline {subsection}{\numberline {1.1.10}Further Work}{15}
+\contentsline {section}{\numberline {1.2}Genomics}{16}
+\contentsline {subsection}{\numberline {1.2.1}Microarray Technologies}{16}
+\contentsline {subsection}{\numberline {1.2.2}Research Approaches}{17}
+\contentsline {subsection}{\numberline {1.2.3}Feature Selection}{19}
+\contentsline {subsection}{\numberline {1.2.4}Explicit Feature Selection}{19}
+\contentsline {subsection}{\numberline {1.2.5}Feature Selection Performance}{26}
+\contentsline {subsection}{\numberline {1.2.6}Logic Analysis}{28}
+\contentsline {subsection}{\numberline {1.2.7}Feature Selection with Logic Analysis}{29}
+\contentsline {subsection}{\numberline {1.2.8}Logic Analysis Scoring}{30}
+\contentsline {subsection}{\numberline {1.2.9}Further Work}{31}
+\contentsline {section}{\numberline {1.3}Informatics}{33}
+\contentsline {subsection}{\numberline {1.3.1}Informatic Challenges in Biology}{33}
+\contentsline {subsection}{\numberline {1.3.2}Integrative Solutions}{34}
+\contentsline {subsubsection}{\numberline {1.3.2.1}Storage}{34}
+\contentsline {subsubsection}{\numberline {1.3.2.2}Annotations}{35}
+\contentsline {subsubsection}{\numberline {1.3.2.3}Analysis}{36}
+\contentsline {subsubsection}{\numberline {1.3.2.4}Sharing}{37}
+\contentsline {subsubsection}{\numberline {1.3.2.5}Standardization}{38}
+\contentsline {subsection}{\numberline {1.3.3}Further Work}{39}
+\gdef \the@ipfilectr {}
+\contentsline {chapter}{\numberline {2}The Genomics of Disulfide Bonding and Protein Stabilization in Thermophiles}{46}
+\contentsline {chapter}{\numberline {3}GDAP: a Web Tool for Genome-Wide Protein Disulfide Bond Prediction}{57}
+\contentsline {chapter}{\numberline {4}Utilizing Logical Relationships in Genomic Data to Decipher Cellular Processes}{63}
+\contentsline {chapter}{\numberline {5}Microarray Feature Selection With Logic Analysis Reveals Gene Relationships}{73}
+\gdef \the@ipfilectr {@-2}
+\contentsline {section}{\numberline {5.1}Abstract}{74}
+\contentsline {section}{\numberline {5.2}Introduction}{74}
+\contentsline {section}{\numberline {5.3}Results}{77}
+\contentsline {subsection}{\numberline {5.3.1}Selection of Informative Genes}{78}
+\contentsline {subsection}{\numberline {5.3.2}Identification of Novel Gene Relationships}{79}
+\contentsline {subsection}{\numberline {5.3.3}Classification as a Measure of Gene Relationship Importance}{81}
+\contentsline {section}{\numberline {5.4}Discussion and Conclusions}{82}
+\contentsline {section}{\numberline {5.5}Materials and Methods}{84}
+\contentsline {subsection}{\numberline {5.5.1}Datasets}{84}
+\contentsline {subsection}{\numberline {5.5.2}Normalization}{86}
+\contentsline {subsection}{\numberline {5.5.3}Training and Testing Datasets}{87}
+\contentsline {subsection}{\numberline {5.5.4}Feature Selection and Cross-validation}{87}
+\contentsline {subsubsection}{\numberline {5.5.4.1}RankGene Algorithms}{88}
+\contentsline {subsubsection}{\numberline {5.5.4.2}\emph {t} Test}{88}
+\contentsline {subsubsection}{\numberline {5.5.4.3}Logic Analysis}{89}
+\contentsline {subsection}{\numberline {5.5.5}Classification}{90}
+\contentsline {subsubsection}{\numberline {5.5.5.1}Support Vector Machines}{91}
+\contentsline {subsubsection}{\numberline {5.5.5.2}k Nearest Neighbors}{91}
+\contentsline {subsubsection}{\numberline {5.5.5.3}Linear Discriminant Analysis}{92}
+\contentsline {section}{\numberline {5.6}Figure Captions}{92}
+\contentsline {subsection}{\numberline {5.6.1}Figure 5.1}{92}
+\contentsline {subsection}{\numberline {5.6.2}Figure 5.2}{93}
+\gdef \the@ipfilectr {}
+\contentsline {chapter}{\numberline {6}GMODWeb: A Web Framework for the Generic Model Organisms Database}{102}
+\gdef \the@ipfilectr {@-3}
+\contentsline {section}{\numberline {6.1}Abstract}{103}
+\contentsline {section}{\numberline {6.2}Introduction}{103}
+\contentsline {section}{\numberline {6.3}Results}{105}
+\contentsline {subsection}{\numberline {6.3.1}GMODWeb Architecture}{105}
+\contentsline {subsection}{\numberline {6.3.2}GMODWeb Site Generation and Rendering}{106}
+\contentsline {subsection}{\numberline {6.3.3}GMODWeb Customization}{107}
+\contentsline {subsection}{\numberline {6.3.4}GMODWeb Integration}{109}
+\contentsline {subsection}{\numberline {6.3.5}Case Study: Creating a New MOD Website with GMODWeb and Turnkey}{110}
+\contentsline {section}{\numberline {6.4}Discussion}{112}
+\contentsline {section}{\numberline {6.5}Methods}{114}
+\contentsline {subsection}{\numberline {6.5.1}Availability}{114}
+\contentsline {subsection}{\numberline {6.5.2}User Feedback}{114}
+\contentsline {subsection}{\numberline {6.5.3}Unresolved Challenges}{115}
+\contentsline {section}{\numberline {6.6}Figure Captions}{115}
+\contentsline {subsection}{\numberline {6.6.1}Figure 6.1}{115}
+\contentsline {subsection}{\numberline {6.6.2}Figure 6.2}{116}
+\contentsline {subsection}{\numberline {6.6.3}Figure 6.3}{116}
+\gdef \the@ipfilectr {}
+\contentsline {chapter}{\numberline {7}Biopackages.net: Bioinformatics Libraries, Applications, and Data as Operating System Packages}{121}
+\gdef \the@ipfilectr {@-4}
+\contentsline {section}{\numberline {7.1}Abstract}{122}
+\contentsline {section}{\numberline {7.2}Introduction}{122}
+\contentsline {section}{\numberline {7.3}Results}{124}
+\contentsline {subsection}{\numberline {7.3.1}Provided Applications and Libraries}{124}
+\contentsline {subsection}{\numberline {7.3.2}Using the Biopackages.net repository}{125}
+\contentsline {subsection}{\numberline {7.3.3}Build Farm}{126}
+\contentsline {section}{\numberline {7.4}Discussion}{126}
+\contentsline {subsection}{\numberline {7.4.1}Licensing}{127}
+\contentsline {subsection}{\numberline {7.4.2}Non-RPM Systems}{128}
+\contentsline {section}{\numberline {7.5}Methods}{129}
+\contentsline {subsection}{\numberline {7.5.1}Package Creation}{129}
+\contentsline {subsection}{\numberline {7.5.2}Package Version Control and Platform Targeting}{130}
+\contentsline {subsection}{\numberline {7.5.3}Package Compilation}{131}
+\contentsline {subsection}{\numberline {7.5.4}Package Deployment}{132}
+\contentsline {subsection}{\numberline {7.5.5}Package Installation}{133}
+\contentsline {subsection}{\numberline {7.5.6}Package Quality Assurance}{133}
+\contentsline {section}{\numberline {7.6}Figure Captions}{134}
+\contentsline {subsection}{\numberline {7.6.1}Figure 7.1}{134}
+\contentsline {subsection}{\numberline {7.6.2}Figure 7.2}{134}
+\contentsline {subsection}{\numberline {7.6.3}Figure 7.3}{134}
+\gdef \the@ipfilectr {}
+\contentsline {chapter}{\numberline {A}Celsius: A Community Resource for Affymetrix Microarray Data}{139}
+\gdef \the@ipfilectr {@-5}
+\contentsline {section}{\numberline {A.1}Abstract}{140}
+\contentsline {section}{\numberline {A.2}Background}{141}
+\contentsline {section}{\numberline {A.3}Results and Discussion}{143}
+\contentsline {subsection}{\numberline {A.3.1}Data Overview}{143}
+\contentsline {subsection}{\numberline {A.3.2}Data Processing}{144}
+\contentsline {subsection}{\numberline {A.3.3}Data Access}{145}
+\contentsline {subsection}{\numberline {A.3.4}Community Participation}{146}
+\contentsline {subsection}{\numberline {A.3.5}Web Services}{147}
+\contentsline {subsection}{\numberline {A.3.6}Annotation Examples}{149}
+\contentsline {subsubsection}{\numberline {A.3.6.1}Assignment of Sex Annotation to CELs}{149}
+\contentsline {subsubsection}{\numberline {A.3.6.2}Assignment of Gene Ontology Biological Process Annotation to Probesets}{150}
+\contentsline {section}{\numberline {A.4}Conclusions}{151}
+\contentsline {section}{\numberline {A.5}Materials and Methods}{152}
+\contentsline {subsection}{\numberline {A.5.1}Data Import}{152}
+\contentsline {subsection}{\numberline {A.5.2}Programmatic Access}{153}
+\contentsline {subsection}{\numberline {A.5.3}Data Representation}{154}
+\contentsline {subsection}{\numberline {A.5.4}Gene Co-Expression Network Construction}{156}
+\contentsline {section}{\numberline {A.6}List of abbreviations used}{157}
+\contentsline {section}{\numberline {A.7}Figure Captions}{159}
+\contentsline {subsection}{\numberline {A.7.1}Figure A.1}{159}
+\contentsline {subsection}{\numberline {A.7.2}Figure A.2}{159}
+\contentsline {subsection}{\numberline {A.7.3}Figure A.3}{159}
+\contentsline {subsection}{\numberline {A.7.4}Figure A.4}{160}
+\contentsline {subsection}{\numberline {A.7.5}Figure A.5}{160}
+\contentsline {subsection}{\numberline {A.7.6}Figure A.6}{161}
+\contentsline {section}{\numberline {A.8}Tables}{162}
+\gdef \the@ipfilectr {}
