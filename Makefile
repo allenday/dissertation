@@ -19,16 +19,18 @@ tar:
 	gzip thesis.tar
 
 bib:
-	echo 'for i in *.tex; do bibtex $${i/.tex/}; done' | bash
+	echo 'for i in `ls -1 *.tex | grep -v abstract.tex | grep -v thesis.tex`; do bibtex $${i/.tex/}; done' | bash
 
 thesis:
 	#ok
 	pdflatex --interaction nonstopmode thesis.tex
 	$(MAKE) bib
 	pdflatex thesis.tex
+	#pdflatex --interaction nonstopmode thesis.tex
 	# a hack for the special formating of the TOC
 	cp thesis.toc.custom thesis.toc
 	pdflatex thesis.tex
+	#pdflatex --interaction nonstopmode thesis.tex
 
 #
 # generate dvi from tex 
