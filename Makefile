@@ -27,8 +27,8 @@ thesis:
 	$(MAKE) bib
 	pdflatex thesis.tex
 	# a hack for the special formating of the TOC
-#	cp thesis.toc.custom thesis.toc
-#	pdflatex thesis.tex
+	cp thesis.toc.custom thesis.toc
+	pdflatex thesis.tex
 
 #
 # generate dvi from tex 
