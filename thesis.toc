@@ -71,9 +71,9 @@
 \contentsline {subsection}{\numberline {4.5.2}User Feedback}{85}
 \contentsline {subsection}{\numberline {4.5.3}Unresolved Challenges}{86}
 \contentsline {section}{\numberline {4.6}Figure Captions}{86}
-\contentsline {subsection}{\numberline {4.6.1}Figure 6.1}{86}
-\contentsline {subsection}{\numberline {4.6.2}Figure 6.2}{87}
-\contentsline {subsection}{\numberline {4.6.3}Figure 6.3}{87}
+\contentsline {subsection}{\numberline {4.6.1}Figure 4.1}{86}
+\contentsline {subsection}{\numberline {4.6.2}Figure 4.2}{87}
+\contentsline {subsection}{\numberline {4.6.3}Figure 4.3}{87}
 \gdef \the@ipfilectr {}
 \contentsline {chapter}{\numberline {A}The Distributed Annotation System}{92}
 \contentsline {chapter}{\numberline {B}Distinct Transcription Profiles of Primary and Secondary Glioblastoma Subgroups}{100}
