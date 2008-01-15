@@ -51,9 +51,9 @@
 \contentsline {subsection}{\numberline {3.5.5}Package Installation}{67}
 \contentsline {subsection}{\numberline {3.5.6}Package Quality Assurance}{67}
 \contentsline {section}{\numberline {3.6}Figure Captions}{68}
-\contentsline {subsection}{\numberline {3.6.1}Figure 7.1}{68}
-\contentsline {subsection}{\numberline {3.6.2}Figure 7.2}{68}
-\contentsline {subsection}{\numberline {3.6.3}Figure 7.3}{68}
+\contentsline {subsection}{\numberline {3.6.1}Figure 3.1}{68}
+\contentsline {subsection}{\numberline {3.6.2}Figure 3.2}{68}
+\contentsline {subsection}{\numberline {3.6.3}Figure 3.3}{68}
 \gdef \the@ipfilectr {}
 \contentsline {chapter}{\numberline {4}GMODWeb: A Web Framework for the Generic Model Organisms Database}{73}
 \gdef \the@ipfilectr {@-3}
