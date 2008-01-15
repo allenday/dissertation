@@ -19,6 +19,7 @@ tar:
 	gzip thesis.tar
 
 bib:
+	# need to exclude tex files w/o bibliographies, or it causes errors in make and breaks the thesis make target
 	echo 'for i in `ls -1 *.tex | grep -v abstract.tex | grep -v thesis.tex`; do bibtex $${i/.tex/}; done' | bash
 
 thesis:
@@ -26,11 +27,9 @@ thesis:
 	pdflatex --interaction nonstopmode thesis.tex
 	$(MAKE) bib
 	pdflatex thesis.tex
-	#pdflatex --interaction nonstopmode thesis.tex
 	# a hack for the special formating of the TOC
 	cp thesis.toc.custom thesis.toc
 	pdflatex thesis.tex
-	#pdflatex --interaction nonstopmode thesis.tex
 
 #
 # generate dvi from tex 
