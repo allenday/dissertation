@@ -1,0 +1,478 @@
+% \title{Biopackages.net: Bioinformatics Libraries, Applications, and Data as Operating System Packages}
+% \author{
+% Allen Day\correspondingauthor$^{1,2,\ddag}$ \email{Allen Day\correspondingauthor - allenday@ucla.edu} \and
+% Brian D. O'Connor$^{2,3,\ddag}$ \email{Brian D. O'Connor - boconnor@ucla.edu} \and
+% Jordan Mendler$^{1}$ \email{Jordan Mendler - jmendler@ucla.edu} \and
+% Jared Fox$^{1,4}$ \email{Jared Fox - jaredfox@ucla.edu} \and
+% Stanley F. Nelson$^{1}$ \email{Stanley F. Nelson - snelson@ucla.edu} \and
+% Lincoln D. Stein\correspondingauthor$^{2}$  \email{Lincoln D. Stein\correspondingauthor - lstein@cshl.edu}
+% }
+
+%\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%% ABSTRACT
+%\begin{abstract}
+
+\section{Abstract}
+
+\paragraph*{Background:}
+As biological science becomes more quantitative, it is increasingly dependent on large and
+complex computational infrastructure.  Large-scale systems exist upon which 
+analyses can be done, but efforts are often foiled by the analytical software itself,
+which is frequently of pre-production quality, poorly documented, and difficult to locate, install and configure.
+
+\paragraph*{Results:}
+We have created Biopackages.net: a repository of libraries, applications, and data sets
+that are commonly used in computational biology. This resource solves the problem of software installation by providing pre-configured packages for many of the data and software most commonly used in the biological sciences.  We have also created a ``build farm''
+-- a software application that allows software packages in the repository to be automatically adapted to
+new operating systems and hardware architectures.
+
+\paragraph*{Conclusions:}
+Using software available from the Biopackages.net repository in conjunction with a
+mature cluster management product lowers the barrier to entry for addressing
+large-scale problems in computational biology and bioinformatics.  It streamlines the initial setup and maintenance of complex software collections allowing scientists to focus more time on research and less time on configuration.  More information is available at \url{http://biopackages.net}.
+
+%\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%% INTRODUCTION
+\section{Introduction}
+
+As biological science becomes more quantitative, it is increasingly dependent
+on large and complex computational infrastructures.  Scalable and modular clustered
+computer systems are now essential for analysis and hypothesis generation from
+current high-throughput assay technologies.  While advances in the scientific computing
+community have led to the creation of systems that use clustered computer systems to
+increase productivity, e.g. the Rocks environment \cite{rocks}. These efforts seldom address another part of the
+problem, namely \textit{deploying} research-grade software on these systems.  This latter problem is not trivial, and the associated
+productivity loss is a major obstacle in the advancement of computational life science.
+
+The degree to which software increases productivity can generally be evaluated
+along three axes: utility, accessibility, and usability \cite{keates}.  Applications and software libraries produced in life science research environments
+are of great utility.  They provide means to represent, store, retrieve, and manipulate
+biological data.  However, even the best of these applications and libraries typically have low marks
+for accessibility and usability.
+
+Research code is often not readily accessible because it is of prototype
+quality, with poorly documented interface, installation and configuration
+mechanisms, and comes with no formal support or guarantee that it will compile,
+execute, or be otherwise usable on the platforms and operating system combinations of end users.  Usability suffers from poor documentation, as well
+as from inconsistent and often rough-cut user interfaces.  Ease of use has also been
+lacking in the research code environment. Software installation has historically
+been a painful process that involves README files, configuration settings, and
+other processes requiring active human interaction.  This condition frequently
+persists even within popular and widely used scientific software, likely due to a
+deficiency in knowledge of and adherence to software ``best practices'' as
+previously posited \cite{baxter}.
+
+%XXX
+The primary aim of the Biopackages.net project is to increase the productivity
+of life science informatics environments through software packaging.  By
+compiling, testing, and configuring software, we are able to greatly increase the
+accessibility and usability of it.  Another benefit of packaging is that it is possible to
+compile and configure complementary packages to be aware of and interact with
+one another and the underlying OS.  This creates an environment
+with greater utility than the sum of its parts.
+
+%Considering the extra problems introduced by significant increases
+%in scale, as in the case of administering large numbers of systems that all
+%need to have similar utilities installed -- this stratified
+%installation procedure simply does not scale \cite{couch}.  One of the
+%strategies used to combat these stratified installations is the use of thin
+%clients. Thin clients are machines on a network that retrieve data and programs
+%from central repositories on the network and typically contain no local
+%customizations. This technique allows system administrators to update all of
+%the clients by making a software change on the single central repository.  One
+%drawback to this method is that the central repository quickly becomes very
+%complex, since each user will likely have special applications or
+%customizations that they need to use. In this scenario, users who install
+%software onto the central repository can frequently corrupt the installations
+%of other users' applications \cite{couch}. This requires the system
+%administrator to spend a great deal of time installing, upgrading, and
+%troubleshooting software installations.  We are not convinced that the thin
+%client approach is practical, in that rather than truly factoring out the
+%administrative overhead, it has instead shifted the problem into a mode of
+%repository maintenance.  Thin clients also have a performance price in life
+%sciences applications that are frequently I/O bound and are better served by
+%local storage media than media available through the local area network.
+
+%%%%%%%%%%%%%%%%%%%%%% RESULTS
+\section{Results}
+
+The Biopackages.net software repository is available at
+\url{http://www.biopackages.net/}.  At the time of writing more than 3800 software packages %XXX 3800
+are available for several versions of the Fedora Core and CentOS Linux operating systems on
+i386 and x86\_64 architectures, as well as a shared set of
+architecture-independent (noarch) packages.  All packages currently provided
+are prepared using the Biopackages.net build farm which in turn employs the RPM
+Package Manager \cite{herrold}, a suite of utilities for installing and
+maintaining software on a computer system.
+
+\subsection{Provided Applications and Libraries}
+
+Biopackages.net aims to provide a software repository as broad as possible
+within the discipline of open-source bioinformatics.  Research interests of the
+contributing authors that are outside the scope of this manuscript include
+complex disease gene mapping and gene expression analysis.  As such, there is a
+trend for the content of the repository to reflect these topic areas.  Even so,
+we have attempted to include many of the commonly used bioinformatics data
+sets, libraries, and applications.  Data sets provided include: ontologies
+provided by the National Center for Biomedical Ontology, standard Affymetrix
+GeneChip data sets, and recent genome assemblies for several commonly studied
+organisms pre-formatted for use with the sequence analysis programs BLAST,
+ePCR, and BLAT \cite{ncbo,blast,epcr,blat}.  For libraries, the
+popular Bioconductor and Bioperl \cite{bioconductor,bioperl} libraries are
+available, as well as the NCBI Toolkit libraries supporting the BLAST
+application already mentioned.  Other applications available include the
+Generic Genome Browser, the BLAT server, Textpresso, EMBOSS, and Turnkey/GMODWeb
+\cite{gbrowse,blat,textpresso,emboss,gmodweb}.
+
+\subsection{Using the Biopackages.net repository}
+
+Software provided by the Biopackages.net servers can be browsed and downloaded
+directly using a web browser, then installed on the target system with the
+\texttt{rpm} command-line utility.  Using the RPM Package Manager
+reduces the amount of human interaction to two steps in most cases: users can
+simply retrieve the RPM file and then install with a single command.  In
+addition to ease of installation, RPM also provides a wide array of features
+that make it superior to many other software packaging formats \cite{hess}.
+
+While this method of installing software is possible we also support -- and
+recommend -- using automated software utilities for package dependency
+resolution and installation, such the Yellow dog Update Manager (Modified), or
+\texttt{yum} \cite{vidal}.  \texttt{yum} allows users to install desired packages in an automated
+fashion with a single command.  The Biopackages.net website provides
+instructions and a single RPM that can be downloaded and installed to make the
+user's installed version of \texttt{yum} configured to be aware of how to obtain and install packages from the Biopackages.net repository.  \texttt{yum} is well
+suited for bioinformatics research because many of our applications and
+libraries are considered high-level from the point of view of the
+OS and have a deep and broad graph of software dependencies.  For example,
+consider the partial software dependency graph shown in Figure
+~\ref{fig:bp_depgraph}.  Installation of the \texttt{das2-server} package
+requires the \texttt{chado-Hsa} package, which in turn requires two other
+packages to be installed, and so on.  Installation of these high-level packages
+frequently requires the manual retrieval and installation of possibly hundreds
+of other packages in the dependency graph \cite{bodnar}.
+
+%\subsection*{Performance}
+
+%Many aspects of system performance, such as network I/O and disk usage can be
+%affected by using Biopackages.net repository, with the gains or losses
+%incurred through use of this repository depending on the machine and network
+%configuration at a particular site.  As this is the case, we have chosen to
+%evaluate performance gains of using the Biopackages.net repository in terms of
+%human administrative costs, which should be consistent between sites.
+%\textbf{Bar chart of build+install vs install time here}
+
+\subsection{Build Farm}
+
+Software packages for the biopackages project are built using a software system
+spread across multiple machines.  In the system a single machine acts as the
+master control node (MCN) and orchastrates the process of building a given
+package.  Individual machines act as build nodes where a package and its
+dependencies are built.  The build farm's MCN manages the building of packages
+and their dependencies by assigning the jobs to particular build nodes.  On
+each build node the resolve\_deps.pl script manages the process of recursively
+building a given package and all its dependencies.  This "build farm" allows
+the same package to be built on multiple operating systems and architectures in
+a parallel fashion.  This flexible framework allows new platforms and operating
+systems to easily be added.  This build farm approach is flexible and requires
+little human interaction to build all packages for a particular platform and
+operating system. In this way, biopackages is more than just a collection of
+software and data packages.  It provides a complete framework for adding and
+building new software packages across a variety of platforms and operating
+systems with minimal effort.
+
+%%%%%%%%%%%%%%%%%%%%%% DISCUSSION
+\section{Discussion}
+
+The Biopackages.net repository is a large collection of software developed that
+is relevant to -- and in many cases specifically developed for -- information
+management and computational analysis in the biological sciences.  Software is
+packaged using the RPM Package Manager and distributed using the Yellow dog
+Updater (Modified), both of which are commonly used software management
+utilities for Linux-based computers.  At the time of this writing the
+repository contains more than 3800 packages  for Fedora Core Linux, Centos %XXX 3800
+Linux, and Apple's OS X Darwin 10.4.
+
+A large fraction of the package growth rate can be accounted for by (a) the
+recompilation of packages for all platforms, and (b) minor adjustments to
+package contents and metadata, analagous to debugging and documentation in the
+software development process.  While this type of growth is necessary for the
+Biopackages.net repository to remain usable on a variety of platforms, it is
+less interesting and less desireable than repository growth to include new
+software from the research community, as well as new versions of existing
+software.
+
+Substantial effort must be invested to maintain the repository in a useful and
+up-to-date state, but it is an overall win for the bioinformatics community if
+users buy in to the system, as it allows bioinformatics-specific system
+updates to be treated as a service, effectively factored out by delegation to a
+group of specialists \cite{nation,soap}.  The amount of effort necessary
+to identify and incorporate new software from the community may also be
+partially mitigated if users of the Biopackages.net repository reaches a
+critical mass.  In this scenario, authors of software are able to attain more
+prominence and citation rank by ensuring their software is readily available to
+the largest number of users.
+
+\subsection{Licensing}
+
+Academic software is commonly available through a dual-licensing model in which
+academic or not-for-profit research use is freely granted, but enterprise-class
+users are required to pay for use.  The licensing terms are typically
+prominently displayed on the authors' software download pages, and are
+difficult to miss.  One potentially adverse effect of using the Biopackages.net
+repository through \texttt{yum} is that hundreds of license terms can be
+implicitly agreed to with only a few keystrokes.  While this is typically not a
+problem for academic users, it may create legal difficulties for users in the
+enterprise.  We encourage all users to closely examine all pacakge metadata to
+ensure they are entitled to use the software under the terms in which it is
+distributed via the Biopackages.net repository.  One possible mechanism to ease
+the burden on end users is to partition the repository's software based on
+license permissiveness, and is a future goal of the
+Biopackages.net project.  Future goals also include contributing to larger and
+more general-purpose repositories, such as \url{http://pbone.net/} and
+\url{http://atrpms.net}.
+
+\subsection{Non-RPM Systems}
+
+We are also interested in extending the scope of the project beyond operating
+systems that use the RPM Package Manager natively.  In our preliminary work in
+this area, we focused on Apple MacOS X 10.4 and Cygwin for Microsoft Windows
+XP, and used the RPM and \texttt{yum} ports available on these systems.  While it was
+possible to use RPM and \texttt{yum} to manage installed software on these systems, it
+was neither trivial nor elegant.  The essence of the problem lies in the fact
+that at their lower levels, software dependency graphs rely on basic software,
+such as the Bourne shell, or the Apache HTTP server.  These basic packages are
+available and usable by RPM-installed software on non-RPM-native systems, but
+the RPM-based utilities cannot verify dependency integrity.  Our solution to
+this problem is to provide virtual packages that claim to provide software
+(such as Apache), but actually do nothing and defer to the base system packages
+to provide the functionality.
+
+There is also potential to convert Biopackages RPMs into non-RPM formats for
+use on a wide breadth of UNIX types. While RPM support has been ported to most
+versions of UNIX and Linux, many of these OSes were initially
+developed with other binaries in mind. Distributions based on Debian Linux,
+for instance, are native to deb packages while Sun's Solaris and many other
+UNIXes are native to pkg. Slackware Linux uses .tgz packages, while
+Stampede Linux uses .slp packages. Fortunately for maintainers tools has
+been developed to convert packages between these many formats. One such
+software is Alien which allows conversion between the above named package
+types. This creates the prospect of developing Biopackages branches for
+different package formats to attract users for whom RPM is not a viable option.
+
+%%%%%%%%%%%%%%%%%%%%%% METHODS
+\section{Methods}
+
+\subsection{Package Creation}
+
+The first step in creating a software package is to obtain the package's source
+material, or sources, from an upstream provider.  For a software library, this
+may be a tarball of C++ files, and for a genomic data set may be several FastA
+files.
+
+The second \textit{optional} step is to create patches that modify the package
+sources to be compatible with the target platform for installation.
+Modifications typically do not change the core functionality of the software,
+but customize the software or software installer slightly to be compatible with
+the target platform or related software libraries and applications.
+
+The third step is the creation of a metadata file, which for RPM based systems
+is called a spec file.  The spec file references the source and patch
+files and includes instructions for performing the configuration and
+installation of the software.  Additionally, the spec file lists all other
+packages that are required in the build- and
+install-phase.  The packages depended upon may differ for build and install phases, and may also be conditional by platform .  The spec file also contains other package-related metadata, such as license details and
+type of package (library, database, application, etc).
+
+\subsection{Package Version Control and Platform Targeting}
+
+After being initially written, the spec file is then converted to a spec.in
+file and imported into the Biopackages.net Concurrent Versions System (CVS)
+repository.  The Biopackages.net project abstracts the spec file metadata one
+step further for two reasons.
+
+First, the spec file contains a revision metadata field for package version
+information, but provides no mechanism for automatic managment of version
+numbers.  Likewise, it contains a changelog metadata section for describing
+how a package has evolved over time, but does not provide a utility for
+tracking changes.  CVS does both automatic revision and changelog tracking, but
+in a different format than is required by RPM.  A simple search-and-replace
+preprocessing step is sufficient to map the CVS sections for versioning and
+changelogs (\texttt{\$Id\$} and \texttt{\$Log\$}) to the corresponding RPM spec
+file sections (\texttt{\%revision} and \texttt{\%changelog}).  The
+Biopackages.net build system includes a utility to perform this task.
+
+Second, spec file syntax does not allow all portions of the file to be
+conditional based on aspects of the platform. With the use of a single spec
+file for multiple platforms, it is important to optionally specify different
+build and installation requirements for the same package on different Linux
+distributions. This is because of the variation of libraries included with a
+given package across distributions. As an example, a default Perl on Fedora
+Core 2, may include a Perl library that is not included in the default Perl
+installation of Fedora Core 5. Therefore it is important to specify this
+library as an additional requirement for Fedora Core 5, while unnecessary for
+Fedora Core 2. RPM is limited in its ability to include conditional statements
+in the build and installation requirments sections of the spec file. Therefore
+the solution we have implemented is the inclusion of a platform specific
+\texttt{if} control structure in the spec.in file.  This is translated from a
+conditional statement to the resulting package dependency when the spec.in file
+is converted to a spec file.
+
+\subsection{Package Compilation}
+
+Package compilations are performed on a self-contained Build farm that
+contains all of the OS distributions we target. Using VMWare virtualization on a
+64-bit AMD based machine, we are able to simultaneously run multiple
+32- and 64-bit x86 architecture virtual machine (VM) instances, each with a
+different OS and virtual architecture.  This allows us to build packages for
+many different platforms simultaneously.
+
+The RPM construction process uses the Sun Grid Engine (SGE) cluster management utility to
+orchestrate construction of a given \textit{target} package for multiple platforms, and is illustrated in ~\ref{fig:bp_buildfarm}.
+This process is initiated by iterating over all platforms targeted for construction, and interacting with the
+SGE Master Control Node (MCN) to build those packages.  MCN manages all VMs and ensures
+that each request to build \textit{target} for a particular platform is delegated to the correct VM.  Once
+delegated to a VM, package construction process can be divided into three phases:
+staging, building, and cleanup.  These are illustrated in Figure \ref{fig:In2rpm}.
+
+In the staging phase, \textit{target}'s metadata is converted from the CVS \texttt{RCS} to \texttt{rpmbuild}
+format, and all packages that are required to build \textit{target} are identified and installed.  This
+process is coordinated by the \texttt{resolve\_deps.pl} script.  It begins by parsing \textit{target}'s
+metadata to identify all packages that are depended upon for build or install of \textit{target}.  Each of
+these depencies in turn has its dependencies identified, and so on, recursively.  When the terminal
+packages of the dependency graph are reached, the recursive process traverses back toward
+\textit{target}, and at each step installs the dependency to ensure that all requirements in the graph
+have been installed.
+
+In the building phase, \textit{target}'s metadata is used to construct the RPM package.  This is
+done with the \texttt{rpmbuild} utility, which typically invokes several other scripting tools and
+software compilers to prepare the \textit{target} software for the VM's platform.
+
+Finally, cleanup phase takes place.  All packages that were installed to satisfy the dependency are
+uninstalled.  This restores the build system to a ``clean'' state ready for the next scheduled build.
+The rpm file for \textit{target} is archived to a repository where all complete packages are moved to shared storage and
+made available to the public via a web server.  Log files created during the staging and build phases
+are also archived to shared storage for post-processing.  Examples of post processing include the generation of build
+reports, identifying VM-specific problems, and detection and re-queueing of failed builds.
+
+After all packages have been iterated over and all requests scheduled with the MCN have completed,
+the packages in the RPM repository are indexed using the \texttt{createrepo} command.  This enables
+\texttt{yum} clients to connect to the web server and install packages.
+
+\subsection{Package Deployment}
+
+Built RPMs are automatically written to a shared NFS volume that is
+accessed by the Biopackages web server. Packages are initially placed into a
+``testing'' repository corresponding to distribution and architecture. After
+enough testing of package stability, RPMs are migrated to the ``stable''
+repository. On the web server, a nightly cron job automates the creation of
+\texttt{yum} and \texttt{apt} headers for all platforms of both the stable and testing
+biopackages repositories. From this server, packages are served over HTTP and
+NFS to both local and external clients that make requests.
+
+\subsection{Package Installation}
+
+Once headers are generated on the web server, the user has the choice of
+several installation methods for a given RPM. The native Red Hat method is to
+use RPM to perform the installation directly from the web server, or from a
+local disk the package has been downloaded to. While this allows automated
+downloading and installation of a package, RPM is limited in its inability to
+perform dependency resolution and therefore requires manual installation of
+dependencies. Therefore an easier installation method is through the use of \texttt{yum}
+or \texttt{apt}. \texttt{yum} allows for easy installation from a software repository by locating
+and downloading the desired packages and all of its dependencies in one
+automated transaction. \texttt{apt} serves a similar purpose as \texttt{yum}, originally being
+ported from Debian Linux for use with RPMs. Therefore some users are more
+comfortably with and prefer the syntax and capabilities of \texttt{apt}.
+
+Another decision to be made by the user is if they would like to use ``testing''
+RPMs. \texttt{yum} and \texttt{apt} make it possible for a user to specify which repositories
+they prefer, and which repositories are only to be used with manual input. This
+allows a user to disable regular use of the ``testing'' repository, while allowing
+manual overriding when a package is present only in the ``testing'' repository.
+
+\subsection{Package Quality Assurance}
+
+In maintaining a software repository, a crucial issue is adopting a method of
+ensuring stability and quality of packages and identifying problematic
+software. A two tiered repository approach helps separate production tested
+packages from more newly built RPMs. Newly built RPMs are placed into the
+Testing repository, where they are served to both local and external users for
+functional testing to be performed. This allows assurance of proper
+documentation, configuration files, log files, runtime scripts and other
+software functionality before a package is deemed ``production ready'' and
+migrated to the ``stable'' repository. It is in this testing period that bugs are ideally
+discovered and reported by users and developers, to allow fixes to be made
+before the package is moved to the ``stable'' repository. Most Testing packages are
+considered to be mostly stable and are immediately implemented on local compute
+nodes, however a separate Stable branch adds an extra level of quality control
+for production environments.
+
+\section{Figure Captions}
+
+\subsection{Figure 7.1}
+
+Packages are represented by
+boxes, with grey provided by the OS distribution, and white provided by
+Biopackages.net.  Packages may rely on other packages, either at build- or
+install-time.  Solid head dashed lines indicate a n installation dependency,
+hollow head dashed lines indicate a build dependency, solid head solid lines
+indicate both an installation and build dependency.
+
+\subsection{Figure 7.2}
+
+A spec.in file is preprocessed to form
+a spec file, which is processed by the \texttt{rpmbuild} utility along with the
+package source files to form architecture-specific packages and a source
+package that contains the .spec file and source files.
+
+\subsection{Figure 7.3}
+
+A controlling script
+observes the state of the package repository, and spawns jobs to build missing
+packages via a master/slave cluster managmement system.  Packages are build and
+uploaded to a shared filesystem, where they are then made available over the
+network to clients wishing to install software.
+
+
+% %%%%%%%%%%%%%%%%%%%%%% ACKNOWLEDGEMENTS
+% \section{Acknowledgements}
+% 
+% We acknoledge the following individuals for their help in the development,
+% documentation, testing and maintenance of the software and systems described
+% here: Patrick Alger, Andrew Helsley, and Victor Ruotti.  Additionally, we thank
+% Scott Cain, Steve Chervitz, and Todd Harris for discussion related to the
+% design of the project architecture.  We thank Ling Lee for designing the
+% Biopackages.net website.  This work was supported by NIH grants XXXXXXXXXXXXX.
+
+%%%%%%%%%%%%%%%%%%%%%% FIGURES
+\pagebreak
+%\section{Figures}
+
+\begin{figure}[p]
+\includegraphics[width=12cm]{figures/Bp_depgraph.png}
+\caption{Partial package dependency graph.}
+\label{fig:bp_depgraph}
+\end{figure}
+
+\begin{figure}[p]
+\includegraphics[width=12cm]{figures/In2rpm.png}
+\caption{Package compilation process.}
+\label{fig:In2rpm}
+\end{figure}
+
+\begin{figure}[p]
+\includegraphics[width=12cm]{figures/Bp_buildfarm.png}
+\caption{Biopackages.net build farm architecture.}
+\label{fig:bp_buildfarm}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%% REFERENCES
+\pagebreak
+\bibliographystyle{plain}
+\bibliography{biopackages_3-16-07}
+
+
