@@ -22,7 +22,7 @@ thesis:
 	pdflatex --interaction nonstopmode thesis.tex
 	bibtex intros
 	bibtex feature_selection_03-25-07
-	bibtex gmod_web_03-25-07
+	bibtex gmodweb_03-25-07
 	bibtex biopackages_3-16-07
 	bibtex celsius_03-16-07
 	pdflatex thesis.tex
