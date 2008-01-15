@@ -1,0 +1,1778 @@
+XXX
+\section{Proteomics}
+
+%@ extremophiles definition and our need to understand protein stability
+Microbial life has evolved to occupy ecological niches of astounding diversity.
+Bacteria and archaea has been found thriving in extremely harsh environments
+such as the high-pressure and temperature of deep sea ``black smoker'' vents
+\cite{blochl1997pfg}, under brutal extremes of pH ranging between 0 and 11
+\cite{2,4}, in the extreme cold of the polar regions \cite{6,7}, and in
+high-salt environments such as the Dead Sea \cite{5}.  Together these
+extremophiles have changed our perception of how adaptable and resilient life
+can be. In doing so, they have provided a window into the mechanisms that
+stabilize the molecular machinery of the cell. This has presented a wonderful
+opportunity for scientists to gain a deeper understanding of the important
+topics of protein stability and adaptation to harsh environments.
+
+\subsection{Thermophiles}
+
+Thermophiles are defined as microbial organisms whose growth temperature
+optimum is above 50$^\circ$C while hyperthermophiles have optimal growth
+temperatures of 80$^\circ$C or greater. Since Thomas Brock's description of the
+hyperthermophilic bacteria \emph{Thermus aquaticus}, with a growth temperature
+optimum of 70$^\circ$C, many other thermophiles and hyperthermophiles have been
+isolated \cite{brock1969tag}.  Phylogenetic analysis of 16SrRNA indicate that
+the thermophiles represent the deepest and shortest branches of the domains
+\emph{Archaea} and \emph{Bacteria} \cite{PMID_10376671}.  To date; over 70
+thermophilic archaea have been described while relatively few thermophilic
+bacteria have been cultivated, most belonging to the orders
+\emph{Thermotogales} and \emph{Aquificiales} \cite{PMID_11256505}. Model
+organisms for archaea belong to the genera \emph{Pyrococcus}, while bacteria
+come from the genera \emph{Thermotoga}. Sequencing efforts have made
+available the genomes of over three dozen archaeal and approximately 400
+bacterial genomes including thermophiles, mesophiles, (organisms growing in
+standard environmental ranges), halophiles (salt-adapted), acidophiles (low
+pH-adapted), alkaliphiles (high pH-adapted), and barophiles (pressure-adapted).
+The availability of these genomic sequences from the National Center for
+Biotechnology Information (NCBI, \url{http://www.ncbi.nlm.nih.gov}), coupled
+with many high-resolution protein structures from the Protein Data Bank (PDB,
+\url{http://www.rcsb.org}), has opened up the field of thermophile research to
+proteomic and genomic studies previously impossible.  
+
+% NOTE: phylogenetic analyses of 16SrRNA indicate hyperthermophiles represent
+% the deepest and shortest branches of teh domains Archaea and Bacteria
+% (Sterner_2001_ref_setter_1999).
+
+%@ How stability is quantified Gibbs free energy change can calculate the
+%change in energe from the denatured to the native form of the protein
+%structure.  An increase in delta G is associated with an increase in protein
+%stability 
+% These rich datasets have already provided an understanding of the specific
+%mechanisms by which proteins can be stabilized in these harsh environments.
+Armed with this extensive collection of data, many studies have looked at the
+specific biochemical nature of protein stability in thermophiles
+\cite{jaenicke1998spe,PMID_11577980,PMID_10097079,PMID_10940293,thompson1999tel,PMID_11256505}.
+Much attention has been paid to thermophiles in particular because an
+understanding of the mechanisms governing protein stability in these organisms
+are applicable to the protein stability question in general.  Given the
+observation that thermophilic proteins expressed in mesophiles continue to
+exhibit greatly increased thermostability, the increased stability must be a
+product of the primary amino acid sequence \cite{razvi2006lst}.  Understanding
+the sequence criteria that enable protein stability under such high thermal
+stress should be possible by examining thermophilic protein sequences and
+structures.  Much of this section of the introduction reviews the findings
+associated with these datasets.
+
+\subsection{Thermodynamics and Protein Stability}
+
+A measure of protein stability is required to understand and quantify the
+effects of various stabilizing strategies utilized in thermophilic proteins.
+The common measure of protein stability is the change in Gibbs free energy
+associated with the transition from the protein's native fold (N) to a
+denatured (D) polypeptide:  
+
+\begin{equation}\label{equ}
+  %D \xrightleftharpoons[\text{${k}_{d}$}]{\text{${k}_{n}$}} N
+  N \rightleftharpoons D
+\end{equation}
+
+% dG neg: reaction spontaneous N -> D
+% dG = 0: forward and reverse occurr at eq rates
+% dG pos: the reverse reaction D -> N
+% so the dG(T) curves are talking about the reaction N -> D
+% because you want to see high pos dG indicating the reaction from
+% N -> D is not favored
+% dS is positive and S is positive and given in kJ/K (so when times by T you get kJ)
+% dH is positive and H is negative and given in kJ
+The change in Gibbs free energy, or $\Delta$G, for the transition from denatured
+to native states is calculated with the following equation:
+
+\begin{equation}\label{gibbs}
+  \Delta G = \Delta H - T \Delta S
+\end{equation}
+
+% delta H = H final - H initial, exothermic is -, endothermic +
+$\Delta$H in equation \eqref{gibbs} refers to the change in enthalpy, or heat
+content; T refers to the temperature; and $\Delta$S refers to the entropy in
+the transition from the folded native state of the protein (N) to an unfolded state
+(D).  Enthalpy is a measure of the various favorable interactions within a
+given state.  The enthalpy of the transition from the N to D-states ($\Delta$H)
+can be thought of as the amount of energy necessary to disrupt favorable
+interactions in the native state minus the energy of new interactions
+gained in the disordered state.
+
+% \begin{equation}\label{dH}
+%   \Delta H = \Delta {H}_{denatured} - \Delta {H}_{native}
+% \end{equation}
+
+The change in entropy ($\Delta$S) can be thought of as the difference in disorder between
+the native state of the protein and its denatured state. In the denatured state
+the entropy of the protein is highest because it has the most conformational
+flexibility and freedom.  In the transition to the native state the possible
+conformations of the protein are greatly constrained. The change in entropy can
+be thought of as the energy lost to the order established in the transition
+from a disordered to ordered protein.
+
+% \begin{equation}\label{dS}
+%   \Delta S = \Delta {S}_{denatured} - \Delta {S}_{native}
+% \end{equation}
+
+% An increase in a protein's stability is seen by an increase in $\Delta$G.
+% If a protein's stability is increased in the transition from disordered to
+% native state than the $\Delta$G is increased as well. 
+A protein can increase $\Delta$G, and thereby improve its stability, by 
+increasing the enthalpy of the native state \cite{119}, decreasing the enthalpy or
+entropy of the disordered state \cite{120,121}, or both \cite{122,123}. 
+
+%@ T of melting is the general metric for measuring stability. Info from paper
+%that talks about stategies for changing these variables. This will just talk
+%about general stategies not which thermophiles focus on.
+In order to understand how a proteins stability changes as a function of
+temperature, Becktel and Schellman \cite{becktel1987psc} introduced protein
+stability curves.  These are a plot of $\Delta$G as a function of temperature,
+and include ${T}_{m}$, the temperature of melting when $\Delta$G equals zero
+and the protein is at the midpoint of transition from native to its disordered
+state. ${T}_{m}$ is often used as an indicator of protein stability.  These
+curves are described by a modified version of the Gibbs-Helmholtz equation:
+
+\begin{equation}\label{GH}
+%\begin{displaymath}
+ \Delta G \left (  T \right )  =  \Delta  {H }_{m }  \left (  1 -  \frac{ T }{  {T }_{m } }  \right ) -  \Delta  {C }_{p } \left[   \left (  {T }_{m }  - T \right ) + T \ln  \left (   \frac{ T}{ { T}_{ m}  }  \right )  \right ] 
+%\end{displaymath}
+\end{equation}
+
+In equation \eqref{GH} $\Delta G \left (  T \right )$ is the free energy at
+temperature \emph{T}, $\Delta  {H }_{m }$ is the change in enthalpy at ${T }_{m
+}$, and $\Delta  {C }_{p }$ is the change in heat capacity associated with the
+denaturing of the protein. Heat capacity refers to the amount of heat a protein
+can store at a given temperature.  Figure \ref{Sterner_Fig_1} shows a
+hypothetical protein stability curve with key thermodynamic parameters noted.
+
+% sterner_ref_pace_2007 to pace1997mcs
+In order to find $\Delta$G as a function of temperature three variables must be
+determined experimentally: the temperature of melting (${T }_{m}$), enthalpy
+change ($\Delta$H), and heat capacity change ($\Delta{C}_{p}$)
+\cite{pace1997mcs}. ${T}_{m}$ can be found with differential scanning
+calorimetry (DSC) or circular dichroism (CD) spectroscopy by following the
+degree of unfolding upon heating. A value for $\Delta$H only needs to be
+determined at one temperature; typically this is $\Delta{H}_{m}$ which is the
+enthalpy change at ${T}_{m}$. DSC or CD spectroscopy can be used to measure
+the heat of unfolding ($\Delta$H) and $\Delta{C}_{p}$ can be calculated given the
+relationship to enthalpy:
+
+\begin{equation}\label{cp}
+\frac{ d \left ( \Delta H \right ) }{ dT }  = \Delta {C}_{p}
+\end{equation}
+
+Using equation \eqref{cp}, $\Delta{H}_{m}$ and ${T}_{m}$ can be measured at a
+variety of pH values using DSC.  The resulting variation in ${T}_{m}$ and the
+corresponding variation in $\Delta{H}_{m}$ can be plotted and a value for
+$\Delta{C}_{p}$ determined from the slope of the line \cite{privalov1979sps}.
+$\Delta  {C }_{p }$ is an important variable since it determines the curvature
+of the $\Delta$G graph.  The smaller the $\Delta{C}_{p}$, the flatter the curve
+and, consequently, the higher the ${T}_{m}$. Once $\Delta{C}_{p}$,
+$\Delta{H}_{m}$, and ${T}_{m}$ are determined a plot of $\Delta G \left (  T
+\right )$ can be made and compared to other proteins.
+
+% FIXME: transition to next paragraph needs work.
+
+% NOTE: 
+% * enthalpy (H): heat content, description of the thermodynamic potential of a
+% system. If it's neg then the reaction is exothermic, if its positive then the
+% reaction is endothermic. 
+% * entropy (S): spontaneous changes occur with an increase in entropy of
+% disorder
+% * heat capacity (Cp): measure of ability of a body to store heat as it
+% changes in temperature. unfolded has higher heat capacity than folded.
+% increases linearly w/ amino acids so less amino acids = smaller Cp = higher
+% Tm 
+
+% NOTE: Sterner pg 44: enthalpy change (delta H) and heat capacity (delta Cp)
+% between the denatured and native states must be determined in order to find
+% delta G as a function of Temp.  To find delta Cp you use d(delta H)/dT =
+% delta Cp, so delta Cp is given by the derivative of delta H w/ respect to
+% time.  To find this you varry the pH of the solution you're measuring and
+% this varies Tm and delta H which can be followed by differential scanning
+% calorimetry (DSC).  Take the slope of the line and this is delta Cp (delta H
+% increases with temperature since the unfolded state has a higher heat
+% capacity than the folded state so Cp is pos).  Delta H can be measured
+% directly with CD, usually at delta Hm, the enthalpy at Tm.
+
+% NOTE: Figure 1 on Sterner pg 45 would be great to include.
+
+% NOTE: Sterner pg 43. Three points need adaptation to survive extreme temps:
+% membranes, DNA, and protein stability.  Cell membrane tetraether lipid
+% monolayers found in extremely thermophilic archaea are more stable than
+% ester-type lipid bilayers.  Ether links are more resistent to temp than ester
+% \cite{sterner_ref_van_de_Vossenberg_1998}.
+
+% NOTE: Thermo damage: deamidation, beta-elimination, hydrolysis, Maillard
+% reactions, oxidation, disulfide interchange (Sterner pg 43)
+
+% NOTE: pg 50 Sterner, talks about the various methods seen by Jaenicke 1998
+% and also make the important point that these effects can 1) be interrelated
+% w/ each other and 2) vary based on heat... include his examples here.
+
+%@ There are several different methods by which a protein can increase its Tm,
+%temperature of melting and achieve higher thermostability. The specifics in
+%terms of how do you go from changes to delta G to actual changes in proteins
+
+% FIXME: Add this in somewhere: Razvi \emph{et al.} described several ways in
+% which the thermodynamic qualities of a protein could be modified to increase
+% ${T }_{m }$ \cite{razvi2006lst}.  
+
+\subsection{Interpretation of Thermodynamic Models}
+
+Organisms adept at surviving hostile, high-heat environments necessitate
+specific and widespread changes to their proteins.  Unlike lipids, whose
+composition can be changed depending on the needs imposed by the environment,
+proteins are limited to a restricted set of amino acids
+\cite{Razvi_ref_Russell_1990}.  Adaptations to environmental pressures must be
+accomplished through changes to protein sequence. Nojima \emph{et al.} proposed
+three different methods for changing protein stability curves ($\Delta G \left
+(  T \right )$) and, thus, changing ${T}_{m}$ \cite{Razvi_Nojima_1977}.  These
+were: shifting the overall curve up, broadening the curve, or shifting the
+curve to right.  Figure \ref{Sterner_Fig_1} illustrates these three techniques 
+and all three have been seen at varying degrees in thermophilic proteins
+with the result of shifting the ${T }_{m }$ to a higher temperature.  
+
+The various mechanisms were probed in Razvi \emph{et al.} with a survey of 26
+protein families including examples from mesophiles and thermophiles
+\cite{razvi2006lst}.  They found the most common way to attain a higher ${T
+}_{m }$ is to raise the overall $\Delta G$ stability curve and this was
+utilized by 77\% of the proteins they examined.  This is consistent with the
+general observations that thermophilic proteins have increased salt-bridges,
+hydrogen bonds, and hydrophobic interactions all of which can directly increase
+$\Delta G$ through increasing the enthalpic interactions of the native state.
+They also observed the widespread lowering of $\Delta  {C }_{p }$ in 70\% of
+the proteins studied effectively increasing ${T }_{m }$ as well.  $\Delta {C
+}_{p }$ has been shown to increase linearly with protein size and is increased
+in the unfolded state \cite{myers1995dmv}. This is consistent with the
+observation that thermophiles generally have smaller proteins than mesophiles
+as judged by a variety of methods \cite{chakravarty2002efr}.  In addition, this
+change in heat capacity is lowered by increasing the order of the denatured
+state, by adding structured components that persist in this state, and by
+providing for tighter core packing in the native state.
+
+% FIXME: Now add some transition saying these changes to thermodynamic
+% qualities of the protein are the result of changes to the specific coding
+% sequence of the protein.  Each specific strategy for latering key
+% thermodynamic quatilies and parameters is the result of one or more
+% strategies being played out in the sequence of the genome.
+
+% NOTE: in Sterner pg 50 there are a ton more methods mentioned.  I think I
+% should cover them then reference the most recent work (Razvi?, Kumar gives
+% the short list, they both look at protein families but Kumar gives more
+% specifics and Razvi is more about the thermodynamic changes to proteins).
+% jaenicke1998spe,PMID_11577980,PMID_10097079,PMID_10940293,thompson1999tel,PMID_11256505
+
+These specific examples of adaptations to increase ${T}_{m}$ are only a few of
+the many ways proteins can be altered to increase their overall stability.
+Studies have examined collections of mesophile and thermophile proteins in
+order to understand the specific mechanisms related to the shifts measured by
+the thermodynamic analysis detailed above \cite{jaenicke1998spe}.  These
+mechanism are many of the same mechanisms used in mesophilic proteins but there
+tend to be more per protein.  For example, thermophilic proteins exhibit (1)
+more hydrogen bonds \cite{PMID_11577980}, (2) additional electrostatic
+interactions such as increased numbers of salt bridges \cite{beeby_31,PMID_10097079},
+(3) tighter packing of the hydrophobic protein core \cite{beeby_29}, (4)
+optimized hydrophobic interactions, (5) increased polar surface areas
+\cite{PMID_10940293}, (6) increased and more stable $\alpha$-helices
+\cite{PMID_11577980}, (7) improved metal ion binding, (8) improved integration
+of the polypeptide chain termini, (9) replacement of amino acids in unfavorable
+conformations with Gly, (10) shorter disordered loops \cite{thompson1999tel},
+(11) more prolines in unstructured loops, (12) increased oligomeric
+associations, and (13) the reduction of thermolabile amino acids
+\cite{PMID_11577980,PMID_10097079}. Figure \ref{Sterner_Table_1} shows the
+comparison by Haney \emph{et al.} of amino acid usage patterns in a thermophile
+(\emph{Methanococcus janaschii}) and several related mesophilic
+\emph{Methanococcus} species \cite{PMID_10097079}.  The trend to increase electrostatic interactions
+can clearly be seen with Arg, Lys, Glu being more common in the thermophile.
+The opposite effect can be seen with Ser, Met, Asn, and Gln, which are
+thermolabile amino acids and, consequently, depleted in the thermophile.
+% Figure \ref{Sterner_Table_2} highlights some of the structural differences
+% between mesophiles, thermophiles, and hyperthermophiles.
+
+% FIXME: maybe remove Fig sterner_table_2?
+
+% last refs above: beeby_32-37
+
+% NOTE: rather than go into details here I may want to introduce the
+% thermodynamic framework first then offer concrete examples found by examining
+% protein families.  Other things to mention there, hydrophobic interactions
+% and electrostatic interactions increase w/ increasing temperature.  This sort
+% of info is sparse (see Sterner pg 50 for refs).  In a study by Haney 1999 in
+% Methanococcus janaschii vs. mesophile Methanococcus.  Decrease in uncharged
+% polar residues Gln, Asn, Thr, Ser (net loss of 9 in 300aa protein), Gln and
+% Asn prone to deamidation catalyzed by Ser and Thr residues (Wright 1991).
+% Increase in charged amino acids Glu, Arg, Lys (net gain of 6.5 residues in a
+% typical protein.  Trends applied to 88% of the proteins in the study.
+% Cambillau 2000 confirmed results, looked at 22 mesophiles and seven
+% thermophiles. Results suggest extra charged residues are located at the
+% surface region of the hyperthermophilic proteins. Chakrravarty 2000 average
+% thermophilic protein contains 268+- 38 amino acids vs. mesophilic proteins
+% that contain 310+-16 residues.  Also Thompson 1999 thermophilic proteins
+% shorter, due to shorter solvent exposed loops.  So Cp decreased by smaller
+% proteins and Entropy lowered in unfolded state.  (doesn't that increase the
+% deltaS term which decreases deltaG? This is a little unclear for me.) Loop
+% shortening would have a multiplicative effect on the number of confirmations
+% for the entire chain in the unfolded state (does this mean greater entropy in
+% the unfolded state?). 
+
+% NOTE: Systematic Structure Comps: Szilagyi 2000 looked at 29 thermo and 64
+% meso protein structures. Found 1) no difference in normalized number of
+% hydrogen bonds, total surface areas of cavities decreased in thermophiles
+% (s100), ion pairs were the greatest diff between meso and thermo.  300 aa
+% protein would see 4 strong and 14 weak additional ion pairs at 80C vs meso.
+
+% NOTE: Kumar 2000 had a similar study where they looked at 18 protein familes
+% (I have this paper).  Looked at packing densisty, hydrophobicity,
+% polar/non-polar surface areas, protein size, Pro in loops, helical content,
+% helical stability, hydrogen bonds, ion pairs, and amino acid composition.
+% Found the following are different: thermophiles more alpha helicies, more
+% stable (less His, Cys, and Pro in them and more Arg), thermolabile aa (Cys
+% and Ser) reduced while Arg and Tyr more, more salt-bridges and
+% side-chain/side-chain hydrogen bonds.
+
+% NOTE: Karshikoff 1998 (Sterner pg 56) looked at packing and found no
+% significant diff
+
+% NOTE: Facchiano 1998 alpha-helicies more stable due to amino acid choices
+% (Sterner pg 57).
+
+% NOTE: Sterner summarizes the most common stabilization methods on page 58.
+Despite years of research, no clear and decisive mechanism for
+thermostability has come to light.  Instead, thermophiles appear to use a
+variety of these mechanisms to stabilize their proteins. It is believed that the
+summation of these weak interactions is the source of thermophilic protein
+stability and the contribution of each mechanism can vary from protein to
+protein
+\cite{chakravarty2002efr,PMID_11577980,vieille2001hes,jaenicke1998spe,petsko2001sbt,rees1995hth}.
+Sterner and Liebl summarized the most consistent mechanisms used in a wide
+variety of protein families from thermophiles as based on many different protein
+structure studies
+\cite{PMID_10097079,PMID_11577980,beeby_31,beeby_29,PMID_10940293,thompson1999tel}.
+The most commonly observed adaptations include: (1) the stabilization of
+$\alpha$-helices, (2) an increase in the percent of proline residues resulting
+in reductions in the entropy of unfolded proteins, (3) a decrease in
+thermolabile amino acids (Cys and Ser), and (4) an increase in the number of
+electrostatic interactions and their optimization, such as increased numbers of
+salt bridges \cite{PMID_11256505}. These four general mechanisms are the most
+conserved adaptations seen across the thermophilic proteins analyzed to date.
+A role for structurally stabilizing disulfide bonds, however, was not a
+documented strategy.
+
+\subsection{Disulfide Bonds \emph{in vivo}}
+
+% deltaG 5-15 kcal/mol for globular protein which covalent bond is 30-100 kcal/mol
+% http://public-1.cryst.bbk.ac.uk/PPS2/projects/day/TDayDiss/StabilityDefined.html
+
+%@ Disulfide bonds are typically seen in proteins fullfilling two distinct
+%roles, structural or catalytic. For structural roles they effect the
+%enthalpy...
+% refs: boutz_35-38 to 32,33,34,35
+% Boutz_ref_118-120 to 119,121,120
+Disulfide bonds are typically seen in prokaryotes and eukaryotes as part of 
+active sites in cytosolic proteins or as structural components that stabilize
+proteins in the extracellular environment.  In cytosolic proteins, the
+formation of a disulfide happens during catalytic reactions and the cell
+generally maintains the active site cysteines in a reduced state
+\cite{32,33,34,35}.   Disulfides in extracellular proteins increase the
+enthalpy in the native state while decreasing the conformational freedom, and,
+effectively, decreasing the entropy of the denatured state.  Which effect is
+more pronounced in the stabilization of a disulfide-containing protein varies
+\cite{119,121,120}. Mutation studies in lysozyme, for example, have identified
+specific changes that can alter the ${T }_{m }$ either primarily through
+changes in $\Delta H$ or $\Delta S$ \cite{125,124}. 
+
+\subsection{Disulfide Bonds in Prokaryotes}
+
+%@ The generally reducing environment within cells makes the regulation of
+%disulfides complex.  In E. coli disulfides are maintained through a complex
+%pathways of redox proteins... Thioredoxin pathway...
+% boutz_ref_33 to 30
+% boutz_ref21 to 19
+% boutz_34 to 31
+\emph{In vivo} studies in \emph{E. coli} and yeast have revealed that disulfide
+bonds form almost exclusively in extracellular and compartmentalized proteins
+and this was attributed to the generally reducing nature of the cytosolic 
+environment. Glutathione acts as the general redox buffer in \emph{E.  coli} and
+other Gram-negative bacteria and eukaryotes. It is present at $\sim$5mM
+concentration with an electrochemical potential (E$^\circ$) of approximately
+-240mV \cite{30}.  The ratio of reduced to oxidized glutathione is
+approximately 200:1 in favor of the reduced form \cite{19}.  The balance of
+reduced and oxidized forms of glutathione in the cell are currently understood
+to be used to buffer oxidative stress \cite{31}.  
+% were once thought to be the primary reductant of cytosolic proteins however
+% it is
+
+% boutz_ref_12-22 to 11,144,12,13,14,15,16,17,18,19,20
+Disulfide bond formation in the cytosol of \emph{E. coli} and yeast is
+clearly discouraged given the extremely reductive nature of the environment.
+It was originally thought that small molecule oxidants, such as oxygen, were
+responsible for transient disulfide formation and reduced glutathione was
+thought to reduce these cytosolic proteins.  Over time, though, a new role for
+enzymes as controllers of the redox reactions began to emerge
+\cite{11,144,12,13,14,15,16,17,18,19,20}.  Studies began to link complex
+biochemical enzymatic pathways in \emph{E. coli} with protein disulfide
+regulation.  These pathways regulate the formation of disulfide bonds in
+extracellular and, in the case of eukaryotes, organelle environments while
+ensuring the cytosolic proteins remain reduced.  
+
+% FIXME: Check the last sentance
+
+% boutz_27-30 to 25,carvalho2005sad,26,27
+% boutz_45 to 41
+There are two primary enzyme families that maintain the reduced state of
+cytosolic proteins: the thioredoxins and the glutaredoxins.  The thioredoxins
+contain a characteristic fold and a common CXXC motif, where X refers to any
+amino acid \cite{25,carvalho2005sad,26,27}.  In prokaryotes, such as \emph{E.
+coli}, the thioredoxin pathway consists of two enzymes families: thioredoxin
+(Trx1 and Trx2) and thioredoxin reductase (TrxR). Trx1 has a redox potential of
+around -270 mV making it the enzyme with the strongest reducing power
+\cite{11}. This is the primary pathway responsible for the reduction of
+intramolecular disulfides in the cytosol.  In the process, thioredoxin becomes
+oxidized and is recycled by thioredoxin reductase which uses NADPH for its
+reducing activity \cite{41}.  This couples the reducing potential of the
+thioredoxin pathway to respiration.
+
+%@ The glutaredoxin pathway...
+% boutz_19_49_50 to 47,48,17
+The glutaredoxin pathway is in many ways parallel to the thioredoxin pathway
+and consists of glutaredoxin (Grx1, Grx2, and Grx3), glutathione, and
+glutathione reductase.  In this system the maintenance of glutathione in the
+reduced form is due to the action of glutathione reductase.  Glutathione
+reductase converts oxidized glutathione to reduced glutathione using the
+reductive power of NADPH.  The reduced glutathione can then go on to reduce
+glutaredoxin which, itself, targets other proteins for reduction.  The specific
+overlap between the pathways of thioredoxins and glutaredoxins is yet to be
+fully understood.  Generally, glutaredoxins are less efficient at reducing
+protein disulfide bonds \cite{47,48,17}. 
+
+% FIXME: check the last sentance.
+
+%@ the pathway for periplasmic disulfide bonds in E. coli...
+The prokaryotic cell is able to maintain reduced disulfides in cytosolic
+proteins using these two pathways.  However, the periplasmic space and
+extracellular environment are rich with disulfide-containing proteins.  As with
+the cytsolic proteins, the regulation of disulfides is carefully controlled by
+enzymes that oxidize and isomerize cysteine pairs. This control in \emph{E.
+coli} is the result of redox-active enzymes from the Dsb protein family. DsbA
+acts as the oxidizer of cysteine pairs via a CPHC
+active site motif and, with a redox potential of $\sim$-120mV, is the strongest
+thiol-oxidizing enzyme identified thus far \cite{59}. Once reduced, DsbA must be
+re-oxidized by DsbB, a transmembrane protein that shuttles
+electrons from the reduced form to the electron transport chain via ubiquinone
+or menaquione under anerobic conditions \cite{87,88}.
+
+% boutz_68_69 to 67,68
+% boutz_59_75 to 54,59,61,62,58,63,64,66,65,67,68,70,71,72,73,69,78
+% FIXME: I think it's 59 and 75 not 59-75!!!!
+Oxidation of the substrate protein by DsbA is non-specific and the correct
+disulfide bond formation is catalyzed by the DsbC disulfide isomerase protein.
+DsbC contains a thioredoxin-like fold with a CXXC motif and exists as a
+homodimer. In addition to the isomerization activity, DsbC also seems to act as
+a protein folding chaperon \cite{67,68}.  This activity is linked with
+disulfide isomerization because proteins with incorrectly resolved disulfides
+are also likely to be misfolded.  During the isomerization process the active
+site cysteines in DsbC become oxidized, necessitating reduction by DsbD
+\cite{54,78}.  This transmembrane protein includes three domains: DsbD$\alpha$,
+DsbD$\beta$, and DsbD$\gamma$.  These domains each contain an active site
+cysteine and together, shuttle electrons from Trx1 and donate them to DsbC
+\cite{64,79}. DsbD also reduces DsbE and DsbG.
+
+A summary of the disulfide pathways in \emph{E. coli} is presented in Figure
+\ref{Boutz_Fig_3}.
+
+\subsection{Disulfide Bonds in Eukaryotes}
+
+% boutz_95 to 95
+% boutz_102,103 to 102,103
+% boutz_105_107 to 105,106
+%@ In eukaryotes PDI catalyzes...  Ero1p shuttles electrons to oxygen from PDI
+In eukaryotes, the pathway for disulfide reduction and oxidation shares similar
+underpinnings yet the actual proteins are different.  The glutathione system is
+maintained with a reduced to oxidized ratio of $\sim$100:1 and non-catalytic
+disulfides are extremely rare in the cytosol \cite{95}.  However, the lumen of
+the ER does host proteins that are destined for export from the cell and often
+contain disulfides.  The ratio of reduced to oxidized glutathione in this
+compartment is $\sim$3:1 making the redox environment much more conducive to
+disulfide formation \cite{95}.  Protein disulfide isomerase (PDI) acts as both
+an isomerase and a oxidizer in this compartment \cite{96,99}.  It exists as a
+monomer and contains four thioredoxin-like domains and two CXXC motifs.  This
+protein has also been shown to possess a chaperon role and assist in protein
+folding as well \cite{97}.  This functionality suggests a role in the cell
+similar to a combination of DsbA and DsbC.  PDI is maintained in an oxidized
+form by the membrane-associated flavoprotein Ero1p \cite{102,103} which
+shuttles electrons from PDI to molecular oxygen \cite{105,108}.  As with the
+redox system in \emph{E. coli} and other prokaryotes, the disulfide bond
+maintenance pathway is complex and specifically controlled.  Yet much remains
+to be discovered about the regulation of this import process.
+
+\subsection{Disulfide Bonds in Intracellular Proteins}
+
+%@ Given the general techniques for protein stabilization and the specific
+%utilization of disulfides there are still questions about which methods
+%thermophiles use... They use some general techniques for stabilization just as
+%mesophilic proteins do.  Previous results lead to an interesting hypothesis
+%about a more ubiquitous use of disulfides in thermophiles... Original evidence
+%was ACL... then looked at disulfide structure prediction...
+Disulfide bonds are clearly an important component driving protein stability in
+the extracytoplasmic environment for both prokaryotes and eukaryotes.  Despite
+their potential utility in stabilizing proteins, the common doctrine excludes
+them from a role within the cytosol of all organisms.  As with \emph{E. coli}
+and yeast, it was assumed the reductive nature of the cytosol renders disulfide
+bonds extremely rare.  A role for disulfides in intracellular proteins
+from thermophiles was, as a consequence, ignored.  Furthermore, proteins of
+archaea are generally low in cysteine content and this was seen to be a direct
+consequence of the thermal labile nature of cysteine \cite{PMID_10097079}. The
+high temperatures associated with thermophilic growth were predicted to cause
+oxidative degradation of the cysteines.
+
+% mallick_12 to toth2000sal
+% mallick_14-18 to jiang1996sai,maes1999cst,dedecker1996csh,chiu2001csn,meyer2002hpt
+Recent computational work and protein structures have altered the
+perception of structural disulfides in cytosolic environments and opened up
+the possibility that they could be commonplace in thermophiles
+\cite{beeby2005gdb,mallick2002gei}.  Evidence for potentially wide-spread
+disulfide bonds in thermophiles came from the surprising discovery of three
+disulfide bonds in the protein structure of adenylosuccinate lyase (ASL) from
+\emph{Pyrobaculum aerophilum} \cite{toth2000sal}. This was shocking since the
+protein is cytosolic. This was not the first protein structure from a thermophile that
+contained disulfide bonds, but ASL prompted additional scrutiny via
+computational studies
+\cite{jiang1996sai,maes1999cst,dedecker1996csh,chiu2001csn,meyer2002hpt}.  
+
+\subsection{Computational Prediction}
+
+The first study by Mallick \emph{et al.} directly examined the possibility that
+disulfides were actually common in intracellular proteins of thermophiles
+\cite{mallick2002gei}.  Protein sequences from 25 microbial species, including
+the thermophile sequences available at the time, were queried against the PDB.
+Proteins where then threaded onto the backbone of their best match in the PDB
+and the distances between cysteines were assessed.  Efforts were taken to
+remove transmembrane proteins, those with thioredoxin folds and CXXC motifs,
+extracellular proteins, and proteins with other metal-binding signatures.  The
+results were shocking and indicated an enrichment for disulfide bonded
+cysteines in cytosolic proteins for the thermophiles examined.  Nine of the
+genomes analyzed were predicted to contain $>$10\% of their cysteins in
+disulfide bonds.  \emph{P. aerophilum} and \emph{A.  pernix} were predicted to
+have 44\% and 40\% of their cysteines in disulfide bonds respectively.
+Fluorescent labeling experiments confirmed an enrichment of disulfide bonds in
+lysate from \emph{P.  aerophilum} versus \emph{E. coli}.
+
+% FIXME: use this????  Landenstein_ref_8 to karshikoff1994ept This asstonishing
+% result opened up the possibility that disulfide bonds are common in the
+% cytoplasmic environment of many thermophiles and these covalent bonds may
+% play a key stabilizing role in thermophilic proteins.  Many studies have
+% examined the role of various techniques in stabilizing thermophilic proteins
+% with the mechansism used to increase $\Delta$G and ${T}_{m}$ discussed above.
+% An examination of electrostatic interactions may point to a key reason
+% disulfides are used in these organisms \cite{Landenstein_ref_8}.  This work
+% showed that low levels of spatial optimization of the electrostatic
+% interactions within a protein are compensated by covalent cross-links and
+% vice versa. Smaller proteins tend to have a lower electrostat optimization
+% values and this agrees with a higher disulfide-densisty for the generally
+% smaller proteins of the thermophiles \cite{ladenstein2006pda}.
+
+% Landenstein_10 to karlstrom2005idh
+% Landenstein_15 to bjork2004lit
+% Landenstein_10 to karlstrom2005idh
+The role of disulfides as stabilizing components of thermophilic proteins has
+been supported by work with two cytosolic proteins from \emph{P. aerophilum}
+and \emph{A. pernix}.  Isocitrate dehydrogenase from \emph{A. pernix} was
+mutated (Cys87Ser) resulting in the disruption of a disulfide bond.  The
+resulting melting temperature difference of -9.6 $^\circ$C points to a direct
+role for this covalent bond in stabilizing the protein \cite{karlstrom2005idh}.
+Another example includes the disruption of disulfide bonds with dithiothreitol
+in ASL from \emph{P.  aerophilum}, resulting in a shift of the ${T }_{m }$ by
+-18.5 $^\circ$C \cite{toth2000sal}.  Other examples follow the same pattern
+with disulfides in thermophilic proteins providing stabilization and increased
+${T }_{m }$ \cite{ladenstein2006pda}.  Similarly, engineered disulfides in
+malate dehydrogenase from \emph{Chloroflexus aurantiacus} induced an increase
+in ${T }_{m }$ of 15$^\circ$C \cite{bjork2004lit}.
+
+\subsection{A Novel Disulfide Oxidoreductase}
+
+%@ Interestingly, disulfide richness is not ubiquitous in thermophiles, sulfur
+%reducers, for example, are lacking PDO and seem to have few disulfides.
+% beeby_32-37 to chakravarty2002efr,PMID_11577980,vieille2001hes,jaenicke1998spe,petsko2001sbt,rees1995hth
+Continued computation research pointed to a more nuanced view of disulfide bond
+utilization in cytosolic proteins from thermophiles.  This is the topic of Chapter
+\disulfidechapter\ but briefly, the original computation study was scaled to
+assess the disulfide bond abundance across almost 200 microbial species.  This
+work supported the original assessment that disulfide bonds are widespread in
+the genomes of many, but not all, thermophiles. This corroborates the idea that
+many different techniques are used to stabilize proteins and one single method
+does not dominate all thermophiles
+\cite{chakravarty2002efr,PMID_11577980,vieille2001hes,jaenicke1998spe,petsko2001sbt,rees1995hth}.
+The thermophiles predicted to have few disulfide bonds include the methanogens,
+many sulfur-reducing organisms, and the thermophilic cyanobacteria.  Many of
+these organisms grow in extremely low redox environments under strongly
+reducing conditions and this biological niche may preclude the use of
+widespread disulfide bonds.  In addition to thermophiles other extremophiles
+appeared to include enrichments for disulfide bonds.  These included some
+halophiles, alkaliphiles, acidophiles, and radiation tolerant microbes
+suggesting that disulfide bonds may be an even more widespread technique to
+stabilize proteins in extreme environments \cite{beeby2005gdb}.
+
+%@ Mechanisms to enable disulfide bond formation in the cytosol are still
+%unknown yet PDO was found to correspond very distinctly with thermophilicity
+%and disulfide prediction leading to a possible involvement... further crystal
+%structures showed...  Since the possible mechansism is not understood, redox
+%buffer is not even known in these species, a true role for PDO cannot be
+%assigned.
+% ladenstein_ref_5 to darby1995cmd
+This tantalizing possibility points to a radically different biochemical
+environment within the cytosol of these poorly understood organisms.  New redox
+enzymes are being discovered that are not members of the thioredoxin
+superfamily but serve redox roles in the cell.  These use electron donors or
+receptors such as FAD, NADPH, NADH, quinones, and lipoic acid
+\cite{darby1995cmd}.  The specific pattern of the enrichment of disulfide bonds
+in thermophiles was studied and related to protein phylogenetic profiles as is
+detailed in Chapter \disulfidechapter.  This allowed for the precise correlation of
+protein disulfide isomerase (PDO) with the quality of richness in disulfide
+bonds \cite{beeby2005gdb}.  Given that the presence of PDO in these organisms is not
+found only on a single branch of the tree of life, the specificity to which it
+correlates with disulfide richness is strong evidence for its involvement with
+the quality \cite{ladenstein2006pda}. 
+
+% landenstein_ref_20 to guagliardi1994tet
+% landenstein_45,40 to pigiet1986tcr,bardwell1991ipr
+The PDO protein contains a C-terminal region of similarity to glutaredoxin, two
+general thioredoxin-like folds and includes four cysteines into two CXXC motifs
+in its sequence. X-ray structures for both the \emph{Pyrococcus furiosus} and
+\emph{Aquifex aeolicus} proteins have been solved.   The protein from
+\emph{Sulfalobus solfataricus} was shown to reduce insulin disulfides
+indicating a catalytic potential \cite{guagliardi1994tet}.  Yet the actual
+\emph{in vivo} nature of PDO and its role in disulfide bond formation is
+elusive.  The ability of PDO, like all other oxidoreductases, can vary based on
+the cellular environment \cite{pigiet1986tcr,bardwell1991ipr} and its ultimate
+place in what is likely to be a complex pathway for disulfide bond formation
+and maintenance has yet to be seen.  A detailed understanding of disulfides in
+these unusual organisms will likely include many proteins and emerge as more
+genomes are sequenced and genetic systems in thermophiles become available.
+
+\subsection{Further Work}
+
+The discovery of the nuanced distribution of disulfide across microbial species
+and the identification of PDO is covered in detail in Chapter \disulfidechapter\ of this
+dissertation.  Chapter \gdapchapter\ introduces a web tool for predicting disulfides in new
+sequences. 
+
+
+
+
+\newpage
+
+\section{Genomics}
+
+%@ Gene expression studies look at... The type of questions they attempt to
+%answer...
+
+DNA microarray technologies are a recent advancement in biological research
+that have found widespread adoption among a diverse set of research subdomains.
+They represent one of the most common high-throughput experimental approaches
+biologist now have at their disposal to answer questions that were previously
+intractable. Microarrays provide the ability to simultaneously measure the mRNA
+abundance of thousands of genes in a given biological sample and do so
+relatively quickly and cheaply.  The power of this approach is evident in the
+large number of diverse studies that have been performed.  These experiments
+can be grouped into one of several general categories based on the overall
+study design and end goal.  These include: classification problems (supervised
+learning) \cite{Dudoit2003ICM}, clustering problems (unsupervised learning)
+\cite{Azuaje2003cge,Stanford2003cac}, gene co-regulation and function
+identification studies \cite{PMID_12413821}, differential gene expression
+studies \cite{PMID_15843092,PMID_15867208}, time-course and dose-response
+studies \cite{PMID_12443997}, gene pathway and regulatory network studies
+\cite{PMID_16216773,PMID_16825123}, drug discovery and toxicology studies
+\cite{PMID_16512775,PMID_16700885,PMID_16880944,PMID_17195470}, clinical
+diagnostics \cite{PMID_16918486}, and sequence-variation studies
+\cite{PMID_17265721}.
+
+\subsection{Microarray Technologies}
+
+%@ Microarrays allow for the simultaneous measurement of gene expression...
+%typical microarray experiment mRNA extracted, reverse trans... signals read...
+%normalized etc.  @ Basic technologies differ but the general idea is the same,
+%DNA is fixed in an array and hybrized with other DNA... spotted mixed samples
+%vs.  single-channel systems...
+There are two basic types of gene microarray technologies currently at the
+disposal of researches: two-channel and single channel arrays.  Each has a
+particular usefulness and differs in the implementation details but are
+ultimately similar in approach.  In both systems, DNA is immobilized on a fixed
+surface in a particular array pattern.  Each row and column intersection
+contains a distinct, predetermined DNA sequence called a probe. The source of
+the DNA can be cDNA clones or synthesized oligonucleotides.  Onto this fixed
+array, a sample of either cDNA reverse transcribed from mRNA or, less
+frequently, mRNA itself is hybridized to the array.  In either case the sample
+is labeled with a fluorescent dye.  The sequence complementarity drives the
+probes (fixed onto the array surface) and target cDNA or mRNA sample sequences
+to anneal to each other.  The relative brightness of each probe is then
+measured with a laser scanner and intensities for each are recorded.
+
+In the case of the two-channel arrays, samples are always mixed with a
+differently labeled reference sample while single-channel arrays only use the
+actual sample.  The two-channel array expression values are typically
+measured as log ratios of the two dye intensities while single-channel arrays use
+ one intensity value. Regardless of the platform, the raw probe intensities
+must be processed to yield interpretable results.  Arrays are often scaled, for
+example, to all have an equal mean or median.  This normalization process makes
+the comparison between arrays possible and there are many algorithms to choose
+from.  Ultimately, the normalized data can be aggregated into an
+two-dimensional expression matrix with samples versus probe expression values.
+This output can be used in a variety of analysis methods.
+
+%Figure \probefigure shows an overview of the process of sample preparation,
+%hybridization, normalization, and data aggregation.
+
+%@ possibility of using expression arrays as quantitative for diagnostics
+%@ How they approach questions
+
+\subsection{Research Approaches}
+
+Microarray studies differ in the way they approach their core questions but
+overall they can be divided into two general analytical techniques.  The first
+is discovery driven where a fixed hypothesis is not necessarily created before
+the experiment.  This method has been called \emph{pattern-detection} by
+some and focuses mainly on the detection of interesting and previously unknown
+relationships \cite{Dubitzky2003IMD}.  A common study may examine previously
+undistinguished disease subclasses in a series of related samples.  A study by
+Freije \ea\ used this approach to identify novel subclasses of malignant
+gliomas \cite{PMID_15374961}. 
+
+A second analytical approach to microarray experiments has been called
+\emph{predictive modeling} and is concerned with learning a classification or
+estimation function \cite{Dubitzky2003IMD}. In sample classification studies, also
+known as supervised learning, the end goal is to predict the class labels of
+samples. Generally, samples are divided into a training dataset and a
+classification algorithm is trained to recognize the class labels. The
+performance of the classifier is often optimized using a k-fold
+cross-validation strategy.  This process is also commonly used to assess the
+error rate in the classification model while the classification of the test set
+is typically used to assess overall accuracy of the built classifier.
+
+% FIXME: just use the Glolub example
+Supervised learning approaches allow for new samples to be classified and 
+can be a powerful tool for understanding sample differences. For example, a
+researcher might have a collection of breast cancer and normal tissue samples.
+A classification method could be applied to learn to predict the state of new
+samples based on a subset of the expression data.  Subsequent new breast tissue
+samples could then be classified into either a ``normal'' or ``cancer'' class using
+this trained classifier. The complex question of how to choose genes for
+classification (or other tasks) is the focus of the rest of this work.
+
+%@ unsupervised methods let you do...
+
+%@ supervised methods let you do... training set, test set classification
+% FIXME: supervised learning is also known as induction (inductive inference or
+% inductive learning)
+
+%@ feature selection critical to these types of analysis... example of clustering
+%@ To deal with the dimensions of microarray data researchers have focused on
+%feature seleciton tasks. Deals with the problem of adding uninformative
+%features, the search space increases exponentially.
+One issue common across most analysis methods for microarray data is the
+``curse of dimensionality'', where relatively few samples are available
+compared to the number of measured features \cite{Bellman_1957}.
+Features in microarray data refer to genes whose expression patterns are
+measured across samples.  Typical microarray experiments include a few dozen
+to, at most, a few hundred microarrays hybridization for very large studies.
+However, each microarray measures thousands, typically tens of thousands, of
+gene expression values.  Only a handful of the thousands of gene expression
+patterns measure might be critical for the classification of samples.  Using
+the expression information for all genes is undesirable since this increases
+the computational complexity and run time for a classifier.  It could also
+affect accuracy as previous work has shown that classification algorithm
+performance decays as irrelevant features are added to the dataset
+\cite{john94irrelevant}. 
+% For many algorithms, the runtime increases dramatically with the number of
+% features involved, sometime exponentially, making such algorithms intractable
+% for microarray data.  which the most informative genes are selected that best
+% differentiate between the sample states. This process is necessary for many
+% sample classification algorithms due to the dimensionality problem with
+% microarray datasets.  Typically, samples sizes range between a dozen to a
+% hundred yet the measurements for each genes are in the tens of thousands.
+% Many genes in a microarray experiment are uninformative and their use in a
+% given classification proves pointless at best and, at worst, detrimental.
+% Feature selection addresses this issue and is a critical step in classifying
+% samples effectively.
+
+\subsection{Feature Selection}
+
+%@ statistical methods for feature selection
+%@ Feature seleciton is a heuristic search problem w/ each state specifying a
+%feature subset... different ways to proceed, greedy search etc... Two major
+%approaches, explicit feature selection or Feature Weighting methods...
+%Explicit feature selection can take two approaches, filter or wrapper
+%methods...
+Feature selection is a heuristic search problem where the goal is to eliminate
+irrelevant features and retain relevant ones \cite{PMID_15219288}.  For microarray data,
+this corresponds to selecting the best genes for the task at hand and removing
+from consideration the vast majority of genes that are uninformative. One of
+the most common applications of feature selection is the identification of
+differentially expressed genes.  These are genes whose expression levels vary
+significantly between two (or more) sample classes.  There are many different
+ways to approach this problem and each of the algorithms have their own
+strengths and weaknesses.  Almost without exception some feature
+selection technique is used in microarray data analysis due to the sheer amount
+of data, its general noisiness, and the technical limitations imposed by many
+subsequent analysis algorithms.
+
+\subsection{Explicit Feature Selection}
+
+There are two general types of feature selection strategies
+\cite{Xing_2003,PMID_15219288}.  The first, and most common, are the explicit feature
+selection techniques.  These approaches focuses on finding a good subset of
+features while removing the rest. The second general class are weighting
+methods which continue to work with all features in a microarray dataset but
+weight each one according to its relevance.  Often times feature weighting
+is integrated into a classification algorithm.  As a general
+feature selection technique, it is less commonly applied in microarray analysis
+since it does not reduce the dimensions of the data.  Explicit selection
+methods will be the focus here because of this limitation.
+
+% FIXME: add refs from sections at end of paper
+
+%@ Explicit search can include discretization, markov blanket filtering,
+%decision tree, etc.
+The explicit feature selection algorithms can be further divided into filtering
+and wrapper methods. Filtering methods are much more common in microarray
+analysis. The approach calculates a statistic for each gene's expression levels
+and this score is used to sort the gene features by relevance.  Examples
+include cutoffs for the variance of individual gene expression patterns, fold
+change minimums between groups of samples, or calculated metrics such as the
+\emph{P}-metric used by Golub \ea\ which measures the amount of difference
+between the means of the groups normalized by the variation of the two groups
+($\mu2 - \mu1 / \sigma2 - \sigma1$). The advantages of these filtering metrics
+are their extreme simplicity and the speed with which they can be calculated.
+Depending on the subsequent analysis, a different cutoff could be used to
+produce a feature subset of any appropriate size.  Many alternative methods
+have been examined in the literature and each have their strengths and
+weaknesses.  An exhaustive overview of all feature selection algorithms applied
+to microarray datasets is outside the scope of this work; however, several
+methods are commonly used and described below. 
+
+%FIXME: may want to say do they rank the genes or provide p-value for cutoff for each of these methods
+
+% FIXME: should include references for application of each method to MA
+
+%@ Common filtering algorithms and who made them: fold change, etc
+
+%@ ___continuous___
+
+%@ fold change
+
+The simplest method for identifying differentially expressed genes is fold
+change.  This is not a statistical test but, instead, uses expression value
+thresholds to determine which class a sample belongs in.  The process works by
+finding the means for a given gene's expression levels in two classes. The
+genes whose mean difference is greater than a certain threshold (such as
+2-fold) are selected \cite{derisi1997ema}.  This method is extremely simple and
+suffers from bias when the microarray data are not normalized properly.
+Efforts have been made to correct the problems but the fact remains, fold
+change is not a statistical test and cannot report a confidence score or
+probability \cite{yang2002wfa}.
+
+%@ t-test and variations like t-tests
+
+The most ubiquitous statistical measure to identify
+differentially expressed genes, and hence perform feature selection, is the
+\emph{t}-test.  Compared to fold change, this method allows for a probability
+to be calculated for features which can be ranked accordingly allowing for more
+accurate feature analysis \cite{PMID_164182572}. The Student's \emph{t}-test is
+often employed in microarray data analysis rather than the traditional paired
+\emph{t}-test.  This is due to the fact that many microarray studies sample
+from different sources rather than the same source at different time points.
+This makes the use of the paired \emph{t}-test inappropriate and the Student's
+\emph{t}-test much more commonplace
+\cite{ma2003gep,bueno2004dtp,PMID_14871811}. Regardless of the particular test
+used, these methods allow for the calculation of \emph{p}-value which expresses
+the chance a random sampling from the same normal distribution would produce
+the observed difference in expression between the two classes. In order to
+apply the \emph{t}-test the following must be true: (1) the two samples are
+independently drawn from the source population, (2) the variance of the two
+groups must be equal, and (3) the values for members from each must be normally
+distributed.
+
+\begin{equation} \label{ttest}
+t = { \mu_1 - \mu_2 \over s_{\mu_1 - \mu_2}}
+ \ \mathrm{where}\ s_{\mu_1 - \mu_2} = \sqrt{{\left({n}_1 - 1\right) s_1^2 + ({n}_2 - 1) s_2^2  \over {n}_1 + {n}_2 - 2}\left({1 \over n_1} + {1 \over n_2}\right)}
+%t = {\overline{X}_1 - \overline{X}_2 \over s_{\overline{X}_1 - \overline{X}_2}}
+% \ \mathrm{where}\ s_{\overline{X}_1 - \overline{X}_2} = \sqrt{{\left({n}_1 - 1\right) s_1^2 + ({n}_2 - 1) s_2^2  \over {n}_1 + {n}_2 - 2}\left({1 \over n_1} + {1 \over n_2}\right)}
+\end{equation}
+
+Equation \eqref{ttest} shows the test statistic calculation for the Student's
+\emph{t}-test where $s^2$ is the unbiased estimator of the variance, ${n}_1$ is
+the number of features in class 1 and ${n}_2$ is the number of features in
+class 2.  Alternative methods exist that do not require the sample classes to
+have identical variance such as the Welch \emph{t}-test \cite{PMID_142249476}.
+%This allows for comparisons between sample classes with different variance.
+There are many other modified versions of the \emph{t}-test and each have
+particular conditions under which they are appropriate.
+
+%@ signal to noise ratios
+
+Miroslava \emph{et al.} describe another simple approach for distinguishing
+between sample groups using signal to noise ratios (SNR)
+\cite{PMID_164182572,PMID_12933571,yeang2001mcm,PMID_12384549}.  These methods
+include a calculation for each feature that measures the differences in their
+class means normalized by the variation of expression seen in each group.  This
+criteria assures that features with highly different means between the sample
+classes and with low variance within each sample class are identified.  Many
+studies have used such an approach including Golub \emph{et al.}, a seminal
+work that identified gene expression differences between leukemia subtypes
+\cite{PMID_164182572,PMID_12933571,yeang2001mcm,PMID_12933571}.
+
+\begin{equation}\label{pmetric}
+P = { \mu_1 - \mu_2 \over {\sigma_1 - \sigma_2}}
+\end{equation}
+
+The calculation of the SNR \emph{P}-metric is shown in equation \eqref{pmetric}
+where $\mu_1$ and $\mu_2$ are the means and $\sigma_1$ and $\sigma_2$ are the
+standard deviations for a gene in class one and two.
+
+%@ significance analysis of microarrays (SAM)
+% maybe not this one since it uses FDR as an integral part of the process
+
+Significance analysis of microarrays (SAM) identifies differentially expressed
+genes between sample classes by performing a series of gene-specific test
+similar to the \emph{t}-test.  SAM uses a \emph{d}-score which is the mean
+difference between sample classes for a gene normalized by the standard
+deviation of repeated measures for the gene \cite{tusher2001sam}.  A weighting
+term is added to the pooled standard deviation used in SAM to prevent
+overestimating the significance of genes with low variance.  The method
+compares the \emph{d}-score calculated for each feature with the average
+\emph{d}-score calculated with randomized sample labels.  The \emph{d}-scores
+observed for each feature are compared to these expected \emph{d}-values and a
+cutoff is determined by plotting these values. SAM is appealing because it
+incorporates information of the SNR methods with a concept of controlling false
+discovery rates (FDR) \cite{efron2001eba}.
+
+% \begin{equation}\label{sam}
+% 
+% \end{equation}
+% 
+% Equation \eqref{sam} give the \emph{d}-value and weighted pooled standard
+% deviation formulas.
+
+%@ non parametric 
+
+%@ Wilcoxon rank sum test (non-parametric)
+% FIXME: the Mann-Whitney is the equivalent for t-test for two independent
+% the Wilcoxon is the equivalent for the t-test for two correlated samples
+
+The previous methods are parametric in nature and assume the data involved can
+be modeled with a given distribution, most typically the normal distribution.
+However, in the case of microarray data and many other types of real-world
+data, the assumption of normality can be problematic.  Non-parametric
+techniques can be used in these cases to arrive at ultimately the same sort of
+information, namely a \emph{p}-value, without having to assume the data fits a
+given distribution.  An example is the Mann-Whitney U-test which is a
+non-parametric equivalent of the \emph{t}-test for two independent samples.
+Rather than working with gene expression levels directly, the Mann-Whitney test
+uses rank-transformed data expression.  This approach, along with other
+non-parametric tests, have been used in several cancer classification studies
+\cite{troyanskaya2002nmi,park2001nsa,dettling2002scg}. 
+
+% FIXME: equation and algorithm explanation needed Equation \eqref{wilcox}
+
+%@ multi-conditional
+
+The feature selection methods examined thus far examine datasets with two
+classes.  Often times, though, multiple classes are present and the end goal is
+to identify genes differentially expressed between the categories.  The
+one-against-others approach can be used to effectively turn a two-class feature
+selection algorithm into a multi-class method.  In this approach the feature
+selection algorithm is repeated for every class in the dataset and every gene
+is assessed for its ability to distinguish the class labels of one class versus
+all others.  The end results are features ranked based on their ability to
+distinguish the class labels.  
+
+%@ ANOVA (t-test for more than two classes)
+
+The generalization of the \ttest\ to comparisons of more than two distributions
+is the one-way analysis of variance (ANOVA).  This test allows the means of an
+arbitrary number of groups to be compared assuming they each are normally
+distributed.  ANOVA produces an \emph{F}-statistic that measures how much a
+given gene's value varies within classes compared to between the sample
+classes.  This can be converted to a \emph{p}-value and used to assess the
+importance of each gene \cite{cui2003std,kerr2000avg,lee2002mmg,yang2003sma}.
+
+%@ Correlation coefficient
+
+Genes that distinguish sample classes have also been identified in several
+studies through the use of a correlation coefficient.  This feature selection
+method ranks genes based on how well their expression patterns correlate with
+the sample classes.  Features with the greatest correlation to sample classes
+are ranked highest.  Many correlation methods exist, the most commonly applied
+to microarray data is the Pearson correlation coefficient. Improvements to the
+method to deal with the problem of multiple testing have also been described
+\cite{dudoit2002smi}.
+
+% \begin{equation}\label{pearson}
+% \Delta
+% \end{equation}
+
+% Equation \eqref{pearson} gives the general Pearson correlation coefficient.
+
+
+%@ ___ discrete ___
+
+%@ filtering by mixture modeling
+
+The feature filtering methods discussed so far are typically used with
+continuous gene expression data.  Other algorithms are tuned to work with
+discretized data such as ``present'' or ``absent'' expression values. Gaussian
+mixture modeling looks at the actual distribution of gene values and attempts
+to model states in the data.  For example, a gene that is primarily expressed
+in one of two states (for example ``cancer'' or ``normal'') can be modeled as
+two overlapping normal distributions using the EM algorithm
+\cite{dempster1977mli}.  A univariate mixture model with two components can be
+used to model a gene that is expressed in two distinct levels.  A
+mixture-overlap probability can be used to evaluate the goodness of fit for the
+mixture model and, essentially, sort genes based on how well they discriminate
+the two states.
+
+% FIXME: add more
+
+%@ Information gain and the other rank gene methods
+
+Information gain is another technique for measuring how well a given feature's
+expression pattern agrees with the partitioning of samples into distinct
+classes. The first step in this process is to discretize the continuous
+expression data into distinct states.  This can be accomplished using the
+Gaussian mixture modeling described previously.  Information gain then measures
+the degree of relevance of a feature to the sample classes.  The greater the
+information gain, the more relevant the probe is to the partitioning of samples
+\cite{cover1991eit}. This process can be described with the following equation:
+
+\begin{equation}\label{sam}
+I_g = H \left (  P \left ( S_1  \right ), ..., P \left ( S_C  \right )  \right ) -  \sum_{ k=1 }^{ K } P  \left ( E_k  \right ) H  \left ( P \left (  S_1 | E_k \right ),..., P \left (  S_C | E_k \right )  \right )  
+\end{equation}
+
+Where the sample classes are given by $S_1,...,S_C$, the feature being examined
+has partitioned the samples into classes $E_1,...,E_K$, and the probability of
+class $S_C$ given the predicted class of $E_K$ is given by $P \left ( S_C | E_k
+\right) = P \left ( S_C  \cap  E_k \right) / P \left ( E_k \right) $.  $H$ is
+the entropy function given by $H = \sum_{ i=1 }^{ c } - P_i log P_i$ for the
+entropy distribution of $\left\{ P_1,...,P_c \right\}$.
+
+One problem with information gain is that many similar features can all score with
+an equally high value.  The result is a highly redundant
+feature subset with an overrepresentation of certain gene families.  This can
+ultimately compromise the effectiveness of subsequent classification algorithms
+that use the output from an information gain feature selection filter.  The
+technique of Markov blanket filtering circumvents this problem by eliminating
+redundant features \cite{koller1996tof}. 
+
+% FIXME: can also mention PCA?
+% FIXME: add more of the survey papers!
+%@ summarize other filter methods quickly to show diversity
+
+The methods documented here are just a few of the many filtering feature
+selection algorithms developed for general machine learning problems.  Many
+more examples of adaptations of existing feature selection techniques or the
+development of novel techniques for microarray data can be found.  A survey of
+feature selection algorithms was profiled by Inza \ea\ where they examined the
+performance of six total algorithms in a classification task, four of which
+used discretized gene expression levels \cite{PMID_15219288}. These included
+Shannon-entropy, Euclidean-distance, Kolmogorov-dependence, and the
+Kullback-Leibler statistic.  For feature selection with continuous expression
+data they used a modified version of the SNR \emph{P}-metric used by Golub \ea\
+along with a \emph{t}-score based on the \ttest. Another survey by Chow \ea\
+examined three feature selection algorithms; median vote relevance (MVR), naive
+Bayes global relevance, and mean aggregate relevance (MAR) which is similar to
+the \emph{P}-metric \cite{PMID_11242594}.  Jeffery \ea\ provided a
+comprehensive overview of some of the most popular feature selection algorithms
+used to date, many of which were described previously.  These included SAM,
+between group analysis, ANOVA, template matching, empirical Bayes statistic,
+MaxT, area under a ROC curve, rank products, the \emph{t}-statistic, and fold
+change \cite{PMID_154652968}.  Liu \ea\ examined the performance of
+Shannon-entropy, the Chi-Squared (${\chi}^{2}$) statistic, along with
+modifications of the \emph{t}-statistic and \emph{P}-metric
+\cite{PMID_14571374}.  In another survey, Lui examined the use of feature
+selection in the context of drug discovery and included five methods:
+information gain, mutual information, the ${\chi}^{2}$ statistic, odds ratio,
+and a simplified ${\chi}^{2}$ statistic called GSS.  Finally, Su \ea\
+implemented eight algorithms for feature selection in their RankGene program
+\cite{PMID_146536352}.   The methods included the Twoing rule, information
+gain, gini index, max minority, sum minority, and sum of variances methods.
+Despite their diversity, these filter feature selection algorithms share the 
+common end goal of ranking gene features in order to simplify microarray data and to 
+identify the most important features.
+% These have well defined characteristics and are commonly applied to feature
+% selection problems.  
+
+% For each feature examined they attempt to divide the range of expression
+% across the samples into two disjoint sets, one with as a "high" expression
+% set and the other as "low".  The samples were then annotated into one of the
+% two samples classes based on which of these sets they fall into.  These
+% algorithms differ in the error scoring function they use, for example the sum
+% minority rule counts the total number of errors in each class.  The net
+% effect however is the same, the probe sets are sorted based on their ability
+% to correctly segment samples into their respective classes.
+
+% Could mention other common packages here too!
+
+%@ Wrapper Method is limited because it is an NP-hard.  hill-climging,
+%best-search first, etc...  ORDERED FS is a combo wrapper and filter method.
+Wrapper feature selection methods are quite different from the explicit feature
+filtering techniques outlined previously.  They rely on indirectly
+assessing feature subset selections through cross-validation with a particular
+classification algorithm \cite{Berrar_2003}.  These methods are much more
+computationally expensive than simple gene ranking algorithms due to the search
+space of possible feature subsets being very large. Enumeration over the
+complete $2^n$ possible feature subsets, where \emph{n} is the number of
+features, is NP-hard making an exhaustive search impractical for even small
+values for \emph{n}. The focus of these methods, then, is how to efficiently search
+the possible subgroups of features while at the same time finding a near
+optimal subgroup.  Hybrid methods exist, such as the ORDERED-FS algorithm, that
+first rank features using an explicit filtering algorithm and subsequently
+explore the possible feature space to find a well-performing feature subset
+through cross-validation \cite{Ng_1998}. These benefit from improved
+performance but are still, like all wrapper methods, much more computationally
+challenging than feature filtering statistics such as the \ttest\ or information
+gain. Because of their infrequent use in the domain of microarray research,
+wrapper methods will only be covered breifly in this overview.
+
+\subsection{Feature Selection Performance}
+
+%@ no one specific method dominates as being best
+%Notes
+%@ Comparing feature selection algorithms is difficult... Many use
+%classification performance as a metric.  
+A common approach to compare feature selection algorithms is to test their
+ability to identify meaningful and important features and an ideal task to
+evaluate this is sample classification.  Many of the comparisons of feature
+selection algorithms mentioned previously use classification accuracy, or a
+related concept such as cross-validation error rates, as a ranking mechanism
+for feature selection algorithm performance.  The classification problem, more
+generally referred to as supervised learning, is typically divided into two
+phases: (1) training the classifier and (2) using the classifier to classify
+a test set.  Feature selection begins the process by defining which gene
+features are to be used in both the training and testing phases.
+
+% Go on to mention: 1) no clear performance winner, 2) depends on the dataset
+% and sample classes examined, 3) wrapper methods generally perform better but
+% are less often used.
+Given the many comparisons between feature selection algorithms, both wrapper
+and filter methods, no clear leader has emerged as being superior.  Instead,
+feature selection algorithms vary in their ability to identify features that
+perform well in classification tasks.  This variation in performance seems
+attributed to the particular dataset and class labels being examined as well as
+the induction algorithm being used \cite{guyon2002gsc,PMID_15087314}.  The
+wrapper methods generally perform better than simple feature filtering methods
+\cite{Ng_1998,Berrar_2003}.  This can be attributed to the nature of the
+algorithms since they each specifically identify features that perform well in
+the classification algorithm used for testing.  This leads to the selection of
+features that are particularly useful in the induction algorithm being used.
+However, this performance premium comes at a cost.  Wrapper methods are much
+more computationally demanding than the simpler filtering methods.  As a
+result, most microarray analysis is performed using the faster filtering
+methods.  
+
+%@ The current commonly used feature selection algorithms, most are simple
+%filtering technqiues, are typically based on individual genes being evaluated
+%one at a time.  Nothing wrong with this but there are biological reasons why
+%examining multiple genes would be beneficial.
+The vast majority of feature selection techniques, regardless of whether they
+use a wrapper or filter approach, consider the contributions on only one gene
+at a time. There is no doubt that, despite this limitation, many interesting
+and important individual genes have been identified that are directly related
+to the underlying biology of the samples being examined.  However, the complex
+biological systems being studied are not just limited to the effects of
+independent, single genes.  Instead, even in the simplest biological systems
+the interactions between many gene products ultimately determine the phenotypes
+and classes observed in the samples.  Ignoring the interdependency of gene
+expression patterns has resulted in missed opportunities to understand more
+complex gene relationships.
+
+%@ PCA and Bo et al. technique show that feature selection with multiple gene
+%info can be beneficial to the subsequent classifier.  So look at two, or more,
+%genes at a time can boost classification performance.  Yet there are some
+%issues, PCA can't reextract the genes contributing to the component.
+Some studies have looked at using multiple gene expression information in
+feature selection.  B{\o} \ea\, for example, examined pairs of genes in a
+feature selection algorithm that made use of the diagonal linear discriminant
+(DLD) method to evaluate how well pairs together separated sample classes
+\cite{PMID_11983058}.  Others have shown the first several principle components
+from the principle component analysis (PCA) of microarray data can be
+effectively used to identify components that combine gene information to
+distinguish sample classes \cite{PMID_173481048,PMID_11126130,PMID_10963673}.
+Yet in both these cases the actual relationships between pairs, or large sets,
+of genes is hard to interpret from a biological perspective. In the case of
+PCA, it is difficult to recover meaningful gene relationships from the
+principle components.  Still, these methods show the utility of examining the
+information from two (or more) genes at a time.
+
+\subsection{Logic Analysis}
+
+%@ Logic analysis is another way to view gene relationships whose
+%interpretation is more clear.  It was originally used as a phylogenetic
+%approach to understand... Breifly, this worked like...
+%@ A method to adapt logic analysis to microarray data was explored by Bowers
+%et al.  The process worked by...
+Logic analysis was a proposal by Bowers \ea\ as an extension of
+the phylogenetic profiles approach to understanding genes' presence or absence
+across different prokaryotic genomes \cite{PMID_144923264,pellegrini1999apf}.
+In phylogenetic profiles analysis, gene presence and absence vectors are compared and
+those with the most similar vectors are predicted to interact in the same
+pathway.  Similarly, logic analysis looked for relationships between gene
+presence or absence patterns across prokaryotic organisms. However, the vectors of two
+genes were logically combined and then compared to a third binary gene vector.
+For example, one possible logic relating two gene profiles to a third would be
+if a particular gene is present in genomes A and B, then it is also present in a
+third genome C.  Other kinds of logical relationships --- involving negation
+and ``or'' instead of ``and'' --- lead to eight distinct types of logic relating
+two binary profiles to a third.
+
+This technique allowed for the identification of novel gene relationships that
+were previously missed by the standard phylogenetic profiles approach
+\cite{PMID_144923264}.  One example from the Bowers \ea\ dataset examined the
+synthesis of aromatic amino acids through the shikimate pathway which includes
+a branch point.  Either one of two shikimate kinase proteins (A or B) are
+required for the synthesis of the end product by excitatory postsynaptic
+potential synthase (EPSP). The logic relationship inferred in this example can
+be expressed as C (EPSP) is present if and only if one of either kinase A OR
+kinase B is also present.  Figure \ref{phylo_la} shows another example of
+applying logic analysis to prokaryotic genomes in order to identify logic
+relationships.
+
+\subsection{Feature Selection with Logic Analysis}
+
+This approach has been adapted to microarray analysis and looks at the logic
+combination of gene expression states (``off'' and ``on'') in relation to the sample
+class annotations.  In this way, pairs of genes are ranked with respect to
+their correspondence to sample class.  The output from logic analysis, like any
+feature selection filtering algorithm, can be used with a variety of
+classification algorithms, for hypothesis generation, for the identification of
+differentially expressed gene pairs, and other methods.
+
+Samples are first annotated by creating a binary matrix in which a ``0''
+indicated the sample belongs to the first category while a ``1'' indicates it
+belongs to the second.  Datasets with samples in more than two classes are
+divided into \emph{n} trials using a one-against-others approach where \emph{n}
+is the number of classes.  Gene expression levels in each sample are converted
+to binary ``presence'' or ``absence'' calls.  For each class annotation vector,
+all possible logical combinations of gene binary expression states are
+compared.  This identifies pairs of gene expression states that, when logically
+combined, corresponded with the sample binary class vector well. For example,
+in Figure \ref{gene_la}, the logical combination of the binary gene expression
+states for glial maturation factor $\gamma$ (GMFG) and glucose transporter 10
+(GLUT10) are closely related to a poor prognosis state in tissue samples from
+malignant gliomas (HC\_2B). This can be expressed with the logic relationship:
+the sample class is HC\_2B if and only if GMFG and GLUT10 are expressed
+\cite{PMID_170746732}.
+
+In many ways this is similar to logic regression in that binary states of
+features are being logically combined and compared to binary sample class
+vectors \cite{ruczinski2004eih}.  However in logic regression, combinations of more
+than two features are compared.  A stochastic, simulated annealing approach is
+used to sample from the enormous number of possible feature combinations.  This
+approach is based on converting logic relationships to tree structures and
+making specific additions and deletions to the classification tree.
+Ultimately, the end result is a regression model that relates the binary
+expression pattern of several features to the sample state.  While logic
+regression can explore much more complex feature relationships than logic
+analysis, it comes at the expense of greatly increased computation time and an
+inability to exhaustively explore the search space.
+
+\subsection{Logic Analysis Scoring}
+
+%@ The thought was to use LA as a generic feature selection algorithm to select
+%gene pairs that are informative together when previously they were
+%uniformative.  
+The logic analysis feature selection algorithm uses two common scoring
+techniques to evaluate the significance of each pairwise gene expression combination
+matching to the class vector.  First, a hypergeometric \emph{p}-value is 
+calculated to evaluate the likelihood that the combined gene expression vector randomly
+matches the class vector as well as observed.  The hypergeometric
+\emph{p}-value is used to eliminate combinations of genes that are likely to
+match the class vector just by chance. The second scoring technique is based on
+an uncertainty (U) score which ranges between 0 and 1. An uncertainty score of
+0 indicates that one vector does not explain another while a score of 1
+indicates that one vector explains another perfectly.  Based on previous work, a
+threshold of 0.3 and 0.6 are typically used for the uncertainty score of the
+individual gene expression vectors and the logically combined gene expression
+vector respectively \cite{PMID_170746732}.  These cutoffs ensure that genes that
+individually explain sample classes well are removed and those that only
+explain the classes well when logically combined are identified.
+
+\begin{equation}\label{laeq1}
+U \left[ c,  f \left( a, b \right)  \right]  \gg U \left( c | a \right) \ \mathrm{ and } \ U \left( c | b \right)
+\end{equation}
+
+\begin{equation}\label{laeq2}
+\ \mathrm{where } \ U \left( c | a \right)  =  \frac{ H  \left( c \right) +  H  \left( a \right) -  H \left( c , a \right)  }{ H  \left( c \right) }
+\end{equation}
+
+\begin{equation}\label{laeq3}
+\ \mathrm{and } \ H \left (  a \right ) =   \Sigma p \left (  a \right ) \ln  \left (  p \left (  a \right )   \right ) 
+\end{equation}
+
+\begin{equation}\label{laeq4}
+\ \mathrm{and } \ H \left (  c,a \right ) =   \Sigma \Sigma p \left (  c, a \right ) \ln  \left (  p \left (  c,a \right )   \right ) 
+\end{equation}
+
+Equations \eqref{laeq1} - \eqref{laeq4} illustrate the uncertainty score criteria and calculation.
+
+%@ Findings from this use of Logic Analysis to analyze microarray data show
+%that the relationships are non-random and interestingly relate genes that
+%previously weren't related...
+% In this
+% process, gene expression vectors were first converted from continuous
+% expression data to binary transcript presence or absence calls.  All possible
+% pairwise combinations of two genes were examined and for each pair all eight
+% possible logical operations were computed. These logically combined gene
+% vectors were then compared to the sample class annotation binary vectors.  In
+% this way, pairs of genes that matched the sample class annotations well when
+% logically combined were identified. Care was taken to eliminate genes that
+% individually explained sample classes well.  This ensured novel gene-gene
+% relationships were identified that were distinct from other analysis methods.
+
+%@ The output are pairs of genes specifically related to sample state.
+We have previously shown that logic analysis can identify non-random gene and
+class relationships form a microarray dataset \cite{PMID_170746732}.  In
+Chapter \featureselchapter, results from adapting logic analysis to feature
+selection are explored and compared to other feature selection techniques.  Our
+results are interesting because they show that genes previously missed by other
+feature selection techniques can, when logically combined, yield similar sample
+classification performance results. This is even more surprising considering
+logic analysis not only selected genes that are individually poor sample
+classifiers but its also used binary data compared to continuous data for the
+other feature selection techniques examined.  Furthermore, an appealing quality
+of feature selection with logic analysis is that genes identified are related
+with specific logic types leading to the creation of hypotheses regarding gene
+expression pattern. This provides more information than other feature selection
+techniques including those that examined gene pairs or composites.    
+
+\subsection{Further Work}
+
+Chapter \logicanalysischapter\ provides additional details about the application
+of logic analysis to microarray data.  This includes work supporting the claim
+that logic analysis is able to identify non-random gene expression
+relationships.  Chapter \featureselchapter\ explores the use of logic analysis
+as a general mechanism to discover meaningful gene relationships in additional
+microarray datasets.  It compares the performance of logic analysis to other
+feature selection algorithms and assess the ability of these features selected by
+logic analysis to classify samples in a supervised learning test with a variety
+of classification algorithms.
+
+
+
+
+
+\newpage
+
+\section{Informatics}
+
+%@ The role of informatics in biology is dramatically changing the discipline
+%and opening up the applications of high-throughput, multiplexing technology
+The field of biology is in the process of rapidly changing from a discipline
+that largely focuses on bottom up approaches to one that produces and analyzes
+vast amounts of high-throughput, high-dimensional data. New emerging
+technologies such as DNA microarrays, mass spectrometry, and rapid genome
+sequencing mean that a biologist can now study entire organisms rather than just
+one or two genes at a time.  This transition has created exciting opportunities
+for integrating a wide variety of previously separate research areas including
+engineering, statistics, computer science, and other disparate subjects.  The
+end result is a field that is swiftly adopting new technologies and approaches
+to analyze these highly integrated and challenging datasets. 
+
+%@ Biologists today are facing a huge problem of data sharing, organizing,
+%analysing, etc.  Needs solutions to a host of problems.
+% Biologists today face huge problems of storing data and organizing large
+% datasets such as microarrays.  The typical microarray hybridization experiment
+% on the Affymetrix U133A platform contains approximately 22,000 features and
+% individual raw image files can take up to 150Mb each of storage space each.
+% Pre-processed data files that summarize image files take up less space but
+% large datasets can still become difficult to work with.  The Celsius project,
+% for example, mirrors public microarray respositories allowing for research into
+% comparisons between arrays from thousands of experiments.  The processed
+% expression file for this conglomerate dataset is over 5Tb which is
+% prohibatively large for most research labs to duplicate. Furthermore, the
+% actual analysis of very large datasets from mass spec or microarray
+% technologies can tax computer RAM and CPU capabilities.  The all-by-all
+% comparison of probeset correlation, for example, is currently intractable on
+% the Celsius dataset on current hardware without first dividing the task into
+% smaller steps. For problems where a natural parellel solution is not possible
+% limitations of CPU and RAM during analysis become acute issues.
+
+\subsection{Informatic Challenges in Biology}
+
+%@ These core problems break down into several related but distinct activites
+% The informatics problems facing biologists can be divided into several distinct
+% classes. Issues of working with microarray data can be thought of
+% as a microacosum of the common types of problems biologist are experiencing as
+% a result of new technologies.  A
+% scientist studying gene expression patterns with a large number of microarrays
+% experiments must be able to store both the raw and processed results.  These
+% might include image files, processed expression data, normalized gene
+% expression values, and other derived data.  Experimental annotations must be
+% collected that clearly identify samples, how they were treated, and the
+% parameters of the physical assay. Next, techniques for analyzing the data must
+% be standardized.  This could include common algorithms or best practices for
+% working with the data.  In microarrays, many competing analysis techniques are
+% available and, regardless of the choice, a common way of accessing them is a key
+% concern.  Furthermore, results can change with subsequent releases of new
+% software or datasets. Since many scientific questions can take months or years
+% to answer, keeping track of what resources were used to produce a given result
+% are critical.  Microarray data can be normalized in a number of
+% different ways with a variety of algorithms designed with similar but slightly
+% different assumptions. Finally, sharing information is the final activity of
+% most academic research.  Journals have become more sophisiticated in moving
+% articles to completely digital distrubution and archiving models.  However as
+% datasets continue to grow access via programatic interfaces is more and more
+% important.  This allows for verification of existing results and also the
+% synthesis of new questions and research directions.  Microarray data deposition
+% in public repositories is a requirement for most journals yet automatic
+% mechanisms for working with this data are lacking and requirements for what
+% constitues primary data in this field are vague at best. The challenges facin
+
+%@ Commonly applied solutions across the fields of information technology and
+%computer science (collectively refered to as informatics) can meet many of
+%these needs.  A hybrid approach is needed that blends the best resources from
+%a variety of data driven desciplines with the highly parellel nature of modern
+%genomics.
+The issues facing biologists include storage, annotations, analysis, sharing, and
+standardization.  All have roots in the highly technical and interdisciplinary
+nature of modern biology.  Bioinformatics, computational biology, and other
+related ``new'' fields take an interdisciplinary approach to solving these
+challenges.  Commonly applied solutions across the fields of information
+technology (IT), computer science, and engineering (collectively referred to
+here as ``informatics'') can meet many of these needs.  A hybrid
+approach that blends the best resources and practices from a variety
+of data driven disciplines with the highly parallel nature of modern biology is needed.
+Of particular note, the open source movement has achieved a high level of
+success in creating free and flexible software that is philosophically aligned
+with the principles of open, transparent, and freely accessible research.  It
+is no wonder that most bioinformatics projects use open source software, such
+as the Linux operating system, for the bulk of their work.  Solutions for many
+of the technical challenges surrounding the transforming field of biology can
+be found in the open source movement.
+
+In the following sections, possible solutions to some of the specific informatics
+challenges facing biology today are described. Summaries of the open source
+bioinformatics projects in this dissertation are available in Table \ref{projects}.
+
+%@ Informatic solutions borrowed from computer science include...
+%@ These solutions can be adapted to the core problems...
+
+\subsection{Integrative Solutions}
+
+\subsubsection{Storage}
+
+%@ storage -> datatbases
+Storage solutions borrowed from computer science and information technology
+include physical medium on which to store the data, such as hard drives, and also a
+database system to structure the data in accessible and searchable contexts.
+Hard drive storage systems have advanced considerably over the decades in
+response to the demand for safe, reliable, and cost effective ways of storing
+large amounts of data.  Systems that link together many individual hard drives
+into contiguous virtual volumes are available, making it possible to group
+together large datasets in a common repository.  Technical details such as RAID
+redundancy make the storage of critical scientific data secure and retrieval
+speedy.  Database systems represent another strategy for meeting the storage
+needs of bioinformatics projects.  Unlike hard disk-based solutions, databases
+actively index information to improve the retrieval of structured data.
+Advances in open source projects such as mySQL (\url{http://www.mysql.com}) and
+PostgreSQL (\url{http://www.postgresql.org}), have allowed researchers to use
+very high performance relational database systems in their research.
+
+Many database solutions exist for representing biological data.  The generic
+model organisms database project (GMOD, \url{http://www.gmod.org}) provides the
+modular Chado schema for storing a wide variety of biological data.  This
+schema has been used by a variety of projects including the Celsius project for
+microarray datasets.  The Appendix describes the Celsius project,
+the overall infrastructure behind it, and its potential widespread uses in
+microarray data analysis.
+
+\subsubsection{Annotations}
+
+%@ annotation -> ontologies
+Ontologies represent another key crossover from computer science, information
+theory, and artificial intelligence research.  An ontology is a system of
+related terms that is intended to encapsulate the classification of a system.
+They are a way of describing and understanding a facet of the world and, as such,
+serve as natural points of standardization.  As biologists have always faced
+the problems of nomenclature and classification, ontologies are a natural
+extension of these activities.  Many high-profile ontologies have been created
+to annotate and classify a wide variety of biological concepts.  For
+microarrays, much work has gone into defining standards (such as MAGEML and
+MIAME) that structure the task of recording information about experimental
+design \cite{brazma2001mim}. Extensive work has also resulted in the use of
+ontologies to describe biological systems and the experiments performed on
+them.  The MAGE ontology is of particular importance in the microarray field
+but others exist such as the extremely useful gene ontology (GO) that aims to
+structure the annotations on gene function and nomenclature
+\cite{stoeckert2003mof,ashburner2000got}.
+
+Many important projects have spearheaded the effort to establish ontologies for
+the biological research community.  The open biomedical ontologies (OBO)
+project provides a range of ontologies designed for use in the biomedical
+fields.  Other related projects include GO, the MGED ontology, and the sequence
+ontology (SO) \cite{stoeckert2003mof,ashburner2000got,eilbeck2006sot}.  Many
+organization exist to support the development of new and existing ontologies
+including the National Center for Biomedical Ontology
+\url{http://www.bioontology.org}, MGED \url{http://www.mged.org}, and OBO
+\url{http://obo.sourceforge.net}.  Ontologies from these projects have been
+made available in Chado and are used extensively in the Celsius project to
+annotate microarray experiments with disease type, tissue type, and other
+important information.  The Celsius system is described in more detail in
+the Appendix.  
+
+\subsubsection{Analysis}
+
+%@ analysis -> common APIs
+In microarrays, many different algorithms exist that allow a researcher to
+process the raw information from a hybridization into meaningful gene
+expression data.  This process, called normalization and standardization, can
+range from a simple scaling to sophisticated algorithms that model probe
+hybridization efficiency and integrate data from multiple experiments to arrive
+at a more accurate value. With many different options, the need for
+standardizing a mechanism to interact with these algorithms becomes apparent.
+Without common application programming interfaces (APIs), each distinct
+algorithm would require its own input and output format and require many more
+hours to be spent on the trivial task of data formating.  Instead, good
+programming practices from computer science dictate coding abstraction and
+encapsulation.  These ideas can be seen in the Bioconductor or Bioperl APIs for
+biological data and algorithms \cite{stajich2002btp,gentleman2006bos}.  For
+microarrays this translates to a common framework for accessing many different
+normalization techniques with the same programmatic calls, only the flag
+specifying what algorithm to be used changes.  Similarly, the Seq::IO section
+of the Bioperl API allows sequence data to be read and written to and from a
+variety of sequence file formats \cite{stajich2002btp}.  This allows programs
+to access many different formats of data without needing to be rewritten.
+Common APIs clearly are favored by both the open source community and the
+bioinformatics community for these reasons.
+
+\subsubsection{Sharing}
+
+%@ sharing -> web services
+Related to the concept of open APIs for interacting with biological data is the
+concept of web services.  Sharing of biological data, whether it is raw,
+primary data, or processed results, is of the utmost concern for biologist.
+Yet journal articles provide a poor repository for large datasets.  Simply
+downloading large data files is a better approach, yet many times only a few
+pieces of information are needed and the downloading of an entire dataset is
+unnecessary.  For example, if a researcher wants a particular protein structure
+from the protein data bank (PDB, \url{http://www.pdb.org}) downloading the
+thousands of structures in bulk from the PDB is unnecessary.
+
+The emerging web services approach used across the Internet points to a better
+solution.  This model includes technology such as the simple object access
+protocol and REST concepts for interacting with an API remotely over the
+hypertext transport protocol (HTTP) on which the web is based.  This idea is
+that simple requests for data or information calculated on the fly can be made
+by a researcher and the result is calculated or retrieved remotely and returned
+over the Internet.  This type of approach is extremely flexible and can be used
+in a variety of contexts to present biological data to other researchers. 
+
+The distributed annotation system, or DAS, is a popular bioinformatics web
+services project geared towards the sharing of genome annotations with the
+larger research community \cite{dowell2004das}.  Organizations looking to share
+genome assemblies, gene annotations, and other genomic features use DAS to make
+this information available over the web.  Implementations of DAS use the
+standard HTTP protocol and XML as an exchange standard.  The next version,
+DAS/2, expands on the genomics focus of DAS by including capabilities to
+exchange ontologies, download experimental assay results such as microarray
+data, and perform on-demand sequence analysis such as BLAST.  The success of
+DAS as a project is due to the ease of which scientists can utilize information
+published with DAS.  Many clients exist, such as GBrowse and IGB, and the web
+services model affords programmatic access to the servers \cite{stein2002ggb}.
+This allows additional applications to be built on top of these public
+repositories.  For example, the Celsius project web interfaces were created
+on top of a DAS/2 server which provided the raw data.  These web tools let an
+end user query the microarray data available via ontology annotations and
+download the corresponding data in a variety of different processed forms. 
+
+More information on web services can be found in Chapters \gdapchapter,
+\gmodwebchapter, and the Appendix. Chapter \gdapchapter\ details
+the creation of a web services designed to thread protein sequences onto know
+structures with the end goal of identifying disulfide bonds.  Chapter
+\gmodwebchapter\ examines a model organism website generation framework that
+includes web services tools. 
+
+\subsubsection{Standardization}
+
+%@ standardization -> software packaging
+A closely related concept to web services is the concept of software
+standardization.  In the model of web services, a researcher can focus on the
+analysis of data and its biological meaning rather than figuring out how to
+store data locally.  This approach affords abstraction between the researcher
+and the entity providing the web service, making it easier for others to
+either validate existing work by performing the same analysis or expand on the
+work using the same web services.  It allows researchers to easily standardize
+a given dataset or analysis server.  Another technique familiar to all
+computer users on standardization is the versioning of computer programs.  When
+research is being performed on a particular dataset or with a particular
+software program, it is extremely important to track which version was
+used.  Otherwise it becomes impossible to replicate the work.  The idea of
+software packaging, borrowed from the field of information technology, is of
+key importance to bioinformatics.  In addition to simply versioning software,
+many comprehensive systems exist for specifically tracking, installing, and
+updating both software and data in a particular computing environment.  The
+Linux system, for example, uses one of several different package managers to
+perform this task.  
+
+The Biopackages project looks to standardize many tools used commonly in
+bioinformatics projects. It encompasses an automated build system that creates
+software packages for particular Linux distributions.  These include packages
+for APIs such as BioPerl and BioConductor, web services such as DAS/2, and
+databases such as Chado.  Details of the construction, public availability, and
+benefits of this standardization tool can be found in Chapter \biopackageschapter.
+
+%@ I have worked on several software solutions for these (maybe just integrate
+%these above) This can just be a "Chapter X shows..." paragraph that maps the
+%topics above to chapters. I'm just going to include these above.
+
+\subsection{Further Work}
+
+%@ Future biologies will be driven by basic needs as biology continues to
+%become integrated with other disciplines.
+Biology will continue to be driven by the basic needs to store, annotate,
+analyze, share, and standardize biological data and practices. As biology
+continues to become more integrated with other disciplines and influences the
+development of other fields at the same time, new and effective technologies
+will continue to be developed. In this section, many facets of computer science
+and information technology were explored as they relate to the common problems
+facing biologists today and in the future.  The use of computer science and
+information technology continues to expand in biological research and provies
+new avenues to address challenges and demands of this transforming field.
+
+
+% table of projects
+
+\begin{table}[p]
+\caption[Open source bioinformatics projects]{Open source bioinformatics projects that are presented in this dissertation.}
+\label{projects}
+\begin{tabular}{|l|p{3cm}|p{7cm}|}
+\hline
+\textbf{Project} & \textbf{Challenge} & \textbf{Description} \\
+\hline
+\hline
+Celsius & storage, annotation, and sharing  & The Celsius project is a centralized repository for normalized microarray data. \url{http://sourceforge.net/projects/celsius} \\
+Biopackages & standardization & A repository of pre-packaged bioinformatics software. \url{http://biopackages.net} \\
+GMODWeb & sharing & A model organism database website generation tool. \url{http://turnkey.sf.net} \\
+GDAP & analysis & A protein threading and disulfide prediction tool. \url{http://www.doe-mbi.ucla.edu/Services/GDAP}\\
+\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+% Figures
+
+%\begin{figure}[p] \includegraphics[width=14cm]{figures/Sterner_Fig_1.pdf}
+\begin{figure}[p] \includegraphics[width=14cm]{figures/g_fxn_of_t.pdf}
+
+\caption[A theoretical graph of $\Delta$G as a function of temperature T]{A
+theoretical graph of $\Delta$G as a function of temperature T.  The solid line
+shows the curve for a mesophilic protein with a temperature of melting of
+${T}_{m}$(m).  Thermophiles can increase their ${T}_{m}$ through a variety of
+mechanisms that result in distinct shifts of the $\Delta$G curve.  Increasing
+maximal $\Delta$G results in shifting the curve up and, as a result, increasing
+${T}_{m}$ to ${T}_{m}$(t) (dashed line).  Shifting the curve to the right
+(dash-dot line) or broadening the curve (fine-dash line) also increase the
+${T}_{m}$.  Arrows indicate the maximal $\Delta$G values.
+%Copyright 2001, reproduced from Sterner and Liebl \cite{PMID_11256505} with
+%permission from Taylor \& Francis Inc.
+}
+
+\label{Sterner_Fig_1} 
+
+\end{figure}
+
+\begin{figure}[p] \includegraphics[width=14cm]{figures/Sterner_Table_1.pdf}
+
+\caption[Comparisons of amino acid usage between the thermophile
+\emph{Methanococcus janaschii} with several mesophilic \emph{Methanococcus}
+species]{A comparisons of amino acid usage between the thermophile
+\emph{Methanococcus janaschii} with several mesophilic \emph{Methanococcus}
+species. Copyright 1999, reproduced from Haney \emph{et al.}
+\cite{PMID_10097079} with permission from PNAS.}
+
+\label{Sterner_Table_1} 
+
+\end{figure}
+
+% \begin{figure}[p] \label{Sterner_Table_2} \includegraphics[width=14cm]{figures/Sterner_Table_2.pdf}
+% 
+% \caption{A systematic comparison of mesophiles and thermophiles reveals trends
+% in stabilization techniques.  The number of arrows (1, 2, or 3) indicates the
+% significance of the effect (insignificant, moderately significant, or highly
+% significant respectively). Copyright 2000, reproduced from Szilagyi and
+% Zavodszky \cite{szilagyi2000sdb} by permission of Elsevier Science.}
+% 
+% \end{figure}
+
+\begin{figure}[p] \includegraphics[width=14cm]{figures/Boutz_Fig_3.pdf}
+
+\caption[The disulfide bond regulation system in \ecoli]{The disulfide bond
+regulation system in \ecoli.  Enzymes involved in disulfide reduction are
+colored blue, enzymes involved in disulfide formation are colored red, enzymes
+involved in disulfide isomerization are colored yellow.  Arrows designate the
+direction of electron flow.  Copyright 2006, reproduced from \emph{\dbthesis}\
+with permission from D. Boutz \cite{boutz_thesis}. }
+
+\label{Boutz_Fig_3}
+
+\end{figure}
+
+\begin{figure}[p] \includegraphics[width=6cm]{figures/Boutz_Fig_7.pdf}
+
+\caption[The crystal structure of \emph{Pyrobaculum aerophilum}
+adenylosuccinate lyase monomer reveals the presence of three intramolecular
+disulfide bonds]{The crystal structure of \emph{Pyrobaculum aerophilum}
+adenylosuccinate lyase monomer reveals the presence of three intramolecular
+disulfide bonds.  Disulfide-bonded cysteines are illustrated as orange spheres.
+Copyright 2006, reproduced from \emph{\dbthesis}\ with permission from D. Boutz
+\cite{boutz_thesis}.}
+
+\label{Boutz_Fig_7} 
+
+\end{figure}
+
+
+\clearpage
+
+%\begin{figure}[p] \includegraphics[width=14cm]{figures/probefigure.pdf}
+% \begin{figure}[p] \includegraphics[width=14cm]{figures/TadG.png}
+% 
+% \caption{}
+% 
+% \label{probefigure}
+% 
+% \end{figure}
+
+
+\begin{figure}[p] \includegraphics[width=14cm]{figures/genomic_la.pdf}
+
+\caption[Logic analysis of genes in prokaryotic genomes.]{ Logic analysis was
+performed looking at the presence or absence of gene families across many
+different prokaryotic genomes.  In this case the pilus protein TadG is present
+if and only if TadC and TonB are both present in the genome.}
+
+\label{phylo_la}
+\end{figure}
+
+
+\begin{figure}[p] \includegraphics[width=14cm]{figures/expression_la.pdf}
+
+\caption[Logic analysis of binary gene expression data.]{ Logic analysis was
+performed on binary expression data where pairs of gene expression states were
+compared to the sample class vector.  Here the sample was a poor prognosis
+cancer type if and only if the glial maturation factor $\gamma$ and glucose
+transporter 10 were both expressed.}
+
+\label{gene_la}
+
+\end{figure}
+
+
+
+\bibliography {thesis,la,dboutz}    % bibliography references
+%\bibliographystyle {uclathes}
+\bibliographystyle {plain}
+
