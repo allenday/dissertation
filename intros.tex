@@ -1,3 +1,74 @@
+Construction of a DNA Microarray Data Warehouse
+	DNA Microarrays
+		An example of high-throughput biochemical assay
+		Why do it?
+			Overview of experiment design
+				2-group comparisons, time courses, etc
+		History
+			Northern blots
+			Oligonucleotide synthesis
+			Robotics
+			Miniaturization
+		Assay overview
+			Feature selection / chip design
+			Platform synthesis
+				2-channel
+				1-channel
+			Platform labeling / hybridization
+				2-channel
+				1-channel
+			Image acquisition
+		Normalization
+			A few sentences to dismiss 2-channel arrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
+			Need data consistency.  How to get it:
+			Cross-hybridization / complexity effects.
+			Environmental artifacts.
+			RNA quality artifacts.
+			Labeling artifacts.
+			Hybridization artifacts.
+			Intra-array correction
+				MAS5
+			Inter-array correction (batch processing)
+				Model Based Expression
+					Basis for subsequent normalization methods.  RMA, etc.
+				Computational tractability
+					Need to split matrix into smaller parts.
+					Gene Logic heuristic for doing this
+						Our own reproduction of this result
+					Implementation of heuristic in large-scale to feed a database
+						Reproducibility
+	Infrastructure
+		Scalability
+			Resource pooling
+			Uniformity
+			Maintenance
+			Migration path
+		Data representation
+			Microarray measurements
+			Annotations
+				Ontologies
+		Computation / Loading
+			Parallelization
+			Relate back to Gene Logic reference
+		Storage considerations
+			2-dimensional microarray representation at odds with 1-dimensional media.
+			Performance
+				Hardware optimization
+				Table clustering
+				Table partitioning
+		Science-as-services / Service-oriented-architecture / Inter-operability
+			APIs
+				Web services
+				Support for analysts
+			Standards
+				Ontologies
+				Standard syntax
+					XML
+					URL
+				Standard content
+					Uniform normalization
+					Reproducibility
+
 XXX
 \section{Proteomics}
 

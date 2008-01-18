@@ -28,7 +28,7 @@ thesis:
 	$(MAKE) bib
 	pdflatex thesis.tex
 	# a hack for the special formating of the TOC
-	cp thesis.toc.custom thesis.toc
+#	cp thesis.toc.custom thesis.toc
 	pdflatex thesis.tex
 
 #
