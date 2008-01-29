@@ -18,6 +18,9 @@ tar:
 	tar cvf thesis.tar $(FILES)
 	gzip thesis.tar
 
+pmid:
+	perl ./pmid.pl
+
 bib:
 	# need to exclude tex files w/o bibliographies, or it causes errors in make and breaks the thesis make target
 	echo 'for i in `ls -1 *.tex | grep -v abstract.tex | grep -v thesis.tex`; do bibtex $${i/.tex/}; done' | bash

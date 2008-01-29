@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 use strict;
+use lib 'lib';
 use Bio::Biblio;
 use XML::Twig;
 use Template;
