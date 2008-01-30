@@ -1,4 +1,20 @@
 \section{DNA Microarrays}
+\label{DNA Microarrays}
+
+microarray data analysis as a process
+resembles process from low-throughput days.  hypothesize, design, assay, analyze, conclude
+  1. hypothesize
+     not much has changed here...
+  2. design an experiment
+     more important to pay attention to now, because of statistical concerns.  curse of dimensionality, sampling, noise, multiple-hypothesis testing
+  3. collect data
+     not much has changed here, but this has infrastructure implications and is discussed further in Section \ref{Infrastructure}
+  4. analyze results
+     data massaging.  normalization.
+     infrastructure and scalability implications, and is discussed further in Sections \ref{Infrastructure} and \ref{Scalability}
+  5. draw conclusion, revise hypothesis
+     not much has changed here...
+
 * An example of high-throughput biochemical assay
 * Technology overview
 \subsection{History}
@@ -54,6 +70,7 @@ genelogic		\cite{PMID_17059591}
 \subsubsubsubsubsection{Implementation}
 
 \section{Infrastructure}
+\label{Infrastructure}
 The study of biology is rapidly evolving.  Bottom-up approaches, in which data
 are produced individually and slowly are being replaced by high-throughput
 methods that produce, in parallel, large volumes of high-dimensional,
@@ -68,6 +85,7 @@ models are required for representing, storing, processing, and distributing
 data produced by high-throughput methods.
 
 \subsection{Scalability & Performance}
+\label{Scalability}
 
 One of the key principles that has enabled the creation of high-throughput
 methods is scalability.  Simply put, scalable methods are able to process large
@@ -100,7 +118,7 @@ rpm		\cite{bailey1997}
 
 %See Also
 postgres	\cite{postgresql}
-chado		\cite{chado}
+chado		\cite{PMID_17646315}
 
 \subsubsection{Data Representation}
 \subsubsubsection{Assay Measurements}
@@ -121,6 +139,7 @@ mage-ml			\cite{PMID_12225585}
 \subsubsubsection{Partitioning}
 \subsubsection{Computation}
 \subsubsubsection{Data Loading}
+etl			\cite{kimball2004}
 \subsubsubsection{Data Analysis}
 \subsection{Data Sharing}
 
