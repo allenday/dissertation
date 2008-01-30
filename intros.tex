@@ -40,11 +40,47 @@ Need data consistency.  How to get it
 \subsubsubsubsection{Computational Tractability}
 \subsubsubsubsubsection{Heuristics}
 \subsubsubsubsubsection{Implementation}
+
 \section{Infrastructure}
-\subsection{Scalability}
-\subsubsection{Resource Pooling}
-\subsubsection{Uniformity}
-\subsection{Growth \& Maintenance}
+The study of biology is rapidly evolving.  Bottom-up approaches, in which data
+are produced individually and slowly are being replaced by high-throughput
+methods that produce, in parallel, large volumes of high-dimensional,
+high-resolution measurements.  Recent and emerging technologies such as DNA
+microarrays, mass spectrometry, and next-generation DNA sequencing enable the
+biologist to study the molecular details of entire organisms rather than just a
+few genes.  This transition has created new opportunities for discovery in
+collaboration with engineers, mathematicians, statisticians, and computer
+scientists.  At the same time, this transition necessitates an overhaul of the
+computational infrastructure used by biologists.  Specifically, new approaches amd
+models are required for representing, storing, processing, and distributing
+data produced by high-throughput methods.
+
+\subsection{Scalability & Performance}
+
+One of the key principles that has enabled the creation of high-throughput
+methods is scalability.  Simply put, scalable methods are able to process large
+amounts of data at the same level of performance as small amounts.  For
+biological assays this is largely a problem of parallelization of chemical
+reactions and miniaturization of devices.  In terms of computational
+infrastructure, building effective, scalable systems also requires
+parallelization.  This is often referred to by scalability engineers as
+\emph{horizontal scaling} \cite{schlossnagle2006,arlitt2001}.
+
+When setting up an infrastructure system using the \emph{horizontal scaling}
+pattern, computer resources can be treated as groups of resources, or
+\emph{clusters}.  Each cluster is responsible for one or more types of tasks,
+and each component of the cluster is uniform.  This allows the throughput of
+the cluster to be scaled simply by adding or removing components.
+
+
+\subsubsection{Maintenance}
+
+The cost of high-performance, horizontal systems is increased complexity.
+
+%rocks		\cite{papadopoulos2003}
+%puppet		\cite{}
+%rpm		\cite{bailey1997}
+
 \subsection{Storage}
 \subsubsection{Data Representation}
 \subsubsubsection{Assay Measurements}
@@ -67,6 +103,288 @@ Need data consistency.  How to get it
 \subsubsubsection{Normalization}
 \subsubsubsection{Reproducibility}
 \subsubsubsection{Modularity}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Informatics}
+%@ The role of informatics in biology is dramatically changing the discipline
+%and opening up the applications of high-throughput, multiplexing technology
+The field of biology is in the process of rapidly changing from a discipline
+that largely focuses on bottom up approaches to one that produces and analyzes
+vast amounts of high-throughput, high-dimensional data. New emerging
+technologies such as DNA microarrays, mass spectrometry, and rapid genome
+sequencing mean that a biologist can now study entire organisms rather than just
+one or two genes at a time.  This transition has created exciting opportunities
+for integrating a wide variety of previously separate research areas including
+engineering, statistics, computer science, and other disparate subjects.  The
+end result is a field that is swiftly adopting new technologies and approaches
+to analyze these highly integrated and challenging datasets. 
+
+%@ Biologists today are facing a huge problem of data sharing, organizing,
+%analysing, etc.  Needs solutions to a host of problems.
+% Biologists today face huge problems of storing data and organizing large
+% datasets such as microarrays.  The typical microarray hybridization experiment
+% on the Affymetrix U133A platform contains approximately 22,000 features and
+% individual raw image files can take up to 150Mb each of storage space each.
+% Pre-processed data files that summarize image files take up less space but
+% large datasets can still become difficult to work with.  The Celsius project,
+% for example, mirrors public microarray respositories allowing for research into
+% comparisons between arrays from thousands of experiments.  The processed
+% expression file for this conglomerate dataset is over 5Tb which is
+% prohibatively large for most research labs to duplicate. Furthermore, the
+% actual analysis of very large datasets from mass spec or microarray
+% technologies can tax computer RAM and CPU capabilities.  The all-by-all
+% comparison of probeset correlation, for example, is currently intractable on
+% the Celsius dataset on current hardware without first dividing the task into
+% smaller steps. For problems where a natural parellel solution is not possible
+% limitations of CPU and RAM during analysis become acute issues.
+
+\subsection{Informatic Challenges in Biology}
+
+%@ These core problems break down into several related but distinct activites
+% The informatics problems facing biologists can be divided into several distinct
+% classes. Issues of working with microarray data can be thought of
+% as a microacosum of the common types of problems biologist are experiencing as
+% a result of new technologies.  A
+% scientist studying gene expression patterns with a large number of microarrays
+% experiments must be able to store both the raw and processed results.  These
+% might include image files, processed expression data, normalized gene
+% expression values, and other derived data.  Experimental annotations must be
+% collected that clearly identify samples, how they were treated, and the
+% parameters of the physical assay. Next, techniques for analyzing the data must
+% be standardized.  This could include common algorithms or best practices for
+% working with the data.  In microarrays, many competing analysis techniques are
+% available and, regardless of the choice, a common way of accessing them is a key
+% concern.  Furthermore, results can change with subsequent releases of new
+% software or datasets. Since many scientific questions can take months or years
+% to answer, keeping track of what resources were used to produce a given result
+% are critical.  Microarray data can be normalized in a number of
+% different ways with a variety of algorithms designed with similar but slightly
+% different assumptions. Finally, sharing information is the final activity of
+% most academic research.  Journals have become more sophisiticated in moving
+% articles to completely digital distrubution and archiving models.  However as
+% datasets continue to grow access via programatic interfaces is more and more
+% important.  This allows for verification of existing results and also the
+% synthesis of new questions and research directions.  Microarray data deposition
+% in public repositories is a requirement for most journals yet automatic
+% mechanisms for working with this data are lacking and requirements for what
+% constitues primary data in this field are vague at best. The challenges facin
+
+%@ Commonly applied solutions across the fields of information technology and
+%computer science (collectively refered to as informatics) can meet many of
+%these needs.  A hybrid approach is needed that blends the best resources from
+%a variety of data driven desciplines with the highly parellel nature of modern
+%genomics.
+The issues facing biologists include storage, annotations, analysis, sharing, and
+standardization.  All have roots in the highly technical and interdisciplinary
+nature of modern biology.  Bioinformatics, computational biology, and other
+related ``new'' fields take an interdisciplinary approach to solving these
+challenges.  Commonly applied solutions across the fields of information
+technology (IT), computer science, and engineering (collectively referred to
+here as ``informatics'') can meet many of these needs.  A hybrid
+approach that blends the best resources and practices from a variety
+of data driven disciplines with the highly parallel nature of modern biology is needed.
+Of particular note, the open source movement has achieved a high level of
+success in creating free and flexible software that is philosophically aligned
+with the principles of open, transparent, and freely accessible research.  It
+is no wonder that most bioinformatics projects use open source software, such
+as the Linux operating system, for the bulk of their work.  Solutions for many
+of the technical challenges surrounding the transforming field of biology can
+be found in the open source movement.
+
+In the following sections, possible solutions to some of the specific informatics
+challenges facing biology today are described. Summaries of the open source
+bioinformatics projects in this dissertation are available in Table %XXX\ref{projects}.
+
+%@ Informatic solutions borrowed from computer science include...
+%@ These solutions can be adapted to the core problems...
+
+\subsection{Integrative Solutions}
+
+\subsubsection{Storage}
+
+%@ storage -> datatbases
+Storage solutions borrowed from computer science and information technology
+include physical medium on which to store the data, such as hard drives, and also a
+database system to structure the data in accessible and searchable contexts.
+Hard drive storage systems have advanced considerably over the decades in
+response to the demand for safe, reliable, and cost effective ways of storing
+large amounts of data.  Systems that link together many individual hard drives
+into contiguous virtual volumes are available, making it possible to group
+together large datasets in a common repository.  Technical details such as RAID
+redundancy make the storage of critical scientific data secure and retrieval
+speedy.  Database systems represent another strategy for meeting the storage
+needs of bioinformatics projects.  Unlike hard disk-based solutions, databases
+actively index information to improve the retrieval of structured data.
+Advances in open source projects such as mySQL (\url{http://www.mysql.com}) and
+PostgreSQL (\url{http://www.postgresql.org}), have allowed researchers to use
+very high performance relational database systems in their research.
+
+Many database solutions exist for representing biological data.  The generic
+model organisms database project (GMOD, \url{http://www.gmod.org}) provides the
+modular Chado schema for storing a wide variety of biological data.  This
+schema has been used by a variety of projects including the Celsius project for
+microarray datasets.  The Appendix describes the Celsius project,
+the overall infrastructure behind it, and its potential widespread uses in
+microarray data analysis.
+
+\subsubsection{Annotations}
+
+%@ annotation -> ontologies
+Ontologies represent another key crossover from computer science, information
+theory, and artificial intelligence research.  An ontology is a system of
+related terms that is intended to encapsulate the classification of a system.
+They are a way of describing and understanding a facet of the world and, as such,
+serve as natural points of standardization.  As biologists have always faced
+the problems of nomenclature and classification, ontologies are a natural
+extension of these activities.  Many high-profile ontologies have been created
+to annotate and classify a wide variety of biological concepts.  For
+microarrays, much work has gone into defining standards (such as MAGEML and
+MIAME) that structure the task of recording information about experimental
+design \cite{brazma2001mim}. Extensive work has also resulted in the use of
+ontologies to describe biological systems and the experiments performed on
+them.  The MAGE ontology is of particular importance in the microarray field
+but others exist such as the extremely useful gene ontology (GO) that aims to
+structure the annotations on gene function and nomenclature
+\cite{stoeckert2003mof,ashburner2000got}.
+
+Many important projects have spearheaded the effort to establish ontologies for
+the biological research community.  The open biomedical ontologies (OBO)
+project provides a range of ontologies designed for use in the biomedical
+fields.  Other related projects include GO, the MGED ontology, and the sequence
+ontology (SO) \cite{stoeckert2003mof,ashburner2000got,eilbeck2006sot}.  Many
+organization exist to support the development of new and existing ontologies
+including the National Center for Biomedical Ontology
+\url{http://www.bioontology.org}, MGED \url{http://www.mged.org}, and OBO
+\url{http://obo.sourceforge.net}.  Ontologies from these projects have been
+made available in Chado and are used extensively in the Celsius project to
+annotate microarray experiments with disease type, tissue type, and other
+important information.  The Celsius system is described in more detail in
+the Appendix.  
+
+\subsubsection{Analysis}
+
+%@ analysis -> common APIs
+In microarrays, many different algorithms exist that allow a researcher to
+process the raw information from a hybridization into meaningful gene
+expression data.  This process, called normalization and standardization, can
+range from a simple scaling to sophisticated algorithms that model probe
+hybridization efficiency and integrate data from multiple experiments to arrive
+at a more accurate value. With many different options, the need for
+standardizing a mechanism to interact with these algorithms becomes apparent.
+Without common application programming interfaces (APIs), each distinct
+algorithm would require its own input and output format and require many more
+hours to be spent on the trivial task of data formating.  Instead, good
+programming practices from computer science dictate coding abstraction and
+encapsulation.  These ideas can be seen in the Bioconductor or Bioperl APIs for
+biological data and algorithms \cite{stajich2002btp,gentleman2006bos}.  For
+microarrays this translates to a common framework for accessing many different
+normalization techniques with the same programmatic calls, only the flag
+specifying what algorithm to be used changes.  Similarly, the Seq::IO section
+of the Bioperl API allows sequence data to be read and written to and from a
+variety of sequence file formats \cite{stajich2002btp}.  This allows programs
+to access many different formats of data without needing to be rewritten.
+Common APIs clearly are favored by both the open source community and the
+bioinformatics community for these reasons.
+
+\subsubsection{Sharing}
+
+%@ sharing -> web services
+Related to the concept of open APIs for interacting with biological data is the
+concept of web services.  Sharing of biological data, whether it is raw,
+primary data, or processed results, is of the utmost concern for biologist.
+Yet journal articles provide a poor repository for large datasets.  Simply
+downloading large data files is a better approach, yet many times only a few
+pieces of information are needed and the downloading of an entire dataset is
+unnecessary.  For example, if a researcher wants a particular protein structure
+from the protein data bank (PDB, \url{http://www.pdb.org}) downloading the
+thousands of structures in bulk from the PDB is unnecessary.
+
+The emerging web services approach used across the Internet points to a better
+solution.  This model includes technology such as the simple object access
+protocol and REST concepts for interacting with an API remotely over the
+hypertext transport protocol (HTTP) on which the web is based.  This idea is
+that simple requests for data or information calculated on the fly can be made
+by a researcher and the result is calculated or retrieved remotely and returned
+over the Internet.  This type of approach is extremely flexible and can be used
+in a variety of contexts to present biological data to other researchers. 
+
+The distributed annotation system, or DAS, is a popular bioinformatics web
+services project geared towards the sharing of genome annotations with the
+larger research community \cite{dowell2004das}.  Organizations looking to share
+genome assemblies, gene annotations, and other genomic features use DAS to make
+this information available over the web.  Implementations of DAS use the
+standard HTTP protocol and XML as an exchange standard.  The next version,
+DAS/2, expands on the genomics focus of DAS by including capabilities to
+exchange ontologies, download experimental assay results such as microarray
+data, and perform on-demand sequence analysis such as BLAST.  The success of
+DAS as a project is due to the ease of which scientists can utilize information
+published with DAS.  Many clients exist, such as GBrowse and IGB, and the web
+services model affords programmatic access to the servers \cite{stein2002ggb}.
+This allows additional applications to be built on top of these public
+repositories.  For example, the Celsius project web interfaces were created
+on top of a DAS/2 server which provided the raw data.  These web tools let an
+end user query the microarray data available via ontology annotations and
+download the corresponding data in a variety of different processed forms. 
+
+More information on web services can be found in Chapters \XXXchapter,
+\gmodwebchapter, and the Appendix. Chapter \XXXchapter\ details
+the creation of a web services designed to thread protein sequences onto know
+structures with the end goal of identifying disulfide bonds.  Chapter
+\gmodwebchapter\ examines a model organism website generation framework that
+includes web services tools. 
+
+\subsubsection{Standardization}
+
+%@ standardization -> software packaging
+A closely related concept to web services is the concept of software
+standardization.  In the model of web services, a researcher can focus on the
+analysis of data and its biological meaning rather than figuring out how to
+store data locally.  This approach affords abstraction between the researcher
+and the entity providing the web service, making it easier for others to
+either validate existing work by performing the same analysis or expand on the
+work using the same web services.  It allows researchers to easily standardize
+a given dataset or analysis server.  Another technique familiar to all
+computer users on standardization is the versioning of computer programs.  When
+research is being performed on a particular dataset or with a particular
+software program, it is extremely important to track which version was
+used.  Otherwise it becomes impossible to replicate the work.  The idea of
+software packaging, borrowed from the field of information technology, is of
+key importance to bioinformatics.  In addition to simply versioning software,
+many comprehensive systems exist for specifically tracking, installing, and
+updating both software and data in a particular computing environment.  The
+Linux system, for example, uses one of several different package managers to
+perform this task.  
+
+The Biopackages project looks to standardize many tools used commonly in
+bioinformatics projects. It encompasses an automated build system that creates
+software packages for particular Linux distributions.  These include packages
+for APIs such as BioPerl and BioConductor, web services such as DAS/2, and
+databases such as Chado.  Details of the construction, public availability, and
+benefits of this standardization tool can be found in Chapter \biopackageschapter.
+
+%@ I have worked on several software solutions for these (maybe just integrate
+%these above) This can just be a "Chapter X shows..." paragraph that maps the
+%topics above to chapters. I'm just going to include these above.
+
+\subsection{Further Work}
+
+%@ Future biologies will be driven by basic needs as biology continues to
+%become integrated with other disciplines.
+Biology will continue to be driven by the basic needs to store, annotate,
+analyze, share, and standardize biological data and practices. As biology
+continues to become more integrated with other disciplines and influences the
+development of other fields at the same time, new and effective technologies
+will continue to be developed. In this section, many facets of computer science
+and information technology were explored as they relate to the common problems
+facing biologists today and in the future.  The use of computer science and
+information technology continues to expand in biological research and provies
+new avenues to address challenges and demands of this transforming field.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 XXX
 \section{Proteomics}
@@ -1435,282 +1753,6 @@ of classification algorithms.
 
 \newpage
 
-\section{Informatics}
-
-%@ The role of informatics in biology is dramatically changing the discipline
-%and opening up the applications of high-throughput, multiplexing technology
-The field of biology is in the process of rapidly changing from a discipline
-that largely focuses on bottom up approaches to one that produces and analyzes
-vast amounts of high-throughput, high-dimensional data. New emerging
-technologies such as DNA microarrays, mass spectrometry, and rapid genome
-sequencing mean that a biologist can now study entire organisms rather than just
-one or two genes at a time.  This transition has created exciting opportunities
-for integrating a wide variety of previously separate research areas including
-engineering, statistics, computer science, and other disparate subjects.  The
-end result is a field that is swiftly adopting new technologies and approaches
-to analyze these highly integrated and challenging datasets. 
-
-%@ Biologists today are facing a huge problem of data sharing, organizing,
-%analysing, etc.  Needs solutions to a host of problems.
-% Biologists today face huge problems of storing data and organizing large
-% datasets such as microarrays.  The typical microarray hybridization experiment
-% on the Affymetrix U133A platform contains approximately 22,000 features and
-% individual raw image files can take up to 150Mb each of storage space each.
-% Pre-processed data files that summarize image files take up less space but
-% large datasets can still become difficult to work with.  The Celsius project,
-% for example, mirrors public microarray respositories allowing for research into
-% comparisons between arrays from thousands of experiments.  The processed
-% expression file for this conglomerate dataset is over 5Tb which is
-% prohibatively large for most research labs to duplicate. Furthermore, the
-% actual analysis of very large datasets from mass spec or microarray
-% technologies can tax computer RAM and CPU capabilities.  The all-by-all
-% comparison of probeset correlation, for example, is currently intractable on
-% the Celsius dataset on current hardware without first dividing the task into
-% smaller steps. For problems where a natural parellel solution is not possible
-% limitations of CPU and RAM during analysis become acute issues.
-
-\subsection{Informatic Challenges in Biology}
-
-%@ These core problems break down into several related but distinct activites
-% The informatics problems facing biologists can be divided into several distinct
-% classes. Issues of working with microarray data can be thought of
-% as a microacosum of the common types of problems biologist are experiencing as
-% a result of new technologies.  A
-% scientist studying gene expression patterns with a large number of microarrays
-% experiments must be able to store both the raw and processed results.  These
-% might include image files, processed expression data, normalized gene
-% expression values, and other derived data.  Experimental annotations must be
-% collected that clearly identify samples, how they were treated, and the
-% parameters of the physical assay. Next, techniques for analyzing the data must
-% be standardized.  This could include common algorithms or best practices for
-% working with the data.  In microarrays, many competing analysis techniques are
-% available and, regardless of the choice, a common way of accessing them is a key
-% concern.  Furthermore, results can change with subsequent releases of new
-% software or datasets. Since many scientific questions can take months or years
-% to answer, keeping track of what resources were used to produce a given result
-% are critical.  Microarray data can be normalized in a number of
-% different ways with a variety of algorithms designed with similar but slightly
-% different assumptions. Finally, sharing information is the final activity of
-% most academic research.  Journals have become more sophisiticated in moving
-% articles to completely digital distrubution and archiving models.  However as
-% datasets continue to grow access via programatic interfaces is more and more
-% important.  This allows for verification of existing results and also the
-% synthesis of new questions and research directions.  Microarray data deposition
-% in public repositories is a requirement for most journals yet automatic
-% mechanisms for working with this data are lacking and requirements for what
-% constitues primary data in this field are vague at best. The challenges facin
-
-%@ Commonly applied solutions across the fields of information technology and
-%computer science (collectively refered to as informatics) can meet many of
-%these needs.  A hybrid approach is needed that blends the best resources from
-%a variety of data driven desciplines with the highly parellel nature of modern
-%genomics.
-The issues facing biologists include storage, annotations, analysis, sharing, and
-standardization.  All have roots in the highly technical and interdisciplinary
-nature of modern biology.  Bioinformatics, computational biology, and other
-related ``new'' fields take an interdisciplinary approach to solving these
-challenges.  Commonly applied solutions across the fields of information
-technology (IT), computer science, and engineering (collectively referred to
-here as ``informatics'') can meet many of these needs.  A hybrid
-approach that blends the best resources and practices from a variety
-of data driven disciplines with the highly parallel nature of modern biology is needed.
-Of particular note, the open source movement has achieved a high level of
-success in creating free and flexible software that is philosophically aligned
-with the principles of open, transparent, and freely accessible research.  It
-is no wonder that most bioinformatics projects use open source software, such
-as the Linux operating system, for the bulk of their work.  Solutions for many
-of the technical challenges surrounding the transforming field of biology can
-be found in the open source movement.
-
-In the following sections, possible solutions to some of the specific informatics
-challenges facing biology today are described. Summaries of the open source
-bioinformatics projects in this dissertation are available in Table %XXX\ref{projects}.
-
-%@ Informatic solutions borrowed from computer science include...
-%@ These solutions can be adapted to the core problems...
-
-\subsection{Integrative Solutions}
-
-\subsubsection{Storage}
-
-%@ storage -> datatbases
-Storage solutions borrowed from computer science and information technology
-include physical medium on which to store the data, such as hard drives, and also a
-database system to structure the data in accessible and searchable contexts.
-Hard drive storage systems have advanced considerably over the decades in
-response to the demand for safe, reliable, and cost effective ways of storing
-large amounts of data.  Systems that link together many individual hard drives
-into contiguous virtual volumes are available, making it possible to group
-together large datasets in a common repository.  Technical details such as RAID
-redundancy make the storage of critical scientific data secure and retrieval
-speedy.  Database systems represent another strategy for meeting the storage
-needs of bioinformatics projects.  Unlike hard disk-based solutions, databases
-actively index information to improve the retrieval of structured data.
-Advances in open source projects such as mySQL (\url{http://www.mysql.com}) and
-PostgreSQL (\url{http://www.postgresql.org}), have allowed researchers to use
-very high performance relational database systems in their research.
-
-Many database solutions exist for representing biological data.  The generic
-model organisms database project (GMOD, \url{http://www.gmod.org}) provides the
-modular Chado schema for storing a wide variety of biological data.  This
-schema has been used by a variety of projects including the Celsius project for
-microarray datasets.  The Appendix describes the Celsius project,
-the overall infrastructure behind it, and its potential widespread uses in
-microarray data analysis.
-
-\subsubsection{Annotations}
-
-%@ annotation -> ontologies
-Ontologies represent another key crossover from computer science, information
-theory, and artificial intelligence research.  An ontology is a system of
-related terms that is intended to encapsulate the classification of a system.
-They are a way of describing and understanding a facet of the world and, as such,
-serve as natural points of standardization.  As biologists have always faced
-the problems of nomenclature and classification, ontologies are a natural
-extension of these activities.  Many high-profile ontologies have been created
-to annotate and classify a wide variety of biological concepts.  For
-microarrays, much work has gone into defining standards (such as MAGEML and
-MIAME) that structure the task of recording information about experimental
-design \cite{brazma2001mim}. Extensive work has also resulted in the use of
-ontologies to describe biological systems and the experiments performed on
-them.  The MAGE ontology is of particular importance in the microarray field
-but others exist such as the extremely useful gene ontology (GO) that aims to
-structure the annotations on gene function and nomenclature
-\cite{stoeckert2003mof,ashburner2000got}.
-
-Many important projects have spearheaded the effort to establish ontologies for
-the biological research community.  The open biomedical ontologies (OBO)
-project provides a range of ontologies designed for use in the biomedical
-fields.  Other related projects include GO, the MGED ontology, and the sequence
-ontology (SO) \cite{stoeckert2003mof,ashburner2000got,eilbeck2006sot}.  Many
-organization exist to support the development of new and existing ontologies
-including the National Center for Biomedical Ontology
-\url{http://www.bioontology.org}, MGED \url{http://www.mged.org}, and OBO
-\url{http://obo.sourceforge.net}.  Ontologies from these projects have been
-made available in Chado and are used extensively in the Celsius project to
-annotate microarray experiments with disease type, tissue type, and other
-important information.  The Celsius system is described in more detail in
-the Appendix.  
-
-\subsubsection{Analysis}
-
-%@ analysis -> common APIs
-In microarrays, many different algorithms exist that allow a researcher to
-process the raw information from a hybridization into meaningful gene
-expression data.  This process, called normalization and standardization, can
-range from a simple scaling to sophisticated algorithms that model probe
-hybridization efficiency and integrate data from multiple experiments to arrive
-at a more accurate value. With many different options, the need for
-standardizing a mechanism to interact with these algorithms becomes apparent.
-Without common application programming interfaces (APIs), each distinct
-algorithm would require its own input and output format and require many more
-hours to be spent on the trivial task of data formating.  Instead, good
-programming practices from computer science dictate coding abstraction and
-encapsulation.  These ideas can be seen in the Bioconductor or Bioperl APIs for
-biological data and algorithms \cite{stajich2002btp,gentleman2006bos}.  For
-microarrays this translates to a common framework for accessing many different
-normalization techniques with the same programmatic calls, only the flag
-specifying what algorithm to be used changes.  Similarly, the Seq::IO section
-of the Bioperl API allows sequence data to be read and written to and from a
-variety of sequence file formats \cite{stajich2002btp}.  This allows programs
-to access many different formats of data without needing to be rewritten.
-Common APIs clearly are favored by both the open source community and the
-bioinformatics community for these reasons.
-
-\subsubsection{Sharing}
-
-%@ sharing -> web services
-Related to the concept of open APIs for interacting with biological data is the
-concept of web services.  Sharing of biological data, whether it is raw,
-primary data, or processed results, is of the utmost concern for biologist.
-Yet journal articles provide a poor repository for large datasets.  Simply
-downloading large data files is a better approach, yet many times only a few
-pieces of information are needed and the downloading of an entire dataset is
-unnecessary.  For example, if a researcher wants a particular protein structure
-from the protein data bank (PDB, \url{http://www.pdb.org}) downloading the
-thousands of structures in bulk from the PDB is unnecessary.
-
-The emerging web services approach used across the Internet points to a better
-solution.  This model includes technology such as the simple object access
-protocol and REST concepts for interacting with an API remotely over the
-hypertext transport protocol (HTTP) on which the web is based.  This idea is
-that simple requests for data or information calculated on the fly can be made
-by a researcher and the result is calculated or retrieved remotely and returned
-over the Internet.  This type of approach is extremely flexible and can be used
-in a variety of contexts to present biological data to other researchers. 
-
-The distributed annotation system, or DAS, is a popular bioinformatics web
-services project geared towards the sharing of genome annotations with the
-larger research community \cite{dowell2004das}.  Organizations looking to share
-genome assemblies, gene annotations, and other genomic features use DAS to make
-this information available over the web.  Implementations of DAS use the
-standard HTTP protocol and XML as an exchange standard.  The next version,
-DAS/2, expands on the genomics focus of DAS by including capabilities to
-exchange ontologies, download experimental assay results such as microarray
-data, and perform on-demand sequence analysis such as BLAST.  The success of
-DAS as a project is due to the ease of which scientists can utilize information
-published with DAS.  Many clients exist, such as GBrowse and IGB, and the web
-services model affords programmatic access to the servers \cite{stein2002ggb}.
-This allows additional applications to be built on top of these public
-repositories.  For example, the Celsius project web interfaces were created
-on top of a DAS/2 server which provided the raw data.  These web tools let an
-end user query the microarray data available via ontology annotations and
-download the corresponding data in a variety of different processed forms. 
-
-More information on web services can be found in Chapters \XXXchapter,
-\gmodwebchapter, and the Appendix. Chapter \XXXchapter\ details
-the creation of a web services designed to thread protein sequences onto know
-structures with the end goal of identifying disulfide bonds.  Chapter
-\gmodwebchapter\ examines a model organism website generation framework that
-includes web services tools. 
-
-\subsubsection{Standardization}
-
-%@ standardization -> software packaging
-A closely related concept to web services is the concept of software
-standardization.  In the model of web services, a researcher can focus on the
-analysis of data and its biological meaning rather than figuring out how to
-store data locally.  This approach affords abstraction between the researcher
-and the entity providing the web service, making it easier for others to
-either validate existing work by performing the same analysis or expand on the
-work using the same web services.  It allows researchers to easily standardize
-a given dataset or analysis server.  Another technique familiar to all
-computer users on standardization is the versioning of computer programs.  When
-research is being performed on a particular dataset or with a particular
-software program, it is extremely important to track which version was
-used.  Otherwise it becomes impossible to replicate the work.  The idea of
-software packaging, borrowed from the field of information technology, is of
-key importance to bioinformatics.  In addition to simply versioning software,
-many comprehensive systems exist for specifically tracking, installing, and
-updating both software and data in a particular computing environment.  The
-Linux system, for example, uses one of several different package managers to
-perform this task.  
-
-The Biopackages project looks to standardize many tools used commonly in
-bioinformatics projects. It encompasses an automated build system that creates
-software packages for particular Linux distributions.  These include packages
-for APIs such as BioPerl and BioConductor, web services such as DAS/2, and
-databases such as Chado.  Details of the construction, public availability, and
-benefits of this standardization tool can be found in Chapter \biopackageschapter.
-
-%@ I have worked on several software solutions for these (maybe just integrate
-%these above) This can just be a "Chapter X shows..." paragraph that maps the
-%topics above to chapters. I'm just going to include these above.
-
-\subsection{Further Work}
-
-%@ Future biologies will be driven by basic needs as biology continues to
-%become integrated with other disciplines.
-Biology will continue to be driven by the basic needs to store, annotate,
-analyze, share, and standardize biological data and practices. As biology
-continues to become more integrated with other disciplines and influences the
-development of other fields at the same time, new and effective technologies
-will continue to be developed. In this section, many facets of computer science
-and information technology were explored as they relate to the common problems
-facing biologists today and in the future.  The use of computer science and
-information technology continues to expand in biological research and provies
-new avenues to address challenges and demands of this transforming field.
-
 
 % table of projects
 
@@ -1842,7 +1884,7 @@ GDAP & analysis & A protein threading and disulfide prediction tool. \url{http:/
 
 
 
-\bibliography {thesis,la,dboutz}    % bibliography references
+\bibliography {scholar,pmid,thesis,la,dboutz}    % bibliography references
 %\bibliographystyle {uclathes}
 \bibliographystyle {plain}
 
