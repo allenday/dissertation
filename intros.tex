@@ -43,10 +43,135 @@ mage-ml			\cite{PMID_12225585}
 \subsubsection{Experiment Design}
 \subsubsubsection{Two-Group Comparison}
 \subsubsubsection{Time Course}
-\subsubsection{Normalization}
+\subsubsection{Quantification}
 
-liwong			\cite{PMID_11134512}
-rma			\cite{PMID_12582260}
+\subsubsubsection{Background Correction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% <QUOTE>
+You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
+<<>>=
+bgcorrect.methods
+@
+
+\subsection{none}
+
+Calling this method actually does nothing. It returns the object unchanged. May be used as a placeholder.
+
+\subsection{rma/rma2}
+
+These are background adjustment implementations for the rma method \cite{PMID_12582260,PMID_12925520}. They differ only in how they estimate a set of parameters (generally you should use \verb+rma+ in preference to \verb+rma2+. In both cases PM probe intensities are corrected by using a global model for the distribution of probe intensities. The model is suggested by looking at plots of the empirical distribution of probe intensities.  In particular the observed PM probes are modeled as the sum of a normal noise component N (Normal with mean $\mu$ and variance $\sigma^2$) and a exponential signal component S (exponential with mean $\alpha$). To avoid any possibilty of negatives, the normal is trucated at zero. Given we have O the observed intensity, this then leads to an adjustment.
+\begin{equation*}
+E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
+\end{equation*}
+where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and $\Phi$ are the standard normal distribution density and distribution functions respectively.
+
+Note that MM probe intensitys are not corrrected by either of these routines.
+
+\subsection{mas}
+
+This is an implementation of the background correction method outlined in the Statistical Algorithms Description Document \cite{affy:tech:2002}. The chip is broken into a grid of 16 rectangular regions. For each region the lowest 2\% of probe intensities are used to compute a background value for that grid. Each probe is then adjusted based upon a weighted average of the backgrounds for each of the regions. The weights are based on the distances between the location of the probe and the centriods of 16 different regions. Note this method corrects both PM and MM probes.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
+
+
+\subsubsubsection{Normalization}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
+You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
+<<>>=
+normalize.AffyBatch.methods
+@
+
+The Quantile, Contrast and Loess normalizations have been discussed and compared in \cite{PMID_12538238}.
+
+\subsection{quantiles/quantiles.robust}
+
+The quantile method was introduced by \cite{PMID_12538238}. The goal is to give each chip the same empirical distribution. To do this we use the following algorithm where $X$ is a matrix of probe intensities (probes by arrays):
+
+\begin{enumerate}
+\item Given $n$ array of length $p$, form $X$  of dimension $p \times n$  where
+each array is a column
+\item Sort each column of $X$ to give $X_{\mbox{sort}}$
+\item Take the means across rows of $X_{\mbox{sort}}$ and assign this mean to each element in the row to get $X'_{\mbox{sort}}$
+\item Get $X_{\mbox{normalized}}$ by rearranging each column of $X'_{\mbox{sort}}$ to have the same ordering as original $X$
+\end{enumerate}
+
+The quantile normalization method is a specific case of the transformation $x'_{i} = F^{-1}\left(G\left(x_{i}\right)\right)$, where we estimate $G$ by the empirical distribution of each array and $F$ using the empirical distribution of the averaged sample quantiles.  Quantile normalization is pretty fast.
+
+The {\tt quantiles} function performs the algorithm as above. The {\tt quantile.robust} function allows you to exclude or down-weight arrays in the computation of $\hat G$ above. In most cases we have found that the {\tt quantiles} method is sufficient for use and {\tt quantiles.robust} not required.
+
+\subsection{loess}
+
+There is a discussion of this method in \cite{PMID_12538238}. It generalizes the $M$ vs $A$ methodology proposed in \cite{Dudoit:2002} to multiple arrays. It works in a pairwise manner and is thus slow when used with a large number of arrays.
+
+\subsection{contrasts}
+
+This method was proposed by \cite{astr:2003}. It is also a variation on the  $M$ vs $A$ methodology, but the normalization is done by transforming the data to a set of contrasts, then normalizing.
+
+\subsection{constant}
+
+A scaling normalization. This means that all the arrays are scaled so that they have the same mean value. This would be typical of the approach taken by Affymetrix. However, the Affymetrix normalization is usually done after summarization (you can investigate \verb+affy.scalevalue.exprSet+ if you are interested) and this normalization is carried out before summarization.
+
+\subsection{invariantset}
+
+A normalization similar to that used in the dChip software \cite{PMID_11134512,PMID_11532216}. Using a baseline array, arrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' arrays. The non-linear relationship is used to carry out the normalization.
+
+\subsection{qspline}
+This method is documented in \cite{workman:etal:2002}. Using a target array (either one of the arrays or a synthetic target), arrays are normalized by fitting splines to the quantiles, then using the splines to perform the normalization.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
+
+\subsubsubsection{PM Correct Methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
+<<>>=
+pmcorrect.methods
+@
+\subsection{mas}
+
+An {\it ideal mismatch} is subtracted from PM. The ideal mismatch is documented by \cite{affy:tech:2002}. It has been designed so that you subtract MM when possible (ie MM is less than PM) or something else when it is not possible. The Ideal Mismatch will always be less than the corresponding PM and thus we can safely subtract it without risk of negative values.
+
+\subsection{pmonly}
+
+Make no adjustment to the pm values.
+
+\subsection{subtractmm}
+
+Subtract MM from PM. This would be the approach taken in MAS 4 \cite{affy4}. It could also be used in conjuntion with the Li-Wong model.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
+
+\subsubsubsection{Summarization Methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
+<<>>=
+express.summary.stat.methods
+@
+
+\subsection{avgdiff}
+
+Compute the average. This is the approach that was taken in \cite{affy4}.
+
+\subsection{liwong}
+
+This is an implementation of the methods proposed by Li and Wong \cite{PMID_11134512,PMID_11532216}. The Li-Wong MBEI is based upon fitting the following multi-chip model to each probeset
+\begin{equation}
+y_{ij} = \phi_i \theta_j + \epsilon_{ij}
+\end{equation}
+where $y_{ij}$ is $PM_{ij}$ or the difference between $PM_{ij}-MM_{ij}$. The $\phi_i$ parameter is a probe response parameter and $\theta_j$ is the expression on array $j$.
+
+
+\subsection{mas}
+
+As documented in \cite{affy:tech:2002}, a robust average using 1-step Tukey biweight on $\log_2$ scale.
+
+\subsection{medianpolish}
+
+This is the summarization used in the RMA expression summary \cite{PMID_12582260,PMID_12925520}. A multichip linear model is fit to data from each probeset. In particular for a probeset $k$ with $i=1,\dots,I_k$ probes and data from $j=1,\dots,J$ arrays we fit the following model
+\begin{equation*}
+\log_2\left(PM^{(k)}_{ij}\right) = \alpha_i^{(k)} + \beta_j^{(k)} + \epsilon_{ij}^{(k)}
+\end{equation*}
+where $\alpha_i$ is a probe effect and $\beta_j$ is the $\log_2$ expression value. The medianpolish is an algorithm (see \cite{tukey:1977}) for fitting this model robustly. Please note that expression values you get using this summary measure will be in $\log_2$ scale.
+
+\subsection{playerout}
+
+This method is detailed in \cite{Lazardis:etal:2002}. A non parameteric method is used to determine weights. The expression value is then the weighted average.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
+
 vsn			\cite{PMID_12169536}
 genelogic		\cite{PMID_17059591}
 
@@ -63,9 +188,9 @@ Need data consistency.  How to get it
 \subsubsubsection{Multiple-Array Correction Methods}
 Heuristics & Computational Tractability.  Implementation
 \subsubsubsubsection{Model Based Expression}
-liwong			\cite{PMID_11134512}
+liwong			\cite{PMID_11134512,PMID_11532216}
 \subsubsubsubsection{RMA}
-rma			\cite{PMID_12582260}
+rma			\cite{PMID_12582260,PMID_12925520}
 genelogic		\cite{PMID_17059591}
 \subsubsubsubsubsection{Implementation}
 
@@ -1948,7 +2073,7 @@ GDAP & analysis & A protein threading and disulfide prediction tool. \url{http:/
 
 
 
-\bibliography {scholar,pmid,thesis,la,dboutz}    % bibliography references
+\bibliography {affy,scholar,pmid,thesis,la,dboutz}    % bibliography references
 %\bibliographystyle {uclathes}
 \bibliographystyle {plain}
 
