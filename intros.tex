@@ -1,6 +1,11 @@
 \section{DNA Microarrays}
 \label{DNA Microarrays}
 
+%citation shortcuts
+\newcommand{\mage}{PMID_12225585}
+\newcommand{\mo}{PMID_12225585}
+%vocab shortcuts
+
 microarray data analysis as a process
 resembles process from low-throughput days.  hypothesize, design, assay, analyze, conclude
   1. hypothesize
@@ -18,32 +23,41 @@ resembles process from low-throughput days.  hypothesize, design, assay, analyze
 * An example of high-throughput biochemical assay
 * Technology overview
 \subsection{History}
+\label{History}
 \subsubsection{Northern Blot}
 \subsubsection{Oligonucleotide Synthesis}
 \subsubsection{Robotics}
 \subsubsection{Microfluidics}
 \subsubsection{Photolithography}
 \subsection{Assay Overview}
+A successful microarray experiment is one which is able to provide insight into the hypothesis for which it was designed.  Insights gained by experimentation are hard-earned, and require careful planning and execution of multiple key steps.
 
-mged ontology		\cite{PMID_16428806}
-mage-ml			\cite{PMID_12225585}
+The initial steps of feature selection, microarray design, microarray fabrication, experiment design, and biological sample processing, and image acquisition are described generally in Sections \ref{ArrayDesign}-\ref{Hybridization}.  A more exhaustive discussion of protocol surrounding these steps is given in \cite{wit2004}.  Following their acquisition, images are quantified, stored, and analyzed.  Challenges and findings related to these latter procedures are the subject of \emph{\dbthesis}.  They are thoroughly discussed in Section \ref{Quantification}.
 
-\subsubsection{Feature Selection}
-\subsubsection{Microarray Synthesis}
-\subsubsection{Sample Preparation}
-%\subsubsubsection{1-Channel}
-%\subsubsubsection{2-Channel}
-\subsubsection{Hybridization}
-%\subsubsubsection{1-Channel}
-%\subsubsubsection{2-Channel}
-\subsubsection{Image Acquisition}
-%\subsubsubsection{1-Channel}
-%\subsubsubsection{2-Channel}
-\subsection{Applications}
+The entire process, from microarray design to data analysis has been formally described as an object model known as the Microarray Gene Expression Object Model (MAGE-OM) \cite{\mage}.  In this document I have borrowed vocabulary defined in the MAGE-OM for clarity and consistency.  The MAGE-OM itself is discussed in Section \ref{MAGE}.
+
+\subsubsection{Feature Selection \& Microarray Design}
+\label{ArrayDesign}
+The first step in performing a microarray experiment is deciding which genes to assay on the microarray, how many genes to add, and how to arrange the genes on the microarray.  The process of selecting DNA sequences, or \emph{genome features}, which will represent the genes on the microarray is known as \emph{genome feature selection}.  The process of arranging features onto the microarray surface is known as \emph{array design}, and each uniquely identifiable region of the microarray design is known as an \emph{array feature}.
+
+The surface of the microarray is bounded, and the microarray features on the microarray are not points -- they have dimensions.  This means that there is a limit to how many 
+
+\subsubsection{Fabrication}
+\label{Fabrication}
+Once a microarray has been designed (Section \ref{ArrayDesign}) it can be manufactured.  Fabrication and microarray design are interdependent, in that improvements in manufacturing techniques allow for the fabrication of more powerful devices.  Thus, this area of microarray technology is evolving especially rapidly and any specific details of the synthesis we can describe here will be outdated before this document is published.  For this reason, I will only discuss the process of fabrication in general.  A historical progression of technological advances in fabrication is given in Section \ref{History}.
+
 \subsubsection{Experiment Design}
+\label{ExperimentDesign}
+The design of a microarray experiment is analagous to the design of the microarray itself (Section \ref{ArrayDesign}).  As anyone who has performed and experiment will tell you, the results obtained from the same procedure performed twice will yield different results.
+
 %\subsubsubsection{Two-Group Comparison}
 %\subsubsubsection{Time Course}
+
+\subsubsection{Sample Preparation, Hybridization, \& Image Acquisition}
+\label{Hybridization}
+
 \subsubsection{Quantification}
+\label{Quantification}
 
 %\subsubsubsection{Background Correction}
 
@@ -84,23 +98,23 @@ The Quantile, Contrast and Loess normalizations have been discussed and compared
 
 \subsection{quantiles/quantiles.robust}
 
-The quantile method was introduced by \cite{PMID_12538238}. The goal is to give each chip the same empirical distribution. To do this we use the following algorithm where $X$ is a matrix of probe intensities (probes by arrays):
+The quantile method was introduced by \cite{PMID_12538238}. The goal is to give each chip the same empirical distribution. To do this we use the following algorithm where $X$ is a matrix of probe intensities (probes by microarrays):
 
 \begin{enumerate}
-\item Given $n$ array of length $p$, form $X$  of dimension $p \times n$  where
-each array is a column
+\item Given $n$ microarray of length $p$, form $X$  of dimension $p \times n$  where
+each microarray is a column
 \item Sort each column of $X$ to give $X_{\mbox{sort}}$
 \item Take the means across rows of $X_{\mbox{sort}}$ and assign this mean to each element in the row to get $X'_{\mbox{sort}}$
 \item Get $X_{\mbox{normalized}}$ by rearranging each column of $X'_{\mbox{sort}}$ to have the same ordering as original $X$
 \end{enumerate}
 
-The quantile normalization method is a specific case of the transformation $x'_{i} = F^{-1}\left(G\left(x_{i}\right)\right)$, where we estimate $G$ by the empirical distribution of each array and $F$ using the empirical distribution of the averaged sample quantiles.  Quantile normalization is pretty fast.
+The quantile normalization method is a specific case of the transformation $x'_{i} = F^{-1}\left(G\left(x_{i}\right)\right)$, where we estimate $G$ by the empirical distribution of each microarray and $F$ using the empirical distribution of the averaged sample quantiles.  Quantile normalization is pretty fast.
 
-The \emph{quantiles} function performs the algorithm as above. The \emph{quantile.robust} function allows you to exclude or down-weight arrays in the computation of $\hat G$ above. In most cases we have found that the \emph{quantiles} method is sufficient for use and \emph{quantiles.robust} not required.
+The \emph{quantiles} function performs the algorithm as above. The \emph{quantile.robust} function allows you to exclude or down-weight microarrays in the computation of $\hat G$ above. In most cases we have found that the \emph{quantiles} method is sufficient for use and \emph{quantiles.robust} not required.
 
 \subsection{loess}
 
-There is a discussion of this method in \cite{PMID_12538238}. It generalizes the $M$ vs $A$ methodology proposed in \cite{Dudoit:2002} to multiple arrays. It works in a pairwise manner and is thus slow when used with a large number of arrays.
+There is a discussion of this method in \cite{PMID_12538238}. It generalizes the $M$ vs $A$ methodology proposed in \cite{Dudoit:2002} to multiple microarrays. It works in a pairwise manner and is thus slow when used with a large number of microarrays.
 
 \subsection{contrasts}
 
@@ -108,14 +122,14 @@ This method was proposed by \cite{astr:2003}. It is also a variation on the  $M$
 
 \subsection{constant}
 
-A scaling normalization. This means that all the arrays are scaled so that they have the same mean value. This would be typical of the approach taken by Affymetrix. However, the Affymetrix normalization is usually done after summarization (you can investigate \verb+affy.scalevalue.exprSet+ if you are interested) and this normalization is carried out before summarization.
+A scaling normalization. This means that all the microarrays are scaled so that they have the same mean value. This would be typical of the approach taken by Affymetrix. However, the Affymetrix normalization is usually done after summarization (you can investigate \verb+affy.scalevalue.exprSet+ if you are interested) and this normalization is carried out before summarization.
 
 \subsection{invariantset}
 
-A normalization similar to that used in the dChip software \cite{PMID_11134512,PMID_11532216}. Using a baseline array, arrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' arrays. The non-linear relationship is used to carry out the normalization.
+A normalization similar to that used in the dChip software \cite{PMID_11134512,PMID_11532216}. Using a baseline microarray, microarrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' microarrays. The non-linear relationship is used to carry out the normalization.
 
 \subsection{qspline}
-This method is documented in \cite{workman:etal:2002}. Using a target array (either one of the arrays or a synthetic target), arrays are normalized by fitting splines to the quantiles, then using the splines to perform the normalization.
+This method is documented in \cite{workman:etal:2002}. Using a target microarray (either one of the microarrays or a synthetic target), microarrays are normalized by fitting splines to the quantiles, then using the splines to perform the normalization.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
 %\subsubsubsection{PM Correct Methods}
@@ -152,7 +166,7 @@ This is an implementation of the methods proposed by Li and Wong \cite{PMID_1113
 \begin{equation}
 y_{ij} = \phi_i \theta_j + \epsilon_{ij}
 \end{equation}
-where $y_{ij}$ is $PM_{ij}$ or the difference between $PM_{ij}-MM_{ij}$. The $\phi_i$ parameter is a probe response parameter and $\theta_j$ is the expression on array $j$.
+where $y_{ij}$ is $PM_{ij}$ or the difference between $PM_{ij}-MM_{ij}$. The $\phi_i$ parameter is a probe response parameter and $\theta_j$ is the expression on microarray $j$.
 
 
 \subsection{mas}
@@ -161,7 +175,7 @@ As documented in \cite{affy:tech:2002}, a robust average using 1-step Tukey biwe
 
 \subsection{medianpolish}
 
-This is the summarization used in the RMA expression summary \cite{PMID_12582260,PMID_12925520}. A multichip linear model is fit to data from each probeset. In particular for a probeset $k$ with $i=1,\dots,I_k$ probes and data from $j=1,\dots,J$ arrays we fit the following model
+This is the summarization used in the RMA expression summary \cite{PMID_12582260,PMID_12925520}. A multichip linear model is fit to data from each probeset. In particular for a probeset $k$ with $i=1,\dots,I_k$ probes and data from $j=1,\dots,J$ microarrays we fit the following model
 \begin{equation*}
 \log_2\left(PM^{(k)}_{ij}\right) = \alpha_i^{(k)} + \beta_j^{(k)} + \epsilon_{ij}^{(k)}
 \end{equation*}
@@ -175,7 +189,7 @@ This method is detailed in \cite{Lazardis:etal:2002}. A non parameteric method i
 vsn			\cite{PMID_12169536}
 genelogic		\cite{PMID_17059591}
 
-A few sentences to dismiss 2-channel arrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
+A few sentences to dismiss 2-channel microarrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
 Need data consistency.  How to get it
 %\subsubsubsection{Synthesis Artifacts}
 %\subsubsubsection{Assay Artifacts}
@@ -277,6 +291,10 @@ mage-ml			\cite{PMID_12225585}
 \subsubsection{Data Representation}
 %\subsubsubsection{Standards}
 %\subsubsubsection{XML}
+\subsubsection{MAGE}
+\label{MAGE}
+MAGE-OM and MAGE-ML
+
 das			\cite{PMID_11667947}
 ncbo			\cite{PMID_16901225}
 mage-ml			\cite{PMID_12225585}
@@ -317,7 +335,7 @@ to analyze these highly integrated and challenging datasets.
 % Pre-processed data files that summarize image files take up less space but
 % large datasets can still become difficult to work with.  The Celsius project,
 % for example, mirrors public microarray respositories allowing for research into
-% comparisons between arrays from thousands of experiments.  The processed
+% comparisons between microarrays from thousands of experiments.  The processed
 % expression file for this conglomerate dataset is over 5Tb which is
 % prohibatively large for most research labs to duplicate. Furthermore, the
 % actual analysis of very large datasets from mass spec or microarray
@@ -1269,33 +1287,33 @@ diagnostics \cite{PMID_16918486}, and sequence-variation studies
 
 \subsection{Microarray Technologies}
 
-%@ Microarrays allow for the simultaneous measurement of gene expression...
+%@ microarrays allow for the simultaneous measurement of gene expression...
 %typical microarray experiment mRNA extracted, reverse trans... signals read...
 %normalized etc.  @ Basic technologies differ but the general idea is the same,
-%DNA is fixed in an array and hybrized with other DNA... spotted mixed samples
+%DNA is fixed in an microarray and hybrized with other DNA... spotted mixed samples
 %vs.  single-channel systems...
 There are two basic types of gene microarray technologies currently at the
-disposal of researches: two-channel and single channel arrays.  Each has a
+disposal of researches: two-channel and single channel microarrays.  Each has a
 particular usefulness and differs in the implementation details but are
 ultimately similar in approach.  In both systems, DNA is immobilized on a fixed
-surface in a particular array pattern.  Each row and column intersection
+surface in a particular microarray pattern.  Each row and column intersection
 contains a distinct, predetermined DNA sequence called a probe. The source of
 the DNA can be cDNA clones or synthesized oligonucleotides.  Onto this fixed
 array, a sample of either cDNA reverse transcribed from mRNA or, less
-frequently, mRNA itself is hybridized to the array.  In either case the sample
+frequently, mRNA itself is hybridized to the microarray.  In either case the sample
 is labeled with a fluorescent dye.  The sequence complementarity drives the
-probes (fixed onto the array surface) and target cDNA or mRNA sample sequences
+probes (fixed onto the microarray surface) and target cDNA or mRNA sample sequences
 to anneal to each other.  The relative brightness of each probe is then
 measured with a laser scanner and intensities for each are recorded.
 
-In the case of the two-channel arrays, samples are always mixed with a
-differently labeled reference sample while single-channel arrays only use the
-actual sample.  The two-channel array expression values are typically
-measured as log ratios of the two dye intensities while single-channel arrays use
+In the case of the two-channel microarrays, samples are always mixed with a
+differently labeled reference sample while single-channel microarrays only use the
+actual sample.  The two-channel microarray expression values are typically
+measured as log ratios of the two dye intensities while single-channel microarrays use
  one intensity value. Regardless of the platform, the raw probe intensities
-must be processed to yield interpretable results.  Arrays are often scaled, for
+must be processed to yield interpretable results.  Microarrays are often scaled, for
 example, to all have an equal mean or median.  This normalization process makes
-the comparison between arrays possible and there are many algorithms to choose
+the comparison between microarrays possible and there are many algorithms to choose
 from.  Ultimately, the normalized data can be aggregated into an
 two-dimensional expression matrix with samples versus probe expression values.
 This output can be used in a variety of analysis methods.
@@ -1303,7 +1321,7 @@ This output can be used in a variety of analysis methods.
 %Figure \probefigure shows an overview of the process of sample preparation,
 %hybridization, normalization, and data aggregation.
 
-%@ possibility of using expression arrays as quantitative for diagnostics
+%@ possibility of using expression microarrays as quantitative for diagnostics
 %@ How they approach questions
 
 \subsection{Research Approaches}
