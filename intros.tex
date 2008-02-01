@@ -31,21 +31,21 @@ mage-ml			\cite{PMID_12225585}
 \subsubsection{Feature Selection}
 \subsubsection{Microarray Synthesis}
 \subsubsection{Sample Preparation}
-\subsubsubsection{1-Channel}
-\subsubsubsection{2-Channel}
+%\subsubsubsection{1-Channel}
+%\subsubsubsection{2-Channel}
 \subsubsection{Hybridization}
-\subsubsubsection{1-Channel}
-\subsubsubsection{2-Channel}
+%\subsubsubsection{1-Channel}
+%\subsubsubsection{2-Channel}
 \subsubsection{Image Acquisition}
-\subsubsubsection{1-Channel}
-\subsubsubsection{2-Channel}
+%\subsubsubsection{1-Channel}
+%\subsubsubsection{2-Channel}
 \subsection{Applications}
 \subsubsection{Experiment Design}
-\subsubsubsection{Two-Group Comparison}
-\subsubsubsection{Time Course}
+%\subsubsubsection{Two-Group Comparison}
+%\subsubsubsection{Time Course}
 \subsubsection{Quantification}
 
-\subsubsubsection{Background Correction}
+%\subsubsubsection{Background Correction}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% <QUOTE>
 You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
@@ -73,7 +73,7 @@ This is an implementation of the background correction method outlined in the St
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
 
-\subsubsubsection{Normalization}
+%\subsubsubsection{Normalization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
 You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
 <<>>=
@@ -96,7 +96,7 @@ each array is a column
 
 The quantile normalization method is a specific case of the transformation $x'_{i} = F^{-1}\left(G\left(x_{i}\right)\right)$, where we estimate $G$ by the empirical distribution of each array and $F$ using the empirical distribution of the averaged sample quantiles.  Quantile normalization is pretty fast.
 
-The {\tt quantiles} function performs the algorithm as above. The {\tt quantile.robust} function allows you to exclude or down-weight arrays in the computation of $\hat G$ above. In most cases we have found that the {\tt quantiles} method is sufficient for use and {\tt quantiles.robust} not required.
+The \emph{quantiles} function performs the algorithm as above. The \emph{quantile.robust} function allows you to exclude or down-weight arrays in the computation of $\hat G$ above. In most cases we have found that the \emph{quantiles} method is sufficient for use and \emph{quantiles.robust} not required.
 
 \subsection{loess}
 
@@ -118,14 +118,14 @@ A normalization similar to that used in the dChip software \cite{PMID_11134512,P
 This method is documented in \cite{workman:etal:2002}. Using a target array (either one of the arrays or a synthetic target), arrays are normalized by fitting splines to the quantiles, then using the splines to perform the normalization.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
-\subsubsubsection{PM Correct Methods}
+%\subsubsubsection{PM Correct Methods}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
 <<>>=
 pmcorrect.methods
 @
 \subsection{mas}
 
-An {\it ideal mismatch} is subtracted from PM. The ideal mismatch is documented by \cite{affy:tech:2002}. It has been designed so that you subtract MM when possible (ie MM is less than PM) or something else when it is not possible. The Ideal Mismatch will always be less than the corresponding PM and thus we can safely subtract it without risk of negative values.
+An \emph{ideal mismatch} is subtracted from PM. The ideal mismatch is documented by \cite{affy:tech:2002}. It has been designed so that you subtract MM when possible (ie MM is less than PM) or something else when it is not possible. The Ideal Mismatch will always be less than the corresponding PM and thus we can safely subtract it without risk of negative values.
 
 \subsection{pmonly}
 
@@ -136,7 +136,7 @@ Make no adjustment to the pm values.
 Subtract MM from PM. This would be the approach taken in MAS 4 \cite{affy4}. It could also be used in conjuntion with the Li-Wong model.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
-\subsubsubsection{Summarization Methods}
+%\subsubsubsection{Summarization Methods}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
 <<>>=
 express.summary.stat.methods
@@ -177,22 +177,22 @@ genelogic		\cite{PMID_17059591}
 
 A few sentences to dismiss 2-channel arrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
 Need data consistency.  How to get it
-\subsubsubsection{Synthesis Artifacts}
-\subsubsubsection{Assay Artifacts}
-\subsubsubsubsection{Label Artifacts}
-\subsubsubsubsection{Probe Artifacts}
-\subsubsubsubsection{Sample Artifacts}
-\subsubsubsubsection{Hybridization Artifacts}
-\subsubsubsection{Single-Array Correction Methods}
-\subsubsubsubsection{MAS5}
-\subsubsubsection{Multiple-Array Correction Methods}
-Heuristics & Computational Tractability.  Implementation
-\subsubsubsubsection{Model Based Expression}
+%\subsubsubsection{Synthesis Artifacts}
+%\subsubsubsection{Assay Artifacts}
+%\subsubsubsubsection{Label Artifacts}
+%\subsubsubsubsection{Probe Artifacts}
+%\subsubsubsubsection{Sample Artifacts}
+%\subsubsubsubsection{Hybridization Artifacts}
+%\subsubsubsection{Single-Array Correction Methods}
+%\subsubsubsubsection{MAS5}
+%\subsubsubsection{Multiple-Array Correction Methods}
+Heuristics \& Computational Tractability.  Implementation
+%\subsubsubsubsection{Model Based Expression}
 liwong			\cite{PMID_11134512,PMID_11532216}
-\subsubsubsubsection{RMA}
+%\subsubsubsubsection{RMA}
 rma			\cite{PMID_12582260,PMID_12925520}
 genelogic		\cite{PMID_17059591}
-\subsubsubsubsubsection{Implementation}
+%\subsubsubsubsubsection{Implementation}
 
 \section{Infrastructure}
 \label{Infrastructure}
@@ -209,7 +209,7 @@ computational infrastructure used by biologists.  Specifically, new approaches a
 models are required for representing, storing, processing, and distributing
 data produced by high-throughput methods.
 
-\subsection{Scalability & Performance}
+\subsection{Scalability \& Performance}
 \label{Scalability}
 
 One of the key principles that has enabled the creation of high-throughput
@@ -246,8 +246,8 @@ postgres	\cite{postgresql}
 chado		\cite{PMID_17646315}
 
 \subsubsection{Data Representation}
-\subsubsubsection{Assay Measurements}
-\subsubsubsection{Annotations}
+%\subsubsubsection{Assay Measurements}
+%\subsubsubsection{Annotations}
 
 %See Also
 mged ontology		\cite{PMID_16428806}
@@ -259,13 +259,13 @@ chado			\cite{PMID_17646315}
 mage-ml			\cite{PMID_12225585}
 
 \subsubsection{Performance}
-\subsubsubsection{Hardware}
-\subsubsubsection{Clustering}
-\subsubsubsection{Partitioning}
-\subsubsection{Computation}
-\subsubsubsection{Data Loading}
+%\subsubsubsection{Hardware}
+%\subsubsubsection{Clustering}
+%\subsubsubsection{Partitioning}
+%\subsubsection{Computation}
+%\subsubsubsection{Data Loading}
 etl			\cite{kimball2004}
-\subsubsubsection{Data Analysis}
+%\subsubsubsection{Data Analysis}
 \subsection{Data Sharing}
 
 %See Also
@@ -275,23 +275,23 @@ spice			\cite{PMID_16204122}
 mage-ml			\cite{PMID_12225585}
 
 \subsubsection{Data Representation}
-\subsubsubsection{Standards}
-\subsubsubsection{XML}
+%\subsubsubsection{Standards}
+%\subsubsubsection{XML}
 das			\cite{PMID_11667947}
 ncbo			\cite{PMID_16901225}
 mage-ml			\cite{PMID_12225585}
-\subsubsubsection{URL}
-\subsubsubsection{Ontology}
+%\subsubsubsection{URL}
+%\subsubsubsection{Ontology}
 mged ontology		\cite{PMID_16428806}
 mp ontology		\cite{PMID_15642099}
 sequence ontology	\cite{PMID_15892872}
 cell ontology		\cite{PMID_15693950}
 ncbo			\cite{PMID_16901225}
-\subsubsubsection{Syntax}
-\subsubsubsection{Data}
-\subsubsubsection{Normalization}
-\subsubsubsection{Reproducibility}
-\subsubsubsection{Modularity}
+%\subsubsubsection{Syntax}
+%\subsubsubsection{Data}
+%\subsubsubsection{Normalization}
+%\subsubsubsection{Reproducibility}
+%\subsubsubsection{Modularity}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Informatics}
