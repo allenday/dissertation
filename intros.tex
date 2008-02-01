@@ -32,15 +32,17 @@ resembles process from low-throughput days.  hypothesize, design, assay, analyze
 \subsection{Assay Overview}
 A successful microarray experiment is one which is able to provide insight into the hypothesis for which it was designed.  Insights gained by experimentation are hard-earned, and require careful planning and execution of multiple key steps.
 
-The initial steps of feature selection, microarray design, microarray fabrication, experiment design, and biological sample processing, and image acquisition are described generally in Sections \ref{ArrayDesign}-\ref{Hybridization}.  A more exhaustive discussion of protocol surrounding these steps is given in \cite{wit2004}.  Following their acquisition, images are quantified, stored, and analyzed.  Challenges and findings related to these latter procedures are the subject of \emph{\dbthesis}.  They are thoroughly discussed in Section \ref{Quantification}.
+The initial steps of feature selection, microarray design, microarray fabrication, experiment design, and biological sample processing, and image acquisition are described generally in Sections \ref{ArrayDesign}-\ref{Hybridization}.  A more exhaustive discussion of protocol surrounding these steps is given in \cite{wit2004}.  Following their acquisition, images are quantified, stored, distributed, analyzed, and analytical results shared.  Challenges and findings related to these latter procedures are the subject of \emph{\dbthesis}.  They are thoroughly discussed in Sections \ref{Quantification}-\ref{Distribution}.
 
 The entire process, from microarray design to data analysis has been formally described as an object model known as the Microarray Gene Expression Object Model (MAGE-OM) \cite{\mage}.  In this document I have borrowed vocabulary defined in the MAGE-OM for clarity and consistency.  The MAGE-OM itself is discussed in Section \ref{MAGE}.
 
-\subsubsection{Feature Selection \& Microarray Design}
+\subsubsection{Microarray Design}
 \label{ArrayDesign}
-The first step in performing a microarray experiment is deciding which genes to assay on the microarray, how many genes to add, and how to arrange the genes on the microarray.  The process of selecting DNA sequences, or \emph{genome features}, which will represent the genes on the microarray is known as \emph{genome feature selection}.  The process of arranging features onto the microarray surface is known as \emph{array design}, and each uniquely identifiable region of the microarray design is known as an \emph{array feature}.
+The first steps in performing a microarray experiment is deciding which genes to assay on the microarray, how many genes to add, and how to arrange the genes on the microarray.  These steps are collectively known as \emph{microarray design}.
 
-The surface of the microarray is bounded, and the microarray features on the microarray are not points -- they have dimensions.  This means that there is a limit to how many 
+Historically, limitations in manufacturing technology were very restrictive, and limited the number of genes that could be assayed simultaneously.  Current technology is sufficiently advanced to allow all genes to be simultaneously assayed for most organisms, so the question of which and how many genes to add is no longer relevant.  However, as anyone who has performed and experiment will tell you, the results obtained from the same experimental procedure performed twice will yield different results.  This also holds true for measurements made in microarray measurements.  There are many potential sources of variance in the gene measurements, and a good array design measures as much of this measurement variance as possible.
+
+Estimation of variance on a microarray essentially means making multiple measurements of the same gene.  Each gene can be measured at multiple distinct locations along its sequence.  Further, each location can be measured multiple times, Further location replicates can be uniformly distributed across the array surface to compensate for local perturbations on the array surface itself.
 
 \subsubsection{Fabrication}
 \label{Fabrication}
@@ -48,7 +50,7 @@ Once a microarray has been designed (Section \ref{ArrayDesign}) it can be manufa
 
 \subsubsection{Experiment Design}
 \label{ExperimentDesign}
-The design of a microarray experiment is analagous to the design of the microarray itself (Section \ref{ArrayDesign}).  As anyone who has performed and experiment will tell you, the results obtained from the same procedure performed twice will yield different results.
+The design of a microarray experiment is analagous to the design of the microarray itself (Section \ref{ArrayDesign}).
 
 %\subsubsubsection{Two-Group Comparison}
 %\subsubsubsection{Time Course}
@@ -58,6 +60,14 @@ The design of a microarray experiment is analagous to the design of the microarr
 
 \subsubsection{Quantification}
 \label{Quantification}
+
+Microarray quantification is the process of estimating the quantity of each gene in the sample that was assayed in the hybridization step (Section \ref{Hybridization}) of the experiment.  It consists of image processing, background correction, normalization, PM correction, and summarization.
+
+\subsubsection{Representation \& Storage}
+\label{Storage}
+
+\subsubsection{Data \& Metadata Distribution}
+\label{Distribution}
 
 %\subsubsubsection{Background Correction}
 
