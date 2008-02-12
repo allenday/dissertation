@@ -61,7 +61,35 @@ The design of a microarray experiment is analagous to the design of the microarr
 \subsubsection{Quantification}
 \label{Quantification}
 
-Microarray quantification is the process of estimating the quantity of each gene in the sample that was assayed in the hybridization step (Section \ref{Hybridization}) of the experiment.  It consists of image processing, background correction, normalization, PM correction, and summarization.
+Microarray quantification is the process of estimating the quantity of each gene in the sample that was assayed in the hybridization step (Section \ref{Hybridization}) of the experiment.  Quantification can be broken down into five sub-procedures, executed in the following order: image processing, background correction, normalization, PM correction, and summarization.
+
+%***subsubsub
+\subsubsection*{Image Processing}
+\label{Image Processing}
+
+%***subsubsub
+\subsubsection*{Background Correction}
+\label{Background Correction}
+
+Background correction is a statistical procedure that estimates and removes low levels of noise on the microarray.  Typical sources of probe-independent noise are the miscalibration of the photosensor used in Section \ref{Image Processing}, diffuse laser reflection from the microarray, debris and salt left over from hybridization (Section \ref{Hybridization}), and interaction between probes and non-target sequences.  Noise falls into two general categories: probe-independent and probe-specific.
+
+The level of probe-independent noise is estimated by measuring the level of fluoresence from featureless regions of the microarray and negative control probes that are not reverse-complementary to any sequences in the hybridization mixture.  These measure background-level reflected light and the level of non-specific hybridization, respectively.  Probe-independent background correction is generally done during image processing because the probe-independent noise tends to be spatially localized or uniformly distributed, although emerging methods include probe sequence in modeling background noise and correct each probe independently \ref{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is estimated by measing the intensity of probes that differ only by a single nucleotide from their target sequence.  The idea to using these so-called \emph{mismatch probes} (MM) is that because their sequence is nearly identical to the sequence of the \emph{perfect match} (PM) probe that any difference between hybridization between a set of PM/MM pairs is almost entirely sequence-specific and thus provides a probe set-specific measure of noise \ref{XXX}.
+
+
+%***subsubsub
+\subsubsection*{Normalization}
+\label{Normalization}
+
+%***subsubsub
+\subsubsection*{PM correction}
+\label{PM correction}
+
+%***subsubsub
+\subsubsection*{Summarization}
+\label{Summarization}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Representation \& Storage}
 \label{Storage}
