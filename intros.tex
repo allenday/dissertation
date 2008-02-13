@@ -30,27 +30,71 @@ resembles process from low-throughput days.  hypothesize, design, assay, analyze
 \subsubsection{Microfluidics}
 \subsubsection{Photolithography}
 \subsection{Assay Overview}
-A successful microarray experiment is one which is able to provide insight into the hypothesis for which it was designed.  Insights gained by experimentation are hard-earned, and require careful planning and execution of multiple key steps.
+A successful microarray experiment is one which is able to provide insight into
+the hypothesis for which it was designed.  Insights gained by experimentation
+are hard-earned, and require careful planning and execution of multiple key
+steps.
 
-The initial steps of feature selection, microarray design, microarray fabrication, experiment design, and biological sample processing, and image acquisition are described generally in Sections \ref{ArrayDesign}-\ref{Hybridization}.  A more exhaustive discussion of protocol surrounding these steps is given in \cite{wit2004}.  Following their acquisition, images are quantified, stored, distributed, analyzed, and analytical results shared.  Challenges and findings related to these latter procedures are the subject of \emph{\dbthesis}.  They are thoroughly discussed in Sections \ref{Quantification}-\ref{Distribution}.
+The initial steps of feature selection, microarray design, microarray
+fabrication, experiment design, and biological sample processing, and image
+acquisition are described generally in Sections
+\ref{ArrayDesign}-\ref{Hybridization}.  A more exhaustive discussion of
+protocol surrounding these steps is given in \cite{wit2004}.  Following their
+acquisition, images are quantified, stored, distributed, analyzed, and
+analytical results shared.  Challenges and findings related to these latter
+procedures are the subject of \emph{\dbthesis}.  They are thoroughly discussed
+in Sections \ref{Quantification}-\ref{Distribution}.
 
-The entire process, from microarray design to data analysis has been formally described as an object model known as the Microarray Gene Expression Object Model (MAGE-OM) \cite{\mage}.  In this document I have borrowed vocabulary defined in the MAGE-OM for clarity and consistency.  The MAGE-OM itself is discussed in Section \ref{MAGE}.
+The entire process, from microarray design to data analysis has been formally
+described as an object model known as the Microarray Gene Expression Object
+Model (MAGE-OM) \cite{\mage}.  In this document I have borrowed vocabulary
+defined in the MAGE-OM for clarity and consistency.  The MAGE-OM itself is
+discussed in Section \ref{MAGE}.
 
 \subsubsection{Microarray Design}
 \label{ArrayDesign}
-The first steps in performing a microarray experiment is deciding which genes to assay on the microarray, how many genes to add, and how to arrange the genes on the microarray.  These steps are collectively known as \emph{microarray design}.
 
-Historically, limitations in manufacturing technology were very restrictive, and limited the number of genes that could be assayed simultaneously.  Current technology is sufficiently advanced to allow all genes to be simultaneously assayed for most organisms, so the question of which and how many genes to add is no longer relevant.  However, as anyone who has performed and experiment will tell you, the results obtained from the same experimental procedure performed twice will yield different results.  This also holds true for measurements made in microarray measurements.  There are many potential sources of variance in the gene measurements, and a good array design measures as much of this measurement variance as possible.
+The first steps in performing a microarray experiment is deciding which genes
+to assay on the microarray, how many genes to add, and how to arrange the genes
+on the microarray.  These steps are collectively known as \emph{microarray
+design}.
 
-Estimation of variance on a microarray essentially means making multiple measurements of the same gene.  Each gene can be measured at multiple distinct locations along its sequence.  Further, each location can be measured multiple times, Further location replicates can be uniformly distributed across the array surface to compensate for local perturbations on the array surface itself.
+Historically, limitations in manufacturing technology were very restrictive,
+and limited the number of genes that could be assayed simultaneously.  Current
+technology is sufficiently advanced to allow all genes to be simultaneously
+assayed for most organisms, so the question of which and how many genes to add
+is no longer relevant.  However, as anyone who has performed and experiment
+will tell you, the results obtained from the same experimental procedure
+performed twice will yield different results.  This also holds true for
+measurements made in microarray measurements.  There are many potential sources
+of variance in the gene measurements, and a good array design measures as much
+of this measurement variance as possible.
+
+Estimation of variance on a microarray essentially means making multiple
+measurements of the same gene.  Each gene can be measured at multiple distinct
+locations along its sequence.  Further, each location can be measured multiple
+times, Further location replicates can be uniformly distributed across the
+array surface to compensate for local perturbations on the array surface
+itself.
 
 \subsubsection{Fabrication}
 \label{Fabrication}
-Once a microarray has been designed (Section \ref{ArrayDesign}) it can be manufactured.  Fabrication and microarray design are interdependent, in that improvements in manufacturing techniques allow for the fabrication of more powerful devices.  Thus, this area of microarray technology is evolving especially rapidly and any specific details of the synthesis we can describe here will be outdated before this document is published.  For this reason, I will only discuss the process of fabrication in general.  A historical progression of technological advances in fabrication is given in Section \ref{History}.
+
+Once a microarray has been designed (Section \ref{ArrayDesign}) it can be
+manufactured.  Fabrication and microarray design are interdependent, in that
+improvements in manufacturing techniques allow for the fabrication of more
+powerful devices.  Thus, this area of microarray technology is evolving
+especially rapidly and any specific details of the synthesis we can describe
+here will be outdated before this document is published.  For this reason, I
+will only discuss the process of fabrication in general.  A historical
+progression of technological advances in fabrication is given in Section
+\ref{History}.
 
 \subsubsection{Experiment Design}
 \label{ExperimentDesign}
-The design of a microarray experiment is analagous to the design of the microarray itself (Section \ref{ArrayDesign}).
+
+The design of a microarray experiment is analagous to the design of the
+microarray itself (Section \ref{ArrayDesign}).
 
 %\subsubsubsection{Two-Group Comparison}
 %\subsubsubsection{Time Course}
@@ -61,7 +105,11 @@ The design of a microarray experiment is analagous to the design of the microarr
 \subsubsection{Quantification}
 \label{Quantification}
 
-Microarray quantification is the process of estimating the quantity of each gene in the sample that was assayed in the hybridization step (Section \ref{Hybridization}) of the experiment.  Quantification can be broken down into five sub-procedures, executed in the following order: image processing, background correction, normalization, PM correction, and summarization.
+Microarray quantification is the process of estimating the quantity of each
+gene in the sample that was assayed in the hybridization step (Section
+\ref{Hybridization}) of the experiment.  Quantification can be broken down into
+five sub-procedures, executed in the following order: image processing,
+background correction, normalization, PM correction, and summarization.
 
 %***subsubsub
 \subsubsection*{Image Processing}
@@ -71,9 +119,31 @@ Microarray quantification is the process of estimating the quantity of each gene
 \subsubsection*{Background Correction}
 \label{Background Correction}
 
-Background correction is a statistical procedure that estimates and removes low levels of noise on the microarray.  Typical sources of probe-independent noise are the miscalibration of the photosensor used in Section \ref{Image Processing}, diffuse laser reflection from the microarray, debris and salt left over from hybridization (Section \ref{Hybridization}), and interaction between probes and non-target sequences.  Noise falls into two general categories: probe-independent and probe-specific.
+Background correction is a statistical procedure that estimates and removes low
+levels of noise on the microarray.  Typical sources of probe-independent noise
+are the miscalibration of the photosensor used in Section \ref{Image
+Processing}, diffuse laser reflection from the microarray, debris and salt left
+over from hybridization (Section \ref{Hybridization}), and interaction between
+probes and non-target sequences.  Noise falls into two general categories:
+probe-independent and probe-specific.
 
-The level of probe-independent noise is estimated by measuring the level of fluoresence from featureless regions of the microarray and negative control probes that are not reverse-complementary to any sequences in the hybridization mixture.  These measure background-level reflected light and the level of non-specific hybridization, respectively.  Probe-independent background correction is generally done during image processing because the probe-independent noise tends to be spatially localized or uniformly distributed, although emerging methods include probe sequence in modeling background noise and correct each probe independently \ref{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is estimated by measing the intensity of probes that differ only by a single nucleotide from their target sequence.  The idea to using these so-called \emph{mismatch probes} (MM) is that because their sequence is nearly identical to the sequence of the \emph{perfect match} (PM) probe that any difference between hybridization between a set of PM/MM pairs is almost entirely sequence-specific and thus provides a probe set-specific measure of noise \ref{XXX}.
+The level of probe-independent noise is estimated by measuring the level of
+fluoresence from featureless regions of the microarray and negative control
+probes that are not reverse-complementary to any sequences in the hybridization
+mixture.  These measure background-level reflected light and the level of
+non-specific hybridization, respectively.  Probe-independent background
+correction is generally done during image processing because the
+probe-independent noise tends to be spatially localized or uniformly
+distributed, although emerging methods include probe sequence in modeling
+background noise and correct each probe independently
+\ref{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is
+estimated by measing the intensity of probes that differ only by a single
+nucleotide from their target sequence.  The idea to using these so-called
+\emph{mismatch probes} (MM) is that because their sequence is nearly identical
+to the sequence of the \emph{perfect match} (PM) probe that any difference
+between hybridization between a set of PM/MM pairs is almost entirely
+sequence-specific and thus provides a probe set-specific measure of noise
+\ref{XXX}.
 
 
 %***subsubsub
@@ -111,27 +181,51 @@ Calling this method actually does nothing. It returns the object unchanged. May 
 
 \subsection{rma/rma2}
 
-These are background adjustment implementations for the rma method \cite{PMID_12582260,PMID_12925520}. They differ only in how they estimate a set of parameters (generally you should use \verb+rma+ in preference to \verb+rma2+. In both cases PM probe intensities are corrected by using a global model for the distribution of probe intensities. The model is suggested by looking at plots of the empirical distribution of probe intensities.  In particular the observed PM probes are modeled as the sum of a normal noise component N (Normal with mean $\mu$ and variance $\sigma^2$) and a exponential signal component S (exponential with mean $\alpha$). To avoid any possibilty of negatives, the normal is trucated at zero. Given we have O the observed intensity, this then leads to an adjustment.
+These are background adjustment implementations for the rma method
+\cite{PMID_12582260,PMID_12925520}. They differ only in how they estimate a set
+of parameters (generally you should use \verb+rma+ in preference to
+\verb+rma2+. In both cases PM probe intensities are corrected by using a global
+model for the distribution of probe intensities. The model is suggested by
+looking at plots of the empirical distribution of probe intensities.  In
+particular the observed PM probes are modeled as the sum of a normal noise
+component N (Normal with mean $\mu$ and variance $\sigma^2$) and a exponential
+signal component S (exponential with mean $\alpha$). To avoid any possibilty of
+negatives, the normal is trucated at zero. Given we have O the observed
+intensity, this then leads to an adjustment.
+
 \begin{equation*}
 E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
 \end{equation*}
-where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and $\Phi$ are the standard normal distribution density and distribution functions respectively.
+
+where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
+$\Phi$ are the standard normal distribution density and distribution functions
+respectively.
 
 Note that MM probe intensitys are not corrrected by either of these routines.
 
 \subsection{mas}
 
-This is an implementation of the background correction method outlined in the Statistical Algorithms Description Document \cite{affy:tech:2002}. The chip is broken into a grid of 16 rectangular regions. For each region the lowest 2\% of probe intensities are used to compute a background value for that grid. Each probe is then adjusted based upon a weighted average of the backgrounds for each of the regions. The weights are based on the distances between the location of the probe and the centriods of 16 different regions. Note this method corrects both PM and MM probes.
+This is an implementation of the background correction method outlined in the
+Statistical Algorithms Description Document \cite{affy:tech:2002}. The chip is
+broken into a grid of 16 rectangular regions. For each region the lowest 2\% of
+probe intensities are used to compute a background value for that grid. Each
+probe is then adjusted based upon a weighted average of the backgrounds for
+each of the regions. The weights are based on the distances between the
+location of the probe and the centriods of 16 different regions. Note this
+method corrects both PM and MM probes.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
 
 %\subsubsubsection{Normalization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
-You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
+
+You can see the background correction methods that are built into the package
+by examining the variable \verb+bgcorrect.method+.
+
 <<>>=
 normalize.AffyBatch.methods
 @
-
 The Quantile, Contrast and Loess normalizations have been discussed and compared in \cite{PMID_12538238}.
 
 \subsection{quantiles/quantiles.robust}
@@ -248,6 +342,7 @@ genelogic		\cite{PMID_17059591}
 
 \section{Infrastructure}
 \label{Infrastructure}
+
 The study of biology is rapidly evolving.  Bottom-up approaches, in which data
 are produced individually and slowly are being replaced by high-throughput
 methods that produce, in parallel, large volumes of high-dimensional,
