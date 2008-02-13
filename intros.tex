@@ -2,8 +2,22 @@
 \label{DNA Microarrays}
 
 %citation shortcuts
+\newcommand{\bioc}{PMID_15461798}
+\newcommand{\biop}{PMID_12368254}
+\newcommand{\genelogic}{PMID_17059591}
+\newcommand{\chado}{PMID_17646315}
+\newcommand{\das}{PMID_11667947}
+\newcommand{\ncbo}{PMID_16901225}
 \newcommand{\mage}{PMID_12225585}
+\newcommand{\miame}{PMID_11726920}
 \newcommand{\mo}{PMID_12225585}
+\newcommand{\affyplm}{PMID_16623940}
+\newcommand{\mbei}{PMID_11532216}
+\newcommand{\dchip}{PMID_11134512}
+\newcommand{\rma}{PMID_12582260}
+\newcommand{\vsn}{PMID_12169536}
+\newcommand{\gcrma}{gcrma}
+\newcommand{\mas5}{affy5}
 %vocab shortcuts
 
 microarray data analysis as a process
@@ -120,67 +134,72 @@ background correction, normalization, PM correction, and summarization.
 \label{Background Correction}
 
 Background correction is a statistical procedure that estimates and removes low
-levels of noise on the microarray.  Typical sources of probe-independent noise
-are the miscalibration of the photo-sensor used in Section \ref{Image
-Processing}, diffuse laser reflection from the microarray, debris and salt left
-over from hybridization (Section \ref{Hybridization}), and interaction between
-probes and non-target sequences.  Noise falls into two general categories:
-probe-independent and probe-specific.
+levels of noise on the microarray.  Background noise can have many sources.
 
-The level of probe-independent noise is estimated by measuring the level of
-fluorescence from featureless regions of the microarray and negative control
-probes that are not reverse-complementary to any sequences in the hybridization
-mixture.  These measure background-level reflected light and the level of
-non-specific hybridization, respectively.  Probe-independent background
-correction is generally done during image processing because the
-probe-independent noise tends to be spatially localized or uniformly
-distributed, although emerging methods include probe sequence in modeling
-background noise and correct each probe independently
-\ref{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is
-estimated by measuring the intensity of probes that differ only by a single
-nucleotide from their target sequence.  The idea to using these so-called
-\emph{mismatch probes} (MM) is that because their sequence is nearly identical
-to the sequence of the \emph{perfect match} (PM) probe that any difference
-between hybridization between a set of PM/MM pairs is almost entirely
-sequence-specific and thus provides a probe set-specific measure of noise
-\ref{XXX}.
+The simplest form of background noise is optical.  It can be caused by general
+cross-hybridization of target to all probes, mis-calibration of the microarray
+scanner's photo-sensor, and diffused or reflected light from the laser used to
+excite the fluorescent dyes.  Optical noise can be estimated by measuring the
+level of fluorescence from featureless regions of the microarray and negative
+control probes that are not reverse-complementary to any sequences in the
+hybridization mixture.  These measure background-level reflected light and the
+level of non-specific hybridization, respectively.
+
+Manufacturing and hybridization artifacts, such as surface scratches and salt
+residues, are another source of noise.  Areas of the microarray containing high
+levels of manufacturing and hybridization noise can be identified because the
+probes located there will be outliers relative to probes for the same target
+located elsewhere on the microarray.  Probes in these areas are considered
+unreliable and are either given a very low weight parameter or are removed from
+normalization (Section \ref{Normalization}) and other downstream processing
+altogether \cite{\affyplm}.
+
+Newer, multi-array background correction methods have leveraged existing data
+to build a models of how background noise is generally distributed.  The gcRMA
+model \cite{\gcrma} includes a parameter the sequence composition of each
+probe, while other models such as those used in the RMA and MBEI
+\cite{\rma,\bioc} methods only include a parameter for concordant each probe is
+with other probes in the same set.  The RMA background correction method is the
+\i{de facto} standard, and corrects perfect match (PM) probe intensities by
+using a global model for the distribution of probe intensities. The model is
+suggested by looking at plots of the empirical distribution of probe
+intensities.  In particular the observed PM probes are modeled as the sum of a
+normal noise component N (Normal with mean $\mu$ and variance $\sigma^2$) and a
+exponential signal component S (exponential with mean $\alpha$). To avoid any
+possibility of negatives, the normal is truncated at zero. Given we have O the
+observed intensity, this then leads to an adjustment \cite{\bioc}:
+
+\begin{equation*}
+E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
+\end{equation*}
+
+where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
+$\Phi$ are the standard normal distribution density and distribution functions
+respectively.  Note also that MM probe intensities are not corrected by either
+of these routines \cite{\rma,\bioc}.
+
+Multi-array background correction methods are able to detect background noise
+due to the manufacturing and hybridization artifacts described above, but the
+size of the aray artifact can be as small as a single feature.  This should in
+principle do a better job of noise estimation.  A major drawback to multi-array
+background noise models is that the noise estimates are only valid in the
+context of the co-processed set of microarrays.  This is because the noise
+estimates are derived from parameter estimates specific to that set of
+microarrays.  While this is not a problem for small-scale analysis on
+individual experiments, it creates difficulties when merging data from multiple
+experiments because all microarrays will need to be re-processed to re-fit the
+parameters of the noise model.  This re-processing problem can become
+intractable for background correcting a very large number of arrays, and is
+discussed in greater detail in Section \ref{XXX}.
 
 
-%***subsubsub
-\subsubsection*{Normalization}
-\label{Normalization}
 
-%***subsubsub
-\subsubsection*{PM correction}
-\label{PM correction}
+ is generally distributed on the
+microarray.  These noise models are then used to adjust observed values.  The simpler of these distribution-based background correction methods, such as that used in MBEI \cite{\mbei}, fit noise model parameters on-the-fly with a batch of co-processed arrays.  Other algorithms pre-calculate the noise distribution and use
 
-%***subsubsub
-\subsubsection*{Summarization}
-\label{Summarization}
+  These models of background noise consider commonly present spatial artifacts, as well as how classes of probes are expected to behave based on their sequence composition.  Noise estimates are assigned to each probe accordingly. %XXX cite gcRMA, MBEI
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Representation \& Storage}
-\label{Storage}
-
-\subsubsection{Data \& Meta-data Distribution}
-\label{Distribution}
-
-%\subsubsubsection{Background Correction}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% <QUOTE>
-You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
-<<>>=
-bgcorrect.methods
-@
-
-\subsection{none}
-
-Calling this method actually does nothing. It returns the object unchanged. May be used as a placeholder.
-
-\subsection{RMA/RMA2}
-
+%%%%%%%%
 These are background adjustment implementations for the RMA method
 \cite{PMID_12582260,PMID_12925520}. They differ only in how they estimate a set
 of parameters (generally you should use \verb+RMA+ in preference to
@@ -213,6 +232,80 @@ probe is then adjusted based upon a weighted average of the backgrounds for
 each of the regions. The weights are based on the distances between the
 location of the probe and the centroids of 16 different regions. Note this
 method corrects both PM and MM probes.
+%%%%%%%%
+
+
+
+
+
+  Typical sources of probe-independent noise
+are the miscalibration of the photo-sensor used in Section \ref{Image
+Processing}, diffuse laser reflection from the microarray, debris and salt left
+over from hybridization (Section \ref{Hybridization}), and interaction between
+probes and non-target sequences.  Noise falls into two general categories:
+probe-independent and probe-specific.
+
+The level of probe-independent noise is estimated by measuring the level of
+fluorescence from featureless regions of the microarray and negative control
+probes that are not reverse-complementary to any sequences in the hybridization
+mixture.  These measure background-level reflected light and the level of
+non-specific hybridization, respectively.  Probe-independent background
+correction is generally done during image processing because the
+probe-independent noise tends to be spatially localized or uniformly
+distributed, although emerging methods include probe sequence in modeling
+background noise and correct each probe independently
+\cite{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is
+estimated by measuring the intensity of probes that differ only by a single
+nucleotide from their target sequence.  The idea to using these so-called
+\emph{mismatch probes} (MM) is that because their sequence is nearly identical
+to the sequence of the \emph{perfect match} (PM) probe that any difference
+between hybridization between a set of PM/MM pairs is almost entirely
+sequence-specific and thus provides a probe set-specific measure of noise
+\cite{\rma,\bioc}.
+
+%XXX need to rework the above to name-drop gcRMA, RMA, MBEI, MAS 5.0.  need to be more clear that some forms of bg correction are at the optical level (inter-feature space, etc), some are local (dirt and salt), and that some use probe modeling.
+
+
+%***subsubsub
+\subsubsection*{Normalization}
+\label{Normalization}
+
+After correcting for background noise (Section \ref{Background Correction}), microarrays are normalized.  The purpose of normalization is to transform the distribution of microarray measurements such that properties of the distribution match expectations.
+
+The most simple form of microarray normalization is a linear scaling.  The Affymetrix MAS 5 algorithm \cite{\mas5} performs linear scaling by 1) setting aside the top and bottom 1\% of measurements as outliers, adjusts the mean of the remaining measurements to a constant value, then multiplies each measurement, including the outliers, by the factor used to adjust the mean.
+
+some properties of the normalized measurements fit an expected distribution.
+
+%***subsubsub
+\subsubsection*{PM correction}
+\label{PM correction}
+
+%***subsubsub
+\subsubsection*{Summarization}
+\label{Summarization}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Representation \& Storage}
+\label{Storage}
+
+\subsubsection{Data \& Meta-data Distribution}
+\label{Distribution}
+
+%\subsubsubsection{Background Correction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% <QUOTE>
+You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
+<<>>=
+bgcorrect.methods
+@
+
+\subsection{none}
+
+Calling this method actually does nothing. It returns the object unchanged. May be used as a placeholder.
+
+\subsection{RMA/RMA2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
