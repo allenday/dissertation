@@ -1,5 +1,10 @@
-\section{DNA Microarrays}
-\label{DNA Microarrays}
+%\section{DNA Microarrays}
+%\label{DNA Microarrays}
+
+\section{XXX}
+\label{XXX}
+
+%equation shortcuts
 
 %citation shortcuts
 \newcommand{\bioc}{PMID_15461798}
@@ -17,7 +22,7 @@
 \newcommand{\rma}{PMID_12582260}
 \newcommand{\vsn}{PMID_12169536}
 \newcommand{\gcrma}{gcrma}
-\newcommand{\mas5}{affy5}
+\newcommand{\mas}{affy5}
 %vocab shortcuts
 
 microarray data analysis as a process
@@ -36,14 +41,14 @@ resembles process from low-throughput days.  hypothesize, design, assay, analyze
 
 * An example of high-throughput biochemical assay
 * Technology overview
-\subsection{History}
+\section{History of DNA Microarrays}
 \label{History}
-\subsubsection{Northern Blot}
-\subsubsection{Oligonucleotide Synthesis}
-\subsubsection{Robotics}
-\subsubsection{Microfluidics}
-\subsubsection{Photolithography}
-\subsection{Assay Overview}
+\subsection{Northern Blot}
+\subsection{Oligonucleotide Synthesis}
+\subsection{Robotics}
+\subsection{Microfluidics}
+\subsection{Photolithography}
+\section{Microarray Assay Overview}
 A successful microarray experiment is one which is able to provide insight into
 the hypothesis for which it was designed.  Insights gained by experimentation
 are hard-earned, and require careful planning and execution of multiple key
@@ -65,7 +70,7 @@ Model (MAGE-OM) \cite{\mage}.  In this document I have borrowed vocabulary
 defined in the MAGE-OM for clarity and consistency.  The MAGE-OM itself is
 discussed in Section \ref{MAGE}.
 
-\subsubsection{Microarray Design}
+\subsection{Microarray Design}
 \label{ArrayDesign}
 
 The first steps in performing a microarray experiment is deciding which genes
@@ -91,7 +96,7 @@ times, Further location replicates can be uniformly distributed across the
 array surface to compensate for local perturbations on the array surface
 itself.
 
-\subsubsection{Fabrication}
+\subsection{Fabrication}
 \label{Fabrication}
 
 Once a microarray has been designed (Section \ref{ArrayDesign}) it can be
@@ -104,7 +109,7 @@ will only discuss the process of fabrication in general.  A historical
 progression of technological advances in fabrication is given in Section
 \ref{History}.
 
-\subsubsection{Experiment Design}
+\subsection{Experiment Design}
 \label{ExperimentDesign}
 
 The design of a microarray experiment is analogous to the design of the
@@ -113,10 +118,10 @@ microarray itself (Section \ref{ArrayDesign}).
 %\subsubsubsection{Two-Group Comparison}
 %\subsubsubsection{Time Course}
 
-\subsubsection{Sample Preparation, Hybridization, \& Image Acquisition}
+\subsection{Sample Preparation, Hybridization, \& Image Acquisition}
 \label{Hybridization}
 
-\subsubsection{Quantification}
+\subsection{Quantification}
 \label{Quantification}
 
 Microarray quantification is the process of estimating the quantity of each
@@ -125,12 +130,10 @@ gene in the sample that was assayed in the hybridization step (Section
 five sub-procedures, executed in the following order: image processing,
 background correction, normalization, PM correction, and summarization.
 
-%***subsubsub
-\subsubsection*{Image Processing}
+\subsubsection{Image Processing}
 \label{Image Processing}
 
-%***subsubsub
-\subsubsection*{Background Correction}
+\subsubsection{Background Correction}
 \label{Background Correction}
 
 Background correction is a statistical procedure that estimates and removes low
@@ -146,13 +149,21 @@ hybridization mixture.  These measure background-level reflected light and the
 level of non-specific hybridization, respectively.
 
 Manufacturing and hybridization artifacts, such as surface scratches and salt
-residues, are another source of noise.  Areas of the microarray containing high
-levels of manufacturing and hybridization noise can be identified because the
-probes located there will be outliers relative to probes for the same target
-located elsewhere on the microarray.  Probes in these areas are considered
-unreliable and are either given a very low weight parameter or are removed from
-normalization (Section \ref{Normalization}) and other downstream processing
-altogether \cite{\affyplm}.
+residues, are another source of noise.  A simple form of location-based
+background correction is descibed in the Statistical Algorithms Description
+Document \cite{affy:tech:2002}.   Briefly, the chip is broken into a 4 $x$ 4
+grid of 16 rectangular regions.  The lowest 2\% of each region's probe
+intensities are used to compute a background value for that region.  Each probe
+(PM and MM) is then adjusted based upon a weighted average of the backgrounds
+for all regions. The weights are based on the distances between the location of
+the probe and the centroids of all regions.  More sophisticated methods attempt
+to detect areas of the microarray containing high levels of manufacturing and
+hybridization noise.  Noisy areas can be identified because the probes located
+there will be outliers relative to probes for the same target located elsewhere
+on the microarray.  Probes in these areas are considered unreliable and are
+either given a very low weight parameter or are removed from normalization
+(Section \ref{Normalization}) and other downstream processing (Sections \ref{PM
+correction}-\ref{Summarization}) altogether \cite{\affyplm}.
 
 Newer, multi-array background correction methods have leveraged existing data
 to build a models of how background noise is generally distributed.  The gcRMA
@@ -190,107 +201,57 @@ individual experiments, it creates difficulties when merging data from multiple
 experiments because all microarrays will need to be re-processed to re-fit the
 parameters of the noise model.  This re-processing problem can become
 intractable for background correcting a very large number of arrays, and is
-discussed in greater detail in Section \ref{XXX}.
+discussed in greater detail in Section \ref{Scalability}.
+
+%%%%%%%%DEAD TEXT
+%  Typical sources of probe-independent noise
+%are the miscalibration of the photo-sensor used in Section \ref{Image
+%Processing}, diffuse laser reflection from the microarray, debris and salt left
+%over from hybridization (Section \ref{Hybridization}), and interaction between
+%probes and non-target sequences.  Noise falls into two general categories:
+%probe-independent and probe-specific.
+%
+%The level of probe-independent noise is estimated by measuring the level of
+%fluorescence from featureless regions of the microarray and negative control
+%probes that are not reverse-complementary to any sequences in the hybridization
+%mixture.  These measure background-level reflected light and the level of
+%non-specific hybridization, respectively.  Probe-independent background
+%correction is generally done during image processing because the
+%probe-independent noise tends to be spatially localized or uniformly
+%distributed, although emerging methods include probe sequence in modeling
+%background noise and correct each probe independently
+%\cite{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is
+%estimated by measuring the intensity of probes that differ only by a single
+%nucleotide from their target sequence.  The idea to using these so-called
+%\emph{mismatch probes} (MM) is that because their sequence is nearly identical
+%to the sequence of the \emph{perfect match} (PM) probe that any difference
+%between hybridization between a set of PM/MM pairs is almost entirely
+%sequence-specific and thus provides a probe set-specific measure of noise
+%\cite{\rma,\bioc}.
 
 
-
- is generally distributed on the
-microarray.  These noise models are then used to adjust observed values.  The simpler of these distribution-based background correction methods, such as that used in MBEI \cite{\mbei}, fit noise model parameters on-the-fly with a batch of co-processed arrays.  Other algorithms pre-calculate the noise distribution and use
-
-  These models of background noise consider commonly present spatial artifacts, as well as how classes of probes are expected to behave based on their sequence composition.  Noise estimates are assigned to each probe accordingly. %XXX cite gcRMA, MBEI
-
-%%%%%%%%
-These are background adjustment implementations for the RMA method
-\cite{PMID_12582260,PMID_12925520}. They differ only in how they estimate a set
-of parameters (generally you should use \verb+RMA+ in preference to
-\verb+RMA2+. In both cases PM probe intensities are corrected by using a global
-model for the distribution of probe intensities. The model is suggested by
-looking at plots of the empirical distribution of probe intensities.  In
-particular the observed PM probes are modeled as the sum of a normal noise
-component N (Normal with mean $\mu$ and variance $\sigma^2$) and a exponential
-signal component S (exponential with mean $\alpha$). To avoid any possibility of
-negatives, the normal is truncated at zero. Given we have O the observed
-intensity, this then leads to an adjustment.
-
-\begin{equation*}
-E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
-\end{equation*}
-
-where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
-$\Phi$ are the standard normal distribution density and distribution functions
-respectively.
-
-Note that MM probe intensities are not corrected by either of these routines.
-
-\subsection{mas}
-
-This is an implementation of the background correction method outlined in the
-Statistical Algorithms Description Document \cite{affy:tech:2002}. The chip is
-broken into a grid of 16 rectangular regions. For each region the lowest 2\% of
-probe intensities are used to compute a background value for that grid. Each
-probe is then adjusted based upon a weighted average of the backgrounds for
-each of the regions. The weights are based on the distances between the
-location of the probe and the centroids of 16 different regions. Note this
-method corrects both PM and MM probes.
-%%%%%%%%
-
-
-
-
-
-  Typical sources of probe-independent noise
-are the miscalibration of the photo-sensor used in Section \ref{Image
-Processing}, diffuse laser reflection from the microarray, debris and salt left
-over from hybridization (Section \ref{Hybridization}), and interaction between
-probes and non-target sequences.  Noise falls into two general categories:
-probe-independent and probe-specific.
-
-The level of probe-independent noise is estimated by measuring the level of
-fluorescence from featureless regions of the microarray and negative control
-probes that are not reverse-complementary to any sequences in the hybridization
-mixture.  These measure background-level reflected light and the level of
-non-specific hybridization, respectively.  Probe-independent background
-correction is generally done during image processing because the
-probe-independent noise tends to be spatially localized or uniformly
-distributed, although emerging methods include probe sequence in modeling
-background noise and correct each probe independently
-\cite{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is
-estimated by measuring the intensity of probes that differ only by a single
-nucleotide from their target sequence.  The idea to using these so-called
-\emph{mismatch probes} (MM) is that because their sequence is nearly identical
-to the sequence of the \emph{perfect match} (PM) probe that any difference
-between hybridization between a set of PM/MM pairs is almost entirely
-sequence-specific and thus provides a probe set-specific measure of noise
-\cite{\rma,\bioc}.
-
-%XXX need to rework the above to name-drop gcRMA, RMA, MBEI, MAS 5.0.  need to be more clear that some forms of bg correction are at the optical level (inter-feature space, etc), some are local (dirt and salt), and that some use probe modeling.
-
-
-%***subsubsub
-\subsubsection*{Normalization}
+\subsubsection{Normalization}
 \label{Normalization}
 
 After correcting for background noise (Section \ref{Background Correction}), microarrays are normalized.  The purpose of normalization is to transform the distribution of microarray measurements such that properties of the distribution match expectations.
 
-The most simple form of microarray normalization is a linear scaling.  The Affymetrix MAS 5 algorithm \cite{\mas5} performs linear scaling by 1) setting aside the top and bottom 1\% of measurements as outliers, adjusts the mean of the remaining measurements to a constant value, then multiplies each measurement, including the outliers, by the factor used to adjust the mean.
+The most simple form of microarray normalization is a linear scaling.  The Affymetrix MAS 5 algorithm \cite{\mas} performs linear scaling by (1) setting aside the top and bottom 1\% of measurements as outliers, adjusts the mean of the remaining measurements to a constant value, then multiplies each measurement, including the outliers, by the factor used to adjust the mean.
 
 some properties of the normalized measurements fit an expected distribution.
 
-%***subsubsub
-\subsubsection*{PM correction}
+\subsubsection{PM correction}
 \label{PM correction}
 
-%***subsubsub
-\subsubsection*{Summarization}
+\subsubsection{Summarization}
 \label{Summarization}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Representation \& Storage}
+\subsection{Representation \& Storage}
 \label{Storage}
 
-\subsubsection{Data \& Meta-data Distribution}
+\subsection{Data \& Meta-data Distribution}
 \label{Distribution}
 
 %\subsubsubsection{Background Correction}
@@ -1717,8 +1678,8 @@ groups must be equal, and (3) the values for members from each must be normally
 distributed.
 
 \begin{equation} \label{ttest}
-t = { \mu_1 - \mu_2 \over s_{\mu_1 - \mu_2}}
- \ \mathrm{where}\ s_{\mu_1 - \mu_2} = \sqrt{{\left({n}_1 - 1\right) s_1^2 + ({n}_2 - 1) s_2^2  \over {n}_1 + {n}_2 - 2}\left({1 \over n_1} + {1 \over n_2}\right)}
+%t = { \mu_1 - \mu_2 \over s_{\mu_1 - \mu_2}}
+% \ \mathrm{where}\ s_{\mu_1 - \mu_2} = \sqrt{{\left({n}_1 - 1\right) s_1^2 + ({n}_2 - 1) s_2^2  \over {n}_1 + {n}_2 - 2}\left({1 \over n_1} + {1 \over n_2}\right)}
 %t = {\overline{X}_1 - \overline{X}_2 \over s_{\overline{X}_1 - \overline{X}_2}}
 % \ \mathrm{where}\ s_{\overline{X}_1 - \overline{X}_2} = \sqrt{{\left({n}_1 - 1\right) s_1^2 + ({n}_2 - 1) s_2^2  \over {n}_1 + {n}_2 - 2}\left({1 \over n_1} + {1 \over n_2}\right)}
 \end{equation}
@@ -1746,7 +1707,7 @@ work that identified gene expression differences between leukemia subtypes
 \cite{PMID_164182572,PMID_12933571,yeang2001mcm,PMID_12933571}.
 
 \begin{equation}\label{pmetric}
-P = { \mu_1 - \mu_2 \over {\sigma_1 - \sigma_2}}
+%P = { \mu_1 - \mu_2 \over {\sigma_1 - \sigma_2}}
 \end{equation}
 
 The calculation of the SNR \emph{P}-metric is shown in equation \eqref{pmetric}
