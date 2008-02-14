@@ -122,11 +122,12 @@ microarray itself (Section \ref{ArrayDesign}).
 \subsection{Quantification}
 \label{Quantification}
 
-Microarray quantification is the process of estimating the quantity of each
-gene in the sample that was assayed in the hybridization step (Section
-\ref{Hybridization}) of the experiment.  Quantification can be broken down into
-five sub-procedures, executed in the following order: image processing,
-background correction, normalization, PM correction, and summarization.
+Microarray quantification, also known as \emph{pre-processing}, is the
+process of estimating the quantity of each gene in the sample that was assayed
+in the hybridization step (Section \ref{Hybridization}) of the experiment.
+Quantification can be broken down into five distinct sub-procedures, executed
+in the following order: image processing, background correction, normalization,
+PM correction, and summarization.
 
 \subsubsection{Image Processing}
 \label{Image Processing}
@@ -176,11 +177,13 @@ intensities.  In particular the observed PM probes are modeled as the sum of a
 normal noise component N (Normal with mean $\mu$ and variance $\sigma^2$) and a
 exponential signal component S (exponential with mean $\alpha$). To avoid any
 possibility of negatives, the normal is truncated at zero. Given we have O the
-observed intensity, this then leads to an adjustment \cite{\bioc}:
+observed intensity, this then leads to an adjustment, given in Equation
+\ref{rmabg}:
 
-\begin{equation*}
+\begin{equation}
+\label{rmabg}
 E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
-\end{equation*}
+\end{equation}
 
 where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
 $\Phi$ are the standard normal distribution density and distribution functions
@@ -227,13 +230,19 @@ discussed in greater detail in Section \ref{Scalability}.
 %sequence-specific and thus provides a probe set-specific measure of noise
 %\cite{\rma,\bioc}.
 
-
 \subsubsection{Normalization}
 \label{Normalization}
 
-After correcting for background noise (Section \ref{Background Correction}), microarrays are normalized.  The purpose of normalization is to transform the distribution of microarray measurements such that properties of the distribution match expectations.
+After correcting for background noise (Section \ref{Background Correction}),
+microarrays are normalized.  The purpose of normalization is to transform the
+distribution of microarray measurements so that properties of the
+distribution of measurements match expectations.
 
-The most simple form of microarray normalization is a linear scaling.  The Affymetrix MAS 5 algorithm \cite{\mas} performs linear scaling by (1) setting aside the top and bottom 1\% of measurements as outliers, adjusts the mean of the remaining measurements to a constant value, then multiplies each measurement, including the outliers, by the factor used to adjust the mean.
+The most simple form of microarray normalization is a linear scaling.  The
+Affymetrix MAS 5 algorithm \cite{\mas} performs linear scaling by (1) setting
+aside the top and bottom 1\% of measurements as outliers, adjusts the mean of
+the remaining measurements to a constant value, then multiplies each
+measurement, including the outliers, by the factor used to adjust the mean.
 
 some properties of the normalized measurements fit an expected distribution.
 
@@ -243,6 +252,57 @@ some properties of the normalized measurements fit an expected distribution.
 \subsubsection{Summarization}
 \label{Summarization}
 
+The last step in microarray data preprocessing is to combine the measurements
+from all probes in a probe set into a single value.  This procedure is called
+\emph{summarization}.  The simplest summarization algorithm, called ``average
+difference'' \cite{affy4} computes the mean of difference between each PM/MM
+probe pair (Equation \ref{avgdiffsummary}),
+
+\begin{equation}
+\label{avgdiffsummary}
+y_{k} = I_i^{-1}{\sum_{i=1}^{I_k} |PM_i-MM_i|}
+\end{equation}
+
+where the probe set $k$ has $PM$ perfect match and $MM$ mismatch probe pairs $i
+= 1,\dots,I_k$.
+
+Summarization methods parallel background correction and normalization methods
+in that there are two varieties, the single-array methods and the multi-array
+methods.  ``Average difference'' is an example of the former.  Multi-array
+methods consider the distribution of probe measurements across all arrays, and
+in some cases assign an array-specific parameter used to compute the probe set
+summary.  The summarization component of the MBEI method introduced by Li and
+Wong \cite{\mbei,\dchip} is given in Equation \ref{mbeisummary},
+
+\begin{equation}
+\label{mbeisummary}
+y_{ij} = \phi_i \theta_j + \epsilon_{ij}
+\end{equation}
+
+where $y_{ij}$ is $PM_{ij}$ or the difference between $PM_{ij}-MM_{ij}$. The
+$\phi_i$ parameter is a probe response parameter and $\theta_j$ is the
+expression on microarray $j$.
+
+The summarization component of RMA pre-processing \cite{\rma} performss a
+multi-array linear fit to data from each probe set.  Specifically, for probe
+set $k$ with $i=1,\dots,I_k$ probe pairs and microarrays $j=1,\dots,J$ the
+model given in Equation \ref{medianpolish} is fit,
+
+\begin{equation}
+\label{medianpolish}
+\log_2\left(PM^{(k)}_{ij}\right) = \alpha_i^{(k)} + \beta_j^{(k)} + \epsilon_{ij}^{(k)}
+\end{equation}
+
+where $\alpha_i$ is a probe effect and $\beta_j$ is the $\log_2$ expression
+value, and the method is known as \emph{median polish}, named after Tukey's
+algorithm used to perform the calculation \cite{tukey:1977}.
+
+It is noteworthy that summarized probe set values from all popular multi-array
+summarization methods, including those described here, are dependent upon the
+probe set and microarray effect parameters calculated as part of the model fit.
+While this is not a problem theoritically, it introduces unique challenges in
+the implementation of a pre-processing pipeline for a large number of arrays.
+This is discussed in greater detail in Section \ref{Scalability}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -251,23 +311,6 @@ some properties of the normalized measurements fit an expected distribution.
 
 \subsection{Data \& Meta-data Distribution}
 \label{Distribution}
-
-%\subsubsubsection{Background Correction}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% <QUOTE>
-You can see the background correction methods that are built into the package by examining the variable \verb+bgcorrect.method+.
-<<>>=
-bgcorrect.methods
-@
-
-\subsection{none}
-
-Calling this method actually does nothing. It returns the object unchanged. May be used as a placeholder.
-
-\subsection{RMA/RMA2}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
-
 
 %\subsubsubsection{Normalization}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
