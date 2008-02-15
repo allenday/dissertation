@@ -1,5 +1,198 @@
-%\section{DNA Microarrays}
-%\label{DNA Microarrays}
+\section{DNA Microarrays}
+
+%%% <QUOTE ref="boconnor">
+DNA microarray technologies are a recent advancement in biological research
+that have found widespread adoption among a diverse set of research subdomains.
+They represent one of the most common high-throughput experimental approaches
+biologist now have at their disposal to answer questions that were previously
+intractable. Microarrays provide the ability to simultaneously measure the mRNA
+abundance of thousands of genes in a given biological sample and do so
+relatively quickly and cheaply.  The power of this approach is evident in the
+large number of diverse studies that have been performed.  These experiments
+can be grouped into one of several general categories based on the overall
+study design and end goal.  These include: classification problems (supervised
+learning) \cite{Dudoit2003ICM}, clustering problems (unsupervised learning)
+\cite{Azuaje2003cge,Stanford2003cac}, gene co-regulation and function
+identification studies \cite{PMID_12413821}, differential gene expression
+studies \cite{PMID_15843092,PMID_15867208}, time-course and dose-response
+studies \cite{PMID_12443997}, gene pathway and regulatory network studies
+\cite{PMID_16216773,PMID_16825123}, drug discovery and toxicology studies
+\cite{PMID_16512775,PMID_16700885,PMID_16880944,PMID_17195470}, clinical
+diagnostics \cite{PMID_16918486}, and sequence-variation studies
+\cite{PMID_17265721}.
+%%% </QUOTE ref="boconnor">
+
+\section{The DNA Microarray Assay}
+
+There are two basic types of gene microarray technologies currently at the
+disposal of researchers: single-channel and multi-channel microarrays.  The
+methods used and form of measurements made for these two types differ, but the
+research questions that are addressable using either type are the same.  In
+both systems, DNA is immobilized on a fixed surface in a specific and
+reproducible pattern.  This is the \emph{microarray}, sometimes abbreviated as
+an \emph{array}.  The pattern that allows distinct regions on the
+two-dimensional space of the surface to be mapped to the specific DNA sequences
+immobilized at that address is known as a \emph{array design}.  Each distinct
+region on the array is known as a \emph{feature} and the DNA sequence present
+at a feature is called a \emph{probe}.  The source of the probe that is
+immobilized at the feature can be a cDNA clone deposited onto the microarray,
+or oligonucleotides that are synthesized on the microarray \emph{in-situ} using
+photochemistry and light masks \cite{XXX}.
+
+Once a microarray has been fabricated according to the array design, a solution
+of DNA fragments, or \emph{targets}, can be labeled with a fluorescent dye and
+\emph{hybridized}, or allowed to chemically anneal to the microarray's probes.
+The property of reverse complementarity between subsets of the solvent and
+immobilized DNA drives the solvent DNA targets to localize near to their
+corresponding immobilized probes.
+
+After hybridization, the amount of target DNA hybridized to each feature on the
+array is assayed.  A laser is used to excite the fluorescent dye associated
+with the targets, and a digital camera is used to measure the amount of
+fluorescence present at each feature, and at the specific wavelength of
+fluorescence known as a \emph{channel}.  The amount of fluorescent light is
+assumed to be a monotonic and increasing function of the amount of target DNA
+hybridized to that feature.  In the case of single-channel assays, only a
+single fluorescent dye is used.  In a multi-channel assay, multiple target
+solutions are hybridized to the array, each labeled with a different
+fluorescent dye.  Each digital image of a microarray's fluorescence pattern for
+a single channel is known as an \emph{image}, and the process of observing and
+recording this image is called \emph{acquisition}.
+
+For a single-channel assay, the acquired image is processed to produce a matrix
+of numbers that has the same dimensions as the array design, and whose values
+correspond to the absolute intensity of light present at each feature.  A
+similar matrix is produced for a multi-channel assay as well, but because of
+the competitive hybridization between the multiple labeled targets, the values
+reported are not absolute, but rather the intensity of each channel relative to
+all other target channels at a given feature.  Typically one of the channels
+corresponds to a \emph{reference sample} that is a common denominator to
+several arrays that will be analyzed as a set.  This allows the relative values
+for the non-reference samples on each array to be compared.
+
+For both single-channel and multi-channel arrays, the next step is
+\emph{quantification}, a series of processes designed to convert the ``raw''
+fluorescence intensities acquired from the scanner into values that are usable
+in higher-level data analyses such as classification.  Methods for
+quantification of microarray data are an area of intense interest
+\cite{XXX,XXX,XXX} because they can give very different estimates of the
+quantity of DNA present for a given feature/channel, and thereby have a large
+effect on the biological conclusions that can be drawn from analyses of those
+estimates.  Quantification methods are discussed in greater detail in Section
+\ref{Quantification}.
+
+\section{DNA Microarray Experiments}
+
+Scientific inquiries that use microarray technology to address research
+questions are sometimes called \emph{microarray experiments}.  Experiments can
+be divided into two general classes.  The first class of experiment is
+data-driven, in which an \emph{a-priori} hypothesis is not explictly stated.
+This data driven method is sometimes also called \emph{pattern detection}, and
+focuses mainly on identifying biologically interesting and previously
+unobserved correlations between factors of the experiment
+\cite{Dubitzky2003IMD}.  A common type of pattern detection experiment seen in
+the literature examines biological samples that are indistinguishable using
+lower-resolution assay technologies to see if the samples can be broken into
+sub-groups by collecting more data.   A study by Freije, \emph{et al.} used
+this approach to identify novel subclasses of malignant gliomas
+\cite{PMID_15374961}.
+
+%%% <QUOTE ref="boconnor">
+A second analytical approach to microarray experiments has been called
+\emph{predictive modeling} and is concerned with learning a classification or
+estimation function \cite{Dubitzky2003IMD}. In sample classification studies, also
+known as supervised learning, the end goal is to predict the class labels of
+samples. Generally, samples are divided into a training dataset and a
+classification algorithm is trained to recognize the class labels. The
+performance of the classifier is often optimized using a k-fold
+cross-validation strategy.  This process is also commonly used to assess the
+error rate in the classification model while the classification of the test set
+is typically used to assess overall accuracy of the built classifier.
+
+% FIXME: just use the Glolub example
+Supervised learning approaches allow for new samples to be classified and 
+can be a powerful tool for understanding sample differences. For example, a
+researcher might have a collection of breast cancer and normal tissue samples.
+A classification method could be applied to learn to predict the state of new
+samples based on a subset of the expression data.  Subsequent new breast tissue
+samples could then be classified into either a ``normal'' or ``cancer'' class using
+this trained classifier. The complex question of how to choose genes for
+classification (or other tasks) is the focus of the rest of this work.
+
+%@ unsupervised methods let you do...
+
+%@ supervised methods let you do... training set, test set classification
+% FIXME: supervised learning is also known as induction (inductive inference or
+% inductive learning)
+
+%@ feature selection critical to these types of analysis... example of clustering
+%@ To deal with the dimensions of microarray data researchers have focused on
+%feature seleciton tasks. Deals with the problem of adding uninformative
+%features, the search space increases exponentially.
+One issue common across most analysis methods for microarray data is the
+``curse of dimensionality'', where relatively few samples are available
+compared to the number of measured features \cite{Bellman_1957}.
+Features in microarray data refer to genes whose expression patterns are
+measured across samples.  Typical microarray experiments include a few dozen
+to, at most, a few hundred microarrays hybridization for very large studies.
+However, each microarray measures thousands, typically tens of thousands, of
+gene expression values.  Only a handful of the thousands of gene expression
+patterns measure might be critical for the classification of samples.  Using
+the expression information for all genes is undesirable since this increases
+the computational complexity and run time for a classifier.  It could also
+affect accuracy as previous work has shown that classification algorithm
+performance decays as irrelevant features are added to the dataset
+\cite{john94irrelevant}. 
+% For many algorithms, the runtime increases dramatically with the number of
+% features involved, sometime exponentially, making such algorithms intractable
+% for microarray data.  which the most informative genes are selected that best
+% differentiate between the sample states. This process is necessary for many
+% sample classification algorithms due to the dimensionality problem with
+% microarray datasets.  Typically, samples sizes range between a dozen to a
+% hundred yet the measurements for each genes are in the tens of thousands.
+% Many genes in a microarray experiment are uninformative and their use in a
+% given classification proves pointless at best and, at worst, detrimental.
+% Feature selection addresses this issue and is a critical step in classifying
+% samples effectively.
+
+%%% </QUOTE>
+
+
+
+
+
+\section{Microarray Data Processing}
+
+In a microarray experiment, 
+
+the step between the hybridization of a set of samples to microarrays and the analysis of the measurements
+
+\subsection{Quantification}
+
+Microarray quantification, also known as \emph{pre-processing}, is the
+process of estimating the quantity of each gene in the sample that was assayed
+in the hybridization step of the microarray experiment.
+
+\subsubsection{Image Acquisition}
+\subsubsection{Background Correction}
+\subsubsection{Normalization}
+\subsubsection{Perfect Match Correction}
+\subsubsection{Summarization}
+\subsection{Scalability Concerns In Microarray Data Processing}
+
+\section{Microarray Informatics}
+\subsection{Data Storage}
+\subsection{Data Retrieval}
+\subsection{Interoperability}
+\subsubsection{Data Encoding}
+\subsubsection{Data Modeling}
+\subsubsection{Exchange Protocols}
+\subsection{Scalability Concerns In Microarray Informatics}
+
+\section{Infrastructure}
+\subsection{Resource Administration}
+\subsection{Package Management}
+\subsection{Configuration Management}
 
 
 %equation shortcuts
@@ -20,7 +213,7 @@
 \newcommand{\rma}{PMID_12582260}
 \newcommand{\vsn}{PMID_12169536}
 \newcommand{\gcrma}{gcrma}
-\newcommand{\mas}{affy5}
+\newcommand{\mas5}{affy5}
 %vocab shortcuts
 
 microarray data analysis as a process
@@ -138,19 +331,19 @@ PM correction, and summarization.
 Background correction is a statistical procedure that estimates and removes low
 levels of noise on the microarray.  Background noise can have many sources.
 
-The simplest form of background noise is optical.  It can be caused by general
-cross-hybridization of target to all probes, mis-calibration of the microarray
-scanner's photo-sensor, and diffused or reflected light from the laser used to
-excite the fluorescent dyes.  Optical noise can be estimated by measuring the
-level of fluorescence from featureless regions of the microarray and negative
-control probes that are not reverse-complementary to any sequences in the
-hybridization mixture.  These measure background-level reflected light and the
-level of non-specific hybridization, respectively.
+The simplest and most common source of background noise is optical.  It can be
+caused by general cross-hybridization of target to all probes, mis-calibration
+of the microarray scanner's photo-sensor, and diffused or reflected light from
+the laser used to excite the fluorescent dyes.  Optical noise can be estimated
+by measuring the level of fluorescence from featureless regions of the
+microarray and negative control probes that are not reverse-complementary to
+any sequences in the hybridization mixture.  These measure background-level
+reflected light and the level of non-specific hybridization, respectively.
 
 Manufacturing and hybridization artifacts, such as surface scratches and salt
 residues, are another source of noise.  A simple form of location-based
 background correction is descibed in the Statistical Algorithms Description
-Document \cite{affy:tech:2002}.   Briefly, the chip is broken into a 4 $x$ 4
+Document \cite{affy:tech:2002}.   Briefly, the chip is broken into a $4x4$
 grid of 16 rectangular regions.  The lowest 2\% of each region's probe
 intensities are used to compute a background value for that region.  Each probe
 (PM and MM) is then adjusted based upon a weighted average of the backgrounds
@@ -239,7 +432,7 @@ distribution of microarray measurements so that properties of the
 distribution of measurements match expectations.
 
 The most simple form of microarray normalization is a linear scaling.  The
-Affymetrix MAS 5 algorithm \cite{\mas} performs linear scaling by (1) setting
+Affymetrix MAS 5 algorithm \cite{\mas5} performs linear scaling by (1) setting
 aside the top and bottom 1\% of measurements as outliers, adjusts the mean of
 the remaining measurements to a constant value, then multiplies each
 measurement, including the outliers, by the factor used to adjust the mean.
@@ -375,42 +568,6 @@ Make no adjustment to the pm values.
 \subsection{subtractmm}
 
 Subtract MM from PM. This would be the approach taken in MAS 4 \cite{affy4}. It could also be used in conjunction with the Li-Wong model.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
-
-%\subsubsubsection{Summarization Methods}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
-<<>>=
-express.summary.stat.methods
-@
-
-\subsection{avgdiff}
-
-Compute the average. This is the approach that was taken in \cite{affy4}.
-
-\subsection{liwong}
-
-This is an implementation of the methods proposed by Li and Wong \cite{PMID_11134512,PMID_11532216}. The Li-Wong MBEI is based upon fitting the following multi-chip model to each probe set
-\begin{equation}
-y_{ij} = \phi_i \theta_j + \epsilon_{ij}
-\end{equation}
-where $y_{ij}$ is $PM_{ij}$ or the difference between $PM_{ij}-MM_{ij}$. The $\phi_i$ parameter is a probe response parameter and $\theta_j$ is the expression on microarray $j$.
-
-
-\subsection{mas}
-
-As documented in \cite{affy:tech:2002}, a robust average using 1-step Tukey bi-weight on $\log_2$ scale.
-
-\subsection{medianpolish}
-
-This is the summarization used in the RMA expression summary \cite{PMID_12582260,PMID_12925520}. A multi-chip linear model is fit to data from each probe set. In particular for a probe set $k$ with $i=1,\dots,I_k$ probes and data from $j=1,\dots,J$ microarrays we fit the following model
-\begin{equation*}
-\log_2\left(PM^{(k)}_{ij}\right) = \alpha_i^{(k)} + \beta_j^{(k)} + \epsilon_{ij}^{(k)}
-\end{equation*}
-where $\alpha_i$ is a probe effect and $\beta_j$ is the $\log_2$ expression value. The medianpolish is an algorithm (see \cite{tukey:1977}) for fitting this model robustly. Please note that expression values you get using this summary measure will be in $\log_2$ scale.
-
-\subsection{playerout}
-
-This method is detailed in \cite{Lazardis:etal:2002}. A non parametric method is used to determine weights. The expression value is then the weighted average.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
 vsn			\cite{PMID_12169536}
@@ -1551,7 +1708,6 @@ This output can be used in a variety of analysis methods.
 
 %@ possibility of using expression microarrays as quantitative for diagnostics
 %@ How they approach questions
-
 \subsection{Research Approaches}
 
 Microarray studies differ in the way they approach their core questions but
@@ -1620,6 +1776,7 @@ performance decays as irrelevant features are added to the dataset
 % given classification proves pointless at best and, at worst, detrimental.
 % Feature selection addresses this issue and is a critical step in classifying
 % samples effectively.
+
 
 \subsection{Feature Selection}
 
