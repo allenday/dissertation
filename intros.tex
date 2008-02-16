@@ -85,17 +85,78 @@ estimates.  Quantification methods are discussed in greater detail in Section
 
 Scientific inquiries that use microarray technology to address research
 questions are sometimes called \emph{microarray experiments}.  Experiments can
-be divided into two general classes.  The first class of experiment is
-data-driven, in which an \emph{a-priori} hypothesis is not explictly stated.
-This data driven method is sometimes also called \emph{pattern detection}, and
-focuses mainly on identifying biologically interesting and previously
-unobserved correlations between factors of the experiment
-\cite{Dubitzky2003IMD}.  A common type of pattern detection experiment seen in
-the literature examines biological samples that are indistinguishable using
-lower-resolution assay technologies to see if the samples can be broken into
-sub-groups by collecting more data.   A study by Freije, \emph{et al.} used
-this approach to identify novel subclasses of malignant gliomas
-\cite{PMID_15374961}.
+be divided into two general classes, pattern detection and predictive modeling.
+These are described in greater detail in Sections \ref{Pattern
+Detection}-\ref{Predictive Modeling}.  The method descriptions given here are
+desribed in terms of the characterization of biological samples, but it is
+important to bear in mind that the samples $x$ genes data matrix can be
+transposed and that these same methods can be used for the characterization of
+genes across multiple phenotypic conditions.  Indeed, this is also an area
+warranting further exploration given that gene-centric analyses are not stymied
+by the ``curse of dimensionality'', discussed in greater detail in Section
+\ref{Feature Selection}.
+
+\subsection{Pattern Detection}
+\label{Pattern Detection}
+
+The first class of experiment is data-driven, in which an \emph{a-priori}
+hypothesis is not explictly stated and sample metadata in the form of labels
+are not provided.  This data driven method is sometimes also called
+\emph{pattern detection}, and focuses mainly on identifying biologically
+interesting and previously unobserved correlations between factors of the
+experiment \cite{Dubitzky2003IMD}.  A common type of pattern detection
+experiment seen in the literature examines biological samples that are
+indistinguishable using lower-resolution assay technologies to see if the
+samples can be broken into sub-groups by collecting more data.   A study by
+Freije, \emph{et al.} used this approach to identify novel subclasses of
+malignant gliomas \cite{PMID_15374961}.
+
+\subsection{Predictive Modeling}
+\label{Predictive Modeling}
+
+In the second general class of experiment seen in the literature, the emphasis
+is on constructing a function that is able to \emph{classify}, or predict class
+labels for unlabeled samples.  This method is sometimes called \emph{supervised
+learning} or \emph{predictive modeling} \cite{Dubitzky2003IMD}.  The design of
+a predictive modeling study begins with a group of samples for which assay data
+as well as class labels are available.  This initial set of labeled samples is
+divided into two sub-groups, \emph{training data} and \emph{test data}.  The
+training data are processed using a classification algorithm to build a model
+of the relationship between class label and assay data.  One major are of
+concern in the construction of the model and the application of that model to
+unlabeled samples is the number of features considered.  Feature selection is
+discussed in greater detail in Section (\ref{Feature Selection}).
+
+The performance of the classification model produced using the training data is
+typically assessed and iteratively optimized to minimize error using $K$-way
+cross validation for all class labels $K$.  Once a satisfactorily low error
+rate has been achived, the predictive power of the classification model can be
+estimated by using it to predict labels for the test data that were set aside
+prior to model building.
+
+\subsection{Feature Selection}
+\label{Feature Selection}
+
+A prominent part of model building for the analysis of microarray data is
+\emph{feature selection, or the process of identifying which features of
+observations are relevant in the assignment of class labels..  Selected
+features correspond to the microarray feature measurements, or some
+summarization thereof (Section \ref{Summarization}).  Feature selection is
+essential because the analytical methods applied to microarray experiments bear
+the ``curse of dimensionality''.  That is, in a typical experiment the number
+of samples is small ($1x10^1 \dots 1x10^3$), while the number of measurements
+made on each sample is relatively large ($1x10^3 \dots 1x10^6$).  Given that
+only a subset of the measurements made across the samples
+
+\subsection{Label Encoding}
+\label{Label Encoding}
+
+introduce the problem of the richness of gene annotation, gene ontology,
+hierarchical labels, label dimensions, etc.  this problem is in its infancy for
+the labeling of samples now, but will ultimately be far more complex than gene
+annotation which is currently more mature.
+
+
 
 %%% <QUOTE ref="boconnor">
 A second analytical approach to microarray experiments has been called
@@ -120,10 +181,6 @@ this trained classifier. The complex question of how to choose genes for
 classification (or other tasks) is the focus of the rest of this work.
 
 %@ unsupervised methods let you do...
-
-%@ supervised methods let you do... training set, test set classification
-% FIXME: supervised learning is also known as induction (inductive inference or
-% inductive learning)
 
 %@ feature selection critical to these types of analysis... example of clustering
 %@ To deal with the dimensions of microarray data researchers have focused on
