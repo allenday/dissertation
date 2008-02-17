@@ -1,0 +1,58 @@
+%$Id$
+There are two basic types of gene microarray technologies currently at the
+disposal of researchers: single-channel and multi-channel microarrays.  The
+methods used and form of measurements made for these two types differ, but the
+research questions that are addressable using either type are the same.  In
+both systems, DNA is immobilized on a fixed surface in a specific and
+reproducible pattern.  This is the \emph{microarray}, sometimes abbreviated as
+an \emph{array}.  The pattern that allows distinct regions on the
+two-dimensional space of the surface to be mapped to the specific DNA sequences
+immobilized at that address is known as a \emph{array design}.  Each distinct
+region on the array is known as a \emph{feature} and the DNA sequence present
+at a feature is called a \emph{probe}.  The source of the probe that is
+immobilized at the feature can be a cDNA clone deposited onto the microarray,
+or oligonucleotides that are synthesized on the microarray \emph{in-situ} using
+photochemistry and light masks \cite{XXX}.
+
+Once a microarray has been fabricated according to the array design, a solution
+of DNA fragments, or \emph{targets}, can be labeled with a fluorescent dye and
+\emph{hybridized}, or allowed to chemically anneal to the microarray's probes.
+The property of reverse complementarity between subsets of the solvent and
+immobilized DNA drives the solvent DNA targets to localize near to their
+corresponding immobilized probes.
+
+After hybridization, the amount of target DNA hybridized to each feature on the
+array is assayed.  A laser is used to excite the fluorescent dye associated
+with the targets, and a digital camera is used to measure the amount of
+fluorescence present at each feature, and at the specific wavelength of
+fluorescence known as a \emph{channel}.  The amount of fluorescent light is
+assumed to be a monotonic and increasing function of the amount of target DNA
+hybridized to that feature.  In the case of single-channel assays, only a
+single fluorescent dye is used.  In a multi-channel assay, multiple target
+solutions are hybridized to the array, each labeled with a different
+fluorescent dye.  Each digital image of a microarray's fluorescence pattern for
+a single channel is known as an \emph{image}, and the process of observing and
+recording this image is called \emph{acquisition}.
+
+For a single-channel assay, the acquired image is processed to produce a matrix
+of numbers that has the same dimensions as the array design, and whose values
+correspond to the absolute intensity of light present at each feature.  A
+similar matrix is produced for a multi-channel assay as well, but because of
+the competitive hybridization between the multiple labeled targets, the values
+reported are not absolute, but rather the intensity of each channel relative to
+all other target channels at a given feature.  Typically one of the channels
+corresponds to a \emph{reference sample} that is a common denominator to
+several arrays that will be analyzed as a set.  This allows the relative values
+for the non-reference samples on each array to be compared.
+
+For both single-channel and multi-channel arrays, the next step is
+\emph{quantification}, a series of processes designed to convert the ``raw''
+fluorescence intensities acquired from the scanner into values that are usable
+in higher-level data analyses such as classification.  Methods for
+quantification of microarray data are an area of intense interest
+\cite{XXX,XXX,XXX} because they can give very different estimates of the
+quantity of DNA present for a given feature/channel, and thereby have a large
+effect on the biological conclusions that can be drawn from analyses of those
+estimates.  Quantification methods are discussed in greater detail in Section
+\ref{Quantification}.
+
