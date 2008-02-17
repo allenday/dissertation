@@ -41,13 +41,13 @@ there will be outliers relative to probes for the same target located elsewhere
 on the microarray.  Probes in these areas are considered unreliable and are
 either given a very low weight parameter or are removed from normalization
 (Section \ref{Normalization}) and other downstream processing (Sections \ref{PM
-correction}-\ref{Summarization}) altogether \cite{\affyplm}.
+correction}-\ref{Summarization}) altogether \cite{affyplm}.
 
 Newer, multi-array background correction methods have leveraged existing data
 to build a models of how background noise is generally distributed.  The gcRMA
-model \cite{\gcrma} includes a parameter the sequence composition of each
+model \cite{gcrma} includes a parameter the sequence composition of each
 probe, while other models such as those used in the RMA and MBEI
-\cite{\rma,\bioc} methods only include a parameter for concordant each probe is
+\cite{rma,bioc} methods only include a parameter for concordant each probe is
 with other probes in the same set.  The RMA background correction method is the
 \i{de facto} standard, and corrects perfect match (PM) probe intensities by
 using a global model for the distribution of probe intensities. The model is
@@ -67,7 +67,7 @@ E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\lef
 where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
 $\Phi$ are the standard normal distribution density and distribution functions
 respectively.  Note also that MM probe intensities are not corrected by either
-of these routines \cite{\rma,\bioc}.
+of these routines \cite{rma,bioc}.
 
 Multi-array background correction methods are able to detect background noise
 due to the manufacturing and hybridization artifacts described above, but the
@@ -100,14 +100,14 @@ discussed in greater detail in Section \ref{Scalability}.
 %probe-independent noise tends to be spatially localized or uniformly
 %distributed, although emerging methods include probe sequence in modeling
 %background noise and correct each probe independently
-%\cite{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is
+%\cite{mbei,PMID_12582260}.  The level of probe-dependent noise is
 %estimated by measuring the intensity of probes that differ only by a single
 %nucleotide from their target sequence.  The idea to using these so-called
 %\emph{mismatch probes} (MM) is that because their sequence is nearly identical
 %to the sequence of the \emph{perfect match} (PM) probe that any difference
 %between hybridization between a set of PM/MM pairs is almost entirely
 %sequence-specific and thus provides a probe set-specific measure of noise
-%\cite{\rma,\bioc}.
+%\cite{rma,bioc}.
 
 \subsubsection{Normalization}
 \label{Normalization}
@@ -118,7 +118,7 @@ distribution of microarray measurements so that properties of the
 distribution of measurements match expectations.
 
 The most simple form of microarray normalization is a linear scaling.  The
-Affymetrix MAS 5 algorithm \cite{\mas5} performs linear scaling by (1) setting
+Affymetrix MAS 5 algorithm \cite{mas5} performs linear scaling by (1) setting
 aside the top and bottom 1\% of measurements as outliers, adjusts the mean of
 the remaining measurements to a constant value, then multiplies each
 measurement, including the outliers, by the factor used to adjust the mean.
@@ -151,7 +151,7 @@ methods.  ``Average difference'' is an example of the former.  Multi-array
 methods consider the distribution of probe measurements across all arrays, and
 in some cases assign an array-specific parameter used to compute the probe set
 summary.  The summarization component of the MBEI method introduced by Li and
-Wong \cite{\mbei,\dchip} is given in Equation \ref{mbeisummary},
+Wong \cite{mbei,dchip} is given in Equation \ref{mbeisummary},
 
 \begin{equation}
 \label{mbeisummary}
@@ -162,7 +162,7 @@ where $y_{ij}$ is $PM_{ij}$ or the difference between $PM_{ij}-MM_{ij}$. The
 $\phi_i$ parameter is a probe response parameter and $\theta_j$ is the
 expression on microarray $j$.
 
-The summarization component of RMA pre-processing \cite{\rma} performss a
+The summarization component of RMA pre-processing \cite{rma} performss a
 multi-array linear fit to data from each probe set.  Specifically, for probe
 set $k$ with $i=1,\dots,I_k$ probe pairs and microarrays $j=1,\dots,J$ the
 model given in Equation \ref{medianpolish} is fit,
@@ -224,7 +224,7 @@ A scaling normalization. This means that all the microarrays are scaled so that 
 
 \subsection{invariantset}
 
-A normalization similar to that used in the dChip software \cite{PMID_11134512,PMID_11532216}. Using a baseline microarray, microarrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' microarrays. The non-linear relationship is used to carry out the normalization.
+A normalization similar to that used in the dChip software \cite{mbei,dchip}. Using a baseline microarray, microarrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' microarrays. The non-linear relationship is used to carry out the normalization.
 
 \subsection{qspline}
 This method is documented in \cite{workman:etal:2002}. Using a target microarray (either one of the microarrays or a synthetic target), microarrays are normalized by fitting splines to the quantiles, then using the splines to perform the normalization.
@@ -248,8 +248,8 @@ Make no adjustment to the pm values.
 Subtract MM from PM. This would be the approach taken in MAS 4 \cite{affy4}. It could also be used in conjunction with the Li-Wong model.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
-vsn			\cite{PMID_12169536}
-genelogic		\cite{PMID_17059591}
+vsn			\cite{vsn}
+genelogic		\cite{genelogic}
 
 A few sentences to dismiss 2-channel microarrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
 Need data consistency.  How to get it

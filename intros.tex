@@ -28,7 +28,9 @@ diagnostics \cite{PMID_16918486}, and sequence-variation studies
 \section{DNA Microarray Experiments}
 \input{section_dna_microarray_experiments}
 
-\section{Microarray Data Processing}
+\section{DNA Microarray Data Processing}
+\input{section_dna_microarray_data_processing}
+
 
 In a microarray experiment, 
 
@@ -63,24 +65,7 @@ in the hybridization step of the microarray experiment.
 
 
 %equation shortcuts
-
 %citation shortcuts
-\newcommand{\bioc}{PMID_15461798}
-\newcommand{\biop}{PMID_12368254}
-\newcommand{\genelogic}{PMID_17059591}
-\newcommand{\chado}{PMID_17646315}
-\newcommand{\das}{PMID_11667947}
-\newcommand{\ncbo}{PMID_16901225}
-\newcommand{\mage}{PMID_12225585}
-\newcommand{\miame}{PMID_11726920}
-\newcommand{\mo}{PMID_12225585}
-\newcommand{\affyplm}{PMID_16623940}
-\newcommand{\mbei}{PMID_11532216}
-\newcommand{\dchip}{PMID_11134512}
-\newcommand{\rma}{PMID_12582260}
-\newcommand{\vsn}{PMID_12169536}
-\newcommand{\gcrma}{gcrma}
-\newcommand{\mas5}{affy5}
 %vocab shortcuts
 
 microarray data analysis as a process
@@ -124,7 +109,7 @@ in Sections \ref{Quantification}-\ref{Distribution}.
 
 The entire process, from microarray design to data analysis has been formally
 described as an object model known as the Microarray Gene Expression Object
-Model (MAGE-OM) \cite{\mage}.  In this document I have borrowed vocabulary
+Model (MAGE-OM) \cite{mage}.  In this document I have borrowed vocabulary
 defined in the MAGE-OM for clarity and consistency.  The MAGE-OM itself is
 discussed in Section \ref{MAGE}.
 
@@ -180,7 +165,7 @@ microarray itself (Section \ref{ArrayDesign}).
 \label{Hybridization}
 
 \subsection{Quantification}
-\label{Quantification}
+%\label{Quantification}
 
 Microarray quantification, also known as \emph{pre-processing}, is the
 process of estimating the quantity of each gene in the sample that was assayed
@@ -190,10 +175,10 @@ in the following order: image processing, background correction, normalization,
 PM correction, and summarization.
 
 \subsubsection{Image Processing}
-\label{Image Processing}
+%\label{Image Processing}
 
 \subsubsection{Background Correction}
-\label{Background Correction}
+%\label{Background Correction}
 
 Background correction is a statistical procedure that estimates and removes low
 levels of noise on the microarray.  Background noise can have many sources.
@@ -222,13 +207,13 @@ there will be outliers relative to probes for the same target located elsewhere
 on the microarray.  Probes in these areas are considered unreliable and are
 either given a very low weight parameter or are removed from normalization
 (Section \ref{Normalization}) and other downstream processing (Sections \ref{PM
-correction}-\ref{Summarization}) altogether \cite{\affyplm}.
+correction}-\ref{Summarization}) altogether \cite{affyplm}.
 
 Newer, multi-array background correction methods have leveraged existing data
 to build a models of how background noise is generally distributed.  The gcRMA
-model \cite{\gcrma} includes a parameter the sequence composition of each
+model \cite{gcrma} includes a parameter the sequence composition of each
 probe, while other models such as those used in the RMA and MBEI
-\cite{\rma,\bioc} methods only include a parameter for concordant each probe is
+\cite{rma,bioc} methods only include a parameter for concordant each probe is
 with other probes in the same set.  The RMA background correction method is the
 \i{de facto} standard, and corrects perfect match (PM) probe intensities by
 using a global model for the distribution of probe intensities. The model is
@@ -241,14 +226,14 @@ observed intensity, this then leads to an adjustment, given in Equation
 \ref{rmabg}:
 
 \begin{equation}
-\label{rmabg}
+%\label{rmabg}
 E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
 \end{equation}
 
 where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
 $\Phi$ are the standard normal distribution density and distribution functions
 respectively.  Note also that MM probe intensities are not corrected by either
-of these routines \cite{\rma,\bioc}.
+of these routines \cite{rma,bioc}.
 
 Multi-array background correction methods are able to detect background noise
 due to the manufacturing and hybridization artifacts described above, but the
@@ -281,17 +266,17 @@ discussed in greater detail in Section \ref{Scalability}.
 %probe-independent noise tends to be spatially localized or uniformly
 %distributed, although emerging methods include probe sequence in modeling
 %background noise and correct each probe independently
-%\cite{PMID_11134512,PMID_12582260}.  The level of probe-dependent noise is
+%\cite{mbei,PMID_12582260}.  The level of probe-dependent noise is
 %estimated by measuring the intensity of probes that differ only by a single
 %nucleotide from their target sequence.  The idea to using these so-called
 %\emph{mismatch probes} (MM) is that because their sequence is nearly identical
 %to the sequence of the \emph{perfect match} (PM) probe that any difference
 %between hybridization between a set of PM/MM pairs is almost entirely
 %sequence-specific and thus provides a probe set-specific measure of noise
-%\cite{\rma,\bioc}.
+%\cite{rma,bioc}.
 
 \subsubsection{Normalization}
-\label{Normalization}
+%\label{Normalization}
 
 After correcting for background noise (Section \ref{Background Correction}),
 microarrays are normalized.  The purpose of normalization is to transform the
@@ -299,7 +284,7 @@ distribution of microarray measurements so that properties of the
 distribution of measurements match expectations.
 
 The most simple form of microarray normalization is a linear scaling.  The
-Affymetrix MAS 5 algorithm \cite{\mas5} performs linear scaling by (1) setting
+Affymetrix MAS 5 algorithm \cite{mas5} performs linear scaling by (1) setting
 aside the top and bottom 1\% of measurements as outliers, adjusts the mean of
 the remaining measurements to a constant value, then multiplies each
 measurement, including the outliers, by the factor used to adjust the mean.
@@ -307,10 +292,10 @@ measurement, including the outliers, by the factor used to adjust the mean.
 some properties of the normalized measurements fit an expected distribution.
 
 \subsubsection{PM correction}
-\label{PM correction}
+%\label{PM correction}
 
 \subsubsection{Summarization}
-\label{Summarization}
+%\label{Summarization}
 
 The last step in microarray data preprocessing is to combine the measurements
 from all probes in a probe set into a single value.  This procedure is called
@@ -319,7 +304,7 @@ difference'' \cite{affy4} computes the mean of difference between each PM/MM
 probe pair (Equation \ref{avgdiffsummary}),
 
 \begin{equation}
-\label{avgdiffsummary}
+%\label{avgdiffsummary}
 y_{k} = I_i^{-1}{\sum_{i=1}^{I_k} |PM_i-MM_i|}
 \end{equation}
 
@@ -332,10 +317,10 @@ methods.  ``Average difference'' is an example of the former.  Multi-array
 methods consider the distribution of probe measurements across all arrays, and
 in some cases assign an array-specific parameter used to compute the probe set
 summary.  The summarization component of the MBEI method introduced by Li and
-Wong \cite{\mbei,\dchip} is given in Equation \ref{mbeisummary},
+Wong \cite{mbei,dchip} is given in Equation \ref{mbeisummary},
 
 \begin{equation}
-\label{mbeisummary}
+%\label{mbeisummary}
 y_{ij} = \phi_i \theta_j + \epsilon_{ij}
 \end{equation}
 
@@ -343,13 +328,13 @@ where $y_{ij}$ is $PM_{ij}$ or the difference between $PM_{ij}-MM_{ij}$. The
 $\phi_i$ parameter is a probe response parameter and $\theta_j$ is the
 expression on microarray $j$.
 
-The summarization component of RMA pre-processing \cite{\rma} performss a
+The summarization component of RMA pre-processing \cite{rma} performss a
 multi-array linear fit to data from each probe set.  Specifically, for probe
 set $k$ with $i=1,\dots,I_k$ probe pairs and microarrays $j=1,\dots,J$ the
 model given in Equation \ref{medianpolish} is fit,
 
 \begin{equation}
-\label{medianpolish}
+%\label{medianpolish}
 \log_2\left(PM^{(k)}_{ij}\right) = \alpha_i^{(k)} + \beta_j^{(k)} + \epsilon_{ij}^{(k)}
 \end{equation}
 
@@ -413,7 +398,7 @@ A scaling normalization. This means that all the microarrays are scaled so that 
 
 \subsection{invariantset}
 
-A normalization similar to that used in the dChip software \cite{PMID_11134512,PMID_11532216}. Using a baseline microarray, microarrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' microarrays. The non-linear relationship is used to carry out the normalization.
+A normalization similar to that used in the dChip software \cite{mbei,dchip}. Using a baseline microarray, microarrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' microarrays. The non-linear relationship is used to carry out the normalization.
 
 \subsection{qspline}
 This method is documented in \cite{workman:etal:2002}. Using a target microarray (either one of the microarrays or a synthetic target), microarrays are normalized by fitting splines to the quantiles, then using the splines to perform the normalization.
@@ -437,8 +422,8 @@ Make no adjustment to the pm values.
 Subtract MM from PM. This would be the approach taken in MAS 4 \cite{affy4}. It could also be used in conjunction with the Li-Wong model.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
 
-vsn			\cite{PMID_12169536}
-genelogic		\cite{PMID_17059591}
+vsn			\cite{vsn}
+genelogic		\cite{genelogic}
 
 A few sentences to dismiss 2-channel microarrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
 Need data consistency.  How to get it
@@ -453,10 +438,10 @@ Need data consistency.  How to get it
 %\subsubsubsection{Multiple-Array Correction Methods}
 Heuristics \& Computational Tractability.  Implementation
 %\subsubsubsubsection{Model Based Expression}
-liwong			\cite{PMID_11134512,PMID_11532216}
+liwong			\cite{mbei,dchip}
 %\subsubsubsubsection{RMA}
-RMA			\cite{PMID_12582260,PMID_12925520}
-genelogic		\cite{PMID_17059591}
+RMA			\cite{rma}
+genelogic		\cite{genelogic}
 %\subsubsubsubsubsection{Implementation}
 
 \section{Infrastructure}
@@ -494,7 +479,7 @@ and each component of the cluster is uniform.  This allows the throughput of
 the cluster to be scaled simply by adding or removing components.
 
 %See Also
-genelogic		\cite{PMID_17059591}
+genelogic		\cite{genelogic}
 
 \subsubsection{Maintenance}
 
@@ -509,20 +494,20 @@ rpm		\cite{bailey1997}
 
 %See Also
 postgres	\cite{postgresql}
-chado		\cite{PMID_17646315}
+chado		\cite{chado}
 
 \subsubsection{Data Representation}
 %\subsubsubsection{Assay Measurements}
 %\subsubsubsection{Annotations}
 
 %See Also
-mged ontology		\cite{PMID_16428806}
-mp ontology		\cite{PMID_15642099}
-sequence ontology	\cite{PMID_15892872}
-cell ontology		\cite{PMID_15693950}
-ncbo			\cite{PMID_16901225}
-chado			\cite{PMID_17646315}
-mage-ml			\cite{PMID_12225585}
+mged ontology		\cite{mo}
+mp ontology		\cite{mp}
+sequence ontology	\cite{so}
+cell ontology		\cite{cl}
+ncbo			\cite{ncbo}
+chado			\cite{chado}
+mage-ml			\cite{mage}
 
 \subsubsection{Performance}
 %\subsubsubsection{Hardware}
@@ -535,10 +520,10 @@ etl			\cite{kimball2004}
 \subsection{Data Sharing}
 
 %See Also
-das			\cite{PMID_11667947}
+das			\cite{das}
 nation			\cite{nation}
-spice			\cite{PMID_16204122}
-mage-ml			\cite{PMID_12225585}
+spice			\cite{spice}
+mage-ml			\cite{mage}
 
 \subsubsection{Data Representation}
 %\subsubsubsection{Standards}
@@ -547,16 +532,16 @@ mage-ml			\cite{PMID_12225585}
 \label{MAGE}
 MAGE-OM and MAGE-ML
 
-das			\cite{PMID_11667947}
-ncbo			\cite{PMID_16901225}
-mage-ml			\cite{PMID_12225585}
+das			\cite{das}
+ncbo			\cite{ncbo}
+mage-ml			\cite{mage}
 %\subsubsubsection{URL}
 %\subsubsubsection{Ontology}
-mged ontology		\cite{PMID_16428806}
-mp ontology		\cite{PMID_15642099}
-sequence ontology	\cite{PMID_15892872}
-cell ontology		\cite{PMID_15693950}
-ncbo			\cite{PMID_16901225}
+mged ontology		\cite{mo}
+mp ontology		\cite{mp}
+sequence ontology	\cite{so}
+cell ontology		\cite{cl}
+ncbo			\cite{ncbo}
 %\subsubsubsection{Syntax}
 %\subsubsubsection{Data}
 %\subsubsubsection{Normalization}
