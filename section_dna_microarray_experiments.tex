@@ -17,14 +17,15 @@ by the ``curse of dimensionality'', discussed in greater detail in Section
 The first class of experiment is data-driven, in which an \emph{a-priori}
 hypothesis is not explictly stated and sample metadata in the form of labels
 are not provided.  This data driven method is sometimes also called
-\emph{pattern detection}, and focuses mainly on identifying biologically
-interesting and previously unobserved correlations between factors of the
-experiment \cite{Dubitzky2003IMD}.  A common type of pattern detection
-experiment seen in the literature examines biological samples that are
-indistinguishable using lower-resolution assay technologies to see if the
-samples can be broken into sub-groups by collecting more data.   A study by
-Freije, \emph{et al.} used this approach to identify novel subclasses of
-malignant gliomas \cite{PMID_15374961}.
+\emph{pattern detection} because experiments employing it focus mainly on
+identifying biologically interesting and previously unobserved correlations
+between factors of the experiment \cite{Dubitzky2003IMD}.  A common type of
+pattern detection experiment seen in the literature examines biological samples
+that are indistinguishable using lower-resolution assay technologies to see if
+the samples can be broken into sub-groups by collecting more data using the
+higher-resolution microarray.   A study by Freije, \emph{et al.} used this
+approach to identify novel subclasses of malignant gliomas
+\cite{PMID_15374961}.
 
 \subsection{Predictive Modeling}
 \label{Predictive Modeling}
@@ -32,22 +33,27 @@ malignant gliomas \cite{PMID_15374961}.
 In the second general class of experiment seen in the literature, the emphasis
 is on constructing a function that is able to \emph{classify}, or predict class
 labels for unlabeled samples.  This method is sometimes called \emph{supervised
-learning} or \emph{predictive modeling} \cite{Dubitzky2003IMD}.  The design of
-a predictive modeling study begins with a group of samples for which assay data
-as well as class labels are available.  This initial set of labeled samples is
-divided into two sub-groups, \emph{training data} and \emph{test data}.  The
+learning} or \emph{predictive modeling} \cite{Dubitzky2003IMD}.  A predictive
+modeling study begins with a group of samples for which assay data as well as
+class labels are available.  This initial set of labeled samples is divided
+into two sub-groups, \emph{training data} and \emph{test data}.  The
 training data are processed using a classification algorithm to build a model
-of the relationship between class label and assay data.  One major are of
+of the relationship between class label and assay data.  One major area of
 concern in the construction of the model and the application of that model to
 unlabeled samples is the number of features considered.  Feature selection is
-discussed in greater detail in Section (\ref{Feature Selection}).
+discussed in greater detail in Section \ref{Feature Selection}.
 
 The performance of the classification model produced using the training data is
 typically assessed and iteratively optimized to minimize error using $K$-way
-cross validation for all class labels $K$.  Once a satisfactorily low error
-rate has been achived, the predictive power of the classification model can be
-estimated by using it to predict labels for the test data that were set aside
-prior to model building.
+cross validation for all class labels $K$.  However, in some cases class labels
+$K$ are nested meaning that the class $K_{i+1}$ can be a refinement of the
+class $K_{i}$.  In these hierarchical classification models, optimization and
+error minimization consider the graph structure \cite{pachinko}.  Once a
+satisfactorily low error rate has been achieved, the predictive power of the
+classification model can be estimated by using it to predict labels for the
+test data that were set aside prior to model building.  A study by Day and Dong
+in Chapter \classchapter demonstrates the usage of both flat and hierarchical
+classification methods.
 
 \subsection{Feature Selection}
 \label{Feature Selection}
@@ -58,10 +64,15 @@ observations are relevant in the assignment of class labels..  Selected
 features correspond to the microarray feature measurements, or some
 summarization thereof (Section \ref{Summarization}).  Feature selection is
 essential because the analytical methods applied to microarray experiments bear
-the ``curse of dimensionality''.  That is, in a typical experiment the number
-of samples is small ($1x10^1 \dots 1x10^3$), while the number of measurements
-made on each sample is relatively large ($1x10^3 \dots 1x10^6$).  Given that
-only a subset of the measurements made across the samples
+the ``curse of dimensionality''.  In a typical experiment the number of samples
+is small ($1x10^1 \dots 1x10^3$), while the number of measurements made on each
+sample is relatively large ($1x10^3 \dots 1x10^6$) \cite{Bellman_1957}.
+Because of this it is possible to correctly partition labeled data on one or
+multiple subsets of all observed features.  Using a subset that robustly
+captures the sample labels is desireable because it increases classification
+accuracy and reduces the computation required required to calculate a new
+sample label, as many classification algorithms scale exponentially with the
+number of features considered \cite{john94irrelevant}.
 
 \subsection{Label Encoding}
 \label{Label Encoding}
@@ -70,62 +81,3 @@ introduce the problem of the richness of gene annotation, gene ontology,
 hierarchical labels, label dimensions, etc.  this problem is in its infancy for
 the labeling of samples now, but will ultimately be far more complex than gene
 annotation which is currently more mature.
-
-
-
-%%% <QUOTE ref="boconnor">
-A second analytical approach to microarray experiments has been called
-\emph{predictive modeling} and is concerned with learning a classification or
-estimation function \cite{Dubitzky2003IMD}. In sample classification studies, also
-known as supervised learning, the end goal is to predict the class labels of
-samples. Generally, samples are divided into a training dataset and a
-classification algorithm is trained to recognize the class labels. The
-performance of the classifier is often optimized using a k-fold
-cross-validation strategy.  This process is also commonly used to assess the
-error rate in the classification model while the classification of the test set
-is typically used to assess overall accuracy of the built classifier.
-
-% FIXME: just use the Glolub example
-Supervised learning approaches allow for new samples to be classified and
-can be a powerful tool for understanding sample differences. For example, a
-researcher might have a collection of breast cancer and normal tissue samples.
-A classification method could be applied to learn to predict the state of new
-samples based on a subset of the expression data.  Subsequent new breast tissue
-samples could then be classified into either a ``normal'' or ``cancer'' class using
-this trained classifier. The complex question of how to choose genes for
-classification (or other tasks) is the focus of the rest of this work.
-
-%@ unsupervised methods let you do...
-
-%@ feature selection critical to these types of analysis... example of clustering
-%@ To deal with the dimensions of microarray data researchers have focused on
-%feature seleciton tasks. Deals with the problem of adding uninformative
-%features, the search space increases exponentially.
-One issue common across most analysis methods for microarray data is the
-``curse of dimensionality'', where relatively few samples are available
-compared to the number of measured features \cite{Bellman_1957}.
-Features in microarray data refer to genes whose expression patterns are
-measured across samples.  Typical microarray experiments include a few dozen
-to, at most, a few hundred microarrays hybridization for very large studies.
-However, each microarray measures thousands, typically tens of thousands, of
-gene expression values.  Only a handful of the thousands of gene expression
-patterns measure might be critical for the classification of samples.  Using
-the expression information for all genes is undesirable since this increases
-the computational complexity and run time for a classifier.  It could also
-affect accuracy as previous work has shown that classification algorithm
-performance decays as irrelevant features are added to the dataset
-\cite{john94irrelevant}.
-% For many algorithms, the runtime increases dramatically with the number of
-% features involved, sometime exponentially, making such algorithms intractable
-% for microarray data.  which the most informative genes are selected that best
-% differentiate between the sample states. This process is necessary for many
-% sample classification algorithms due to the dimensionality problem with
-% microarray datasets.  Typically, samples sizes range between a dozen to a
-% hundred yet the measurements for each genes are in the tens of thousands.
-% Many genes in a microarray experiment are uninformative and their use in a
-% given classification proves pointless at best and, at worst, detrimental.
-% Feature selection addresses this issue and is a critical step in classifying
-% samples effectively.
-
-%%% </QUOTE>
-
