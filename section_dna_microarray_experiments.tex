@@ -46,8 +46,8 @@ discussed in greater detail in Section \ref{Feature Selection}.
 The performance of the classification model produced using the training data is
 typically assessed and iteratively optimized to minimize error using $K$-way
 cross validation for all class labels $K$.  However, in some cases class labels
-$K$ are nested meaning that the class $K_{i+1}$ can be a refinement of the
-class $K_{i}$.  In these hierarchical classification models, optimization and
+$K$ are nested meaning that the class $k_{i}$ can be a refinement of the
+class $k_{i-1}$.  In these hierarchical classification models, optimization and
 error minimization consider the graph structure \cite{pachinko}.  Once a
 satisfactorily low error rate has been achieved, the predictive power of the
 classification model can be estimated by using it to predict labels for the
@@ -60,13 +60,13 @@ classification methods.
 
 A prominent part of model building for the analysis of microarray data is
 \emph{feature selection}, or the process of identifying which features of
-observations are relevant in the assignment of class labels..  Selected
+observations are relevant in the assignment of class labels.  Selected
 features correspond to the microarray feature measurements, or some
 summarization thereof (Section \ref{Summarization}).  Feature selection is
 essential because the analytical methods applied to microarray experiments bear
-the ``curse of dimensionality''.  In a typical experiment the number of samples
-is small ($1x10^1 \dots 1x10^3$), while the number of measurements made on each
-sample is relatively large ($1x10^3 \dots 1x10^6$) \cite{Bellman_1957}.
+the ``curse of dimensionality'' \cite{Bellman_1957}.  In a typical experiment
+the number of samples is small ($1x10^1 \dots 1x10^3$), while the number of
+measurements made on each sample is relatively large ($1x10^3 \dots 1x10^6$).
 Because of this it is possible to correctly partition labeled data on one or
 multiple subsets of all observed features.  Using a subset that robustly
 captures the sample labels is desireable because it increases classification
@@ -77,7 +77,35 @@ number of features considered \cite{john94irrelevant}.
 \subsection{Label Encoding}
 \label{Label Encoding}
 
+In both the pattern detection (Section \label{Pattern Detection}) and
+predictive modeling (Section \label{Predictive Modeling}) classes of microarray
+studies, a class label from one or more multiple orthogonal experimental
+factors is attached to a sample.  These set of class labels is ``flat'',
+meaning that it has no hierarchical structure and that the distance between any
+two classes is uniform.  
+
+
+\cite{go,so,mo,obo}
+
+
+It is well-established that such a flat representation is not suitable for representing gene annotation \cite{go}
+
+ may not be sufficient to represent the degrees of
+relative similarity between different labels, and may then lead to a higher
+error rate than a labeling that considers the similarities between two label.
+
+
+
+
+
 introduce the problem of the richness of gene annotation, gene ontology,
 hierarchical labels, label dimensions, etc.  this problem is in its infancy for
 the labeling of samples now, but will ultimately be far more complex than gene
 annotation which is currently more mature.
+
+
+
+
+
+
+
