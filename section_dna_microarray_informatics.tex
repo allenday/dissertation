@@ -1,0 +1,131 @@
+\subsubsection{Data Modeling}
+\label{Data Modeling}
+
+In order to be able to perform analyses on the results of a DNA microarray
+experiment, the assay data collected must be structured and stored.  This is
+also true of the experimental \emph{metadata}, or description of the
+experimental design and procedures.  Principles of scalability and
+mass-production prescribe that the encoding of these data be uniform, meaning
+that the structure used to encode the experiment must be sufficiently flexible
+and descriptive to capture the full range of experiments that can be conceived.
+
+The \emph{MicroArray Gene Expression} (\emph{MAGE}) Group was established by
+the \emph{MicroArray Gene Expression Data Society} (\emph{MGEDS}, sometimes
+also referred to as \emph{MGED}) to develop a standard for the representation
+of microarray data, with the intent of making those data exchangeable between
+different information systems.  The work of the MAGE Group can be divided into
+two types of projets: those dealing with the syntax used to concretely
+represent microarray data, and those dealing with the symantics used to
+describe the microarray experimental materials and processes, produced data,
+and data derived from processing.
+
+The semantic developments of the MAGE Group are more important for \dbthesis
+than the syntactic developments.  This is because semantics are abstract and
+generally useful for encoding experimental information, while the syntactic
+developments of the MAGE Group have optimized for the purposes of data
+interchange using technologies such as the \emph{eXtensible Markup Language}
+(\emph{XML}) that are not well-suited for systems whose primary purpose is to
+store and retrieve large volumes of quantitative data.
+
+Application of the MGED semantic technologies are discussed in other sections
+of this document.  There are two major semantic developments from MGEDS.  The
+first of these is the \emph{MAGE Object Model}, or \emph{MAGE-OM}.  The purpose
+of the MAGE-OM is to provide a standard set of classes that can be used to
+represent any object or process that may be included in, or referenced from, a
+microarray experiment.  The model employs concepts common to object-oriented
+software design and knowledge engineering, such as subclass/superclass
+relationships between object classes, the notion of abstract classes, and the
+possibility for directional and cardinal relationships between objects.  The
+specification of the MAGE-OM was developed using the \emph{Unified Modeling
+Language} (\emph{UML}), a standard technology used by knowledge and software
+engineers for the composition of object models.  Fitting microarray experiment
+data into the MAGE Object Model is described in greater detail in Section
+\ref{Experimental Metadata}.  Encoding specific information about objects under
+investigation or that are used to facilitate the conduct of an experiment are
+discussed in Section \ref{Object Metadata}.
+
+Unique syntax-related challenges that have arisen as part of \dbthesis are
+also presented.  Internal data representation and scalability issues are
+discussed in Section \ref{} and interoperability concerns are discussed in
+greater detail in Section \ref{}.
+
+\subsubsection{Experimental Metadata}
+\label{Experimental Metadata}
+
+As a concrete example of how an experiment might be encoded into a MAGE-ML
+document, consider the now-classical study of leukemias by Golub, et al
+\cite{golub}.  Briefly, this study is has both pattern-detection and
+predictive-modeling methodology (Sections \ref{Pattern
+Detection}-\ref{Predictive Modeling}), and describes a method for identifying
+features that discriminate between two classes of leukemia and how they can be
+used to identify the class of previously unlabeled cancer samples.
+
+Encoded into the MAGE-OM, the initial cancer samples in Golub, et al
+\cite{golub} are represented as \emph{BioSource} objects, a class used for
+biological material prior to any treatment.  Each BioSource object then goas
+through a series of modifications, ultimately resulting in a
+\emph{LabeledExtract} object that represents the fluorescently-labeled cRNA
+that is hybridized onto a microarray.  In the series of modifications, a
+combination of a \emph{BioSample} object and one or more \emph{Treatment}
+objects is used to represent the transformed Biosource object.  Further, each
+LabeledExtract refers back to the object from which it was derived all the way
+back to the BioSource object so that the full path of derivation via treatment
+is modeled.
+
+To represent the microarray hybridization, a \emph{BioAssay} object is created.
+The BioAssay is a central connection point in the object model.  It refers to
+an \emph{Array} object representing the microarray itself, the LabeledExtract
+that is hybridized, and to one or more \emph{Factor} objects.  The factor
+objects are in turn related to a network of other objects that encode the
+design and variables used in the microarray experiment.  The Array object is
+associated to a series of other objects that describe the microarray itself,
+including the information about specific sequences and their physical locations
+on the microarray, as well as information about the grouping of features on the
+array used as reporters for a common cRNA target sequence.  Further, each
+LabeledExtract is associated with a \emph{Channel} object.  The Channel is used
+to link a specific LabeledExtract to a specific \emph{Image} object that
+results from the scanning of the hybridized array.
+
+The Image object is combined with a \emph{FeatureExtraction} object to produce
+a \emph{BioAssayData} object.  This association of objects represents that
+transformation of the microarray image acquired by the scanner (Section
+\ref{Assay}) into a numerical form that can be processed (Section \ref{Data
+Processing}) for further analysis.  BioAssayData objects may also be derived
+from other BioAssayData objects, similar to the way BioSource, BioSample, and
+LabeledExtract objects may be related.  This is how the MAGE-OM represents
+arbitrary data transformations, and is sufficient for describing microarray
+data pre-processing (Section \ref{{Data Processing}), as well as additional
+downstream summarizations or other transformations of these data.
+
+\subsubsection{Object Metadata}
+\label{Object Metadata}
+
+Objects in the MAGE-OM may have attributes attached to them to provide
+more specific detail about the microarray experiment.  A design decision was
+made to reference objects external to the MAGE-OM and whose primary purpose is
+description because doing so constrains the scope of MAGE-OM to describing only
+the structure of the microarray experiment and associated quantitative data.
+Object metadata is discussed in greater detail in Section \ref{Object
+Metadata}.
+
+%XXX
+
+The second area of development in microarray semantics is the \emph{MGED
+Ontology}, or \emph{MO}.  The purpose of MO is to allow MAGE-OM objects to be
+described in greater detail.  A trade-off was made to use an \emph{ontology},
+or a structured controlled vocabulary, in association with the MAGE-OM to keep
+the scope of the MAGE-OM itself focused on the description of experimental
+processes, 
+%XXX
+
+\subsection{Data Storage & Retrieval}
+\label{Data Storage & Retrieval}
+
+The data and metadata produced as part of pre-processing (Section \ref{Data
+Processing}) and fitting the microarray experiment to a uniform data model
+(Section \ref{Data Modeling}) must be stored and made available to analysts for
+further processing
+
+\subsection{Interoperability & Exchange Protocols}
+\label{Protocol}
+
