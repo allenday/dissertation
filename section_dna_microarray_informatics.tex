@@ -127,25 +127,29 @@ etc).
 Other ontologies are also useful in \dbthesis for attaching concepts to objects
 that are outside the scope of the MO.  For example, we have used the Sequence
 Ontology (SO) \cite{so} to encode information pertinent to the sequences
-present on -- or used to select the sequences present on -- the microarray.  In
+present on, or used to select the sequences present on, microarrays.  In
 the case of using the SO, the concepts from the ontology are non-orthogonal to
 those in the MO and therefore there is some redundancy in the annotation
 stored.  In most cases, however, the ontologies used to annotate objects in the
 data warehouse are orthogonal.  We have used the Adult Mouse Anatomy Ontology
-(MA) \cite{ma} for attaching tissue information onto many human and mouse
-samples, the Mammalian Pathology ontology for annotatio
+(MA) \cite{ma} for attaching tissue information onto mammalian samples, the
+Mammalian Pathology Ontology (MPATH) \cite{mpath} for annotating disease
+states, and the Cell Ontology (CL) \cite{cl} for annotating cell type onto
+samples that have been grown \emph{in-vitro}.
 
 The use of ontologies provides a mechanism for attaching consistent and
-unambiguous descriptions to objects relevant to \dbthesis.  The encodings are useful
-in their own right as they allow for the accurate representation, storage
-(Section \ref{Storage}), retrieval, and exchange (Section \ref{Protocol}) of
-information about these objects.
+unambiguous descriptions to objects relevant to \dbthesis.  The encodings are
+useful in that they allow for the accurate representation, storage (Section
+\ref{Storage}), retrieval, and exchange (Section \ref{Protocol}) of information
+about these objects.
 
-However, encoding object description as ontologies also presents interesting
-analytical opportunities because the relationship between terms in the
-ontologies is formalized as a graph structure, something well understood by
-mathematicians and computer scientists.
-
+Encoding object descriptions as ontologiy terms also presents interesting
+data analysis opportunities because of the ontology structure.   The
+relationship between terms in the ontologies is structured as a directed graph,
+a data structure whose properties are well understood and for which a large
+body of theory and analytical methods already exist.  Indeed, several prior
+studies have leveraged the annotation of genes into the Gene Ontology (GO)
+\ref{go} to XXX and XXX \cite{XXX,XXX}.
 
 \subsection{Data Storage \& Retrieval}
 \label{Storage}
