@@ -14,8 +14,8 @@ the \emph{MicroArray Gene Expression Data Society} (\emph{MGEDS}, sometimes
 also referred to as \emph{MGED}) to develop a standard for the representation
 of microarray data, with the intent of making those data exchangeable between
 different information systems.  The work of the MAGE Group can be divided into
-two types of projets: those dealing with the syntax used to concretely
-represent microarray data, and those dealing with the symantics used to
+two types of projects: those dealing with the syntax used to concretely
+represent microarray data, and those dealing with the semantics used to
 describe the microarray experimental materials and processes, produced data,
 and data derived from processing.
 
@@ -57,8 +57,8 @@ document, consider the now-classical study of leukemias by Golub, et al
 \cite{golub}.  Briefly, this study is has both pattern-detection and
 predictive-modeling methodology (Sections \ref{Pattern
 Detection}-\ref{Predictive Modeling}), and describes a method for identifying
-features that discriminate between two classes of leukemia and how they can be
-used to identify the class of previously unlabeled cancer samples.
+features that discriminate between two leukemia subclasses and how they can be
+used to identify the subclass of previously unlabeled cancer samples.
 
 Encoded into the MAGE-OM, the initial cancer samples in Golub, et al
 \cite{golub} are represented as \emph{BioSource} objects, a class used for
@@ -95,28 +95,57 @@ from other BioAssayData objects, similar to the way BioSource, BioSample, and
 LabeledExtract objects may be related.  This is how the MAGE-OM represents
 arbitrary data transformations, and is sufficient for describing microarray
 data pre-processing (Section \ref{Data Processing}), as well as additional
-downstream summarizations or other transformations of these data.
+downstream summarizations or other transformations of these data, such as
+sample or probe set clustering.
 
 \subsubsection{Object Metadata}
 \label{Object Metadata}
 
 Objects in the MAGE-OM may have attributes attached to them to provide
 more specific detail about the microarray experiment.  A design decision was
-made to reference objects external to the MAGE-OM and whose primary purpose is
-description because doing so constrains the scope of MAGE-OM to describing only
+made to reference, from the MAGE-OM, objects from an \emph{ontology} for the
+description of objects.  Doing so constrains the scope of MAGE-OM's purpose to
 the structure of the microarray experiment and associated quantitative data.
-Object metadata is discussed in greater detail in Section \ref{Object
-Metadata}.
 
-%XXX
+%CITE http://ksl-web.stanford.edu/knowledge-sharing/papers/onto-design.rtf
+According to T. Gruber \cite{XXX}, an ontology is ``an explicit specification of
+some topic. For our purposes, it is a formal and declarative representation
+which includes the vocabulary (or names) for referring to the terms in that
+subject area and the logical statements that describe what the terms are, how
+they are related to each other, and how they can or cannot be related to each
+other. Ontologies therefore provide a vocabulary for representing and
+communicating knowledge about some topic and a set of relationships that hold
+among the terms in that vocabulary.''
 
-The second area of development in microarray semantics is the \emph{MGED
-Ontology}, or \emph{MO}.  The purpose of MO is to allow MAGE-OM objects to be
-described in greater detail.  A trade-off was made to use an \emph{ontology},
-or a structured controlled vocabulary, in association with the MAGE-OM to keep
-the scope of the MAGE-OM itself focused on the description of experimental
-processes, 
-%XXX
+%CITE http://bioinformatics.oxfordjournals.org/cgi/content/full/22/7/866
+An ontology, called the \emph{MGED Ontology} (\emph{MO}), was developed by MGED
+specifically for describing the attributes of objects used or studied as part
+of an experiment \cite{XXX}.  The MO is used in \dbthesis for high-level
+grouping of experiments by their general design (time-course, dose/response,
+etc).
+
+Other ontologies are also useful in \dbthesis for attaching concepts to objects
+that are outside the scope of the MO.  For example, we have used the Sequence
+Ontology (SO) \cite{so} to encode information pertinent to the sequences
+present on -- or used to select the sequences present on -- the microarray.  In
+the case of using the SO, the concepts from the ontology are non-orthogonal to
+those in the MO and therefore there is some redundancy in the annotation
+stored.  In most cases, however, the ontologies used to annotate objects in the
+data warehouse are orthogonal.  We have used the Adult Mouse Anatomy Ontology
+(MA) \cite{ma} for attaching tissue information onto many human and mouse
+samples, the Mammalian Pathology ontology for annotatio
+
+The use of ontologies provides a mechanism for attaching consistent and
+unambiguous descriptions to objects relevant to \dbthesis.  The encodings are useful
+in their own right as they allow for the accurate representation, storage
+(Section \ref{Storage}), retrieval, and exchange (Section \ref{Protocol}) of
+information about these objects.
+
+However, encoding object description as ontologies also presents interesting
+analytical opportunities because the relationship between terms in the
+ontologies is formalized as a graph structure, something well understood by
+mathematicians and computer scientists.
+
 
 \subsection{Data Storage \& Retrieval}
 \label{Storage}
