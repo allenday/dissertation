@@ -108,21 +108,28 @@ description of objects.  Doing so constrains the scope of MAGE-OM's purpose to
 the structure of the microarray experiment and associated quantitative data.
 
 %CITE http://ksl-web.stanford.edu/knowledge-sharing/papers/onto-design.rtf
-According to T. Gruber \cite{XXX}, an ontology is ``an explicit specification of
-some topic. For our purposes, it is a formal and declarative representation
-which includes the vocabulary (or names) for referring to the terms in that
-subject area and the logical statements that describe what the terms are, how
-they are related to each other, and how they can or cannot be related to each
-other. Ontologies therefore provide a vocabulary for representing and
-communicating knowledge about some topic and a set of relationships that hold
-among the terms in that vocabulary.''
+Ontologies are a key crossover into the biological sciences from computer
+science, information theory, and artificial intelligence research.  According
+to T. Gruber \cite{XXX}, an ontology is ``an explicit specification of some
+topic. For our purposes, it is a formal and declarative representation which
+includes the vocabulary (or names) for referring to the terms in that subject
+area and the logical statements that describe what the terms are, how they are
+related to each other, and how they can or cannot be related to each other.
+Ontologies therefore provide a vocabulary for representing and communicating
+knowledge about some topic and a set of relationships that hold among the terms
+in that vocabulary.''
 
 %CITE http://bioinformatics.oxfordjournals.org/cgi/content/full/22/7/866
-An ontology, called the \emph{MGED Ontology} (\emph{MO}), was developed by MGED
-specifically for describing the attributes of objects used or studied as part
-of an experiment \cite{XXX}.  The MO is used in \dbthesis for high-level
-grouping of experiments by their general design (time-course, dose/response,
-etc).
+As biologists have always faced the problems of nomenclature and
+classification, ontologies are a natural extension of these activities.  Many
+high-profile ontologies have been created to annotate and classify a wide
+variety of biological concepts.  The \emph{MGED Ontology} (\emph{MO}) was
+developed by MGED specifically for describing the attributes of objects used or
+studied as part of an experiment \cite{XXX}, and as a formal encoding of the
+concepts of the ``Minimal Information About a Microarray Experiment''
+(\emph{MIAME}) developed by Brazma, et al \cite{brazma2001mim}.  The MO is used
+in \dbthesis for high-level grouping of experiments by their general design
+(time-course, dose/response, etc).
 
 Other ontologies are also useful in \dbthesis for attaching concepts to objects
 that are outside the scope of the MO.  For example, we have used the Sequence
@@ -151,14 +158,54 @@ body of theory and analytical methods already exist.  Indeed, several prior
 studies have leveraged the annotation of genes into the Gene Ontology (GO)
 \ref{go} to XXX and XXX \cite{XXX,XXX}.
 
+Ontology development continues to be an active area of development in the
+biological sciences, and many important projects have spearheaded the effort to
+establish ontologies for the biological research community.  The \emph{Open
+Biomedical Ontologies} (\emph{OBO}) project provides a range of ontologies
+designed for use in the biomedical fields.  Other related projects include the
+Gene Ontology, and the Sequence Ontology \cite{go,so}.  Recently, the National
+Institutes of Health recognized the critical role ontologies are playing in the
+organization andinterchange of biological information and founded the National
+Center for Biomedical Ontology \cite{ncbo} as a coordinating center for
+ontologies, similar to what the \emph{National Center for Biological
+Information} (\emph{NCBI}) \cite{ncbi} and \emph{PubMed} \cite{pubmed} do for
+sequence and bibliographical data.
+
 \subsection{Data Storage \& Retrieval}
 \label{Storage}
 
 The data and metadata produced as part of pre-processing (Section \ref{Data
 Processing}) and fitting the microarray experiment to a uniform data model
-(Section \ref{Data Modeling}) must be stored and made available to analysts for
-further processing
+(Section \ref{Data Modeling}) must be stored and made available for retrieval
+at a later time to analysts to perform further processing.
+
+Storage solutions borrowed from computer science and information technology
+include physical media on which to store the data, such as hard drives, and
+also a database system to structure the data in accessible and searchable
+contexts.  Hard drive storage systems have advanced considerably over the
+decades in response to the demand for safe, reliable, and cost effective ways
+of storing large amounts of data.  Systems that link together many individual
+hard drives or storage on groups of computers into contiguous virtual volumes
+are available, making it possible to group together large datasets in a common
+repository.  Implementations of contiguous volumes, such as redundant arrays of
+inexpensive disks (RAID) and storage area networks (SANs) make the storage of
+critical scientific data secure and retrieval speedy.  Database systems
+represent another strategy for meeting the storage needs of bioinformatics
+projects.  Unlike hard disk-based solutions, databases actively index
+information to improve the retrieval of structured data.  Advances in open
+source projects such as MySQL (\url{http://www.mysql.com}) and PostgreSQL
+(\url{http://www.postgresql.org}), have allowed researchers to use very high
+performance relational database systems in their research for minimal cost.
+
+Many database solutions exist for representing biological data.  The Generic
+Model Organism Database Project (GMOD, \url{http://www.gmod.org}) provides the
+modular Chado schema \cite{chado} for storing a wide variety of biological
+data.  This schema has been used by a variety of projects, and is used as the
+primary relational database schema in \dbthesis.  Details of how the Chado
+database schema is used in \dbthesis is given in Chapter \dbthesis.
 
 \subsection{Interoperability \& Exchange Protocols}
 \label{Protocol}
 
+\subsection{Computing Infrastructure}
+\label{Infrastructure}
