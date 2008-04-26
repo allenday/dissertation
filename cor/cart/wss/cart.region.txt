@@ -1,0 +1,2 @@
+tName	X	X	qName
+chr17	72048357	78774742	region1

@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{setspace}
+\usepackage{url}
+%\usepackage[final]{pdfpages}
+%\usepackage{verbatim}
+%\usepackage{chapterbib}
+%\usepackage{ifthen}
+%\usepackage{longtable,lscape}
+\begin{document}
+\title{The Title}
+\author{
+Allen Day \and Stanley F. Nelson
+% Allen Day\correspondingauthor$^{1,2,\ddag}$ \email{Allen Day\correspondingauthor - allenday@ucla.edu} \and
+% Brian D. O'Connor$^{2,3,\ddag}$ \email{Brian D. O'Connor - boconnor@ucla.edu} \and
+% Jordan Mendler$^{1}$ \email{Jordan Mendler - jmendler@ucla.edu} \and
+% Jared Fox$^{1,4}$ \email{Jared Fox - jaredfox@ucla.edu} \and
+% Stanley F. Nelson$^{1}$ \email{Stanley F. Nelson - snelson@ucla.edu} \and
+% Lincoln D. Stein\correspondingauthor$^{2}$  \email{Lincoln D. Stein\correspondingauthor - lstein@cshl.edu}
+}
+\maketitle
+
+\section{Abstract}\label{Abstract}
+...
+
+\section{Introduction}\label{Hypothesis}
+Genes can be annotated by observing their expression pattern across a large
+number of anonymous, unlabeled samples.  Further, we assert that
+non-orthologous genes can be annotated cross-species given 1) gene expression
+observations in two species, and 2) a partial, sequence-based ortholog map
+between the two species.
+
+\section{Methods}\label{Methods}
+
+\subsection{Data Assembly}\label{Assembly}
+We use the gene expression data assembled as part of the Celsius project
+(\url{http://genome.ucla.edu/projects/celsius}) \cite{XXX}.  Specifically, we
+assemble into two separate matrices all observations made on current-generation
+Affymetrix GeneChip ArrayDesigns for human and mouse.  For the human
+HG-U133\_Plus\_2 ArrayDesign, our matrix size is 12827 microarrays by 54675
+probesets.  For the mouse Mouse430\_2 ArrayDesign, our matrix size is 7345
+microarrays by 45101 probesets.
+
+\subsection{Data Processing}\label{Processing}
+%http://www.nature.com///msb/journal/v3/n1/full/msb4100149.html
+The number of human probesets analyzed was 27337, and the number of mouse
+probesets analyzed was 22550.  For each ArrayDesign, the number of probesets is
+half of the number present on each ArrayDesign.  The probesets used were
+selected by identifying those with variance greater than the median probeset
+performance for the ArrayDesign.  Komurov \& White demonstrated that expression
+variance is positively correlated with the magnitude of modulation of gene
+expression across a wide variety of conditions and does not selectively enrich
+for low-abundance genes \cite{Komurov}.  A variance measure reflects the extent
+of gene regulation rather than measuring artifacts owing to low mRNA abundance.
+
+%http://www.kamalnigam.com/papers/canopy-kdd00.pdf
+For each ArrayDesign, a correlation matrix was created from each of the
+variance-constrained matrices.  Each probeset was then assigned to one or more
+canopies using the canopy-clustering algorithm \cite{McCallum} using the
+correlation measurements to all other probesets.  We used $(k_i)=0.1$
+correlation coefficient units as the inner distance cutoff, and i$(k_o)=0.2$
+units as the outer distance cutoff.  The value of $k_i$ was selected as the
+minimum distance that prevented $>90\%$ of probesets for the same gene from being
+split into multiple inner canopies, and a plot of ortholog probeset
+fragmentation as a function of varying $k_i$ is given in Figure
+\ref{figure:k.i}.  The value of $k_o$ was selected as the maximum distance that
+prevented $>90\%$ of probesets from appearing in more than one outer canopy, and
+a plot of probeset multiple assignment as a function of varying $k_o$ is given
+in Figure \ref{figure:k.o}.  The result of clustering using these values of
+$k_i$ and $k_o$ yielded XXX human centroids and XXX mouse centroids.
+
+\subsection{Ortholog Criteria}\label{Orthologs}
+%http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=165568
+
+%%%count unique gene names that have a mouse ortholog
+%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5}' | sort | uniq | wc
+
+%%%count unique human probesets that have a mouse ortholog
+%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | perl -ne 'm#^"(.+?)"#;print "$1\n"' | sort | uniq | wc
+
+%%%count unique mouse probesets that have a human ortholog
+%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | perl -ne 'm#.*"(.+?)","Mouse430_2#;print "$1\n"' | sort | uniq | wc
+
+%%%count the number of unique human probesets per gene name
+%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$1}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | sort -rn | less
+
+%%%count the number of unique mouse probesets per gene name
+%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$3}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | sort -rn | less
+
+%%%for mouse probesets per gene name distribution figure
+%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$3}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | awk '{print $1}' | sort -n | uniq -c
+
+%%%for human probesets per gene name distribution figure
+%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$1}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | awk '{print $1}' | sort -n | uniq -c
+
+
+We used the ``na24'' build of the Affymetrix NetAffx probeset annotation
+\cite{Liu} for the HG-U133\_Plus\_2 ArrayDesign as our list of human/mouse
+orthologs.  This annotation set identifies 11357 human/mouse ortholog pairs,
+and each gene in the pair is represented by one or more probesets on the
+corresponding ArrayDesign.  After constraining for high-variance probesets, we
+are left with a working set of 17401 human probesets and 22364 mouse probesets.
+The distribution of probesets per ortholog, partitioned by species, is given in
+Figure \ref{figure:hmp}.
+
+
+  There is not a 1:1 correspondence between
+human and mouse probesets for two reasons.  The first reason is that on a given
+ArrayDesign, a gene transcript may be assayed by more than one probeset.
+Sometimes these probesets are specific to a single gene transcript, and other
+times they cross-hybridize to many gene transcripts.  Thus, there is a
+many-to-many relationship between the probesets targeting human/mouse
+orthologs.
+
+\subsection{Cluster alignment}\label{Alignment}
+
+In cases where all probesets that represent a single human gene are found in a
+single human probeset cluster $c_H$, and all mouse probesets corresponding to
+the orthologous mouse gene are found in cluster $c_M$.
+
+Because of the one-to-many relationship between genes and probesets for both
+the human and mouse ArrayDesigns, and because of the many-to-many relationship
+between probesets for human/mouse orthologs (Section \ref{Orthologs}), it
+sometimes occurs that a single human gene is represented by multiple probeset
+clusters $c{\in}C$, and also that each human probeset cluster may correspond to
+multiple mouse probeset clusters (Section \ref{Processing}).
+
+In these cases, identification of orthologous clusters of expression between
+human and mosue requires calculating the probability that a human probeset
+cluster $c_H$ corresponds to a mouse cluster $c_M$.  We regard the
+sequence-based orthologs as authoritative, and use these as a ``scaffold'' for
+aligning probeset clusters using Equations \ref{equation:s}, \ref{equation:mc},
+and \ref{equation:m}.  The probability of a single probeset occuring in one of
+all clusters $c{\in}C$ is denoted $s(c)$, and is defined as:
+
+\begin{equation}
+\label{equation:s}
+s(c)={size\_of(c)}\over{\sum_{g}^{C}s(g)}
+\end{equation}
+
+Thus, the probability of any subset of all probesets $m{\in}M$ being found in
+the same cluster $c$ is:
+
+\begin{equation}
+\label{equation:mc}
+p(m{\in}c)=\prod_{1}^{M}s(c) 
+\end{equation}
+
+and more generally, the probability of any subset of all probesets $m{\in}M$
+being found in any cluster $c{\in}C$ is:
+
+\begin{equation}
+\label{equation:m}
+p(m)=\prod^{m}\sum_{c=1}^{C}{{s(c)}\over{C}}
+\end{equation}
+
+We iterated across all human genes, and for each identified the human probeset
+cluster that contained the largest number of probesets representing that gene.
+This produced a many-to-one mapping between human genes and probeset clusters.
+Then, we calculated $p(m)$ for each group of mouse probesets that represented
+the mouse ortholog and were assigned to different mouse clusters.  The best
+correspondence between a human probeset cluster and a mouse probeset cluster
+was identified by minimizing $p(m)$.
+
+
+----------\linebreak
+
+\newpage
+\section{Figures}\label{Figures}
+
+\begin{figure}[h]
+\label{figure:k.i}
+\caption{Caption for Figure ``k.i''}
+\end{figure}
+\pagebreak
+
+\begin{figure}[h]
+\label{figure:k.o}
+\caption{Caption for Figure ``k.o''}
+\end{figure}
+\pagebreak
+
+\begin{figure}[h]
+\label{figure:hmp}
+\includegraphics[angle=-90,width=12cm]{hmp.ps}
+\caption{Number of probesets assigned to a single orthologous gene.}
+\end{figure}
+\pagebreak
+
+\end{document}

@@ -1,0 +1,68 @@
+\begin{thebibliography}{1}
+
+\bibitem{celsius}
+A~Day, MR~Carlson, J~Dong, BD~O'Connor, and SF~Nelson.
+\newblock {Celsius: a community resource for Affymetrix microarray data.}
+\newblock {\em Genome Biol}, 8(6):R112, 2007.
+
+\bibitem{funari}
+VA~Funari, A~Day, D~Krakow, ZA~Cohn, Z~Chen, SF~Nelson, and DH~Cohn.
+\newblock {Cartilage-selective genes identified in genome-scale analysis of
+  non-cartilage and cartilage gene expression.}
+\newblock {\em BMC Genomics}, 8:165, 2007.
+
+\bibitem{bioconductor}
+RC~Gentleman, VJ~Carey, DM~Bates, B~Bolstad, M~Dettling, S~Dudoit, B~Ellis,
+  L~Gautier, Y~Ge, J~Gentry, K~Hornik, T~Hothorn, W~Huber, S~Iacus, R~Irizarry,
+  F~Leisch, C~Li, M~Maechler, AJ~Rossini, G~Sawitzki, C~Smith, G~Smyth,
+  L~Tierney, JY~Yang, and J~Zhang.
+\newblock {Bioconductor: open software development for computational biology
+  and bioinformatics.}
+\newblock {\em Genome Biol}, 5(10):R80, 2004.
+
+\bibitem{go}
+MA~Harris, J~Clark, A~Ireland, J~Lomax, M~Ashburner, R~Foulger, K~Eilbeck,
+  S~Lewis, B~Marshall, C~Mungall, J~Richter, GM~Rubin, JA~Blake, C~Bult,
+  M~Dolan, H~Drabkin, JT~Eppig, DP~Hill, L~Ni, M~Ringwald, R~Balakrishnan,
+  JM~Cherry, KR~Christie, MC~Costanzo, SS~Dwight, S~Engel, DG~Fisk,
+  JE~Hirschman, EL~Hong, RS~Nash, A~Sethuraman, CL~Theesfeld, D~Botstein,
+  K~Dolinski, B~Feierbach, T~Berardini, S~Mundodi, SY~Rhee, R~Apweiler,
+  D~Barrell, E~Camon, E~Dimmer, V~Lee, R~Chisholm, P~Gaudet, W~Kibbe,
+  R~Kishore, EM~Schwarz, P~Sternberg, M~Gwinn, L~Hannick, J~Wortman,
+  M~Berriman, V~Wood, N~de~la Cruz, P~Tonellato, P~Jaiswal, T~Seigfried, and
+  R~White.
+\newblock {The Gene Ontology (GO) database and informatics resource.}
+\newblock {\em Nucleic Acids Res}, 32(Database issue):D258--61, 2004.
+
+\bibitem{rma}
+RA~Irizarry, BM~Bolstad, F~Collin, LM~Cope, B~Hobbs, and TP~Speed.
+\newblock {Summaries of Affymetrix GeneChip probe level data.}
+\newblock {\em Nucleic Acids Res}, 31(4):e15, 2003.
+
+\bibitem{microcephaly}
+AP~Jackson, DP~McHale, DA~Campbell, H~Jafri, Y~Rashid, J~Mannan, G~Karbani,
+  P~Corry, MI~Levene, RF~Mueller, AF~Markham, NJ~Lench, and CG~Woods.
+\newblock {Primary autosomal recessive microcephaly (MCPH1) maps to chromosome
+  8p22-pter.}
+\newblock {\em Am J Hum Genet}, 63(2):541--6, 1998.
+
+\bibitem{karolchik}
+D~Karolchik, RM~Kuhn, R~Baertsch, GP~Barber, H~Clawson, M~Diekhans, B~Giardine,
+  RA~Harte, AS~Hinrichs, F~Hsu, KM~Kober, W~Miller, JS~Pedersen, A~Pohl,
+  BJ~Raney, B~Rhead, KR~Rosenbloom, KE~Smith, M~Stanke, A~Thakkapallayil,
+  H~Trumbower, T~Wang, AS~Zweig, D~Haussler, and WJ~Kent.
+\newblock {The UCSC Genome Browser Database: 2008 update.}
+\newblock {\em Nucleic Acids Res}, 36(Database issue):D773--9, 2008.
+
+\bibitem{netaffx}
+G~Liu, AE~Loraine, R~Shigeta, M~Cline, J~Cheng, V~Valmeekam, S~Sun, D~Kulp, and
+  MA~Siani-Rose.
+\newblock {NetAffx: Affymetrix probesets and annotations.}
+\newblock {\em Nucleic Acids Res}, 31(1):82--6, 2003.
+
+\bibitem{joubert}
+EM~Valente, F~Brancati, and B~Dallapiccola.
+\newblock {Genotypes and phenotypes of Joubert syndrome and related disorders.}
+\newblock {\em Eur J Med Genet}, 51(1):1--23, 0.
+
+\end{thebibliography}

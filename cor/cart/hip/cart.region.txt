@@ -1,0 +1,2 @@
+tName	X	X	qName
+chr13	45000000	60000000	region1

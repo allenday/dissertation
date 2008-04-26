@@ -1,0 +1,16 @@
+go.pvalue = matrix(nrow=0,ncol=1);
+for ( j in 1:981 ) {
+  print(j);
+  zz = go.annot[ go.annot[,1]==as.vector(go.probeset[j]) & go.annot[,3]!="IEA" & go.annot[,4]=="BP", ];
+  if ( dim(zz)[1] > 0 ) {
+    for ( k in 1:(dim(zz)[1]) ) {
+      print(paste('',k));
+      yy = go.test[ go.test[,1]==as.vector(zz[k,1]) & go.test[,2]==as.vector(zz[k,2]), ];
+      if ( dim(yy)[1] > 0 ) {
+        go.pvalue = rbind(go.pvalue, yy[,3]);
+      } else {
+        go.pvalue = rbind(go.pvalue, NA);
+      }
+    }
+  }
+}

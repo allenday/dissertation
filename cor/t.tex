@@ -1,0 +1,39 @@
+% <execute lang="R">
+% #now build up the "repeat offender" vector
+% source('/home/allenday/cvsroot/celsius/dump/lib/R/Celsius/IO/exs.R');
+% conn = Celsius.exs('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim1');
+% ctrl1=e_names(conn)[substr(e_names(conn), 1, 4)=="AFFX"]
+% mat = get(conn, ctrl1, s_names(conn)); dim(mat); mat=t(mat); dim(mat);
+% ### mat now has 12100 rows and 62 columns.
+% J = length(ctrl1); # J is actually ncol(mat)
+%
+% #### The following considers 1 cutoff value ####
+% residual.cutoff = 3;
+% residual.tally  = rep(0, nrow(mat) ); r2.tally=rep(NA, J);
+%
+% for ( j in 1:J ) {
+%   print(j);
+%   mat.lm = lm(mat[,j] ~ mat[,-j]);
+%   #the mean residual is always 0.
+%   #mat.residual.sd = as.vector( ( residuals(mat.lm) - mean(residuals(mat.lm)) ) / sd(residuals(mat.lm)) );
+%   mat.residual.sd = residuals(mat.lm) / sd(residuals(mat.lm));
+%   residual.tally = residual.tally + (abs( mat.residual.sd ) > residual.cutoff);
+%   r2.tally[j] = summary(mat.lm)$r.squared
+% }
+% #rownames(residual.tally) = rownames(mat);
+% table(residual.tally)
+% sum(residual.tally > J*0.1 )
+% # residual.tally = residual.tally / J;
+% # rt3=residual.tally
+% plot(sort(residual.tally)); dev.off()
+% #summary(r2.tally)
+% postscript('probeset_residuals.ps',width=8,height=8);
+% plot(sort(residual.tally), xlab='arrays, sorted by r^2', ylab='outlier frequency', main='array outlier frequency');
+% abline(0.05, 0, col='red');
+% dev.off()
+% r2.tally
+% write.table(ctrl1,'control_probesets.tex', row.names=FALSE, col.names=FALSE );
+% write.table(residual.tally, "residual.tally.txt", sep="\t")
+% write.table( (1:12100)[residual.tally>5] , 'outlier.badrow', row.names=FALSE, col.names=FALSE );
+% </execute>
+

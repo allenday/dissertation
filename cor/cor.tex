@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfig}
 \usepackage{times}
 \usepackage{setspace}
 \usepackage{url}
@@ -11,7 +13,7 @@
 \begin{document}
 \title{The Title}
 \author{
-Allen Day \and Stanley F. Nelson
+Allen Day \and Jun Dong \and Stanley F. Nelson
 % Allen Day\correspondingauthor$^{1,2,\ddag}$ \email{Allen Day\correspondingauthor - allenday@ucla.edu} \and
 % Brian D. O'Connor$^{2,3,\ddag}$ \email{Brian D. O'Connor - boconnor@ucla.edu} \and
 % Jordan Mendler$^{1}$ \email{Jordan Mendler - jmendler@ucla.edu} \and
@@ -24,168 +26,485 @@ Allen Day \and Stanley F. Nelson
 \section{Abstract}\label{Abstract}
 ...
 
-\section{Introduction}\label{Hypothesis}
-Genes can be annotated by observing their expression pattern across a large
-number of anonymous, unlabeled samples.  Further, we assert that
-non-orthologous genes can be annotated cross-species given 1) gene expression
-observations in two species, and 2) a partial, sequence-based ortholog map
-between the two species.
+\section{Introduction}
+\label{Hypothesis}
+%Genes can be annotated by observing their expression pattern across a large
+%number of anonymous, unlabeled samples.  Further, we assert that
+%non-orthologous genes can be annotated cross-species given 1) gene expression
+%observations in two species, and 2) a partial, sequence-based ortholog map
+%between the two species.
 
 \section{Methods}\label{Methods}
 
-\subsection{Data Assembly}\label{Assembly}
-We use the gene expression data assembled as part of the Celsius project
-(\url{http://genome.ucla.edu/projects/celsius}) \cite{XXX}.  Specifically, we
-assemble into two separate matrices all observations made on current-generation
-Affymetrix GeneChip ArrayDesigns for human and mouse.  For the human
-HG-U133\_Plus\_2 ArrayDesign, our matrix size is 12827 microarrays by 54675
-probesets.  For the mouse Mouse430\_2 ArrayDesign, our matrix size is 7345
-microarrays by 45101 probesets.
+% <execute lang="bash">
+% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.col | awk '{print $1}' > m0_col.tex
+% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.idx | awk '{print $1}' > m0_row.tex
+% </execute>
 
 \subsection{Data Processing}\label{Processing}
-%http://www.nature.com///msb/journal/v3/n1/full/msb4100149.html
-The number of human probesets analyzed was 27337, and the number of mouse
-probesets analyzed was 22550.  For each ArrayDesign, the number of probesets is
-half of the number present on each ArrayDesign.  The probesets used were
-selected by identifying those with variance greater than the median probeset
-performance for the ArrayDesign.  Komurov \& White demonstrated that expression
-variance is positively correlated with the magnitude of modulation of gene
-expression across a wide variety of conditions and does not selectively enrich
-for low-abundance genes \cite{Komurov}.  A variance measure reflects the extent
-of gene regulation rather than measuring artifacts owing to low mRNA abundance.
+We retrieved RMA-processed gene expression data for the HG-U133\_Plus\_2
+arraydesign from the Celsius microarray data warehouse
+(\url{http://genome.ucla.edu/projects/celsius}) \cite{rma,celsius}.  In total,
+there were \input{m0_row} arrays $S$, each of which reports measurements for \input{m0_col}
+probesets $P$.  We denote this initial $S{\times}P$ matrix as $M$.
 
-%http://www.kamalnigam.com/papers/canopy-kdd00.pdf
-For each ArrayDesign, a correlation matrix was created from each of the
-variance-constrained matrices.  Each probeset was then assigned to one or more
-canopies using the canopy-clustering algorithm \cite{McCallum} using the
-correlation measurements to all other probesets.  We used $(k_i)=0.1$
-correlation coefficient units as the inner distance cutoff, and i$(k_o)=0.2$
-units as the outer distance cutoff.  The value of $k_i$ was selected as the
-minimum distance that prevented $>90\%$ of probesets for the same gene from being
-split into multiple inner canopies, and a plot of ortholog probeset
-fragmentation as a function of varying $k_i$ is given in Figure
-\ref{figure:k.i}.  The value of $k_o$ was selected as the maximum distance that
-prevented $>90\%$ of probesets from appearing in more than one outer canopy, and
-a plot of probeset multiple assignment as a function of varying $k_o$ is given
-in Figure \ref{figure:k.o}.  The result of clustering using these values of
-$k_i$ and $k_o$ yielded XXX human centroids and XXX mouse centroids.
+It was clear from a cursory examination of summary statistics prepared from $M$
+that there were abberant arrays present, and that these arrays would have a
+negative impact on any downstream analyses.  At a coarse level, there appeared
+to be XXX types of aberrant arrays:
 
-\subsection{Ortholog Criteria}\label{Orthologs}
-%http://www.pubmedcentral.nih.gov/articlerender.fcgi?artid=165568
+\renewcommand{\labelenumi}{\Alph{enumi}.}
+\begin{enumerate}
+\item arrays with extremely high gene expression values across many probesets.
+\item arrays with extremely low gene expression values across many probesets.
+\item arrays with dissimilar expression values for two probesets reputedly
+measuring the same gene.
+%\item arrays with dissimilar expression values for genes known to be
+%co-expressed (Section \ref{corpass}).
+\end{enumerate}
 
-%%%count unique gene names that have a mouse ortholog
-%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5}' | sort | uniq | wc
+We sought to remove these abberant arrays from the dataset.
 
-%%%count unique human probesets that have a mouse ortholog
-%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | perl -ne 'm#^"(.+?)"#;print "$1\n"' | sort | uniq | wc
+% <execute lang="R">
+% z             = read.table('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.summary2')
+% trim.fraction = 10;
+% brightdim.cutoff = 3;
+% trim.length   = as.integer(length(z[,5]) / trim.fraction)
+% z5            = sort(z[,5]);
+% z5.trim       = z5[ trim.length:(length(z5)-trim.length) ]
+% postscript('array_means.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc")
+% hist(z5.trim,breaks=50,xlab="mean probeset intensity",ylab="frequency",main="mean probeset intensity of arrays")
+% dev.off()
+% write(trim.fraction, 'trim_fraction.tex');
+% write(brightdim.cutoff, 'brightdim_cutoff.tex');
+% write(mean(z5.trim),'trimmed_means_mean.tex');
+% write(sd(z5.trim),'trimmed_means_sd.tex');
+% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) >  brightdim.cutoff ),'bright_count.tex')
+% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) < -brightdim.cutoff ),'dim_count.tex')
+% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) < -brightdim.cutoff ) + sum( (z5 - mean(z5.trim)) / sd(z5.trim) >  brightdim.cutoff ),'brightdim_count.tex')
+% write((1:length(z[,5]))[(z[,5] - mean(z5.trim)) / sd(z5.trim) > 3 | (z[,5] - mean(z5.trim)) / sd(z5.trim) < -3],'/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.brightdim',ncolumns=1);
+% </execute>
+%% <execute lang="bash">
+%% /home/allenday/cvsroot/celsius/dump/bin/i386-redhat-linux-gnu.4/trim.exe 54675 /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.brightdim /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.dat data2/HG-U133_Plus_2.rma_trim1.sxe.dat 
+%% /home/allenday/cvsroot/celsius/dump/bin/trim_index.pl /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.brightdim /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.idx /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim1.sxe.idx 
+%% cp /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.col /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim1.sxe.col 
+%% </execute>
+% <execute lang="bash">
+% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim1.sxe.col | awk '{print $1}' > m1_col.tex
+% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim1.sxe.idx | awk '{print $1}' > m1_row.tex
+% </execute>
 
-%%%count unique mouse probesets that have a human ortholog
-%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | perl -ne 'm#.*"(.+?)","Mouse430_2#;print "$1\n"' | sort | uniq | wc
+\subsubsection{Removal of Dim and Bright Arrays}\label{dimbright}
 
-%%%count the number of unique human probesets per gene name
-%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$1}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | sort -rn | less
+Class A \& B arrays were easiest to identify.  We calculated the mean
+expression value of all probesets for each array, then calculated the mean and
+standard deviation of a \input{trim_fraction}\% trimmed distribution of those
+means.
 
-%%%count the number of unique mouse probesets per gene name
-%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$3}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | sort -rn | less
+The trimmed means had a mean of \input{trimmed_means_mean} and a standard
+deviation of \input{trimmed_means_sd}.  A histogram of the distribution is
+given in Figure \ref{figure:means}.
 
-%%%for mouse probesets per gene name distribution figure
-%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$3}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | awk '{print $1}' | sort -n | uniq -c
+%\input{section_dna_microarray_data_processing}
 
-%%%for human probesets per gene name distribution figure
-%cat HG-U133_Plus_2.na24.ortholog.csv | grep -F -f half/HG-U133_Plus_2.e.cor.probeset | grep Mouse430_2 | awk -F '","' '{print $5,"\t",$1}' | sort | uniq | awk -F '     ' '{print $1}' | sort | uniq -c | awk '{print $1}' | sort -n | uniq -c
+There were \input{brightdim_count} arrays with mean a expression value more
+than \input{brightdim_cutoff} standard deviations away from the mean of
+trimmed means.  These were primarily dim arrays (n=\input{dim_count}) but there
+were also bright arrays (n=\input{bright_count}).  These arrays were removed
+from further consideration, leaving a matrix $M\prime$ with \input{m1_row}
+arrays and \input{m0_col} probesets.
+
+\subsubsection{Removal of Inconsistent Arrays}\label{inconsistent}
+
+Class C arrays were slightly more difficult to find.  To identify them, we
+exploited the fact that, via NetAffx \cite{netaffx}, Affymetrix publishes a
+probeset $\rightarrow$ gene symbol mapping for their array designs.  We assumed
+that pairs of probesets designed to target the same gene were more likely to be
+linearly related than randomly selected pairs because they were targetting the
+same gene, and that these relationships could be used as a starting point to
+identify inconsistent arrays.
+
+We took all \input{symbol_count} unique gene symbols from
+the NetAffx HG-U133\_Plus\_2 gene annotation, and identified the subset $G$
+(n=\input{symbol_gt2_count}) for which there were two or more probesets.  We
+constructed $G$ groups, each corresponding to a single gene symbol, i.e.
+$g_1={p_{g_1}1,\dots,p_{g_1}n},\dots,g_G={p_{g_G}1,\dots,p_{g_G}n}$.  Then, for
+each $g{\in}G$, we performed a linear regression of $log_10(signal)$ for all
+possible probeset pairs $p_gA,p_gB$ (n=\input{symbolgroup_pair_count}).  A
+distribution of $r^2$ values from those linear regressions is given in Figure
+\ref{figure:rsquare}.
+
+Examination of the probeset pairs with the largest value of $r^2$ revealed that
+the majority were control probesets that targeted spike-in sequences that are
+added as part of the microarray hybridization for quality control.  We
+performed \input{control_probesets_count} multiple regressions, allowing each
+control probeset to be the response variable once.  In the context of a single
+regression if an array's residual was, relative to all other arrays'
+residuals, more than 3 standard deviations away from the line, we incremented a
+counter for that array.  Outlier frequencies per per array is shown in Figure
+\ref{figure:rsquare}.
+
+After performing all \input{control_probesets_count} regressions, all arrays
+that were observed more than 3 standard deviations more than 5\% of the time
+(n=\input{outlier_badrow_count}) were removed from further consideration, leaving a
+matrix $M\prime\prime$ with \input{m2_row} arrays and \input{m0_col} probesets.
+
+% <execute lang="bash">
+% cat /home/allenday/cvsroot/celsius/dump/analysis2/HG-U133_Plus_2.symbol | awk '{print $1}' | sort | uniq | wc -l > symbol_count.tex
+% cat /home/allenday/cvsroot/celsius/dump/analysis2/HG-U133_Plus_2.symbol | awk '{print $1}' | sort | uniq -c | grep -vw 1 | wc -l > symbol_gt2_count.tex
+% cat /home/allenday/cvsroot/celsius/dump/analysis2/HG-U133_Plus_2.lm_rsquared | wc -l > symbolgroup_pair_count.tex
+%% ./bin/i386-redhat-linux-gnu.4/transpose.exe 54675 ./data2/HG-U133_Plus_2.rma_trim1.sxe.dat ./data2/HG-U133_Plus_2.rma_trim1.exs.dat
+%% ./bin/transpose_index.pl data2/HG-U133_Plus_2.rma_trim1.sxe.idx data2/HG-U133_Plus_2.rma_trim1.sxe.col data2/HG-U133_Plus_2.rma_trim1.exs.idx data2/HG-U133_Plus_2.rma_trim1.exs.col 
+% </execute>
+
+% <execute lang="R">
+% #now build up the "repeat offender" vector
+% source('/home/allenday/cvsroot/celsius/dump/lib/R/Celsius/IO/exs.R');
+% conn = Celsius.exs('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim1');
+% ctrl1=e_names(conn)[substr(e_names(conn), 1, 4)=="AFFX"]
+% mat = get(conn, ctrl1, s_names(conn)); dim(mat); mat=t(mat); dim(mat);
+% ### mat now has 12100 rows and 62 columns.
+% J = length(ctrl1); # J is actually ncol(mat)
+%
+% #### The following considers 1 cutoff value ####
+% residual.cutoff = 3;
+% residual.tally  = rep(0, nrow(mat) ); r2.tally=rep(NA, J);
+%
+% for ( j in 1:J ) {
+%   print(j);
+%   mat.lm = lm(mat[,j] ~ mat[,-j]);
+%   #the mean residual is always 0.
+%   #mat.residual.sd = as.vector( ( residuals(mat.lm) - mean(residuals(mat.lm)) ) / sd(residuals(mat.lm)) );
+%   mat.residual.sd = residuals(mat.lm) / sd(residuals(mat.lm));
+%   residual.tally = residual.tally + (abs( mat.residual.sd ) > residual.cutoff);
+%   r2.tally[j] = summary(mat.lm)$r.squared
+% }
+% #rownames(residual.tally) = rownames(mat);
+% table(residual.tally)
+% sum(residual.tally > J*0.1 )
+% # residual.tally = residual.tally / J;
+% # rt3=residual.tally
+% postscript('probeset_residuals.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% plot(sort(residual.tally), xlab='arrays, sorted by r^2', ylab='outlier frequency', main='array outlier frequency');
+% abline(5, 0, col='red');
+% dev.off()
+% #summary(r2.tally)
+% r2.tally
+% write.table(ctrl1,'control_probesets.tex', row.names=FALSE, col.names=FALSE );
+% write.table(residual.tally, "residual.tally.txt", sep="\t")
+% write.table( (1:12100)[residual.tally>5] , 'outlier_badrow.tex', row.names=FALSE, col.names=FALSE );
+% </execute>
+
+% <execute lang="bash">
+% cat control_probesets.tex | wc -l > control_probesets_count.tex
+% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim2.sxe.idx | awk '{print $1}' > m2_row.tex
+% cat outlier_badrow.tex | wc -l > outlier_badrow_count.tex
+% </execute>
+
+\subsubsection{Gene-Gene Correlation Matrix}\label{Correlation}
+
+After filtering out abberant arrays from out dataset (Section
+\ref{Processing}), we used the $M\prime\prime$ matrix to calculate
+$C\prime\prime$, a \input{m0_col} $\times$ \input{m0_col} matrix of Pearson
+correlation coefficients for every pair of probesets.  $C\prime\prime$ was used
+in all results presented in Section \ref{Results}.
+
+\subsection{Gene Annotation}\label{Annotation Methods}
+
+For each probeset $p \in P$ on the HG-U133\_Plus\_2 arraydesign, we retrieved
+the correlation coefficient vector $r$ to all other probesets $P \ni p$ from
+$C\prime\prime$ (Section \ref{Correlation}).  We then selected the nearest
+neighbors.  This was done by placing $r$ into descending order, and calculating
+the derivative $r\prime$ as ${r_i}\prime = r_i - r_{i+1}$.  We used the
+Bayesian Change Point \emph{bcp} package XXX to produce $\hat{p}$, an
+estimate the probability of a changepoint for each position in $r\prime$.  A
+single best change point $\delta$ was selected as the index of the largest
+value of $r$ that preceded 10 consecutive values $\hat{p} < 0.5$.  Probesets $Q$
+where $r > \delta$ were used as input to the \emph{hyperGTest} function of
+the \emph{GOstats} package of Bioconductor \cite{bioconductor} to test for
+enrichment of Gene Ontology (GO) Biological Process (BP) annotations in a gene
+set.  \emph{hyperGTest} produced a set of predicted gene annotations $N_p$ for
+each $p \in P$ based on the annotation of neighbors $Q$.  We used the p-values
+from predicted annotations $N_p$ that were known to be  non-computationally
+assigned from the \emph{hgu133plus} package of Bioconductor \cite{bioconductor}
+to establish a conservative cutoff, below which predicted annotations should
+all be high-quality.
+
+\subsection{Linkage Region Candidate Selection}\label{Linkage}
+
+For a given phenotype, a group of known genes $G$ known to be associated with
+that phenotype were retrieved from previous publications and online databases.
+The list of genes was transformed to a list of probesets $P$ present on the
+HG-U133\_Plus\_2 arraydesign using the gene symbol $\rightarrow$ probeset
+mapping available from NetAffx \cite{netaffx}.  In the event that a gene in $G$ mapped to
+multiple probesets, only the first of the probesets in alphanumerical order was
+selected to prevent multiple counting.  Probesets $P$ were then mapped to
+6-megabase genomic regions $A$ by finding the center point of each probeset's
+alignment to UCSC's March 2006 (hg18) version of the human genome and expanding
+by 3 megabases in each direction.  Each region in $A$ was then mapped to a list
+of all HG-U133\_Plus\_2 probesets $Q$ aligned to that region.  Then, for each
+$p{\in}P$, a $Q{\times}P-1$ slab was retrieved from $C\prime\prime$ (Section
+\ref{Correlation}), and row-summarized to produce a $Q$-length vector
+$\vec{\bar{r}}$ of mean correlation coefficients to $P{\ni}p$.
+
+\section{Results}\label{Results}
+
+Our aim was to mine the matrix of correlation coefficients for all probesets on
+the Affymetrix HG-U133\_Plus\_2 arraydesign for new information.
+
+We wanted to let the data speak for themselves, and so included only a minimum
+of metadata.  Metadata for samples hybridized to the arrays were excluded
+entirely from analyses.  For probesets, we only included gene-symbol
+\cite{netaffx}, genomic alignment \cite{karolchik}, and human-reviewed Gene
+Ontology (GO) Biological Process (BP) \cite{go, bioconductor} metadata.
+
+\subsection{Data Processing}\label{Processing Results}
+All HG-U133\_Plus\_2 arrays (n=\input{m0_row}) were retrieved from Celsius
+\cite{celsius}.  We assessed the arrays using some simple quality control (QC)
+metrics, and excluded several hundred based on unusual array intensities and
+unusual behavior of control probesets (Section \ref{Processing}), yielding a
+\input{m2_row} array $\times$ \input{m0_col} column matrix, denoted
+$M\prime\prime$.  We calculated the Pearson correlation coefficient for every
+pair of probesets in $M\prime\prime$, yielding a \input{m0_col} $\times$
+\input{m0_col} correlation matrix, denoted $C\prime\prime$.
+
+\subsection{Disease Gene Recovery}\label{Recovery}
+
+Commonly, the first published evidence of association between a hereditary
+disease and one or more genes does not explicitly refer to the associated genes
+but rather describe the association to multiple associated genetic loci that
+should be examined more closely \cite{joubert,microcephaly}.  These so-called
+linkage regions are commonly up to 10 megabases in size, and thus typically
+contain 60-100 genes, assuming an average gene size of 50 kilobases.
+
+When the associated genes are eventually identified, it is frequently the case
+that they are all involved in the same biological process, and that this
+process is disrupted when one of its components is dysfunctional.  Given that
+the genes are involved in the same biological process, it is reasonable to
+assume that they will be coexpressed in cells where the process occurs and
+thus be positively correlated.
+
+Extending the idea that genes involved in the same biological process will
+generally be positively correlated, we sought to use $C\prime\prime$ (Section
+\ref{Processing Results}) to simulate the identification of a disease gene.
+
+Our method was to assemble a list of genes $G$ known to be associated with a
+disease.  Each gene identifier $g \in G$ was mapped to the corresponding list
+of probesets on the HG-U133\_Plus\_2 arraydesign.  The list is denoted $P_g$,
+and is derived from the mapping function denoted $J(g)$.  For each probeset in
+$p_g \in P_g$, the genomic position was retrieved using the UCSC Genome
+Browser, human build hg18 (March 2006) \cite{karolchik}.  We then retrieved a
+list of probesets which aligned to a 6 megabase genomic region surrounding the
+initial probeset.  The list is denoted $Q_{p_g}$, and is derived form the
+mapping function denoted as $K(p)$.  Next, the vector of mean correlaton
+coefficient $\bar{r}_{p_g}$ of probeset $q_{p_g} \in Q_{p_g}$ to $P \ni J(g)$
+was calculated using function $L(q)$ from $C\prime\prime$.  Finally, the best
+gene in the region was identified as the one matching
+$J^{-1}(K^{-1}(L^{-1}(max(\bar{r}_{p_g}))))$, the maximum value of $\bar{r}$
+for named genes in the simulated linkage region.  If the gene identified was
+present in $G$ we evaluated the result as positive.  In the event that genes
+not in $G$ met the criterion of $max(\bar{r})$, we evaluated the result as
+negative.
+
+We first applied this method to the results of a previous study by Funari,
+\emph{et al.} that identified several previously unannotated genes that are
+expressed in cartilage tissue \cite{funari}.  This study identified 48 genes
+represented by 56 probesets from the HG-U133A arraydesign that were highly
+expressed only in cartilage (Table 1).  We performed the scan described, and
+were able to positively identify the correct gene XXX\% (XXX/XXX) times.
+
+Next, we applied this method to see if we could identify the four genes known to
+be associated with microcephaly.  The purpose of this test was to confirm that
+the results in our cartilage trial were reproducible on a completely different
+set of genes, as well as to see if the method was robust enough to identify the
+known gene given a much smaller profile for comparison.  We were able to
+correctly identify 75\% (3/4) of the microcephaly genes.
+
+Finally, we applied our scanning method to Joubert syndrome.  Seven linkage
+regions for Joubert syndrome have been identified, and five of these have had
+the associated gene in the region identified.  The purpose of this third test
+was another instance of reproducibility of results, as well as to see if we
+could make a prediction as to the identity of the sixth and seventh genes in
+the remaining linked regions for which a gene has not yet been identified.  We
+were able to correctly identify 80\% (4/5) of the five genes known to be
+associated with Joubert syndrome.  Additionally, we were able to identify XXX
+candidates in linkage region JBTS1 (r>XXX, sd>XXX) and XXX candidates in
+linkage region JBTS2 (r>XXX, sd>XXX).
+
+%joubert
+% JBTS1			9q34.3		unknown gene	D9S158
+% JBTS2 aka CORS2	11p12-11q13.3	unknown gene	D11S1915(lod=5.2),D11S1313(lod=3.96),D11S4191-D11S1344(lod=NA)
+% JBTS3			6q23		AHI1
+% JBTS4			2q13		NPHP1
+% JBTS5			12q21.32	CEP290 (aka NPHP6)
+% JBTS6			8q21		TMEM67
+% JBTS7			16q12.2		RPGRIP1L
+
+% D9S158   chr9  138138869 138339251
+% D11S1915 chr11 45465651 45666307
+% D11S1313 chr11 55890635 56091023
+% D11S4191 chr11 59656135 59856421
+% D11S1344 chr11 46023436 46223802
+% union    chr11 42465651 62856421
+
+In the process of identifying direct linkage between a gene and a 
 
 
-We used the ``na24'' build of the Affymetrix NetAffx probeset annotation
-\cite{Liu} for the HG-U133\_Plus\_2 ArrayDesign as our list of human/mouse
-orthologs.  This annotation set identifies 11357 human/mouse ortholog pairs,
-and each gene in the pair is represented by one or more probesets on the
-corresponding ArrayDesign.  After constraining for high-variance probesets, we
-are left with a working set of 17401 human probesets and 22364 mouse probesets.
-The distribution of probesets per ortholog, partitioned by species, is given in
-Figure \ref{figure:hmp}.
+We evaluated the possibility that $C\prime\prime$ (Section \ref{Processing
+Results}) could be used to narrow the scope of disease gene candidates
+
+ as a tool for prioritizing genes present in regions
+known to be associated with a disease.
 
 
-  There is not a 1:1 correspondence between
-human and mouse probesets for two reasons.  The first reason is that on a given
-ArrayDesign, a gene transcript may be assayed by more than one probeset.
-Sometimes these probesets are specific to a single gene transcript, and other
-times they cross-hybridize to many gene transcripts.  Thus, there is a
-many-to-many relationship between the probesets targeting human/mouse
-orthologs.
+  We started with a set of 56 probesets
+representing 48 genes that were identified in a microarray study that searched
+for genes associated with skeletal abnormality \cite{funari}.  We used the UCSC
+Genome Browser \cite{karolchik} to align these probesets to the March 2006
+build of the human genome.
 
-\subsection{Cluster alignment}\label{Alignment}
+\subsection{Gene Annotation}\label{Annotation Results}
 
-In cases where all probesets that represent a single human gene are found in a
-single human probeset cluster $c_H$, and all mouse probesets corresponding to
-the orthologous mouse gene are found in cluster $c_M$.
+We evaluated the possibility of assigning new Gene Ontology annotations to a
+gene using only the identities and annotations attached to that gene's nearest
+neighbors.  We measured distance between genes using the Pearson correlation
+coefficient $r^2$, and considered genes as neighbors where $r^2 > 0.5$.  This
+value was selected from empirical observation of the minima and maxima of all
+correlation coefficients, as it identified at least one neighbor for more than
+90\% of all probesets (Figure \ref{figure:cor_minmax}).
 
-Because of the one-to-many relationship between genes and probesets for both
-the human and mouse ArrayDesigns, and because of the many-to-many relationship
-between probesets for human/mouse orthologs (Section \ref{Orthologs}), it
-sometimes occurs that a single human gene is represented by multiple probeset
-clusters $c{\in}C$, and also that each human probeset cluster may correspond to
-multiple mouse probeset clusters (Section \ref{Processing}).
+\subsubsection{Calibration}\label{Calibration}
 
-In these cases, identification of orthologous clusters of expression between
-human and mosue requires calculating the probability that a human probeset
-cluster $c_H$ corresponds to a mouse cluster $c_M$.  We regard the
-sequence-based orthologs as authoritative, and use these as a ``scaffold'' for
-aligning probeset clusters using Equations \ref{equation:s}, \ref{equation:mc},
-and \ref{equation:m}.  The probability of a single probeset occuring in one of
-all clusters $c{\in}C$ is denoted $s(c)$, and is defined as:
+We were creating putative gene annotations using an automated process, so we
+wanted to observe the properties of pre-existing, non-computation annotations.
+This allowed us to choose parameters for the process that would yield only
+high-confidence annotations.
 
-\begin{equation}
-\label{equation:s}
-s(c)={size\_of(c)}\over{\sum_{g}^{C}s(g)}
-\end{equation}
+A subset of 1000 probesets were randomly selected, 536 of which had associated
+a non-computer-assigned annotation (Figure \ref{figure:bp_annot}).  There were
+a total of 1158 of these annotations, or approximately 2.16 annotations per
+probeset.  For this same subset, we used the Bioconductor \emph{GOstats}
+package to perform a hypergeometric test (hyperGTest) on the annotation of
+neighboring genes to measure which annotations were significantly enriched.  We
+made an adjustment to our neighbor criterion and only used the 50 most
+correlated neighbors as input to hyperGTest in the event that there were more
+than 50 neighbors.  This allowed us to compute the significance of neighbors'
+annotations in a reasonable amount of time.
 
-Thus, the probability of any subset of all probesets $m{\in}M$ being found in
-the same cluster $c$ is:
+hyperGTest produced a total of 30,280 possible annotations where $p-value <
+0.05$.  For each of the previously known, non-computer-assigned annotations, we
+looked up the p-value of the same annotation, if any, that came out of
+hyperGTest.  We were able to recover $588/1158, 51\%$ of the annotations.
+The distribution of p-values signifying the test's confidence in each of those
+recoveries is given in Figure \ref{figure:bp_recall}, and indicates that the
+majority of recalled annotations have $p-value < 0.001$, and nearly all have
+$p-value < 0.00001$.  We chose $p-value < 0.00001$ as the threshold for
+high-quality, novel annotations suggested by hyperGTest.  There were 966
+annotations (approximately one per probeset) with p-value below this threshold
+and the distribution of their p-values is given in Figure
+\ref{figure:bp_novel}.
 
-\begin{equation}
-\label{equation:mc}
-p(m{\in}c)=\prod_{1}^{M}s(c) 
-\end{equation}
+Manual examination of these suggested annotations revealed that...
+XXX FAKE XXX
+many of the annotations were ``near misses'' to the existing annotation, as
+they were neighbors in the structure of the Gene Ontology graph.  90\% of
+annotation were within one edge traversal of the Gene Ontology graph structure.
+XXX END FAKE XXX.
 
-and more generally, the probability of any subset of all probesets $m{\in}M$
-being found in any cluster $c{\in}C$ is:
+\subsubsection{Prediction}\label{Prediction}
 
-\begin{equation}
-\label{equation:m}
-p(m)=\prod^{m}\sum_{c=1}^{C}{{s(c)}\over{C}}
-\end{equation}
+XXX FILL THESE NUMBERS IN XXX
 
-We iterated across all human genes, and for each identified the human probeset
-cluster that contained the largest number of probesets representing that gene.
-This produced a many-to-one mapping between human genes and probeset clusters.
-Then, we calculated $p(m)$ for each group of mouse probesets that represented
-the mouse ortholog and were assigned to different mouse clusters.  The best
-correspondence between a human probeset cluster and a mouse probeset cluster
-was identified by minimizing $p(m)$.
+While the majority of the arraydesign probes for characterized, known genes,
 
+More than XXX about 10,000 XXX probesets on the HG-U133\_Plus\_2 arraydesign are not
+assigned to any existing gene symbol.  This typically means they were designed
+to measure a transcript that is computationally predicted only, and not
+supported by any \emph{in vivo} observation.  An additional XXX about
+5,000-10,000 XXX probesets are assigned to a gene symbol that are supported by
+little or no \emph{in vivo} data.  This group contains predicted genes, as well
+as transcripts that have been observed in EST libraries.
+
+Typical probesets in both of these groups have no annotation whatsoever.  We
+were able to assign XXX annotations to XXX probesets (XXX \%) in these groups.
+The data provided here represent an initial, and thus significant, step forward
+in the characterization of the roles of these hypothetical and rarely observed
+genes.
+
+Our assignment of an additional XXX annotations to genes which are already
+characterized is also significant, as it suggests direct linkage between
+biological processes previously known to be only indirectly related.
 
 ----------\linebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\bibliography {b}
+\bibliographystyle {plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 \section{Figures}\label{Figures}
 
-\begin{figure}[h]
-\label{figure:k.i}
-\caption{Caption for Figure ``k.i''}
+\begin{figure}[htbp]
+\label{figure:means}
+\resizebox{12cm}{!}{\psfig{figure=array_means.ps}}
+\caption{
+
+Mean probeset signal intensity of arrays.  The mean value for all probesets was
+calculated for each array (x-axis) and the frequency of any given mean is
+plotted by bin (y-axis).  Severa extremely bright arrays (n=15) are not shown.
+
+}
 \end{figure}
 \pagebreak
 
-\begin{figure}[h]
-\label{figure:k.o}
-\caption{Caption for Figure ``k.o''}
+\begin{figure}[htbp]
+\label{figure:rsquare}
+\resizebox{12cm}{!}{\psfig{figure=probeset_residuals.ps}}
+\caption{
+
+Regressions of control probesets reveal aberrant arrays.  Multiple regressions
+were performed for all 62 HG-U133\_Plus\_2 control probesets.  Arrays (x-axis)
+are plotted versus the fraction of observations with regression residual
+$>3\sigma$ (y-axis).  A red horizontal line indicates a cutoff above which
+arrays are omitted from analysis.
+
+}
 \end{figure}
 \pagebreak
 
-\begin{figure}[h]
-\label{figure:hmp}
-\includegraphics[angle=-90,width=12cm]{hmp.ps}
-\caption{Number of probesets assigned to a single orthologous gene.}
+
+%XXX
+\begin{figure}[htbp]
+\label{figure:cor_minmax}
+%\includegraphics[width=12cm]{mincor_maxcor.png}
+\caption{Correlation $r^2$ Minima vs. Maxima, All Probesets.}
 \end{figure}
-\pagebreak
+%\pagebreak
+
+%XXX
+\begin{figure}[htbp]
+\label{figure:bp_annot}
+%\includegraphics[width=12cm]{bp_annot.png}
+\caption{Fraction of Annotated Probesets.}
+\end{figure}
+%\pagebreak
+
+%XXX
+\begin{figure}[htbp]
+\label{figure:bp_recall}
+%\includegraphics[width=12cm]{bp_recall.png}
+\caption{Recall of Known Annotation.}
+\end{figure}
+%\pagebreak
+
+%XXX
+\begin{figure}[htbp]
+\label{figure:bp_novel}
+%\includegraphics[width=12cm]{bp_novel.png}
+\caption{P-values of High-Quality, Novel Annotation.}
+\end{figure}
+%\pagebreak
 
 \end{document}
