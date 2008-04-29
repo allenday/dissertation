@@ -308,10 +308,12 @@ negative.
 
 We first applied this method to the results of a previous study by Funari,
 \emph{et al.} that identified several previously unannotated genes that are
-expressed in cartilage tissue \cite{funari}.  This study identified 48 genes
-represented by 56 probesets from the HG-U133A arraydesign that were highly
+expressed in cartilage tissue \cite{funari}.  This study identified 114 genes
+represented by 133 probesets from the HG-U133A arraydesign that were highly
 expressed only in cartilage (Table 1).  We performed the scan described, and
-were able to positively identify the correct gene XXX\% (XXX/XXX) times.
+were able to positively identify the correct gene 66\% (75/114) times.  A
+graphical representation of the 6-megabase region surrounding one cartilage
+gene, COL9A2, is given in Figure \ref{figure:COL9A2}.
 
 Next, we applied this method to see if we could identify the four genes known to
 be associated with microcephaly.  The purpose of this test was to confirm that
@@ -469,6 +471,24 @@ were performed for all 62 HG-U133\_Plus\_2 control probesets.  Arrays (x-axis)
 are plotted versus the fraction of observations with regression residual
 $>3\sigma$ (y-axis).  A red horizontal line indicates a cutoff above which
 arrays are omitted from analysis.
+
+}
+\end{figure}
+\pagebreak
+
+\begin{figure}[htbp]
+\label{figure:COL9A2}
+\resizebox{12cm}{!}{\psfig{figure=COL9A2.ps}}
+\caption{
+
+Gene correlations to a cartilage-specific gene list within a 6-megabase region.
+The genomic position (x-axis) of probesets within a 6-megabase region centered
+at the location of a gene known to be associated with cartilage development is
+plotted versus the Pearson correlation coefficient $r$ (y-axis) to a list of
+cartilage-expressed probesets targetting other genes across 11636
+HG-U133\_Plus\_2 microarrays.  Solid circles: probesets targeting COL9A2, open
+triangles: other probesets in the cartilage-expressed list, $\times$s:
+probesets not designed to target a known gene, open circles: other probesets.
 
 }
 \end{figure}

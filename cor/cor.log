@@ -1,4 +1,4 @@
-This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2005.11.16)  23 APR 2008 02:40
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2005.11.16)  28 APR 2008 18:44
 **cor
 (./cor.tex
 LaTeX2e <2001/06/01>
@@ -126,18 +126,18 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (./outlier_badrow_count.tex) (./m2_row.tex) (./m0_col.tex) (./m0_col.tex)
 (./m0_col.tex) [2] (./m0_row.tex) (./m2_row.tex) (./m0_col.tex) (./m0_col.tex)
 (./m0_col.tex) [3] [4]
-Overfull \hbox (0.62553pt too wide) in paragraph at lines 365--377
+Overfull \hbox (0.62553pt too wide) in paragraph at lines 396--408
 \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 05$\OT1/ptm/m/n/10 . For eac
 h of the pre-vi-ously known, non-computer-assigned an-no-ta-tions, we looked
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
+Underfull \hbox (badness 10000) in paragraph at lines 440--441
 []\OT1/ptm/m/n/10 ----------
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
+Underfull \hbox (badness 10000) in paragraph at lines 440--441
 
  []
 
@@ -149,19 +149,19 @@ Runaway argument?
 ! Paragraph ended before \addcontentsline was complete.
 <to be read again> 
                    \par 
-l.429 }
+l.460 }
        
 ? 
 ! Extra }, or forgotten \endgroup.
 \@caption ... the#1\endcsname }{\ignorespaces #2}}
                                                   \begingroup \@parboxrestor...
-l.429 }
+l.460 }
        
 ? 
 ! Extra }, or forgotten \endgroup.
 \@endfloatbox ...pagefalse \outer@nobreak \egroup 
                                                   \color@endbox 
-l.430 \end{figure}
+l.461 \end{figure}
                   
 ? 
 [8] [9]
@@ -172,29 +172,51 @@ Runaway argument?
 ! Paragraph ended before \addcontentsline was complete.
 <to be read again> 
                    \par 
-l.444 }
+l.475 }
        
 ? 
 ! Extra }, or forgotten \endgroup.
 \@caption ... the#1\endcsname }{\ignorespaces #2}}
                                                   \begingroup \@parboxrestor...
-l.444 }
+l.475 }
        
 ? 
 ! Extra }, or forgotten \endgroup.
 \@endfloatbox ...pagefalse \outer@nobreak \egroup 
                                                   \color@endbox 
-l.445 \end{figure}
+l.476 \end{figure}
                   
 ? 
-[10] [11] (./cor.aux) ) 
+psfig: searching COL9A2.ps for bounding box
+psfig: including COL9A2.ps 
+Runaway argument?
+{\protect \numberline {\csname the\@captype \endcsname }{\ignorespaces \ETC.
+! Paragraph ended before \addcontentsline was complete.
+<to be read again> 
+                   \par 
+l.493 }
+       
+? 
+! Extra }, or forgotten \endgroup.
+\@caption ... the#1\endcsname }{\ignorespaces #2}}
+                                                  \begingroup \@parboxrestor...
+l.493 }
+       
+? 
+! Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.494 \end{figure}
+                  
+? 
+[10] [11] [12] (./cor.aux) ) 
 Here is how much of TeX's memory you used:
- 1208 strings out of 95847
- 15010 string characters out of 1195947
+ 1210 strings out of 95847
+ 15031 string characters out of 1195947
  60928 words of memory out of 1000001
- 4091 multiletter control sequences out of 10000+50000
+ 4092 multiletter control sequences out of 10000+50000
  10725 words of font info for 32 fonts, out of 500000 for 1000
  14 hyphenation exceptions out of 1000
  25i,6n,21p,282b,244s stack positions out of 1500i,500n,5000p,200000b,5000s
 
-Output written on cor.dvi (11 pages, 27512 bytes).
+Output written on cor.dvi (12 pages, 32044 bytes).
