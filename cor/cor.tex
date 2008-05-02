@@ -1,57 +1,90 @@
-\documentclass{article}
+\documentclass{bioinfo}
+\usepackage{algorithm2e}
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{psfig}
 \usepackage{times}
 \usepackage{setspace}
 \usepackage{url}
-%\usepackage[final]{pdfpages}
-%\usepackage{verbatim}
-%\usepackage{chapterbib}
-%\usepackage{ifthen}
-%\usepackage{longtable,lscape}
+\copyrightyear{2008}
+\pubyear{2008}
+
+
 \begin{document}
-\title{The Title}
-\author{
-Allen Day \and Jun Dong \and Stanley F. Nelson
-% Allen Day\correspondingauthor$^{1,2,\ddag}$ \email{Allen Day\correspondingauthor - allenday@ucla.edu} \and
-% Brian D. O'Connor$^{2,3,\ddag}$ \email{Brian D. O'Connor - boconnor@ucla.edu} \and
-% Jordan Mendler$^{1}$ \email{Jordan Mendler - jmendler@ucla.edu} \and
-% Jared Fox$^{1,4}$ \email{Jared Fox - jaredfox@ucla.edu} \and
-% Stanley F. Nelson$^{1}$ \email{Stanley F. Nelson - snelson@ucla.edu} \and
-% Lincoln D. Stein\correspondingauthor$^{2}$  \email{Lincoln D. Stein\correspondingauthor - lstein@cshl.edu}
-}
+\firstpage{1}
+
+\title[Transcriptional Co-regulation]{Gene Characterization From Patterns In Transcriptional Co-regulation}
+\author[Day \textit{et~al}]{Allen Day\,\footnote{these authors contributed equally to this work}~ Jun Dong\,$^{*}$ and Stanley F. Nelson\,\footnote{to whom correspondence should be addressed}}
+\address{Department of Human Genetics, David Geffen School of Medicine, University of California, Los Angeles.}
+\history{Received on XXXXX; revised on XXXXX; accepted on XXXXX}
+\editor{Associate Editor: XXXXXXX}
 \maketitle
 
-\section{Abstract}\label{Abstract}
-...
+\begin{abstract}
+
+\section{Motivation:}
+Microarray experiments are frequently designed to characterize classes of
+samples and genes.  However, a challenge in the analysis of these data is the
+relatively small number of samples observed compared to the number of genes
+measured for each sample.  Unless bolstered by additional sample and gene
+metadata, results produced under this condition are less strong, and the data
+less suitable for re-analysis when considering other biological questions.
+
+\section{Results:}
+We present a gene-gene transcriptional correlation matrix of \emph{Homo
+sapiens} prepared from a very large, quality-controlled set of Affymetrix
+HG-U133\_Plus\_2 microarrays.  We demonstrate that gene function can be
+predicted and that linkage regions can be reduced to caual genes with high
+precision using this resource, even in the complete absence of sample metadata.
+
+\section{Availability:}
+The authors have made gene expression and gene-gene correlation data available
+at \url{http://genome.ucla.edu/projects/XXX}.  Software for manipulating these
+data is also provided here, as well as from the Bioconductor website
+\url{http://bioconductor.org}.
+
+\section{Contact:} \href{snelson@ucla.edu}{snelson@ucla.edu}
+\end{abstract}
 
 \section{Introduction}
-\label{Hypothesis}
-%Genes can be annotated by observing their expression pattern across a large
-%number of anonymous, unlabeled samples.  Further, we assert that
-%non-orthologous genes can be annotated cross-species given 1) gene expression
-%observations in two species, and 2) a partial, sequence-based ortholog map
-%between the two species.
+Text Text Text  Text Text Text Text Text Text Text Text
 
-\section{Methods}\label{Methods}
+%\begin{equation} 
+%\sum x+ y =Z\label{eq:01}
+%\end{equation}
 
-% <execute lang="bash">
-% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.col | awk '{print $1}' > m0_col.tex
-% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.idx | awk '{print $1}' > m0_row.tex
+\section{Approach}
+Text Text Text  Text Text Text Text Text Text Text Text
+
+\begin{methods}
+\section{Methods}
+
+% <execute lang="bash"> wc -l
+% /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.col | awk
+% '{print $1}' > m0_col.tex wc -l
+% /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.idx | awk
+% '{print $1}' > m0_row.tex
 % </execute>
 
 \subsection{Data Processing}\label{Processing}
-We retrieved RMA-processed gene expression data for the HG-U133\_Plus\_2
-arraydesign from the Celsius microarray data warehouse
-(\url{http://genome.ucla.edu/projects/celsius}) \cite{rma,celsius}.  In total,
-there were \input{m0_row} arrays $S$, each of which reports measurements for \input{m0_col}
-probesets $P$.  We denote this initial $S{\times}P$ matrix as $M$.
 
-It was clear from a cursory examination of summary statistics prepared from $M$
-that there were abberant arrays present, and that these arrays would have a
-negative impact on any downstream analyses.  At a coarse level, there appeared
-to be XXX types of aberrant arrays:
+We retrieved RMA-processed gene expression data for the HG-U133\_Plus\_2
+arraydesign from the Celsius microarray data warehouse \cite{rma,celsius} and
+denote the $S$=\input{m0_row} array $\times$ $P=$\input{m0_col} probeset matrix
+as $M$. %(Equation \ref{equation:M}).
+
+%\begin{equation}\label{equation:M}
+%M_{s,p} =
+%\begin{pmatrix}
+%m_{1,1} & \cdots & m_{1,p} \\
+%\vdots  & \ddots & \vdots  \\
+%m_{s,1} & \cdots & m_{s,p} \\
+%\end{pmatrix}
+%\end{equation}
+
+A cursory examination of $M$ that there were abberant arrays present and that
+these arrays would have a negative impact on any downstream analyses.  At a
+coarse level, there appeared to be at least 3 types of aberrant arrays:
 
 \renewcommand{\labelenumi}{\Alph{enumi}.}
 \begin{enumerate}
@@ -66,22 +99,22 @@ measuring the same gene.
 We sought to remove these abberant arrays from the dataset.
 
 % <execute lang="R">
-% z             = read.table('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.summary2')
+% z             = read.table('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.summary2');
 % trim.fraction = 10;
 % brightdim.cutoff = 3;
-% trim.length   = as.integer(length(z[,5]) / trim.fraction)
+% trim.length   = as.integer(length(z[,5]) / trim.fraction);
 % z5            = sort(z[,5]);
-% z5.trim       = z5[ trim.length:(length(z5)-trim.length) ]
-% postscript('array_means.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc")
-% hist(z5.trim,breaks=50,xlab="mean probeset intensity",ylab="frequency",main="mean probeset intensity of arrays")
-% dev.off()
+% z5.trim       = z5[ trim.length:(length(z5)-trim.length) ];
+% postscript('array_means.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% hist(z5.trim,breaks=50,xlab="mean probeset intensity",ylab="frequency",main="mean probeset intensity of arrays");
+% dev.off();
 % write(trim.fraction, 'trim_fraction.tex');
 % write(brightdim.cutoff, 'brightdim_cutoff.tex');
 % write(mean(z5.trim),'trimmed_means_mean.tex');
 % write(sd(z5.trim),'trimmed_means_sd.tex');
-% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) >  brightdim.cutoff ),'bright_count.tex')
-% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) < -brightdim.cutoff ),'dim_count.tex')
-% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) < -brightdim.cutoff ) + sum( (z5 - mean(z5.trim)) / sd(z5.trim) >  brightdim.cutoff ),'brightdim_count.tex')
+% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) >  brightdim.cutoff ),'bright_count.tex');
+% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) < -brightdim.cutoff ),'dim_count.tex');
+% write(sum( (z5 - mean(z5.trim)) / sd(z5.trim) < -brightdim.cutoff ) + sum( (z5 - mean(z5.trim)) / sd(z5.trim) >  brightdim.cutoff ),'brightdim_count.tex');
 % write((1:length(z[,5]))[(z[,5] - mean(z5.trim)) / sd(z5.trim) > 3 | (z[,5] - mean(z5.trim)) / sd(z5.trim) < -3],'/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.brightdim',ncolumns=1);
 % </execute>
 %% <execute lang="bash">
@@ -96,23 +129,20 @@ We sought to remove these abberant arrays from the dataset.
 
 \subsubsection{Removal of Dim and Bright Arrays}\label{dimbright}
 
-Class A \& B arrays were easiest to identify.  We calculated the mean
-expression value of all probesets for each array, then calculated the mean and
-standard deviation of a \input{trim_fraction}\% trimmed distribution of those
-means.
-
-The trimmed means had a mean of \input{trimmed_means_mean} and a standard
-deviation of \input{trimmed_means_sd}.  A histogram of the distribution is
-given in Figure \ref{figure:means}.
-
-%\input{section_dna_microarray_data_processing}
-
-There were \input{brightdim_count} arrays with mean a expression value more
-than \input{brightdim_cutoff} standard deviations away from the mean of
-trimmed means.  These were primarily dim arrays (n=\input{dim_count}) but there
-were also bright arrays (n=\input{bright_count}).  These arrays were removed
-from further consideration, leaving a matrix $M\prime$ with \input{m1_row}
-arrays and \input{m0_col} probesets.
+Class A \& B arrays were easiest to identify.  Details of the exclusion
+procedure are shown in Algorithm \ref{algorithm:mprime}.  Essentially, we
+calculated the mean expression value of all probesets for each array, then
+calculated the mean and standard deviation of a \input{trim_fraction}\% trimmed
+distribution of those means.  The trimmed means themselves had a mean of
+\input{trimmed_means_mean} and a standard deviation of
+\input{trimmed_means_sd}.  A histogram of the distribution is given in Figure
+\ref{figure:means}.  There were \input{brightdim_count} arrays with mean a
+expression value more than \input{brightdim_cutoff} standard deviations away
+from the mean of trimmed means.  These were primarily dim arrays
+(n=\input{dim_count}) but there were also bright arrays
+(n=\input{bright_count}).  These arrays were removed from further
+consideration, leaving matrix $M\prime$ with \input{m1_row} arrays and
+\input{m0_col} probesets.
 
 \subsubsection{Removal of Inconsistent Arrays}\label{inconsistent}
 
@@ -124,30 +154,29 @@ linearly related than randomly selected pairs because they were targetting the
 same gene, and that these relationships could be used as a starting point to
 identify inconsistent arrays.
 
-We took all \input{symbol_count} unique gene symbols from
-the NetAffx HG-U133\_Plus\_2 gene annotation, and identified the subset $G$
+We took all \input{symbol_count} unique gene symbols from the NetAffx
+HG-U133\_Plus\_2 gene annotation, and identified the subset $G$
 (n=\input{symbol_gt2_count}) for which there were two or more probesets.  We
 constructed $G$ groups, each corresponding to a single gene symbol, i.e.
 $g_1={p_{g_1}1,\dots,p_{g_1}n},\dots,g_G={p_{g_G}1,\dots,p_{g_G}n}$.  Then, for
-each $g{\in}G$, we performed a linear regression of $log_10(signal)$ for all
-possible probeset pairs $p_gA,p_gB$ (n=\input{symbolgroup_pair_count}).  A
-distribution of $r^2$ values from those linear regressions is given in Figure
-\ref{figure:rsquare}.
+each $g{\in}G$, we performed a linear regression of $log_{10}(signal)$ for all
+possible probeset pairs $p_gA,p_gB$ (n=\input{symbolgroup_pair_count}).
 
 Examination of the probeset pairs with the largest value of $r^2$ revealed that
 the majority were control probesets that targeted spike-in sequences that are
-added as part of the microarray hybridization for quality control.  We
-performed \input{control_probesets_count} multiple regressions, allowing each
-control probeset to be the response variable once.  In the context of a single
-regression if an array's residual was, relative to all other arrays'
-residuals, more than 3 standard deviations away from the line, we incremented a
-counter for that array.  Outlier frequencies per per array is shown in Figure
-\ref{figure:rsquare}.
-
-After performing all \input{control_probesets_count} regressions, all arrays
-that were observed more than 3 standard deviations more than 5\% of the time
-(n=\input{outlier_badrow_count}) were removed from further consideration, leaving a
-matrix $M\prime\prime$ with \input{m2_row} arrays and \input{m0_col} probesets.
+added as part of the microarray hybridization for quality control.  Thus, we
+concluded that using the built-in control probesets was a robust way to
+identify aberrant arrays.  We performed \input{control_probesets_count}
+multiple regressions, allowing each control probeset to be the response
+variable once.  In the context of a single regression if an array's residual
+was, relative to all other arrays' residuals, more than 3 standard deviations
+away from the line, we incremented a counter for that array.  After performing
+all \input{control_probesets_count} regressions, all arrays that were observed
+more than 3 standard deviations more than 5\% of the time
+(n=\input{outlier_badrow_count}) were removed from further consideration,
+leaving a matrix $M\prime\prime$ with \input{m2_row} arrays and \input{m0_col}
+probesets.  This procedure is expressed Algorithm \ref{algorithm:mprimeprime}.
+Outlier frequencies per array are shown in Figure \ref{figure:rsquare}.
 
 % <execute lang="bash">
 % cat /home/allenday/cvsroot/celsius/dump/analysis2/HG-U133_Plus_2.symbol | awk '{print $1}' | sort | uniq | wc -l > symbol_count.tex
@@ -161,7 +190,7 @@ matrix $M\prime\prime$ with \input{m2_row} arrays and \input{m0_col} probesets.
 % #now build up the "repeat offender" vector
 % source('/home/allenday/cvsroot/celsius/dump/lib/R/Celsius/IO/exs.R');
 % conn = Celsius.exs('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim1');
-% ctrl1=e_names(conn)[substr(e_names(conn), 1, 4)=="AFFX"]
+% ctrl1=e_names(conn)[substr(e_names(conn), 1, 4)=="AFFX"];
 % mat = get(conn, ctrl1, s_names(conn)); dim(mat); mat=t(mat); dim(mat);
 % ### mat now has 12100 rows and 62 columns.
 % J = length(ctrl1); # J is actually ncol(mat)
@@ -177,21 +206,21 @@ matrix $M\prime\prime$ with \input{m2_row} arrays and \input{m0_col} probesets.
 %   #mat.residual.sd = as.vector( ( residuals(mat.lm) - mean(residuals(mat.lm)) ) / sd(residuals(mat.lm)) );
 %   mat.residual.sd = residuals(mat.lm) / sd(residuals(mat.lm));
 %   residual.tally = residual.tally + (abs( mat.residual.sd ) > residual.cutoff);
-%   r2.tally[j] = summary(mat.lm)$r.squared
+%   r2.tally[j] = summary(mat.lm)$r.squared;
 % }
 % #rownames(residual.tally) = rownames(mat);
-% table(residual.tally)
-% sum(residual.tally > J*0.1 )
+% table(residual.tally);
+% sum(residual.tally > J*0.1 );
 % # residual.tally = residual.tally / J;
-% # rt3=residual.tally
+% # rt3=residual.tally;
 % postscript('probeset_residuals.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
 % plot(sort(residual.tally), xlab='arrays, sorted by r^2', ylab='outlier frequency', main='array outlier frequency');
 % abline(5, 0, col='red');
-% dev.off()
+% dev.off();
 % #summary(r2.tally)
-% r2.tally
+% r2.tally;
 % write.table(ctrl1,'control_probesets.tex', row.names=FALSE, col.names=FALSE );
-% write.table(residual.tally, "residual.tally.txt", sep="\t")
+% write.table(residual.tally, "residual.tally.txt", sep="\t");
 % write.table( (1:12100)[residual.tally>5] , 'outlier_badrow.tex', row.names=FALSE, col.names=FALSE );
 % </execute>
 
@@ -201,53 +230,63 @@ matrix $M\prime\prime$ with \input{m2_row} arrays and \input{m0_col} probesets.
 % cat outlier_badrow.tex | wc -l > outlier_badrow_count.tex
 % </execute>
 
-\subsubsection{Gene-Gene Correlation Matrix}\label{Correlation}
+\subsubsection{Correlating Genes}\label{Correlation}
 
-After filtering out abberant arrays from out dataset (Section
+Subsequent to filtering out abberant arrays from out dataset (Section
 \ref{Processing}), we used the $M\prime\prime$ matrix to calculate
 $C\prime\prime$, a \input{m0_col} $\times$ \input{m0_col} matrix of Pearson
-correlation coefficients for every pair of probesets.  $C\prime\prime$ was used
-in all results presented in Section \ref{Results}.
+correlation coefficients for every pair of probesets (Equation
+\ref{equation:cprimeprime}).  $C\prime\prime$ was used in all results presented
+in Section \ref{Discussion}.
 
-\subsection{Gene Annotation}\label{Annotation Methods}
+\begin{equation}\label{equation:cprimeprime}
+C\prime\prime = cor({M^T}\prime\prime)
+\end{equation}
+
+\subsection{Annotating Genes}\label{Annotation Methods}
 
 For each probeset $p \in P$ on the HG-U133\_Plus\_2 arraydesign, we retrieved
-the correlation coefficient vector $r$ to all other probesets $P \ni p$ from
-$C\prime\prime$ (Section \ref{Correlation}).  We then selected the nearest
-neighbors.  This was done by placing $r$ into descending order, and calculating
-the derivative $r\prime$ as ${r_i}\prime = r_i - r_{i+1}$.  We used the
-Bayesian Change Point \emph{bcp} package XXX to produce $\hat{p}$, an
-estimate the probability of a changepoint for each position in $r\prime$.  A
-single best change point $\delta$ was selected as the index of the largest
-value of $r$ that preceded 10 consecutive values $\hat{p} < 0.5$.  Probesets $Q$
-where $r > \delta$ were used as input to the \emph{hyperGTest} function of
-the \emph{GOstats} package of Bioconductor \cite{bioconductor} to test for
-enrichment of Gene Ontology (GO) Biological Process (BP) annotations in a gene
-set.  \emph{hyperGTest} produced a set of predicted gene annotations $N_p$ for
-each $p \in P$ based on the annotation of neighbors $Q$.  We used the p-values
-from predicted annotations $N_p$ that were known to be  non-computationally
-assigned from the \emph{hgu133plus} package of Bioconductor \cite{bioconductor}
-to establish a conservative cutoff, below which predicted annotations should
-all be high-quality.
+and sorted in descending order $r = C{\prime\prime}_p$.  We took $r\prime$, the
+derivative of $r$, and used the R Bayesian Change Point \emph{bcp} to identify
+$\delta$, the index of the largest value of $r\prime$ that preceded a
+mostly-linear portion of the curve.
+%A single best change point $\delta$ was
+%selected as the index of the largest value of $r$ that preceded 10 consecutive
+%values $\hat{p} < 0.5$. 
+The subset of probesets where $r > \delta$ were defined as $Q$, and used as
+input to the \emph{hyperGTest} function of the \emph{GOstats} package of
+Bioconductor \cite{bioconductor} to test for enrichment of Gene Ontology (GO)
+Biological Process (BP) annotations in a gene set.  \emph{hyperGTest} produced
+a set of predicted gene annotations $N_p$ for each $p \in P$ based on the
+annotation of neighbors $Q$.  We applied Bonferroni correction to the p-values
+associated with each prediction by multiplying each p-value by the total number
+of predictions made for the corresponding probeset.  We used these corrected
+p-values from predicted annotations $N_p$ that were known to be
+non-computationally assigned from the \emph{hgu133plus} package of Bioconductor
+\cite{bioconductor} to establish a conservative cutoff, below which predicted
+annotations should all be high-quality.  This process is presented in Algorithm
+\ref{algorithm:annotation}.
 
-\subsection{Linkage Region Candidate Selection}\label{Linkage}
+\subsection{Analyzing Linkage Regions}\label{Linkage}
 
 For a given phenotype, a group of known genes $G$ known to be associated with
 that phenotype were retrieved from previous publications and online databases.
 The list of genes was transformed to a list of probesets $P$ present on the
 HG-U133\_Plus\_2 arraydesign using the gene symbol $\rightarrow$ probeset
-mapping available from NetAffx \cite{netaffx}.  In the event that a gene in $G$ mapped to
-multiple probesets, only the first of the probesets in alphanumerical order was
-selected to prevent multiple counting.  Probesets $P$ were then mapped to
-6-megabase genomic regions $A$ by finding the center point of each probeset's
-alignment to UCSC's March 2006 (hg18) version of the human genome and expanding
-by 3 megabases in each direction.  Each region in $A$ was then mapped to a list
-of all HG-U133\_Plus\_2 probesets $Q$ aligned to that region.  Then, for each
-$p{\in}P$, a $Q{\times}P-1$ slab was retrieved from $C\prime\prime$ (Section
-\ref{Correlation}), and row-summarized to produce a $Q$-length vector
-$\vec{\bar{r}}$ of mean correlation coefficients to $P{\ni}p$.
+mapping available from NetAffx \cite{netaffx}.  Probesets $P$ were then mapped
+to 6-megabase genomic regions $A$ by finding the center point of each
+probeset's alignment to UCSC's March 2006 (hg18) version of the human genome
+and expanding by 3 megabases in each direction.  Each region in $A$ was then
+mapped to a list of all HG-U133\_Plus\_2 probesets $Q$ aligned to that region.
+Then, for each $p \in P$, a $Q{\times} G(G \ni g)$ slab was retrieved from
+$C\prime\prime$ (Section \ref{Correlation}), and row-summarized to produce a
+$Q$-length vector $\vec{\bar{r}}$ of mean correlation coefficients to $G \ni
+g$.  The algorithm for this procedure is presented in Algorithm
+\ref{algorithm:linkage}.
 
-\section{Results}\label{Results}
+\end{methods}
+
+\section{Discussion}\label{Discussion}
 
 Our aim was to mine the matrix of correlation coefficients for all probesets on
 the Affymetrix HG-U133\_Plus\_2 arraydesign for new information.
@@ -259,18 +298,19 @@ entirely from analyses.  For probesets, we only included gene-symbol
 Ontology (GO) Biological Process (BP) \cite{go, bioconductor} metadata.
 
 \subsection{Data Processing}\label{Processing Results}
+
 All HG-U133\_Plus\_2 arrays (n=\input{m0_row}) were retrieved from Celsius
 \cite{celsius}.  We assessed the arrays using some simple quality control (QC)
-metrics, and excluded several hundred based on unusual array intensities and
-unusual behavior of control probesets (Section \ref{Processing}), yielding a
-\input{m2_row} array $\times$ \input{m0_col} column matrix, denoted
-$M\prime\prime$.  We calculated the Pearson correlation coefficient for every
-pair of probesets in $M\prime\prime$, yielding a \input{m0_col} $\times$
-\input{m0_col} correlation matrix, denoted $C\prime\prime$.
+metrics, and excluded several hundred arrays as described in Section
+\ref{Processing} yielding a \input{m2_row} array $\times$ \input{m0_col} column
+matrix, denoted $M\prime\prime$.  We calculated the Pearson correlation
+coefficient for every pair of probesets in $M\prime\prime$, yielding a
+\input{m0_col} $\times$ \input{m0_col} correlation matrix, denoted
+$C\prime\prime$.
 
 \subsection{Disease Gene Recovery}\label{Recovery}
 
-Commonly, the first published evidence of association between a hereditary
+Usually the first published evidence of association between a hereditary
 disease and one or more genes does not explicitly refer to the associated genes
 but rather describe the association to multiple associated genetic loci that
 should be examined more closely \cite{joubert,microcephaly}.  These so-called
@@ -323,24 +363,50 @@ known gene given a much smaller profile for comparison.  We were able to
 correctly identify 75\% (3/4) of the microcephaly genes.
 
 Finally, we applied our scanning method to Joubert syndrome.  Seven linkage
-regions for Joubert syndrome have been identified, and five of these have had
-the associated gene in the region identified.  The purpose of this third test
-was another instance of reproducibility of results, as well as to see if we
-could make a prediction as to the identity of the sixth and seventh genes in
-the remaining linked regions for which a gene has not yet been identified.  We
-were able to correctly identify 80\% (4/5) of the five genes known to be
-associated with Joubert syndrome.  Additionally, we were able to identify XXX
-candidates in linkage region JBTS1 (r>XXX, sd>XXX) and XXX candidates in
-linkage region JBTS2 (r>XXX, sd>XXX).
+regions for Joubert syndrome have been identified (JBTS1-JBTS7).  Five of
+these have had the associated gene in the region identified (JBTS3=AHI1;
+JBTS4=NPHP1; JBTS5=CEP290; JBTS6=TMEM67; JBTS7=RPGRIP1L)
+\cite{JBTS3,JBTS4,JBTS5,JBTS6,JBTS7} while regions JBTS1 and JBTS2 have so far
+only been linked to D9S158 \cite{JBTS1} on chromosome 9 and a 17-megabase
+centromeric region of chromosome 11 \cite{JBTS2A,JBTS2B,JBTS2C}, respectively.
+
+The purpose of this third test was another instance of reproducibility of
+results, as well as to see if we could make a prediction as to the identity of
+the genes in remaining linked regions JBTS1 and JBTS2 for which a gene has not
+yet been identified.  We were able to correctly identify 80\% (4/5) of the five
+genes known to be associated with Joubert syndrome.  A plot of $r$-values
+surrounding NPHP1 is given in Figure \ref{figure:NPHP1}.  We also show data from the
+Gene Expression Atlas \cite{GNF} for the same region in Figure \ref{figure:GeneAtlas}
+to demonstrate that NPHP1 could not be identified merely by scanning this
+region for brain-specific or even brain-expressed genes.
+
+Based solely on the correlation data, we are able to suggest the
+uncharacterized gene C9orf116 as the most likely candidate for the 6-megabase
+region surrounding D9S158 that is synonymous with JBTS1 (Figure
+\ref{figure:JBTS1}).
+
+We also examined JBTS2 to see if we could suggest any genes that might be
+associated with Joubert syndrome in this region as well.  JBTS2 is a
+centromere-spanning 17-megabase region on chromosome 11 between markers
+D11S1915 and D11S4191 (Figure \ref{figure:JBTS2}).  We included an additional
+3-megabases upstream and downstream of the outer markers.  The best candidate
+for JBTS2 is AGBL2.  However, this is a large region and there are
+highly-correlated genes on both sides of the centromere.  For these reasons we
+suggest that the 17-megabase centromere-spanning linkage region JBTS2 is
+actually two separate linkage regions which we designate as JBTS2p and JBTS2q
+located on the p- and q-side of the centromere, respectively.  The best
+candidate in JBTS2p is AGBL2.  Additional candidates in JBTS2p are C11orf49 and
+probeset 229687\_s\_at.  The best candidate in region JBTS2q is M4A8B.
+Additionally candidates in JBTS2q are SCGB1A1 and probeset 229688\_at.
 
 %joubert
-% JBTS1			9q34.3		unknown gene	D9S158
-% JBTS2 aka CORS2	11p12-11q13.3	unknown gene	D11S1915(lod=5.2),D11S1313(lod=3.96),D11S4191-D11S1344(lod=NA)
-% JBTS3			6q23		AHI1
-% JBTS4			2q13		NPHP1
-% JBTS5			12q21.32	CEP290 (aka NPHP6)
-% JBTS6			8q21		TMEM67
-% JBTS7			16q12.2		RPGRIP1L
+% JBTS1                 9q34.3          unknown gene    D9S158
+% JBTS2 aka CORS2       11p12-11q13.3   unknown gene    D11S1915(lod=5.2),D11S1313(lod=3.96),D11S4191-D11S1344(lod=NA)
+% JBTS3                 6q23            AHI1
+% JBTS4                 2q13            NPHP1
+% JBTS5                 12q21.32        CEP290 (aka NPHP6)
+% JBTS6                 8q21            TMEM67
+% JBTS7                 16q12.2         RPGRIP1L
 
 % D9S158   chr9  138138869 138339251
 % D11S1915 chr11 45465651 45666307
@@ -349,75 +415,46 @@ linkage region JBTS2 (r>XXX, sd>XXX).
 % D11S1344 chr11 46023436 46223802
 % union    chr11 42465651 62856421
 
-In the process of identifying direct linkage between a gene and a 
-
-
-We evaluated the possibility that $C\prime\prime$ (Section \ref{Processing
-Results}) could be used to narrow the scope of disease gene candidates
-
- as a tool for prioritizing genes present in regions
-known to be associated with a disease.
-
-
-  We started with a set of 56 probesets
-representing 48 genes that were identified in a microarray study that searched
-for genes associated with skeletal abnormality \cite{funari}.  We used the UCSC
-Genome Browser \cite{karolchik} to align these probesets to the March 2006
-build of the human genome.
+%  We started with a set of 56 probesets
+%representing 48 genes that were identified in a microarray study that searched
+%for genes associated with skeletal abnormality \cite{funari}.  We used the UCSC
+%Genome Browser \cite{karolchik} to align these probesets to the March 2006
+%build of the human genome.
 
 \subsection{Gene Annotation}\label{Annotation Results}
 
-We evaluated the possibility of assigning new Gene Ontology annotations to a
-gene using only the identities and annotations attached to that gene's nearest
-neighbors.  We measured distance between genes using the Pearson correlation
-coefficient $r^2$, and considered genes as neighbors where $r^2 > 0.5$.  This
-value was selected from empirical observation of the minima and maxima of all
-correlation coefficients, as it identified at least one neighbor for more than
-90\% of all probesets (Figure \ref{figure:cor_minmax}).
+We observed that each probeset $p \in P$ on the HG-U133\_Plus\_2 arraydesign
+typically has only a few highly correlated neighbor probesets, while the
+majority of probesets are slightly correlated to slightly anti-correlated.  An
+example of the rapid drop in correlation coefficients for a single probeset
+1316\_at is shown in Figure \ref{figure:cortip}.  We hypothesized that the
+nearest neighbors were likely to be involved in the the same biological
+process, and that the observed transcriptional co-regulation would allow us to
+suggest roles for unannotated genes, and to suggest previously unknown roles
+for characterized genes.
 
-\subsubsection{Calibration}\label{Calibration}
+To this end, we first evaluated how well the co-regulated neighbors could be
+used to reconstruct human-curated annotation that were already assigned to the
+gene using the Biological Process (BP) aspect of the Gene Ontology (GO)
+\cite{go}.  To do so for a single BP-annotated probeset, we first needed to
+discriminate between nearby and distant neighbors and did so using the
+\emph{bcp}, the Bayesian Change Point library of the R programming language.
+The subset of nearby neighbors for which BP was available was then tested for
+category enrichment using a hypergeometric-based test provided by the
+Bioconductor \cite{bioconductor} package \emph{GOstats}.  We tested for
+enrichment of all GO BP categories associated with any of the nearby neighbors,
+and so adjusted all p-values output by the hypergeometric test using Bonferroni
+correction in order to compensate for multiple hypothesis testing.
 
-We were creating putative gene annotations using an automated process, so we
-wanted to observe the properties of pre-existing, non-computation annotations.
-This allowed us to choose parameters for the process that would yield only
-high-confidence annotations.
+We then used the BP annotations that were \emph{already known} from existing
+literature and ``recovered'' solely based on nearby neighbor annotations to
+estimate the p-value below which novel predictions should be accurate.
 
-A subset of 1000 probesets were randomly selected, 536 of which had associated
-a non-computer-assigned annotation (Figure \ref{figure:bp_annot}).  There were
-a total of 1158 of these annotations, or approximately 2.16 annotations per
-probeset.  For this same subset, we used the Bioconductor \emph{GOstats}
-package to perform a hypergeometric test (hyperGTest) on the annotation of
-neighboring genes to measure which annotations were significantly enriched.  We
-made an adjustment to our neighbor criterion and only used the 50 most
-correlated neighbors as input to hyperGTest in the event that there were more
-than 50 neighbors.  This allowed us to compute the significance of neighbors'
-annotations in a reasonable amount of time.
-
-hyperGTest produced a total of 30,280 possible annotations where $p-value <
-0.05$.  For each of the previously known, non-computer-assigned annotations, we
-looked up the p-value of the same annotation, if any, that came out of
-hyperGTest.  We were able to recover $588/1158, 51\%$ of the annotations.
-The distribution of p-values signifying the test's confidence in each of those
-recoveries is given in Figure \ref{figure:bp_recall}, and indicates that the
-majority of recalled annotations have $p-value < 0.001$, and nearly all have
-$p-value < 0.00001$.  We chose $p-value < 0.00001$ as the threshold for
-high-quality, novel annotations suggested by hyperGTest.  There were 966
-annotations (approximately one per probeset) with p-value below this threshold
-and the distribution of their p-values is given in Figure
-\ref{figure:bp_novel}.
-
-Manual examination of these suggested annotations revealed that...
-XXX FAKE XXX
-many of the annotations were ``near misses'' to the existing annotation, as
-they were neighbors in the structure of the Gene Ontology graph.  90\% of
-annotation were within one edge traversal of the Gene Ontology graph structure.
-XXX END FAKE XXX.
-
-\subsubsection{Prediction}\label{Prediction}
-
-XXX FILL THESE NUMBERS IN XXX
-
-While the majority of the arraydesign probes for characterized, known genes,
+We were able to recover the correct annotation for XXX\% of known annotations.
+The relationship between fractional recovery and confidence of the prediction
+(p-value) is given in Figure XXX.  The vast majority of recovered annotations
+(XXX\%) had an adjusted p-value of less than XXX, and we used this as a cutoff
+below which predicted annotations should be accurate.
 
 More than XXX about 10,000 XXX probesets on the HG-U133\_Plus\_2 arraydesign are not
 assigned to any existing gene symbol.  This typically means they were designed
@@ -428,7 +465,7 @@ little or no \emph{in vivo} data.  This group contains predicted genes, as well
 as transcripts that have been observed in EST libraries.
 
 Typical probesets in both of these groups have no annotation whatsoever.  We
-were able to assign XXX annotations to XXX probesets (XXX \%) in these groups.
+were able to assign XXX annotations to XXX probesets (XXX\%) in these groups.
 The data provided here represent an initial, and thus significant, step forward
 in the characterization of the roles of these hypothetical and rarely observed
 genes.
@@ -437,94 +474,317 @@ Our assignment of an additional XXX annotations to genes which are already
 characterized is also significant, as it suggests direct linkage between
 biological processes previously known to be only indirectly related.
 
-----------\linebreak
+\section{Conclusion}
+Text Text Text Text Text Text
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
+\begin{enumerate}
+\item this is item, use enumerate 
+\item this is item, use enumerate 
+\item this is item, use enumerate 
+\end{enumerate}
+
+Text Text Text Text Text Text
+
+\section*{Funding}
+Text Text Text Text Text Text
+
+\section*{Acknowledgement}
+Text Text Text Text Text Text  Text Text.
+
 \bibliography {b}
 \bibliographystyle {plain}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \newpage
-\section{Figures}\label{Figures}
+%\begin{thebibliography}{}
+%\bibitem[Bofelli {\it et~al}., 2000]{Boffelli03} Bofelli,F., Name2, Name3 (2003) Article title, {\it Journal Name}, {\bf 199}, 133-154.
+%\bibitem[Bag {\it et~al}., 2001]{Bag01} Bag,M., Name2, Name3 (2001) Article title, {\it Journal Name}, {\bf 99}, 33-54.
+%\end{thebibliography}
 
-\begin{figure}[htbp]
+%%%%%%%%%%%%%%%%
+% figures
+%%%%%%%%%%%%%%%%
+
+% Plotted inline with text
+
+\begin{figure}[!tpb]
 \label{figure:means}
-\resizebox{12cm}{!}{\psfig{figure=array_means.ps}}
-\caption{
-
-Mean probeset signal intensity of arrays.  The mean value for all probesets was
+\centerline{\resizebox{9cm}{!}{\psfig{figure=array_means.ps}}}
+\caption{Mean probeset signal intensity of arrays.  The mean value for all probesets was
 calculated for each array (x-axis) and the frequency of any given mean is
-plotted by bin (y-axis).  Severa extremely bright arrays (n=15) are not shown.
-
-}
+plotted by bin (y-axis).  Several extremely bright arrays (n=15) are not shown.}
 \end{figure}
-\pagebreak
 
-\begin{figure}[htbp]
+% Plotted inline with text
+
+\begin{figure}[!tpb]
 \label{figure:rsquare}
-\resizebox{12cm}{!}{\psfig{figure=probeset_residuals.ps}}
-\caption{
-
-Regressions of control probesets reveal aberrant arrays.  Multiple regressions
+\centerline{\resizebox{9cm}{!}{\psfig{figure=probeset_residuals.ps}}}
+\caption{Regressions of control probesets reveal aberrant arrays.  Multiple regressions
 were performed for all 62 HG-U133\_Plus\_2 control probesets.  Arrays (x-axis)
 are plotted versus the fraction of observations with regression residual
 $>3\sigma$ (y-axis).  A red horizontal line indicates a cutoff above which
-arrays are omitted from analysis.
-
-}
+arrays are omitted from analysis.}
 \end{figure}
-\pagebreak
 
-\begin{figure}[htbp]
+% <execute lang="R">
+% center=TRUE;
+% directory='cartilage';
+% gene='COL9A2';
+% prefix='cart';
+% postscript('COL9A2.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% source('./cart/regionplot.R');
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
 \label{figure:COL9A2}
-\resizebox{12cm}{!}{\psfig{figure=COL9A2.ps}}
-\caption{
+\centerline{\resizebox{9cm}{!}{\psfig{figure=COL9A2.ps}}}
+\caption{Gene correlations to a cartilage-specific gene list within a 6-megabase region
+surrounding the location of an associated gene.  The genomic position (x-axis)
+of probesets within a 6-megabase region centered at the location of COL9A2, a
+gene known to be associated with cartilage development, is plotted versus the
+Pearson correlation coefficient $r$ (y-axis) to a list of cartilage-expressed
+probesets targetting other genes across 11636 HG-U133\_Plus\_2 microarrays.
+Solid circles: probesets targeting COL9A2, open triangles: other probesets in
+the cartilage-expressed list, $\times$s: probesets not designed to target a
+known gene, open circles: other probesets.}
+\end{figure}
 
-Gene correlations to a cartilage-specific gene list within a 6-megabase region.
-The genomic position (x-axis) of probesets within a 6-megabase region centered
-at the location of a gene known to be associated with cartilage development is
+% <execute lang="R">
+% center=TRUE;
+% directory='joubert';
+% gene='NPHP1';
+% prefix='cart';
+% postscript('NPHP1.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% source('./cart/regionplot.R');
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
+\label{figure:NPHP1}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=NPHP1.ps}}}
+\caption{Gene correlations to a list of Joubert syndrome-associated genes within a
+6-megabase region surrounding the location of an associated gene.  The genomic
+position (x-axis) of probesets within a 6-megabase region centered at the
+location of a NPHP1, a gene known to be associated with Joubert syndrome, is
 plotted versus the Pearson correlation coefficient $r$ (y-axis) to a list of
-cartilage-expressed probesets targetting other genes across 11636
-HG-U133\_Plus\_2 microarrays.  Solid circles: probesets targeting COL9A2, open
-triangles: other probesets in the cartilage-expressed list, $\times$s:
-probesets not designed to target a known gene, open circles: other probesets.
+probesets targetting other genes known to be associated with Joubert syndrome
+across 11636 HG-U133\_Plus\_2 microarrays.  Solid circles: probesets targeting
+NPHP1, open triangles: other probesets in the Joubert syndrome gene list,
+$\times$s: probesets not designed to target a known gene, open circles: other
+probesets.}
+\end{figure}
 
+% XXX do this
+
+\begin{figure}[!tpb]
+\label{figure:GeneAtlas}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=NPHP1_GeneAtlas.ps}}}
+\caption{Normal tissue expression surrounding NPHP1.  Probeset position in
+ascending genomic order (x-axis) versus tissue (y-axis) from the GNF Expression
+Atlas 2 are presented as a tissue-clustered, column-scaled heatmap.  Black=low
+expression, white=high expression.  Black bars in the margin indicate brain
+tissue rows, and the column representing Joubert syndrome-associated gene
+NPHP1.}
+\end{figure}
+
+% <execute lang="R">
+% prefix='novel';
+% center=FALSE;
+% directory='joubert';
+% gene='JBTS1';
+% prefix='novel';
+% postscript('JBTS1.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% source('./cart/regionplot.R');
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
+\label{figure:JBTS1}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=JBTS1.ps}}}
+\caption{Gene correlations to a list of Joubert syndrome-associated genes within 3
+megabases of JBTS1 marker D9S158.  The genomic position (x-axis) of probesets
+within a 6-megabase region on chromosome 9 centered at the location of marker D9S158, the peak
+of Joubert syndrome associated region JBTS1, is plotted versus the Pearson
+correlation coefficient $r$ (y-axis) to a list of probesets targetting other
+genes known to be associated with Joubert syndrome across 11636
+HG-U133\_Plus\_2 microarrays.  $\times$s: probesets not designed to target a
+known gene, open circles: other probesets.  The probesets located at ~137.5
+megabases for C9orf116 are the best candidate for a Joubert syndrome gene
+within this region.}
+\end{figure}
+
+% <execute lang="R">
+% prefix='novel';
+% center=FALSE;
+% directory='joubert';
+% gene='JBTS2';
+% prefix='novel';
+% postscript('JBTS2.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% source('./cart/regionplot.R');
+% abline(v=(45465651/1000000),col='red');
+% abline(v=(45666307/1000000),col='red');
+% abline(v=(55890635/1000000),col='orange');
+% abline(v=(56091023/1000000),col='orange');
+% abline(v=(59656135/1000000),col='blue');
+% abline(v=(59856421/1000000),col='blue');
+% abline(v=(46023436/1000000),col='cyan');
+% abline(v=(46223802/1000000),col='cyan');
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
+\label{figure:JBTS2}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=JBTS2.ps}}}
+\caption{Gene correlations to a list of Joubert syndrome-associated genes within 3
+megabases of the 17-megabase region JBTS2.  The genomic position (x-axis) of
+probesets within a 26-megabase region centered at JBTS2, a centromere-spanning
+17-megabase region of chromosome 11 demarcated by D11S1915 and D11S4191 known
+to be associated with Joubert syndrome, is plotted versus the Pearson
+correlation coefficient $r$ (y-axis) to a list of probesets targetting other
+genes known to be associated with Joubert syndrome across 11636
+HG-U133\_Plus\_2 microarrays.  $\times$s: probesets not designed to target a
+known gene, open circles: other probesets.  Paired vertical lines indicate the
+posiiton of markers used in the mapping of this region.  From left to right:
+D11S1915 (red), D11S1344 (cyan), D11S1313 (orange), D11S4191 (blue).  The
+probeset located at ~47 megabases for AGBL2 is the best candidate for a Joubert
+syndrome gene within this region.}
+\end{figure}
+
+% <execute lang="R">
+% .libPaths('/home/allenday/lib/R');
+% library('bcp');
+% source('/home/allenday/cvsroot/celsius/dump/lib/R/Celsius/IO/exe.R');
+% conn.exe = Celsius.exe('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim2');
+% d0 = sort(as.vector(get(conn.exe,e_names(conn.exe)[1])),decreasing=TRUE)[1:100];
+% d1 = d0[1:99] - d0[2:100];
+% d2 = (bcp(d1)$posterior.prob)[1:98];
+% postscript('cortip.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% plot(d0[2:100],ylim=c(0,1),pch=4,xlab='neighbors, ordered by r',ylab='correlation r / changepoint probability of r\'',main=paste('identification of neighbors of ',e_names(conn.exe)[1]));
+% lines(d2[1:98],lty=1);
+% abline(v=9.5,lty=2,col='red');
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
+\label{figure:cortip}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=cortip.ps}}}
+\caption{Identification of most correlated neighbors for probeset 1007\_s\_at.
+Pearson correlation coefficient $r$ (y-axis) is plotted for the 100 most highly
+correlated probesets to 1007\_s\_at (x-axis) using $\times$s.  Solid lines
+indicates the probability of a change in slope of $r\prime$.  A vertical dotted
+line indicates the position above which slope changes of $r\prime$ are common.}
+\end{figure}
+
+\begin{algorithm}\label{algorithm:mprime}
+\SetLine
+\KwIn{List of arrays}
+\KwOut{List of arrays of typical brightness}
+
+$m = []$\;
+$good = []$\;
+\ForEach{Array $s$}{
+  $m = [m, mean(M_s)]$\;
 }
-\end{figure}
-\pagebreak
+$m_{trim} = sort(m)_{m*0.1} \dots sort(m)_{m*0.9}$\;
+$\mu    = mean(m_{trim})$\;
+$\sigma = standard_deviation(m_{trim})$\;
+\ForEach{Array $s$}{
+  \If{${\mid}mean(M_s) - \mu{\mid} / \sigma < 3$}{
+    $good = [good,s]$\;
+  }
+}
+\Return{good}\;
+\caption{Identification and removal of dim and bright arrays}
+\end{algorithm}
+
+\begin{algorithm}\label{algorithm:mprimeprime}
+\SetLine
+\KwIn{List of arrays, List of control probesets}
+\KwOut{List of arrays with consistent control probesets}
+
+$mark = []$\;
+$good = []$\;
+\ForEach{Control probeset $c \in C$}{
+  $lm = regression(M_{C \ni c}, response=M_c)$\;
+  $r = residuals(lm)$\;
+  $\mu = mean(r)$\;
+  $\sigma = standard_deviation(r)$\;
+  \ForEach{Array z-score $z = (r - \mu) / \sigma$}{
+    \If{${\mid}z{\mid} > 3$}{
+      $mark[z]++$\;
+    }
+  }
+}
+\ForEach{Array $a$}{
+  \If{$mark[a] / length(C) < 0.05 $}{
+    $good = [good, a]$\;
+  }
+}
+\Return{good}\;
+\caption{Identification and removal of arrays with deviant control probeset signals}
+\end{algorithm}
+
+\begin{algorithm}\label{algorithm:linkage}
+\SetLine
+\KwIn{$E$, a list of ``profile'' gene symbols}
+\KwOut{$F$, a list of ``candidate'' probesets / gene symbols}
+$P = []$\;
+$best = []$\;
+$hit = []$\;
+\ForEach{Gene symbol $g \in G$}{
+  $P = [P,probesets(g)]$\;
+}
+\ForEach{Gene symbol $g \in G$}{
+  $b = genomic\_position(g)$\;
+  $b_{min} = b - 3{\times}10^6$\;
+  $b_{max} = b + 3{\times}10^6$\;
+  $Q = probesets\_in\_region(b_{min},b_{max})$\;
+  $best[g] = -1$\;
+  \ForEach{Probeset $q \in Q$}{
+    $T = probesets(E) \ni probesets(g)$\;
+    $r = { {\sum_{t}^{T} C{\prime\prime}_t} \over {length(T)} }$\;
+    \If{$r > best[g]$}{
+      $bet[g] = r$\;
+      $hit[g] = gene\_symbol(q)$\;
+    }
+  }
+}
+\Return{$hit$}\;
+\caption{A method for identifying the highest correlated gene to a gene list
+within a genomic region}
+\end{algorithm}
+
+\begin{algorithm}\label{algorithm:annotation}
+\SetLine
+\KwIn{All HG-U133\_Plus\_2 probesets $P$}
+\KwOut{}
+\ForEach{Probeset $p \in P$}{
+  $R = sort(C{\prime\prime}_p \ni p)$\;
+  $B = Bayesian\_change\_point(R\prime)$\;
+  $block = 0$\;
+  $offset = 1$\;
+  \ForEach{$i \in 1 {\dots} length(B)$}{
+    \eIf{$B_i < 0.5$}{
+      $block++$\;
+    }{
+      $block = 0$\;
+    }
+    \If{$block >= 10$}{
+      $offset = i$\;
+      Break\;
+    }
+  }
+}
+\Return{$hyperGTest(R_1, \dots, R_{offset})$}
+\caption{A method for selecting probeset neighbors from correlation data}
+\end{algorithm}
 
 
-%XXX
-\begin{figure}[htbp]
-\label{figure:cor_minmax}
-%\includegraphics[width=12cm]{mincor_maxcor.png}
-\caption{Correlation $r^2$ Minima vs. Maxima, All Probesets.}
-\end{figure}
-%\pagebreak
 
-%XXX
-\begin{figure}[htbp]
-\label{figure:bp_annot}
-%\includegraphics[width=12cm]{bp_annot.png}
-\caption{Fraction of Annotated Probesets.}
-\end{figure}
-%\pagebreak
 
-%XXX
-\begin{figure}[htbp]
-\label{figure:bp_recall}
-%\includegraphics[width=12cm]{bp_recall.png}
-\caption{Recall of Known Annotation.}
-\end{figure}
-%\pagebreak
-
-%XXX
-\begin{figure}[htbp]
-\label{figure:bp_novel}
-%\includegraphics[width=12cm]{bp_novel.png}
-\caption{P-values of High-Quality, Novel Annotation.}
-\end{figure}
-%\pagebreak
 
 \end{document}
+
+
+
+

@@ -25,14 +25,14 @@
    xlab='genomic offset, megabases', ylab=ylab, main=paste(as.vector(t(cart.gene[cart.gene[,2]==this.probeset,])))
  );
 
- abline(v=(45465651/1000000) - 52.66104,col='red')
- abline(v=(45666307/1000000) - 52.66104,col='red')
- abline(v=(55890635/1000000) - 52.66104,col='orange')
- abline(v=(56091023/1000000) - 52.66104,col='orange')
- abline(v=(59656135/1000000) - 52.66104,col='blue')
+ abline(v=(45465651/1000000),col='red')
+ abline(v=(45666307/1000000),col='red')
+ abline(v=(55890635/1000000),col='orange')
+ abline(v=(56091023/1000000),col='orange')
+ abline(v=(59656135/1000000),col='blue')
    
- abline(v=(59856421/1000000) - 52.66104,col='blue')
+ abline(v=(59856421/1000000),col='blue')
   
- abline(v=(46023436/1000000) - 52.66104,col='cyan')
- abline(v=(46223802/1000000) - 52.66104,col='cyan')
+ abline(v=(46023436/1000000),col='cyan')
+ abline(v=(46223802/1000000),col='cyan')
 

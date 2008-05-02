@@ -1,9 +1,30 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{JBTS6}
+L~Baala, S~Romano, R~Khaddour, S~Saunier, UM~Smith, S~Audollent, C~Ozilou,
+  L~Faivre, N~Laurent, B~Foliguet, A~Munnich, S~Lyonnet, R~Salomon,
+  F~Encha-Razavi, MC~Gubler, N~Boddaert, P~de~Lonlay, CA~Johnson, M~Vekemans,
+  C~Antignac, and T~Attie-Bitach.
+\newblock {The Meckel-Gruber syndrome gene, MKS3, is mutated in Joubert
+  syndrome.}
+\newblock {\em Am J Hum Genet}, 80(1):186--94, 2007.
 
 \bibitem{celsius}
 A~Day, MR~Carlson, J~Dong, BD~O'Connor, and SF~Nelson.
 \newblock {Celsius: a community resource for Affymetrix microarray data.}
 \newblock {\em Genome Biol}, 8(6):R112, 2007.
+
+\bibitem{JBTS7}
+M~Delous, L~Baala, R~Salomon, C~Laclef, J~Vierkotten, K~Tory, C~Golzio,
+  T~Lacoste, L~Besse, C~Ozilou, I~Moutkine, NE~Hellman, I~Anselme,
+  F~Silbermann, C~Vesque, C~Gerhardt, E~Rattenberry, MT~Wolf, MC~Gubler,
+  J~Martinovic, F~Encha-Razavi, N~Boddaert, M~Gonzales, MA~Macher, H~Nivet,
+  G~Champion, JP~Berthélémé, P~Niaudet, F~McDonald, F~Hildebrandt, CA~Johnson,
+  M~Vekemans, C~Antignac, U~Rüther, S~Schneider-Maunoury, T~Attié-Bitach, and
+  S~Saunier.
+\newblock {The ciliary gene RPGRIP1L is mutated in cerebello-oculo-renal
+  syndrome (Joubert syndrome type B) and Meckel syndrome.}
+\newblock {\em Nat Genet}, 39(7):875--81, 2007.
 
 \bibitem{funari}
 VA~Funari, A~Day, D~Krakow, ZA~Cohn, Z~Chen, SF~Nelson, and DH~Cohn.
@@ -54,15 +75,73 @@ D~Karolchik, RM~Kuhn, R~Baertsch, GP~Barber, H~Clawson, M~Diekhans, B~Giardine,
 \newblock {The UCSC Genome Browser Database: 2008 update.}
 \newblock {\em Nucleic Acids Res}, 36(Database issue):D773--9, 2008.
 
+\bibitem{JBTS2A}
+LC~Keeler, SE~Marsh, EP~Leeflang, CG~Woods, L~Sztriha, L~Al-Gazali, A~Gururaj,
+  and JG~Gleeson.
+\newblock {Linkage analysis in families with Joubert syndrome plus oculo-renal
+  involvement identifies the CORS2 locus on chromosome 11p12-q13.3.}
+\newblock {\em Am J Hum Genet}, 73(3):656--62, 2003.
+
 \bibitem{netaffx}
 G~Liu, AE~Loraine, R~Shigeta, M~Cline, J~Cheng, V~Valmeekam, S~Sun, D~Kulp, and
   MA~Siani-Rose.
 \newblock {NetAffx: Affymetrix probesets and annotations.}
 \newblock {\em Nucleic Acids Res}, 31(1):82--6, 2003.
 
+\bibitem{JBTS4}
+MA~Parisi, CL~Bennett, ML~Eckert, WB~Dobyns, JG~Gleeson, DW~Shaw, R~McDonald,
+  A~Eddy, PF~Chance, and IA~Glass.
+\newblock {The NPHP1 gene deletion associated with juvenile nephronophthisis is
+  present in a subset of individuals with Joubert syndrome.}
+\newblock {\em Am J Hum Genet}, 75(1):82--91, 2004.
+
+\bibitem{JBTS1}
+K~Saar, L~Al-Gazali, L~Sztriha, F~Rueschendorf, M~Nur-E-Kamal, A~Reis, and
+  R~Bayoumi.
+\newblock {Homozygosity mapping in families with Joubert syndrome identifies a
+  locus on chromosome 9q34.3 and evidence for genetic heterogeneity.}
+\newblock {\em Am J Hum Genet}, 65(6):1666--71, 1999.
+
+\bibitem{GNF}
+AI~Su, T~Wiltshire, S~Batalov, H~Lapp, KA~Ching, D~Block, J~Zhang, R~Soden,
+  M~Hayakawa, G~Kreiman, MP~Cooke, JR~Walker, and JB~Hogenesch.
+\newblock {A gene atlas of the mouse and human protein-encoding
+  transcriptomes.}
+\newblock {\em Proc Natl Acad Sci U S A}, 101(16):6062--7, 2004.
+
+\bibitem{JBTS3}
+B~Utsch, JA~Sayer, M~Attanasio, RR~Pereira, M~Eccles, HC~Hennies, EA~Otto, and
+  F~Hildebrandt.
+\newblock {Identification of the first AHI1 gene mutations in
+  nephronophthisis-associated Joubert syndrome.}
+\newblock {\em Pediatr Nephrol}, 21(1):32--5, 2006.
+
 \bibitem{joubert}
 EM~Valente, F~Brancati, and B~Dallapiccola.
 \newblock {Genotypes and phenotypes of Joubert syndrome and related disorders.}
 \newblock {\em Eur J Med Genet}, 51(1):1--23, 0.
+
+\bibitem{JBTS2C}
+EM~Valente, SE~Marsh, M~Castori, T~Dixon-Salazar, E~Bertini, L~Al-Gazali,
+  J~Messer, C~Barbot, CG~Woods, E~Boltshauser, AA~Al-Tawari, CD~Salpietro,
+  H~Kayserili, L~Sztriha, M~Gribaa, M~Koenig, B~Dallapiccola, and JG~Gleeson.
+\newblock {Distinguishing the four genetic causes of Jouberts syndrome-related
+  disorders.}
+\newblock {\em Ann Neurol}, 57(4):513--9, 2005.
+
+\bibitem{JBTS2B}
+EM~Valente, DC~Salpietro, F~Brancati, E~Bertini, T~Galluccio, G~Tortorella,
+  S~Briuglia, and B~Dallapiccola.
+\newblock {Description, nomenclature, and mapping of a novel cerebello-renal
+  syndrome with the molar tooth malformation.}
+\newblock {\em Am J Hum Genet}, 73(3):663--70, 2003.
+
+\bibitem{JBTS5}
+EM~Valente, JL~Silhavy, F~Brancati, G~Barrano, SR~Krishnaswami, M~Castori,
+  MA~Lancaster, E~Boltshauser, L~Boccone, L~Al-Gazali, E~Fazzi, S~Signorini,
+  CM~Louie, E~Bellacchio, E~Bertini, B~Dallapiccola, and JG~Gleeson.
+\newblock {Mutations in CEP290, which encodes a centrosomal protein, cause
+  pleiotropic forms of Joubert syndrome.}
+\newblock {\em Nat Genet}, 38(6):623--5, 2006.
 
 \end{thebibliography}

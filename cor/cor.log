@@ -1,34 +1,17 @@
-This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2005.11.16)  28 APR 2008 18:44
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2005.11.16)  2 MAY 2008 02:54
 **cor
 (./cor.tex
 LaTeX2e <2001/06/01>
 Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
 ohyphenation, loaded.
-(/usr/share/texmf/tex/latex/base/article.cls
-Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
-(/usr/share/texmf/tex/latex/base/size10.clo
-File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
-)
-\c@part=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
-\abovecaptionskip=\skip41
-\belowcaptionskip=\skip42
-\bibindent=\dimen102
-)
-(/usr/share/texmf/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texmf/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks14
-)
-(/usr/share/texmf/tex/latex/graphics/graphics.sty
+(./bioinfo.cls
+Document Class: bioinfo 2003/02/08 0.1
+(./crop.sty
+Package: crop 2001/11/16 v1.6 cropmarks (mf)
+\CROP@width=\dimen102
+\CROP@height=\dimen103
+\CROP@index=\count79
+ (/usr/share/texmf/tex/latex/graphics/graphics.sty
 Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texmf/tex/latex/graphics/trig.sty
@@ -42,10 +25,85 @@ Package graphics Info: Driver file: dvips.def on input line 80.
 (/usr/share/texmf/tex/latex/graphics/dvips.def
 File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
-\Gin@req@height=\dimen103
-\Gin@req@width=\dimen104
+\CROP@offset=\count80
+Package crop Info: Local config file crop.cfg used on input line 344.
+ (./crop.cfg))
+Package crop Info: using dvips graphics driver on input line 31.
+ (./graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
 )
-(/usr/share/texmf/tex/latex/graphics/color.sty
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
+)
+(/usr/share/texmf/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip41
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks15
+\ex@=\dimen106
+))
+(/usr/share/texmf/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen107
+)
+(/usr/share/texmf/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count81
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count82
+\leftroot@=\count83
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count84
+\DOTSCASE@=\count85
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen108
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count86
+\c@MaxMatrixCols=\count87
+\dotsspace@=\muskip10
+\c@parentequation=\count88
+\dspbrk@lvl=\count89
+\tag@help=\toks16
+\row@=\count90
+\column@=\count91
+\maxfields@=\count92
+\andhelp@=\toks17
+\eqnshift@=\dimen109
+\alignsep@=\dimen110
+\tagshift@=\dimen111
+\tagwidth@=\dimen112
+\totwidth@=\dimen113
+\lineht@=\dimen114
+\@envbody=\toks18
+\multlinegap=\skip42
+\multlinetaggap=\skip43
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+) (./array.sty
+Package: array 1998/05/13 v2.3m Tabular extension package (FMi)
+\col@sep=\dimen115
+\extrarowheight=\dimen116
+\NC@list=\toks20
+\extratabsurround=\skip44
+\backup@length=\skip45
+) (./color.sty
 Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
 
 (/usr/share/texmf/tex/latex/config/color.cfg
@@ -56,21 +114,116 @@ Package color Info: Driver file: dvips.def on input line 125.
 (/usr/share/texmf/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
-(/usr/share/texmf/tex/generic/misc/psfig.sty
+(/usr/share/texmf/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2002/01/22 v2.2d
+
+(/usr/share/texmf/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2001/10/25 v2.2f
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
+)) (./flushend.sty
+Package: flushend 1997/10/01
+\@aaa=\box28
+\@ccc=\box29
+\@viper=\box30
+\hold@viper=\box31
+\atColsBreak=\toks21
+\@extra@skip=\dimen117
+\@nd@page@rule=\dimen118
+)
+(./stfloats.sty
+Package: stfloats 1999/10/22
+\@dblbotnum=\count93
+\c@dblbotnumber=\count94
+) (/usr/share/texmf/tex/latex/amscls/amsthm.sty
+Package: amsthm 2000/10/26 v2.08
+\thm@style=\toks22
+\thm@bodyfont=\toks23
+\thm@headfont=\toks24
+\thm@notefont=\toks25
+\thm@headpunct=\toks26
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks27
+) (./chngpage.sty
+Package: chngpage 2001/01/31 v1.1b change page layout
+\c@cp@cnt=\count95
+\c@cp@tempcnt=\count96
+) (./times.sty
+Package: times 2000/01/12 PSNFSS-v8.1 Times font as default roman (SPQR) 
+)
+\c@section=\count97
+\c@subsection=\count98
+\c@subsubsection=\count99
+\c@paragraph=\count100
+\c@subparagraph=\count101
+\c@figure=\count102
+\c@table=\count103
+\dropfromtop=\skip49
+\extraspace=\skip50
+\aboveskipchk=\skip51
+\abovecaptionskip=\skip52
+\belowcaptionskip=\skip53
+\rotdimen=\dimen119
+\tempdime=\dimen120
+\temptbox=\box32
+ (./natbib.sty
+Package: natbib 2000/07/24 7.0a (PWD)
+\bibhang=\skip54
+\bibsep=\skip55
+LaTeX Info: Redefining \cite on input line 508.
+\c@NAT@ctr=\count104
+)) (./algorithm2e.sty
+Package: algorithm2e 2005/10/04 v3.9 algorithms environments
+\c@AlgoLine=\count105
+
+(/usr/share/texmf/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf/tex/latex/tools/xspace.sty
+Package: xspace 1997/10/13 v1.06 Space after command names (DPC)
+)
+********************************************************
+Package `algorithm2e' Release 3.9 -- october 04 2005 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (fiorio@lirmm.fr)
+********************************************************
+\skiptotal=\skip56
+\skiprule=\skip57
+\skiphlne=\skip58
+\skiptext=\skip59
+\skiplength=\skip60
+\algomargin=\skip61
+\skipalgocfslide=\skip62
+\algowidth=\dimen121
+\inoutsize=\dimen122
+\inoutline=\dimen123
+\algocf@inoutbox=\box33
+\algocf@inputbox=\box34
+\AlCapSkip=\skip63
+\AlCapHSkip=\skip64
+\algocf@capbox=\box35
+\c@algocfline=\count106
+\c@algocf=\count107
+\algocf@algoframe=\box36
+\algocf@algobox=\box37
+) (/usr/share/texmf/tex/generic/misc/psfig.sty
 \@unused=\write3
 \ps@stream=\read1
-\p@intvaluex=\dimen105
-\p@intvaluey=\dimen106
+\p@intvaluex=\dimen124
+\p@intvaluey=\dimen125
 
 psfig/tex 1.10-dvips
-) (/usr/share/texmf/tex/latex/psnfss/times.sty
-Package: times 2002/09/08 PSNFSS-v9.0a (SPQR) 
-)
-(/usr/share/texmf/tex/latex/misc/setspace.sty
+) (/usr/share/texmf/tex/latex/misc/setspace.sty
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 
 Package: `setspace' 6.7 <2000/12/01>
-) (/usr/share/texmf/tex/latex/html/url.sty
+) (./url.sty
 Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
  names
 ) (./cor.aux)
@@ -89,134 +242,626 @@ LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 13.
-
-(/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
+ (/usr/share/texmf/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 24.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 24.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 24.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 47.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 21.
 
+(/usr/share/texmf/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 21.
+LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <9> not available
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 21.
+LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <9> not available
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 21.
+LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <19> not available
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 21.
+LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <19> not available
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 21.
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <8> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 21.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 21.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <16> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 21.
+LaTeX Font Info:    Calculating math sizes for size <13> on input line 21.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <6.5> not available
+(Font)              size <6> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <13> not available
+(Font)              size <12> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <6.5> not available
+(Font)              size <6> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <6.5> not available
+(Font)              size <6> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 21.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 21.
+(/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2002/01/19 v2.2g AMS font definitions
+)
+
+LaTeX Font Warning: Font shape `U/msa/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `U/msa/m/n' in size <6.5> not available
+(Font)              size <6> substituted on input line 21.
+
+LaTeX Font Info:    Try loading font information for U+msb on input line 21.
+(/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2002/01/19 v2.2g AMS font definitions
+)
+
+LaTeX Font Warning: Font shape `U/msb/m/n' in size <13> not available
+(Font)              size <12> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `U/msb/m/n' in size <6.5> not available
+(Font)              size <6> substituted on input line 21.
+
+LaTeX Font Info:    Calculating math sizes for size <9.09996> on input line 21.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.54997> not available
+(Font)              size <5> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.54997> not available
+(Font)              size <5> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.54997> not available
+(Font)              size <5> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `U/msa/m/n' in size <4.54997> not available
+(Font)              size <5> substituted on input line 21.
+
+
+LaTeX Font Warning: Font shape `U/msb/m/n' in size <4.54997> not available
+(Font)              size <5> substituted on input line 21.
+
+
+Underfull \hbox (badness 10000) detected at line 21
+[]
+ []
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 25.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 42.
 (/usr/share/texmf/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 47.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 47.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 49.
  (./m0_row.tex) (./m0_col.tex)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 97.
-
 (./trim_fraction.tex) (./trimmed_means_mean.tex) (./trimmed_means_sd.tex)
 (./brightdim_count.tex) (./brightdim_cutoff.tex) (./dim_count.tex)
-(./bright_count.tex) (./m1_row.tex) (./m0_col.tex) [1
-
-] (./symbol_count.tex)
+(./bright_count.tex) (./m1_row.tex) (./m0_col.tex) (./symbol_count.tex)
 (./symbol_gt2_count.tex) (./symbolgroup_pair_count.tex)
+Underfull \hbox (badness 1199) in paragraph at lines 157--164
+[]\OT1/ptm/m/n/8 We took all 19632  uni-que gene sym-bols from the NetAffx HG-
+ []
+
 (./control_probesets_count.tex) (./control_probesets_count.tex)
-(./outlier_badrow_count.tex) (./m2_row.tex) (./m0_col.tex) (./m0_col.tex)
-(./m0_col.tex) [2] (./m0_row.tex) (./m2_row.tex) (./m0_col.tex) (./m0_col.tex)
-(./m0_col.tex) [3] [4]
-Overfull \hbox (0.62553pt too wide) in paragraph at lines 396--408
-\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 05$\OT1/ptm/m/n/10 . For eac
-h of the pre-vi-ously known, non-computer-assigned an-no-ta-tions, we looked
+(./outlier_badrow_count.tex) (./m2_row.tex) (./m0_col.tex
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 1.
+
+(/usr/share/texmf/tex/latex/psnfss/omsphv.fd
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <7> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1.
+ [1
+
+
+
+]) (./m0_col.tex) (./m0_col.tex) (./m0_row.tex) (./m2_row.tex) (./m0_col.tex) (
+./m0_col.tex) (./m0_col.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <8> not available
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 365.
+LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <8> not available
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 365.
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
-[]\OT1/ptm/m/n/10 ----------
+
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[2] (./cor.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
 
+ [3]
+Missing character: There is no é in font ptmr7t!
+Missing character: There is no é in font ptmr7t!
+Missing character: There is no é in font ptmr7t!
+Missing character: There is no ü in font ptmr7t!
+Missing character: There is no é in font ptmr7t!
+
+Underfull \hbox (badness 1484) in paragraph at lines 113--118
+[]\OT1/ptm/m/n/7 B Utsch, JA Sayer, M Atta-na-sio, RR Pereira, M Eccles, HC Hen
+-nies,
  []
 
-[6] (./cor.bbl) [7]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+)
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[4]
 psfig: searching array_means.ps for bounding box
 psfig: including array_means.ps 
-Runaway argument?
-{\protect \numberline {\csname the\@captype \endcsname }{\ignorespaces \ETC.
-! Paragraph ended before \addcontentsline was complete.
-<to be read again> 
-                   \par 
-l.460 }
-       
-? 
-! Extra }, or forgotten \endgroup.
-\@caption ... the#1\endcsname }{\ignorespaces #2}}
-                                                  \begingroup \@parboxrestor...
-l.460 }
-       
-? 
-! Extra }, or forgotten \endgroup.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.461 \end{figure}
-                  
-? 
-[8] [9]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 513.
 psfig: searching probeset_residuals.ps for bounding box
 psfig: including probeset_residuals.ps 
-Runaway argument?
-{\protect \numberline {\csname the\@captype \endcsname }{\ignorespaces \ETC.
-! Paragraph ended before \addcontentsline was complete.
-<to be read again> 
-                   \par 
-l.475 }
-       
-? 
-! Extra }, or forgotten \endgroup.
-\@caption ... the#1\endcsname }{\ignorespaces #2}}
-                                                  \begingroup \@parboxrestor...
-l.475 }
-       
-? 
-! Extra }, or forgotten \endgroup.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.476 \end{figure}
-                  
-? 
 psfig: searching COL9A2.ps for bounding box
 psfig: including COL9A2.ps 
-Runaway argument?
-{\protect \numberline {\csname the\@captype \endcsname }{\ignorespaces \ETC.
-! Paragraph ended before \addcontentsline was complete.
-<to be read again> 
-                   \par 
-l.493 }
-       
-? 
-! Extra }, or forgotten \endgroup.
-\@caption ... the#1\endcsname }{\ignorespaces #2}}
-                                                  \begingroup \@parboxrestor...
-l.493 }
-       
-? 
-! Extra }, or forgotten \endgroup.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.494 \end{figure}
-                  
-? 
-[10] [11] [12] (./cor.aux) ) 
-Here is how much of TeX's memory you used:
- 1210 strings out of 95847
- 15031 string characters out of 1195947
- 60928 words of memory out of 1000001
- 4092 multiletter control sequences out of 10000+50000
- 10725 words of font info for 32 fonts, out of 500000 for 1000
- 14 hyphenation exceptions out of 1000
- 25i,6n,21p,282b,244s stack positions out of 1500i,500n,5000p,200000b,5000s
+psfig: searching NPHP1.ps for bounding box
+psfig: including NPHP1.ps 
+psfig: searching NPHP1_GeneAtlas.ps for bounding box
+psfig: including NPHP1_GeneAtlas.ps 
+psfig: searching JBTS1.ps for bounding box
+psfig: including JBTS1.ps 
+psfig: searching JBTS2.ps for bounding box
+psfig: including JBTS2.ps 
+psfig: searching cortip.ps for bounding box
+psfig: including cortip.ps 
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 680.
 
-Output written on cor.dvi (12 pages, 32044 bytes).
+Underfull \hbox (badness 10000) detected at line 698
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 725
+[][]
+ []
+
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 751.
+
+
+Underfull \hbox (badness 10000) detected at line 755
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 780
+[][]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 560.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 561.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 562.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 563.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 564.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 565.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 566.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 567.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 568.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 569.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 570.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 571.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 572.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 573.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 574.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 575.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 576.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 577.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 578.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 579.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 580.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 581.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 582.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 583.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 584.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 585.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:254.29582pt when 586.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:0.0pt when 587.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+(2)Left:587.76071pt Right:587.09573pt Output:587.76071pt
+- LAST -
+Extra skip:0.0pt
+Left:587.76071pt
+Right:587.09573pt
+Output:587.76071pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+ [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \vbox (5.0pt too high) has occurred while \output is active []
+
+Extra height:0.0pt when 365.79991pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+(2)Left:365.79991pt Right:370.79991pt Output:365.79991pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+(2)Left:370.79991pt Right:370.79991pt Output:370.79991pt
+- LAST -
+Extra skip:0.0pt
+Left:370.79991pt
+Right:370.79991pt
+Output:370.79991pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[6]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:620.1733pt when 626.60005pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:620.1733pt when 627.60005pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:620.1733pt when 628.60005pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:620.1733pt when 629.60005pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:620.1733pt when 630.60005pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:620.1733pt when 631.60005pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:620.1733pt when 632.60005pt
+Extra height:0.0pt when 633.60005pt
+(2)Left:633.60005pt Right:620.1733pt Output:633.60005pt
+- LAST -
+Extra skip:0.0pt
+Left:633.60005pt
+Right:620.1733pt
+Output:633.60005pt
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+ [7]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \vbox (40.0pt too high) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Extra height:0.0pt when 360.79991pt
+
+Overfull \vbox (40.0pt too high) has occurred while \output is active []
+
+(2)Left:360.79991pt Right:320.79991pt Output:360.79991pt
+- LAST -
+Extra skip:0.0pt
+Left:360.79991pt
+Right:320.79991pt
+Output:360.79991pt
+
+Overfull \vbox (40.0pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) has occurred while \output is active []
+
+
+Overfull \hbox (261.0pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[8] (./cor.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.0pt have occurred.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3856 strings out of 95847
+ 45161 string characters out of 1195947
+ 139660 words of memory out of 1000001
+ 6647 multiletter control sequences out of 10000+50000
+ 26449 words of font info for 72 fonts, out of 500000 for 1000
+ 18 hyphenation exceptions out of 1000
+ 36i,20n,26p,1055b,497s stack positions out of 1500i,500n,5000p,200000b,5000s
+
+Output written on cor.dvi (8 pages, 50496 bytes).
