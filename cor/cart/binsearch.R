@@ -43,7 +43,9 @@ for ( j in 1:cart.colcount ){
       d.sig.summary,
 
       (d.sig.summary - cart.mean) / cart.sd,
-      (d.sig.summary - platform.mean[ match(p1[,4], platform.names) ] ) / platform.sd[ match(p1[,4], platform.names) ]
+      (d.sig.summary - platform.mean[ match(p1[,4], platform.names) ] ) / platform.sd[ match(p1[,4], platform.names) ],
+      -log10(apply(cbind(1:nrow(d.sig)),1,function(x)t.test(d.sig[x,], as.vector(get(conn.exe, as.character(p1[x,4]))), alternative="greater")$p.value))
+
 #      (d.sig.summary - apply(matrix(p1[,4],nrow=1), 2, function(x){mean(as.vector(get(conn.exe,x)))})) / apply(matrix(p1[,4],nrow=1), 2, function(x){sd(as.vector(get(conn.exe,x)))})
 
 #      apply(matrix(p1[,4],nrow=1), 2, function(x){mean(as.vector(get(conn.exe,x)))}),
@@ -57,6 +59,16 @@ for ( j in 1:cart.colcount ){
 
     ycol=3;
     ylab='r';
+    ymin=min(as.numeric(d[,ycol]));
+    ymax=max(as.numeric(d[,ycol]));
+
+    plot(d[ !match(d[,2], cart.gene[,1], nomatch=FALSE) & d[,2]!='---', 1 ],d[ !match(d[,2], cart.gene[,1], nomatch=FALSE) & d[,2]!='---', ycol ],pch=1,xlim=c(-3,3),ylim=c(ymin,ymax),xlab='genomic offset, megabases', ylab=ylab, main=paste(as.vector(t(cart.gene[cart.gene[,2]==this.probeset,]))));
+    points(d[ match(d[,2], cart.gene[,1], nomatch=FALSE) & d[,2] != '---' & d[,2] != this.symbol, 1 ],d[ match(d[,2], cart.gene[,1], nomatch=FALSE) & d[,2] != '---' & d[,2] != this.symbol, ycol ],pch=2);
+    points(d[ d[,2] == '---', 1 ],d[ d[,2] == '---', ycol ],pch=4);
+    points(d[ d[,2] == this.symbol | d[,2] == this.probeset | d[,1]==0, 1 ],d[ d[,2] == this.symbol | d[,2] == this.probeset | d[,1]==0, ycol ],pch=16);
+
+    ycol=6;
+    ylab='-log10(t-test p-value)';
     ymin=min(as.numeric(d[,ycol]));
     ymax=max(as.numeric(d[,ycol]));
 

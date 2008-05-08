@@ -346,21 +346,23 @@ present in $G$ we evaluated the result as positive.  In the event that genes
 not in $G$ met the criterion of $max(\bar{r})$, we evaluated the result as
 negative.
 
-We first applied this method to the results of a previous study by Funari,
-\emph{et al.} that identified several previously unannotated genes that are
-expressed in cartilage tissue \cite{funari}.  This study identified 114 genes
-represented by 133 probesets from the HG-U133A arraydesign that were highly
-expressed only in cartilage (Table 1).  We performed the scan described, and
-were able to positively identify the correct gene 66\% (75/114) times.  A
-graphical representation of the 6-megabase region surrounding one cartilage
-gene, COL9A2, is given in Figure \ref{figure:COL9A2}.
+We first applied our method to the limb-girdle musscular dystrophy, type 2
+(LMGD2) phenotype.  There are 11 genes known to be associated with LMGD2.  For
+each gene, we considered all probesets targeting a named gene within a
+6-megabase genomic region centered at the gene's locus.  We calculated the mean
+correlation coefficient $\bar{r}$ to the 11-gene LMGD2 profile for each
+probeset within the region, but excluding any probesets targeting the gene used
+to select the region.  In 55\% (6/11) cases $\max{\bar{r}}$ corresponded to the
+causal gene for LMGD2.
 
-Next, we applied this method to see if we could identify the four genes known to
-be associated with microcephaly.  The purpose of this test was to confirm that
-the results in our cartilage trial were reproducible on a completely different
-set of genes, as well as to see if the method was robust enough to identify the
-known gene given a much smaller profile for comparison.  We were able to
-correctly identify 75\% (3/4) of the microcephaly genes.
+Next, we applied this method to see if we could identify the four genes known
+to be associated with microcephaly.  The purpose of this test was to confirm
+that the methods used in our LGMD2 trial would effectively identify genes for a
+completely different phenotype, as well as to see if the method was robust
+enough to identify the known gene given a much smaller profile for comparison.
+In 75\% (3/4) of cases the most correlated gene with the other known
+microcephaly genes was correctly identified from a 6-megabase linkage region
+surrounding that gene.
 
 Finally, we applied our scanning method to Joubert syndrome.  Seven linkage
 regions for Joubert syndrome have been identified (JBTS1-JBTS7).  Five of
@@ -420,6 +422,17 @@ Additionally candidates in JBTS2q are SCGB1A1 and probeset 229688\_at.
 %for genes associated with skeletal abnormality \cite{funari}.  We used the UCSC
 %Genome Browser \cite{karolchik} to align these probesets to the March 2006
 %build of the human genome.
+
+\subsection{Gene Functional Assessment}
+
+We first applied this method to the results of a previous study by Funari,
+\emph{et al.} that identified several previously unannotated genes that are
+expressed in cartilage tissue \cite{funari}.  This study identified 114 genes
+represented by 133 probesets from the HG-U133A arraydesign that were highly
+expressed only in cartilage (Table 1).  We performed the scan described, and
+were able to positively identify the correct gene 66\% (75/114) times.  A
+graphical representation of the 6-megabase region surrounding one cartilage
+gene, COL9A2, is given in Figure \ref{figure:COL9A2}.
 
 \subsection{Gene Annotation}\label{Annotation Results}
 
@@ -523,6 +536,30 @@ were performed for all 62 HG-U133\_Plus\_2 control probesets.  Arrays (x-axis)
 are plotted versus the fraction of observations with regression residual
 $>3\sigma$ (y-axis).  A red horizontal line indicates a cutoff above which
 arrays are omitted from analysis.}
+\end{figure}
+
+% <execute lang="R">
+% center=TRUE;
+% directory='limbgirdle2';
+% gene='TTN';
+% prefix='cart';
+% postscript('TTN.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% source('./cart/regionplot.R');
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
+\label{figure:TTN}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=TTN.ps}}}
+\caption{Gene correlations to a list of LMGD2-associated genes within a
+6-megabase region surrounding the location of an associated gene.  The genomic
+position (x-axis) of probesets within a 6-megabase region centered at the
+location of a TTN, a gene known to be associated with LMGD2, is plotted versus
+the Pearson correlation coefficient $r$ (y-axis) to a list of probesets
+targetting other genes known to be associated with Joubert syndrome across
+11636 HG-U133\_Plus\_2 microarrays.  Solid circles: probesets targeting TTN,
+$\times$s: probesets not designed to target a known gene, open circles: other
+probesets.}
 \end{figure}
 
 % <execute lang="R">
@@ -674,6 +711,40 @@ correlated probesets to 1007\_s\_at (x-axis) using $\times$s.  Solid lines
 indicates the probability of a change in slope of $r\prime$.  A vertical dotted
 line indicates the position above which slope changes of $r\prime$ are common.}
 \end{figure}
+
+% <execute lang="R">
+% source('/home/allenday/cvsroot/celsius/dump/lib/R/Celsius/IO/exe.R');
+% conn.exe = Celsius.exe('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim2');
+% know = read.table('/home/allenday/dissertation/allenday-dissertation/cor/cart/cartilage/cart.gene.txt');
+% prof = get(conn.exe, know[,2]);
+% prof.mean = sort(apply(prof, 2, mean));
+% know.frag = sort( as.vector(apply( prof[ , match(know[,2], colnames(prof)) ], 2, mean )) );
+% postscript('cartilage_cdf.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% plot( prof.mean, 1:length(prof.mean), axes=F, xlab='r', ylab='fraction of probesets', main='CDF of cartilage (triangle) and all probesets (circle) Pearson r' ); box();
+% points( know.frag, 1:length(know.frag) * (length(prof.mean)/length(know.frag)), col='red', pch=2 )
+% axis(1, seq(-0.07,0.17, by=0.01 ))
+% axis(2, 1:10 * length(prof.mean)/10, 1:10/10)
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
+\label{figure:cartilage_cdf}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=cartilage_cdf.ps}}}
+\caption{What is plotted is the mean correlation coefficient to a cartilage profile of
+each probeset known to be cartilage-expressed (red, x-axis) vs. the total
+fraction of cartilage-expressed probesets <= a given value of r.  A CDF,
+effectively.  The same is plotted for all probesets (black).  The purpose is to
+show that there are some probesets in the black curve that are not already
+known to be cartilage-expressed, i.e. they are not in the red curve.  But these
+black points have higher correlation coefficient to the profile than some
+fraction of red points, so they are likely to be cartilage expressed.  So is it
+clear?  Is there a better way to do it?}
+\end{figure}
+
+% as.list(GOBPOFFSPRING)[['GO:0006936']]
+% zcat ~/public_html/data/HG-U133_Plus_2.GO.known.dat.gz | grep -E '0006936|0002086|0006937|0006939|0006940|0006941|0006942|0030049|0031443|0031444|0031445|0031446|0031447|0031448|0031449|0031450|0031451|0031452|0031453|0031454|0043133|0043134|0045932|0045933|0045986|0045987|0045988|0045989' | grep -v IEA | wc
+
+
 
 \begin{algorithm}\label{algorithm:mprime}
 \SetLine
