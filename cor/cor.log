@@ -1,4 +1,4 @@
-This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2005.11.16)  14 MAY 2008 16:59
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2005.11.16)  14 MAY 2008 17:12
 **cor
 (./cor.tex
 LaTeX2e <2001/06/01>
@@ -348,24 +348,24 @@ Underfull \hbox (badness 10000) detected at line 21
  []
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 27.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 55.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 25.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 53.
 (/usr/share/texmf/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 60.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 121.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 119.
 
 
 (/usr/share/texmf/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <7> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 121.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 119.
  [1
 
 
@@ -375,17 +375,18 @@ LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <7> not available
 (./brightdim_count.tex) (./brightdim_cutoff.tex) (./dim_count.tex)
 (./bright_count.tex) (./m1_row.tex) (./m0_col.tex) (./symbol_count.tex)
 (./symbol_gt2_count.tex) (./symbolgroup_pair_count.tex)
-Underfull \hbox (badness 1199) in paragraph at lines 218--225
+Underfull \hbox (badness 1199) in paragraph at lines 215--222
 []\OT1/ptm/m/n/8 We took all 19632  uni-que gene sym-bols from the NetAffx HG-
  []
 
 (./control_probesets_count.tex) (./control_probesets_count.tex)
 (./outlier_badrow_count.tex) (./m2_row.tex) (./m0_col.tex) (./m0_col.tex)
 (./m0_col.tex) (./m0_row.tex) (./m2_row.tex) (./m0_col.tex) (./m0_col.tex)
+(./m0_col.tex)
 LaTeX Font Info:    Font shape `OT1/phv/bx/it' in size <8> not available
-(Font)              Font shape `OT1/phv/b/it' tried instead on input line 369.
+(Font)              Font shape `OT1/phv/b/it' tried instead on input line 377.
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <8> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 369.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 377.
 
 Overfull \hbox (261.0pt too wide) has occurred while \output is active
 [][] 
@@ -399,7 +400,10 @@ Overfull \hbox (261.0pt too wide) has occurred while \output is active
 [][] 
  []
 
-[2] (./m0_col.tex)
+[2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -417,6 +421,9 @@ Missing character: There is no é in font ptmr7t!
 Missing character: There is no é in font ptmr7t!
 Missing character: There is no ü in font ptmr7t!
 Missing character: There is no é in font ptmr7t!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Overfull \hbox (261.0pt too wide) has occurred while \output is active
 [][] 
@@ -440,7 +447,7 @@ Underfull \hbox (badness 1484) in paragraph at lines 182--187
 psfig: searching array_means.ps for bounding box
 psfig: including array_means.ps 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 637.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 634.
 psfig: searching probeset_residuals.ps for bounding box
 psfig: including probeset_residuals.ps 
 psfig: searching TTN.ps for bounding box
@@ -462,49 +469,49 @@ psfig: including cartilage_cdf.ps
 psfig: searching muscle_cdf.ps for bounding box
 psfig: including muscle_cdf.ps 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 904.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 901.
 
-Underfull \hbox (badness 10000) detected at line 922
+Underfull \hbox (badness 10000) detected at line 919
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 949
+Underfull \hbox (badness 10000) detected at line 946
 [][]
  []
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 975.
+(amsmath)                 on input line 972.
 
 
-Underfull \hbox (badness 10000) detected at line 979
+Underfull \hbox (badness 10000) detected at line 976
 [][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 1004
+Underfull \hbox (badness 10000) detected at line 1001
 [][]
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Extra height:0.0pt when 560.97057pt
+Extra height:0.0pt when 515.97057pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(2)Left:560.97057pt Right:572.94113pt Output:560.97057pt
+(2)Left:515.97057pt Right:534.42569pt Output:515.97057pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-(2)Left:572.94113pt Right:554.94113pt Output:572.94113pt
+(2)Left:534.42569pt Right:534.42569pt Output:534.42569pt
 - LAST -
 Extra skip:0.0pt
-Left:572.94113pt
-Right:554.94113pt
-Output:572.94113pt
+Left:534.42569pt
+Right:534.42569pt
+Output:534.42569pt
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1529,10 +1536,10 @@ LaTeX Font Warning: Size substitutions with differences
 Here is how much of TeX's memory you used:
  3873 strings out of 95847
  45313 string characters out of 1195947
- 167145 words of memory out of 1000001
+ 162221 words of memory out of 1000001
  6661 multiletter control sequences out of 10000+50000
  26449 words of font info for 72 fonts, out of 500000 for 1000
  18 hyphenation exceptions out of 1000
  36i,20n,26p,1055b,497s stack positions out of 1500i,500n,5000p,200000b,5000s
 
-Output written on cor.dvi (10 pages, 64580 bytes).
+Output written on cor.dvi (10 pages, 64552 bytes).

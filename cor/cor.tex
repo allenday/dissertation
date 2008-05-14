@@ -22,8 +22,6 @@
 
 \begin{abstract}
 
-%% provisional from stan
-
 \section{Motivation:}
 The major goal of human genetics is to identify normal variants and mutations
 that lead to specific human phenotypes.  Linkage and association are powerful
@@ -120,18 +118,17 @@ Text Text Text  Text Text Text Text Text Text Text Text
 \begin{methods}
 \section{Methods}
 
-% <execute lang="bash"> wc -l
-% /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.col | awk
-% '{print $1}' > m0_col.tex wc -l
-% /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.idx | awk
-% '{print $1}' > m0_row.tex
+% <execute lang="bash">
+% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.col | awk '{print $1}' > m0_col.tex
+% wc -l /home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma.sxe.idx | awk '{print $1}' > m0_row.tex
 % </execute>
 
 \subsection{Data Processing}\label{Processing}
 
 We retrieved RMA-processed gene expression data for the HG-U133\_Plus\_2
 arraydesign from the Celsius microarray data warehouse \cite{rma,celsius} and
-denote the $S$=\input{m0_row} array $\times$ $P=$\input{m0_col} probeset matrix
+denote the $S$=\input{m0_row}
+array $\times$ $P=$\input{m0_col} probeset matrix
 as $M$. %(Equation \ref{equation:M}).
 
 %\begin{equation}\label{equation:M}
