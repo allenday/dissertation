@@ -13,7 +13,7 @@
 \begin{document}
 \firstpage{1}
 
-\title[Transcriptional Co-regulation]{Gene Characterization From Patterns In Transcriptional Co-regulation}
+\title[Co-expression Analysis]{Gene Characterization Throught Large-Scale Co-expression Analysis}
 \author[Day \textit{et~al}]{Allen Day\,\footnote{these authors contributed equally to this work}~ Jun Dong\,$^{*}$ and Stanley F. Nelson\,\footnote{to whom correspondence should be addressed}}
 \address{Department of Human Genetics, David Geffen School of Medicine, University of California, Los Angeles.}
 \history{Received on XXXXX; revised on XXXXX; accepted on XXXXX}
@@ -22,36 +22,97 @@
 
 \begin{abstract}
 
+%% provisional from stan
+
 \section{Motivation:}
-Microarray experiments are frequently designed to characterize classes of
-samples and genes.  However, a challenge in the analysis of these data is the
-relatively small number of samples observed compared to the number of genes
-measured for each sample.  Unless bolstered by additional sample and gene
-metadata, results produced under this condition are less strong, and the data
-less suitable for re-analysis when considering other biological questions.
+The major goal of human genetics is to identify normal variants and mutations
+that lead to specific human phenotypes.  Linkage and association are powerful
+tools to identify limited regions of the genome for further analysis to
+identify DNA variants causative of disease.  However, the identification of
+individual genes responsible for the phenotype is often elusive.  One way to
+accelerate the identification of gene mutations and variations is to integrate
+gene expression patterns, which provide an additional dimension of information.
 
 \section{Results:}
-We present a gene-gene transcriptional correlation matrix of \emph{Homo
-sapiens} prepared from a very large, quality-controlled set of Affymetrix
-HG-U133\_Plus\_2 microarrays.  We demonstrate that gene function can be
-predicted and that linkage regions can be reduced to caual genes with high
-precision using this resource, even in the complete absence of sample metadata.
+We describe a broad-based tool that uses all publicly available gene expression
+data on a single arraydesign to construct gene-gene expression correlations, and
+can be used by individual scientists to explore the gene-gene co-expression
+relationships present in this massive dataset to infer biological roles for
+individual genes.  These matrices include virtually all human genes and
+aggregate data from all laboratories depositing data on the web, as available
+from Celsius, a community resource of image files and pre-processed Affymetrix
+microarray data.
+
+We show the power of this approach to prioritize sequencing of individual genes
+within typical linkage intervals, and suggest novel candidate genes within
+linkage regions for Joubert syndrome and Type 2 Limb girdle muscular dystrophy.
+We demonstrate a technique that can reveal associations between genes and
+biological processes, given a seed set of characterized genes, and present a
+set of novel genes involved in cartilage development.
 
 \section{Availability:}
-The authors have made gene expression and gene-gene correlation data available
-at \url{http://genome.ucla.edu/projects/XXX}.  Software for manipulating these
-data is also provided here, as well as from the Bioconductor website
-\url{http://bioconductor.org}.
+All data used in these analyses, as well as web-based exploratory tools, are
+available from \url{http://genome.ucla.edu/projects/XXX}.  Additionally,
+software for programmatic access to these data is provided at the Bioconductor
+website \url{http://bioconductor.org} in the XXX package.
 
 \section{Contact:} \href{snelson@ucla.edu}{snelson@ucla.edu}
 \end{abstract}
 
 \section{Introduction}
-Text Text Text  Text Text Text Text Text Text Text Text
 
-%\begin{equation} 
-%\sum x+ y =Z\label{eq:01}
-%\end{equation}
+Genetic linkage and association studies lead to the identification of links
+between causal genes or genomic regions and their resulting phenotypes.  These
+studies contain unique data, such as pedigree structures, that are not
+obtainable through other methods of inquiry.  Data collected using DNA
+microarrays also give a unique perspective on genes associated with a
+particular phenotype, as the regulation of gene expression is independent of
+genomic location.
+
+As the genome era draws to a close, the number of uncharacterized diseases that
+are influenced by a single or small number of genes has become very small.
+This is because the statistical power required to identify causal links between
+genes and phenotypes increases with the number of genes involved in the
+biological processes that manifest in the phenotype.  Thus, a major theme in
+the post-genome era is that advances will come through integrative approaches
+that combine biological data from many sources \cite{liver,operon,csbdb}.
+
+Previous efforts have demonstrated the utility of using gene-gene co-expression
+patterns to perform gene characterization
+\cite{webtom,carlson,aspm,wormnet,agca}.  Indeed, this type of retrospective
+analysis of large volumes of data is characteristic of microarray studies in
+general.  However, microarray studies frequently suffer from lack of
+statistical power because of the relatively small numbers of samples observed
+relative to the number of genes measured \cite{dimensionality}.  We addressed
+this problem of dimension transposition simply by increasing the amount of data
+in our analyses.  That is, we constructed Celsius, a publicly accessible data
+warehouse of Affymetrix microarray data \cite{celsius}.  Celsius contains more
+than 120,000 microarrays, and for the current-generation human arraydesigns
+more than 12,000 arrays each.  Further, microarrrays added to Celsius are
+processed in such a way to allow for progressive growth of the data set without
+needing to reprocess data.
+
+Celsius contains very little experimental metadata.  This position is in stark
+contrast to the microarray community at large, which favors metadata collection
+and modeling in the extreme \cite{mo,mage,miame}.  While we concede that
+metadata provides additional statistical power in data analysis, policies that
+require metadata to be deposited concommitantly with assay measurements may
+actually be harmful.  By increasing barriers to public release of data via
+metadata requirements, the amount of publicly available data is diminished.
+This reduction in data volume then effectively reduces our ability to draw
+biological conclusions from assay data alone.
+
+Here, we demonstrate that fears of having vast volumes of unlabeled microarray
+data are unfounded.  Quantitative microarray data are useful in their own
+right, and can be used to address biological problems completely unrelated to
+the initial study for which they were produced.
+
+%Gene expression data represent an additional dimension of information that can
+%be used to boost statistical power, thus leading to identification of more
+%disease genes.  As with linkage and association data, the measurements made by
+%whole-genome DNA microarrays provide unique information about gene-gene
+%relationships, as the regulation of gene expression is independent of genomic
+%location.
 
 \section{Approach}
 Text Text Text  Text Text Text Text Text Text Text Text
@@ -425,7 +486,36 @@ Additionally candidates in JBTS2q are SCGB1A1 and probeset 229688\_at.
 
 \subsection{Gene Functional Assessment}
 
-We first applied this method to the results of a previous study by Funari,
+Next, we considered whether these correlation data are more generally useful.
+In the case of identifying disease genes, the search space was constrained to a
+linkage region.  However, some analytical methods are position-independent and
+seek to characterize all genes.  One such task is the assignment of functional
+annotation.
+
+To evaluate the performance of these correlation data for the assignment of
+gene annotation into biological processes, we selected 5 genes that were
+non-computationally annotated for the Gene Ontology term for ``muscle
+contraction'' (GO:0006936).  The genes selected were UTRN, KCNQ1, MYOM1, SGCA,
+and ASPH.  These are represented by 13 probesets on the HG-U133\_Plus\_2
+arraydesign.  Next, we calculated $\bar{r}$, the mean correlation coefficient
+to the 13-probeset profile, as described in Section \ref{Recovery}, but did so
+genome-wide rather than restricting to a single linkage region.  Then, we
+rank-ordered the set of all probesets and the set of the initially selected 13
+probesets by $\bar{r}$.  We observed that the muscle probesets were generally
+more highly-correlated to the profile, presumably because of the internal
+consistency of the set.  However a large number of genes not used present in
+the profile also had high values of $\bar{r}$, and we sought to evaluate how
+well the 5-gene profile was able to recover other genes known to be involved in
+muscle contraction.  To do so, we tested for enrichment of muscle contraction
+annotations for the probesets in the top decile of $\bar{r}$ values,
+partitioned into one-tenth percentile sized quantiles.  We observed that
+enrichment for muscle contraction annotation is strongly correlated to an
+increased value of $\bar{r}$ relative to our 5-gene profile.  The value of
+$\bar{r}$ versus the cumulative distribution of probesets is given in Figure
+\ref{figure:muscle_cdf}, along with the significance of the enrichment of muscle
+contraction annotation within each quantile.
+
+We then applied this method to the results of a previous study by Funari,
 \emph{et al.} that identified several previously unannotated genes that are
 expressed in cartilage tissue \cite{funari}.  This study identified 114 genes
 represented by 133 probesets from the HG-U133A arraydesign that were highly
@@ -434,69 +524,90 @@ were able to positively identify the correct gene 66\% (75/114) times.  A
 graphical representation of the 6-megabase region surrounding one cartilage
 gene, COL9A2, is given in Figure \ref{figure:COL9A2}.
 
-\subsection{Gene Annotation}\label{Annotation Results}
-
-We observed that each probeset $p \in P$ on the HG-U133\_Plus\_2 arraydesign
-typically has only a few highly correlated neighbor probesets, while the
-majority of probesets are slightly correlated to slightly anti-correlated.  An
-example of the rapid drop in correlation coefficients for a single probeset
-1316\_at is shown in Figure \ref{figure:cortip}.  We hypothesized that the
-nearest neighbors were likely to be involved in the the same biological
-process, and that the observed transcriptional co-regulation would allow us to
-suggest roles for unannotated genes, and to suggest previously unknown roles
-for characterized genes.
-
-To this end, we first evaluated how well the co-regulated neighbors could be
-used to reconstruct human-curated annotation that were already assigned to the
-gene using the Biological Process (BP) aspect of the Gene Ontology (GO)
-\cite{go}.  To do so for a single BP-annotated probeset, we first needed to
-discriminate between nearby and distant neighbors and did so using the
-\emph{bcp}, the Bayesian Change Point library of the R programming language.
-The subset of nearby neighbors for which BP was available was then tested for
-category enrichment using a hypergeometric-based test provided by the
-Bioconductor \cite{bioconductor} package \emph{GOstats}.  We tested for
-enrichment of all GO BP categories associated with any of the nearby neighbors,
-and so adjusted all p-values output by the hypergeometric test using Bonferroni
-correction in order to compensate for multiple hypothesis testing.
-
-We then used the BP annotations that were \emph{already known} from existing
-literature and ``recovered'' solely based on nearby neighbor annotations to
-estimate the p-value below which novel predictions should be accurate.
-
-We were able to recover the correct annotation for XXX\% of known annotations.
-The relationship between fractional recovery and confidence of the prediction
-(p-value) is given in Figure XXX.  The vast majority of recovered annotations
-(XXX\%) had an adjusted p-value of less than XXX, and we used this as a cutoff
-below which predicted annotations should be accurate.
-
-More than XXX about 10,000 XXX probesets on the HG-U133\_Plus\_2 arraydesign are not
-assigned to any existing gene symbol.  This typically means they were designed
-to measure a transcript that is computationally predicted only, and not
-supported by any \emph{in vivo} observation.  An additional XXX about
-5,000-10,000 XXX probesets are assigned to a gene symbol that are supported by
-little or no \emph{in vivo} data.  This group contains predicted genes, as well
-as transcripts that have been observed in EST libraries.
-
-Typical probesets in both of these groups have no annotation whatsoever.  We
-were able to assign XXX annotations to XXX probesets (XXX\%) in these groups.
-The data provided here represent an initial, and thus significant, step forward
-in the characterization of the roles of these hypothetical and rarely observed
-genes.
-
-Our assignment of an additional XXX annotations to genes which are already
-characterized is also significant, as it suggests direct linkage between
-biological processes previously known to be only indirectly related.
+%\subsection{Gene Annotation}\label{Annotation Results}
+%
+%We observed that each probeset $p \in P$ on the HG-U133\_Plus\_2 arraydesign
+%typically has only a few highly correlated neighbor probesets, while the
+%majority of probesets are slightly correlated to slightly anti-correlated.  An
+%example of the rapid drop in correlation coefficients for a single probeset
+%1316\_at is shown in Figure \ref{figure:cortip}.  We hypothesized that the
+%nearest neighbors were likely to be involved in the the same biological
+%process, and that the observed transcriptional co-regulation would allow us to
+%suggest roles for unannotated genes, and to suggest previously unknown roles
+%for characterized genes.
+%
+%To this end, we first evaluated how well the co-regulated neighbors could be
+%used to reconstruct human-curated annotation that were already assigned to the
+%gene using the Biological Process (BP) aspect of the Gene Ontology (GO)
+%\cite{go}.  To do so for a single BP-annotated probeset, we first needed to
+%discriminate between nearby and distant neighbors and did so using the
+%\emph{bcp}, the Bayesian Change Point library of the R programming language.
+%The subset of nearby neighbors for which BP was available was then tested for
+%category enrichment using a hypergeometric-based test provided by the
+%Bioconductor \cite{bioconductor} package \emph{GOstats}.  We tested for
+%enrichment of all GO BP categories associated with any of the nearby neighbors,
+%and so adjusted all p-values output by the hypergeometric test using Bonferroni
+%correction in order to compensate for multiple hypothesis testing.
+%
+%We then used the BP annotations that were \emph{already known} from existing
+%literature and ``recovered'' solely based on nearby neighbor annotations to
+%estimate the p-value below which novel predictions should be accurate.
+%
+%We were able to recover the correct annotation for XXX\% of known annotations.
+%The relationship between fractional recovery and confidence of the prediction
+%(p-value) is given in Figure XXX.  The vast majority of recovered annotations
+%(XXX\%) had an adjusted p-value of less than XXX, and we used this as a cutoff
+%below which predicted annotations should be accurate.
+%
+%More than XXX about 10,000 XXX probesets on the HG-U133\_Plus\_2 arraydesign are not
+%assigned to any existing gene symbol.  This typically means they were designed
+%to measure a transcript that is computationally predicted only, and not
+%supported by any \emph{in vivo} observation.  An additional XXX about
+%5,000-10,000 XXX probesets are assigned to a gene symbol that are supported by
+%little or no \emph{in vivo} data.  This group contains predicted genes, as well
+%as transcripts that have been observed in EST libraries.
+%
+%Typical probesets in both of these groups have no annotation whatsoever.  We
+%were able to assign XXX annotations to XXX probesets (XXX\%) in these groups.
+%The data provided here represent an initial, and thus significant, step forward
+%in the characterization of the roles of these hypothetical and rarely observed
+%genes.
+%
+%Our assignment of an additional XXX annotations to genes which are already
+%characterized is also significant, as it suggests direct linkage between
+%biological processes previously known to be only indirectly related.
 
 \section{Conclusion}
-Text Text Text Text Text Text
 
-\begin{enumerate}
-\item this is item, use enumerate 
-\item this is item, use enumerate 
-\item this is item, use enumerate 
-\end{enumerate}
+These correlation data are generally useful, and may be used to address a wide
+variety of biological questions.  We have demonstrated that we are able to
+correctly identify causal genes within their linkage regions for several
+unrelated disease phenotypes.  We also demonstrated the ability use these data
+to extrapolate what is known about a disease process to prioritize candidates
+within linkage regions for which the causal gene has not yet been identified.
 
-Text Text Text Text Text Text
+Further, these correlation data are useful for characterizing non-disease
+phenotypes and can be used to characterize genes at global-scale as opposed to
+within specific genomic regions.  We demonstrated this using a small set of
+muscle contraction genes to identify genes that are known to also be involved
+in muscle contraction according to the Gene Ontology Consortium.  We reproduced
+this result and demonstrated that this type of enrichment analysis is not
+process- or annotation-specific by using a set of cartilage development genes
+identified from a previous microarray study to find more genes likely to be
+involved in cartilage development.
+
+The versatility of this resource initially surprised us.  The methods used to
+assemble the correlation matrix is completely metadata independent -- only the
+genomic alignment of probe sequences and the quantitative measurements made by
+the microarray were used.  The data set is also very heterogenous.  It is
+composed from microarray data generated from thousands of individual
+experiments, from hundreds of experimenters, with each experiment using
+different biological materials and variations of the Affymetrix protocols.
+
+What conclusions can we draw? XXX ... XXX
+
+ 
+These results are in are somewhat surprising, but speak to the power...
 
 \section*{Funding}
 Text Text Text Text Text Text
@@ -717,14 +828,16 @@ line indicates the position above which slope changes of $r\prime$ are common.}
 % conn.exe = Celsius.exe('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim2');
 % know = read.table('/home/allenday/dissertation/allenday-dissertation/cor/cart/cartilage/cart.gene.txt');
 % prof = get(conn.exe, know[,2]);
-% prof.mean = sort(apply(prof, 2, mean));
+% prof.mean = apply(prof, 2, mean);
 % know.frag = sort( as.vector(apply( prof[ , match(know[,2], colnames(prof)) ], 2, mean )) );
 % postscript('cartilage_cdf.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
-% plot( prof.mean, 1:length(prof.mean), axes=F, xlab='r', ylab='fraction of probesets', main='CDF of cartilage (triangle) and all probesets (circle) Pearson r' ); box();
-% points( know.frag, 1:length(know.frag) * (length(prof.mean)/length(know.frag)), col='red', pch=2 )
-% axis(1, seq(-0.07,0.17, by=0.01 ))
-% axis(2, 1:10 * length(prof.mean)/10, 1:10/10)
+% plot( sort(prof.mean), 1:length(prof.mean), axes=F, xlab='r', ylab='fraction of probesets', main='CDF of cartilage and all probesets Pearson r', type="l" );
+% box();
+% lines( know.frag, 1:length(know.frag) * (length(prof.mean)/length(know.frag)), lty=2 );
+% axis(1, seq(-0.07,0.17, by=0.01 ));
+% axis(2, 1:10 * length(prof.mean)/10, 1:10/10);
 % dev.off();
+% write.csv( cbind( as.numeric(as.logical(match(colnames(prof[ , prof.mean >= quantile(prof.mean, 0.995) ]), rownames(prof)))), prof.mean[ prof.mean >= quantile(prof.mean, 0.995) ], annAll[ match( colnames(prof[ , prof.mean >= quantile(prof.mean, 0.995) ]), annAll[,1] ), 1:3 ] ), 'cartilage_candidates.csv' )
 % </execute>
 
 \begin{figure}[!tpb]
@@ -743,6 +856,46 @@ clear?  Is there a better way to do it?}
 
 % as.list(GOBPOFFSPRING)[['GO:0006936']]
 % zcat ~/public_html/data/HG-U133_Plus_2.GO.known.dat.gz | grep -E '0006936|0002086|0006937|0006939|0006940|0006941|0006942|0030049|0031443|0031444|0031445|0031446|0031447|0031448|0031449|0031450|0031451|0031452|0031453|0031454|0043133|0043134|0045932|0045933|0045986|0045987|0045988|0045989' | grep -v IEA | wc
+
+% <execute lang="R">
+%# ourProbeset = scan('/clustertmp0/allenday/ourProbeset.dat',what='character');
+%# ourUniverse = scan('/clustertmp0/allenday/ourUniverse.dat');
+% source('/home/allenday/cvsroot/celsius/dump/lib/R/Celsius/IO/exe.R');
+% conn.exe = Celsius.exe('/home/allenday/cvsroot/celsius/dump/data2/HG-U133_Plus_2.rma_trim2');
+% know = read.table('/home/allenday/dissertation/allenday-dissertation/cor/cart/muscletest/cart.gene.txt');
+% prof = get(conn.exe, know[,2]);
+% know.frag = sort( as.vector(apply( prof[ , match(know[,2], colnames(prof)) ], 2, mean )) );
+% prof.mean = apply(prof, 2, mean);
+% jj = 901:1000/1000;
+%# hresults = matrix(rep(NA,300),nrow=100);
+% hresults = read.csv('muscle_contraction_p.csv');
+%# for (j in 100:98) {overP = colnames(prof)[ prof.mean > quantile(prof.mean, jj[j]-0.01) & prof.mean <= quantile(prof.mean, jj[j]) ];overQ = ourUniverse[match(overP,ourProbeset)];params = new("GOHyperGParams", geneIds = overQ,  universeGeneIds = ourUniverse, annotation = "hgu133plus2", ontology = "BP", pvalueCutoff = 1.0, conditional = FALSE,  testDirection = "over");hgOver = hyperGTest(params);hresults[j,1] = jj[j]-0.01; hresults[j,2] = jj[j]; dd = summary(hgOver)[ summary(hgOver)$GOBPID == 'GO:0006936', 2 ]; print(paste(j,jj[j],hresults[j,1],hresults[j,2],dd));if (sum(dd)>0){ hresults[j,3]=dd; } else { hresults[j,3]=1; } }
+% postscript('muscle_cdf.ps',width=8,height=8,horizontal=FALSE,onefile=FALSE,paper="special",encoding="TeXtext.enc");
+% par(mar=c(5,8,4,5)+0.1);
+% prof.mean.part = prof.mean[ prof.mean > quantile(prof.mean,0.95) ];
+% zz = cbind( as.character(apply( prof[ , match(know[,2], colnames(prof)) ], 2, mean )), as.character(know[,1]) );
+% plot( sort(prof.mean.part), 1:length(prof.mean.part), axes=F, xlab='r', ylab='fraction of probesets', main='', cex=0.5, type='l' ); box();
+% points( know.frag, 1:length(know.frag) * (length(prof.mean.part)/length(know.frag)), pch=zz[ rev(rank(zz[,1])), 2 ] );
+% lines(quantile(prof.mean,hresults[,3]),length(prof.mean.part)*-log10(hresults[,4])/max(-log10(hresults[,4])),lwd=1, lty=2);
+% axis(1, seq(0.06,0.19, by=0.01 ));
+% axis(2, 0:5 * length(prof.mean.part)/5, 95:100/100);
+% axis(2, 0:10 * length(prof.mean.part)/10, 0:10/10,line=5);
+% mtext("annotation -log10(p-value)", side=4, line=3);
+% axis(4, 0:11 * length(prof.mean.part)/11, 4*0:11);
+% dev.off();
+% </execute>
+
+\begin{figure}[!tpb]
+\label{figure:muscle_cdf}
+\centerline{\resizebox{9cm}{!}{\psfig{figure=muscle_cdf.ps}}}
+\caption{Plot of $\bar{r}$ to a muscle profile of 5 genes (UTRN, KCNQ1, MYOM1,
+SGCA, ASPH; 13 probesets) annotated with ``muscle contraction''.  The 13
+probesets present in the profile (red, x-axis) and all probesets (black,
+x-axis) are plotted versus the cumulative fraction of cartilage-expressed
+probesets <= a given value of $\bar{r}$.  Hypergeometric test enrichment of
+term ``muscle contraction'' $-log_10(p-values)$ within each 0.1\%-sized
+quantiles for the top decile are also shown (cyan, right x-axis).}
+\end{figure}
 
 
 
@@ -855,7 +1008,3 @@ within a genomic region}
 
 
 \end{document}
-
-
-
-

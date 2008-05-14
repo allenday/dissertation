@@ -9,6 +9,21 @@ L~Baala, S~Romano, R~Khaddour, S~Saunier, UM~Smith, S~Audollent, C~Ozilou,
   syndrome.}
 \newblock {\em Am J Hum Genet}, 80(1):186--94, 2007.
 
+\bibitem{miame}
+A~Brazma, P~Hingamp, J~Quackenbush, G~Sherlock, P~Spellman, C~Stoeckert,
+  J~Aach, W~Ansorge, CA~Ball, HC~Causton, T~Gaasterland, P~Glenisson,
+  FC~Holstege, IF~Kim, V~Markowitz, JC~Matese, H~Parkinson, A~Robinson,
+  U~Sarkans, S~Schulze-Kremer, J~Stewart, R~Taylor, J~Vilo, and M~Vingron.
+\newblock {Minimum information about a microarray experiment (MIAME)-toward
+  standards for microarray data.}
+\newblock {\em Nat Genet}, 29(4):365--71, 2001.
+
+\bibitem{carlson}
+MR~Carlson, B~Zhang, Z~Fang, PS~Mischel, S~Horvath, and SF~Nelson.
+\newblock {Gene connectivity, function, and sequence conservation: predictions
+  from modular yeast co-expression networks.}
+\newblock {\em BMC Genomics}, 7:40, 2006.
+
 \bibitem{celsius}
 A~Day, MR~Carlson, J~Dong, BD~O'Connor, and SF~Nelson.
 \newblock {Celsius: a community resource for Affymetrix microarray data.}
@@ -25,6 +40,13 @@ M~Delous, L~Baala, R~Salomon, C~Laclef, J~Vierkotten, K~Tory, C~Golzio,
 \newblock {The ciliary gene RPGRIP1L is mutated in cerebello-oculo-renal
   syndrome (Joubert syndrome type B) and Meckel syndrome.}
 \newblock {\em Nat Genet}, 39(7):875--81, 2007.
+
+\bibitem{liver}
+CT~Ferrara, P~Wang, EC~Neto, RD~Stevens, JR~Bain, BR~Wenner, OR~Ilkayeva,
+  MP~Keller, DA~Blasiole, C~Kendziorski, BS~Yandell, CB~Newgard, and AD~Attie.
+\newblock {Genetic networks of liver metabolism revealed by integration of
+  metabolic and transcriptional profiling.}
+\newblock {\em PLoS Genet}, 4(3):e1000034, 2008.
 
 \bibitem{funari}
 VA~Funari, A~Day, D~Krakow, ZA~Cohn, Z~Chen, SF~Nelson, and DH~Cohn.
@@ -55,6 +77,14 @@ MA~Harris, J~Clark, A~Ireland, J~Lomax, M~Ashburner, R~Foulger, K~Eilbeck,
 \newblock {The Gene Ontology (GO) database and informatics resource.}
 \newblock {\em Nucleic Acids Res}, 32(Database issue):D258--61, 2004.
 
+\bibitem{aspm}
+S~Horvath, B~Zhang, M~Carlson, KV~Lu, S~Zhu, RM~Felciano, MF~Laurance, W~Zhao,
+  S~Qi, Z~Chen, Y~Lee, AC~Scheck, LM~Liau, H~Wu, DH~Geschwind, PG~Febbo,
+  HI~Kornblum, TF~Cloughesy, SF~Nelson, and PS~Mischel.
+\newblock {Analysis of oncogenic signaling networks in glioblastoma identifies
+  ASPM as a molecular target.}
+\newblock {\em Proc Natl Acad Sci U S A}, 103(46):17402--7, 2006.
+
 \bibitem{rma}
 RA~Irizarry, BM~Bolstad, F~Collin, LM~Cope, B~Hobbs, and TP~Speed.
 \newblock {Summaries of Affymetrix GeneChip probe level data.}
@@ -82,11 +112,23 @@ LC~Keeler, SE~Marsh, EP~Leeflang, CG~Woods, L~Sztriha, L~Al-Gazali, A~Gururaj,
   involvement identifies the CORS2 locus on chromosome 11p12-q13.3.}
 \newblock {\em Am J Hum Genet}, 73(3):656--62, 2003.
 
+\bibitem{wormnet}
+I~Lee, B~Lehner, C~Crombie, W~Wong, AG~Fraser, and EM~Marcotte.
+\newblock {A single gene network accurately predicts phenotypic effects of gene
+  perturbation in Caenorhabditis elegans.}
+\newblock {\em Nat Genet}, 40(2):181--8, 2008.
+
 \bibitem{netaffx}
 G~Liu, AE~Loraine, R~Shigeta, M~Cline, J~Cheng, V~Valmeekam, S~Sun, D~Kulp, and
   MA~Siani-Rose.
 \newblock {NetAffx: Affymetrix probesets and annotations.}
 \newblock {\em Nucleic Acids Res}, 31(1):82--6, 2003.
+
+\bibitem{agca}
+R~Nagarajan, N~Le, H~Mahoney, T~Araki, and J~Milbrandt.
+\newblock {Deciphering peripheral nerve myelination by using Schwann cell
+  expression profiling.}
+\newblock {\em Proc Natl Acad Sci U S A}, 99(13):8998--9003, 2002.
 
 \bibitem{JBTS4}
 MA~Parisi, CL~Bennett, ML~Eckert, WB~Dobyns, JG~Gleeson, DW~Shaw, R~McDonald,
@@ -95,12 +137,39 @@ MA~Parisi, CL~Bennett, ML~Eckert, WB~Dobyns, JG~Gleeson, DW~Shaw, R~McDonald,
   present in a subset of individuals with Joubert syndrome.}
 \newblock {\em Am J Hum Genet}, 75(1):82--91, 2004.
 
+\bibitem{webtom}
+S~Rossi, D~Masotti, C~Nardini, E~Bonora, G~Romeo, E~Macii, L~Benini, and
+  S~Volinia.
+\newblock {TOM: a web-based integrated approach for identification of candidate
+  disease genes.}
+\newblock {\em Nucleic Acids Res}, 34(Web Server issue):W285--92, 2006.
+
 \bibitem{JBTS1}
 K~Saar, L~Al-Gazali, L~Sztriha, F~Rueschendorf, M~Nur-E-Kamal, A~Reis, and
   R~Bayoumi.
 \newblock {Homozygosity mapping in families with Joubert syndrome identifies a
   locus on chromosome 9q34.3 and evidence for genetic heterogeneity.}
 \newblock {\em Am J Hum Genet}, 65(6):1666--71, 1999.
+
+\bibitem{mage}
+PT~Spellman, M~Miller, J~Stewart, C~Troup, U~Sarkans, S~Chervitz, D~Bernhart,
+  G~Sherlock, C~Ball, M~Lepage, M~Swiatek, WL~Marks, J~Goncalves, S~Markel,
+  D~Iordan, M~Shojatalab, A~Pizarro, J~White, R~Hubley, E~Deutsch, M~Senger,
+  BJ~Aronow, A~Robinson, D~Bassett, CJ~Stoeckert, and A~Brazma.
+\newblock {Design and implementation of microarray gene expression markup
+  language (MAGE-ML).}
+\newblock {\em Genome Biol}, 3(9):RESEARCH0046, 2002.
+
+\bibitem{operon}
+D~Steinhauser, BH~Junker, A~Luedemann, J~Selbig, and J~Kopka.
+\newblock {Hypothesis-driven approach to predict transcriptional units from
+  gene expression data.}
+\newblock {\em Bioinformatics}, 20(12):1928--39, 2004.
+
+\bibitem{csbdb}
+D~Steinhauser, B~Usadel, A~Luedemann, O~Thimm, and J~Kopka.
+\newblock {CSB.DB: a comprehensive systems-biology database.}
+\newblock {\em Bioinformatics}, 20(18):3647--51, 2004.
 
 \bibitem{GNF}
 AI~Su, T~Wiltshire, S~Batalov, H~Lapp, KA~Ching, D~Block, J~Zhang, R~Soden,
@@ -143,5 +212,19 @@ EM~Valente, JL~Silhavy, F~Brancati, G~Barrano, SR~Krishnaswami, M~Castori,
 \newblock {Mutations in CEP290, which encodes a centrosomal protein, cause
   pleiotropic forms of Joubert syndrome.}
 \newblock {\em Nat Genet}, 38(6):623--5, 2006.
+
+\bibitem{dimensionality}
+Y~Wang, DJ~Miller, and R~Clarke.
+\newblock {Approaches to working in high-dimensional data spaces: gene
+  expression microarrays.}
+\newblock {\em Br J Cancer}, 98(6):1023--8, 2008.
+
+\bibitem{mo}
+PL~Whetzel, H~Parkinson, HC~Causton, L~Fan, J~Fostel, G~Fragoso, L~Game,
+  M~Heiskanen, N~Morrison, P~Rocca-Serra, SA~Sansone, C~Taylor, J~White, and
+  CJ~Stoeckert.
+\newblock {The MGED Ontology: a resource for semantics-based description of
+  microarray experiments.}
+\newblock {\em Bioinformatics}, 22(7):866--73, 2006.
 
 \end{thebibliography}
