@@ -197,7 +197,7 @@ model given in Equation \ref{medianpolish} is fit,
 
 where $\alpha_i$ is a probe effect and $\beta_j$ is the $\log_2$ expression
 value, and the method is known as \emph{median polish}, named after Tukey's
-algorithm used to perform the calculation \cite{tukey:1977}.
+algorithm used to perform the calculation.
 
 It is noteworthy that summarized probe set values from all popular multi-array
 summarization methods, including those described here, are dependent upon the
@@ -215,11 +215,11 @@ by examining the variable \verb+bgcorrect.method+.
 <<>>=
 normalize.AffyBatch.methods
 @
-The Quantile, Contrast and Loess normalizations have been discussed and compared in \cite{PMID_12538238}.
+The Quantile, Contrast and Loess normalizations have been discussed and compared in \cite{affybench}.
 
 \subsection{quantiles/quantiles.robust}
 
-The quantile method was introduced by \cite{PMID_12538238}. The goal is to give each chip the same empirical distribution. To do this we use the following algorithm where $X$ is a matrix of probe intensities (probes by microarrays):
+The quantile method was introduced by \cite{affybench}. The goal is to give each chip the same empirical distribution. To do this we use the following algorithm where $X$ is a matrix of probe intensities (probes by microarrays):
 
 \begin{enumerate}
 \item Given $n$ microarray of length $p$, form $X$  of dimension $p \times n$  where
@@ -235,7 +235,7 @@ The \emph{quantiles} function performs the algorithm as above. The \emph{quantil
 
 \subsection{loess}
 
-There is a discussion of this method in \cite{PMID_12538238}. It generalizes the $M$ vs $A$ methodology proposed in \cite{Dudoit:2002} to multiple microarrays. It works in a pairwise manner and is thus slow when used with a large number of microarrays.
+There is a discussion of this method in \cite{affybench}. It generalizes the $M$ vs $A$ methodology proposed in \cite{Dudoit:2002} to multiple microarrays. It works in a pairwise manner and is thus slow when used with a large number of microarrays.
 
 \subsection{contrasts}
 

@@ -1,7 +1,4 @@
 %%% XXX
- citations to merge in:
-\cite{wit2004,mage}
-
 There are two basic types of gene microarray technologies currently at the
 disposal of researchers: single-channel and multi-channel microarrays.  The
 methods used and form of measurements made for these two types differ, but the
@@ -15,7 +12,57 @@ region on the array is known as a \emph{feature} and the DNA sequence present
 at a feature is called a \emph{probe}.  The source of the probe that is
 immobilized at the feature can be a cDNA clone deposited onto the microarray,
 or oligonucleotides that are synthesized on the microarray \emph{in-situ} using
-photochemistry and light masks \cite{XXX}.
+photochemistry and light masks \cite{fodor,lipshutz}.
+
+\subsection{Array Design and Fabrication}\label{ArrayDesign}
+
+The first steps in performing a microarray experiment is deciding which genes
+to assay on the microarray, how many genes to add, and how to arrange the genes
+on the microarray.  These steps are collectively known as \emph{microarray
+design}.
+
+In earlier times it was commonplace to manufacture multi-channel microarrays in
+the laboratory using a form of printer that deposited oligonucleotides onto a
+glass slide.  This is no longer the case, as microarray production has been
+industrialized and is now done on a scale and level of precision that requires
+specialized apparata that are not practical to host in a laboratory
+environment.  However, the design principles remain the same.  The array
+designer needs to select the sequences that are to be assayed by the
+microarray.  These can correspond toregions that are transcribed to RNA,
+non-transcribed regions, or even oligonucleotides not expected to be observed
+in the biological source material to be hybrized.  Historically, limitations in
+manufacturing technology were very restrictive, and limited the number of genes
+that could be assayed simultaneously.  Current technology is sufficiently
+advanced to allow all genes to be simultaneously assayed for most organisms, so
+the question of which and how many genes to add is no longer relevant.
+However, as anyone who has performed and experiment will aver, the results
+obtained from the same experimental procedure performed twice will yield
+different results.  This also holds true for measurements made with
+microarrays.  There are many potential sources of variance in the gene
+measurements, and a good array design measures as much of this measurement
+variance as possible.  Estimation of variance on a microarray essentially means
+making multiple measurements of the same gene.  Each gene can be measured at
+multiple distinct locations along its sequence.  Further, each location can be
+measured multiple times.  A good array design uniformly distributes replicates
+across the array surface to compensate for local perturbations on the array
+surface itself.
+
+Once the sequences to place onto the microarray have been determined, the
+sequences are either placed onto the physcial substrate using printing
+technology, or synthesized directly onto the substrate using photolithography
+\cite{fodor,lipshutz}.  Fabrication and microarray design are interdependent,
+in that improvements in manufacturing techniques allow for the fabrication of
+more powerful devices.  Thus, this area of microarray technology is evolving
+especially rapidly and any specific details of the synthesis I can describe
+here will quickly be outdated.
+
+Metadata are maintained that map the physical position of features in the
+arraydesign of the microarray back to the sequences they were designed to match
+during hybridization (Section \ref{Hybridization}).  These are used by the data
+analyst after all data are collected to detect changes in gene expression that
+correspond to changes in experimental factors.
+
+\subsection{Hybridization}\label{Hybridization}
 
 Once a microarray has been fabricated according to the array design, a solution
 of DNA fragments, or \emph{targets}, can be labeled with a fluorescent dye and
@@ -53,9 +100,36 @@ For both single-channel and multi-channel arrays, the next step is
 fluorescence intensities acquired from the scanner into values that are usable
 in higher-level data analyses such as classification.  Methods for
 quantification of microarray data are an area of intense interest
-\cite{XXX,XXX,XXX} because they can give very different estimates of the
-quantity of DNA present for a given feature/channel, and thereby have a large
-effect on the biological conclusions that can be drawn from analyses of those
-estimates.  Quantification methods are discussed in greater detail in Section
-\ref{Quantification}.
+\cite{mas5,affy4,mbei,rma,vsn,gcrma,affyplm,seo,affybench} because they can
+give very different estimates of the quantity of DNA present for a given
+feature/channel, and thereby have a large effect on the biological conclusions
+that can be drawn from analyses of those estimates.  Quantification methods are
+discussed in greater detail in Section \ref{Quantification}.
+
+%%%% XXX MERGE
+
+\section{Microarray Assay Overview}
+A successful microarray experiment is one which is able to provide insight into
+the hypothesis for which it was designed.  Insights gained by experimentation
+are hard-earned, and require careful planning and execution of multiple key
+steps.
+
+The initial steps of feature selection, microarray design, microarray
+fabrication, experiment design, and biological sample processing, and image
+acquisition are described generally in Sections
+\ref{ArrayDesign}-\ref{Hybridization}.  A more exhaustive discussion of
+protocol surrounding these steps is given in \cite{wit2004}.  Following their
+acquisition, images are quantified, stored, distributed, analyzed, and
+analytical results shared.  Challenges and findings related to these latter
+procedures are the subject of \emph{\dbthesis}.  They are thoroughly discussed
+in Sections \ref{Data Processing}-\ref{Informatics}.
+
+The entire process, from microarray design to data analysis has been formally
+described as an object model known as the Microarray Gene Expression Object
+Model (MAGE-OM) \cite{mage}.  In this document I have borrowed vocabulary
+defined in the MAGE-OM for clarity and consistency.  The MAGE-OM itself is
+discussed in Section \ref{MAGE}.
+
+\subsection{Microarray Design}
+\label{ArrayDesign}
 

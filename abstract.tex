@@ -1,34 +1,58 @@
-XXXTechnological advancements, such as the release of the human genome in 2001,
-have sparked the development of methods allowing biologists to ask previously
-intractable questions.  A prime example is the DNA microarray which enables the
-simultaneous monitoring of thousands of gene expression levels.  Here, two
-bioinformatics projects that leveraged genome-scale proteomics and genomics
-datasets are presented. While the scientific questions examined in each were
-different, there was a common end goal of identifying high-level patterns
-across the data. The computational approaches used allowed for a better
-understanding of the specific mechanisms governing protein stability in
-thermophiles as well as gene expression in cancer.
+The human genome project, which began in 1988 and completed in 2001, ushered in
+a new era of biology.  This effort accelerated the development of biochemical
+assay and information technologies.  As a result, biologists are now able to
+ask questions that were previously considered intractable.  One example of a
+breakthrough in assay technology is the DNA microarray, a high-throughput
+measurement device which enables individual scientists to rapidly and
+simultaneously interrogate the RNA concentration levels of virtually all genes
+in the human genome for a single biological source.  As with all advances, the
+advent of DNA microarray has created a new frontier of challenges.  In this
+document, I describe an approach that addresses the problem of assembly,
+processing, and subsequent analysis of large volumes of data collected with DNA
+microarray.  My work is presented in 5 chapters and 3 appendices.
 
-In the proteomics study, protein sequences from nearly 200 microbial genomes
-were threaded onto known structures. The results supported a widespread use of
-structurally stabilizing disulfide bonds in intracellular proteins from most of
-the thermophilic bacteria and archaea.  This surprising global pattern yielded
-additional insights into the possible mechanisms of disulfide maintenance with
-the identification of a protein disulfide oxidoreductase specific to these
-thermophiles.
+Chapter \introchapter serves as a general introduction DNA microarray assay
+technology, idiosyncrasies of using this technology in biological experiments,
+methods for pre-processing the resulting experimental data, and techniques used
+in the informatic systems that enable the processing, representation, storage,
+and subsequent retrieval of these data.
 
-The genomics study examined several cancer gene expression datasets for subtle
-relationships.  This method identified pairs of genes whose binary expression
-states matched the sample labels well, such as prognostic categories or cancer
-subtypes, only when logically combined.  This result was important because
-it linked expression to observable classes in a novel way, using genes
-ignored by the vast majority of analysis methods.  The global pattern of gene
-expression and sample class relationships ultimately revealed possible novel
-mechanisms in the disease states examined.
+Chapter \celsiuschapter is the core of the dissertation and describes the
+Celsius project, a microarray data warehousing system that is an implemented
+solution to the informatic problems described in \introchapter.  The completion
+of the Celsius project brought into existence the single largest publicly
+available source of primary and uniformly pre-processed DNA microarray data.
 
-Together these results highlight the importance of using information from rich,
-multiplexed datasets in order to understand nuanced patterns in biological
-systems.  In both research projects, new insights were gained only when large
-numbers of either genomes or gene expression samples were compared.  The
-computational challenges associated with such large bioinformatics studies are
-further explored in the final section of this dissertation.
+Chapter \corchapter builds upon Chapter \celsiuschapter by describing an
+analysis of the data present in Celsius.  Specifically, it describes the
+creation of gene-gene correlation matrices and their application in performing
+gene annotation and identifying disease genes within known linkage regions.
+While the idea of using gene-gene coexpression patterns is as old as DNA
+microarray technology itself, the scale of this analysis is unprecedented and
+the demonstrated applicability of the correlation data to a broad set of
+biological questions raises concerns about the validity of current microarray
+data deposition systems which rely heavily on experimental metadata.
+
+Chapter \biopackageschapter presents Biopackages.net, a technical subsystem of
+the data warehousing system described in Chapter \celsiuschapter.
+Reproducibility is a shared pillar of both scientific and data warehousing
+methods.  Because Celsius is very dependent on computing systems to process the
+data stored in the warehouse, it was essential to have a mechanism for making
+uniform and reproducible computing environments.  This not only allows the
+system to scale as the volume of data inevitably increases, but also garners
+the benefits of being able to clone the system at other sites and to recover
+from failures.
+
+Chapter \gmodwebchapter and Appendix \daschapter describe efforts for data
+modeling and dissemination.  As we enter the post-genome era, new assay
+technologies continue to appear, and the growth in volume of existing and new
+data generated from each technology continues to accelerate.  Thus, it
+imperative that protocols be developed for the encoding and distribution of
+these data to both individual scientists and the information systems and agents
+acting on their behalf.
+
+Appendix \chochapter and Appendix \funarichapter present analyses performed on
+previous iterations of Celsius, which is described in Chapter \celsiuschapter.
+These early collaborations provided a glimpse of the utility of creating a
+micorarray data warehouse, without which the work described here would never
+have been completed.

@@ -60,19 +60,19 @@ classification methods.
 
 A prominent part of model building for the analysis of microarray data is
 \emph{feature selection}, or the process of identifying which features of
-observations are relevant in the assignment of class labels.  Selected
-features correspond to the microarray feature measurements, or some
-summarization thereof (Section \ref{Summarization}).  Feature selection is
-essential because the analytical methods applied to microarray experiments bear
-the ``curse of dimensionality'' \cite{Bellman_1957}.  In a typical experiment
-the number of samples is small ($1x10^1 \dots 1x10^3$), while the number of
-measurements made on each sample is relatively large ($1x10^3 \dots 1x10^6$).
-Because of this it is possible to correctly partition labeled data on one or
-multiple subsets of all observed features.  Using a subset that robustly
-captures the sample labels is desireable because it increases classification
-accuracy and reduces the computation required required to calculate a new
-sample label, as many classification algorithms scale exponentially with the
-number of features considered \cite{john94irrelevant}.
+observations are relevant in the assignment of class labels.  Selected features
+correspond to the microarray feature measurements, or some summarization
+thereof (Section \ref{Summarization}).  Feature selection is essential because
+the analytical methods applied to microarray experiments bear the ``curse of
+dimensionality'' \cite{Bellman_1957}.  In a typical experiment the number of
+samples is small ($1{\times}10^1 \dots 1{\times}10^3$), while the number of
+measurements made on each sample is relatively large ($1{\times}10^3 \dots
+1{\times}10^6$).  Because of this it is possible to correctly partition labeled
+data on one or multiple subsets of all observed features.  Using a subset that
+robustly captures the sample labels is desireable because it increases
+classification accuracy and reduces the computation required required to
+calculate a new sample label, as many classification algorithms scale
+exponentially with the number of features considered \cite{john94irrelevant}.
 
 \subsection{Label Encoding}
 \label{Label Encoding}
