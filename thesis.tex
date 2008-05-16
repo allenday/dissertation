@@ -17,11 +17,12 @@
 % Chapter Variables
 
 \newcommand{\celsiuschapter}{2}
-\newcommand{\classchapter}{3}
+\newcommand{\corchapter}{3}
 \newcommand{\biopackageschapter}{4}
 \newcommand{\gmodwebchapter}{5}
 \newcommand{\daschapter}{A}
 \newcommand{\chochapter}{B}
+\newcommand{\funarichapter}{C}
 \newcommand{\XXXchapter}{X}
 
 % Other Variables
@@ -58,7 +59,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title          {\dbthesis} %XXX should this really be the same?
-\author         {Allen J. Day}
+\author         {Allen Jason Day}
 \department     {Human Genetics}
 % Note:  degreeyear should be optional, but as of  5-Feb-96
 % it seems required or you get a year of ``2''.   -johnh
@@ -73,8 +74,8 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\dedication     {\textsl{XXXTo my mother \ldots \\
-                who has always stressed the value of an education.}}
+%\dedication     {\textsl{XXXTo my mother \ldots \\
+%                who has always stressed the value of an education.}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -145,11 +146,17 @@ this project.
 
 The authors acknowledge the following individuals for their help in the
 development, documentation, testing and maintenance of the software and systems
-described here: P. Alger, A. Helsley, and V. Ruotti.  Additionally, we thank
-S. Cain, S. Chervitz, and T. Harris for discussion related to the design of the
-project architecture.  We thank L. Lee for designing the Biopackages.net website. 
+described here: P. Alger, A. Helsley, and V. Ruotti.  Additionally, we thank S.
+Cain, S. Chervitz, and T. Harris for discussion related to the design of the
+project architecture.  We thank L. Lee for designing the Biopackages.net
+website. 
 
-\subsubsection*{Chapter \gmodwebchapter\ --- GMODWeb: A Web Framework for the Generic Model Organisms Database}
+A. Day was supported by an Integrated Graduate Education and Research
+Traineeship grant (DGE-9987641).
+
+
+\subsubsection*{Chapter \gmodwebchapter\ --- GMODWeb: A Web Framework for the
+Generic Model Organisms Database}
 
 A. Day and B.D. O'Connor contributed equally to this chapter which is a
 manuscript in progress. L.D. Stein is the corresponding author and adviser for
@@ -161,29 +168,53 @@ S. Cain, O. Arnaiz, and L. Sperling for their extensive testing of the
 GMODWeb software.
 
 O. Arnaiz and L. Sperling were supported by the CNRS and by ACI IMPBio2004
-contract 14.
+contract 14.  A. Day was supported by an Integrated Graduate Education and
+Research Traineeship grant (DGE-9987641).
 
 \subsection*{Appendix \daschapter --- The Distributed Annotation System}
 
-R.D. Dowell was the first author of this chapter which was originally published in BMC Bioinformatics volume 2, 2001.  The
-corresponding author and adviser for this project was L.D. Stein.
+R.D. Dowell was the first author of this chapter which was originally published
+in BMC Bioinformatics volume 2, 2001.  The corresponding author and adviser for
+this project was L.D. Stein.
 
-This article was reprinted with permission from BioMed Central Ltd. (copyright 2001).
+This article was reprinted with permission from BioMed Central Ltd. (copyright
+2001).
 
-The initial ideas for DAS were developed in conversations with LaDeana Hillier of the Washington University Genome
-Sequencing Center.  This work was supported by grants from the NHGRI (2-P01-HG00956) and an HHMI Predoctoral Fellowship
+The initial ideas for DAS were developed in conversations with LaDeana Hillier
+of the Washington University Genome Sequencing Center.  This work was supported
+by grants from the NHGRI (2-P01-HG00956) and an HHMI Predoctoral Fellowship
 grant to R.D. Dowell.
 
-\subsection*{Appendix \chochapter --- Distinct Transcription Profiles of Primary and Secondary Glioblastoma Subgroups}
+\subsection*{Appendix \chochapter --- Distinct Transcription Profiles of
+Primary and Secondary Glioblastoma Subgroups}
 
-C.L. Tso was the first author of this chapter which was originally published in Cancer Research, volume 66, 2006.  The
-corresponding author and adviser for this project was S.F. Nelson.
+C.L. Tso was the first author of this chapter which was originally published in
+Cancer Research, volume 66, 2006.  The corresponding author and adviser for
+this project was S.F. Nelson.
 
-This article was reprinted with permission from the American Association for Cancer Research (copyright 2006).
+This article was reprinted with permission from the American Association for
+Cancer Research (copyright 2006).
 
-The work was supported by grants from the National Cancer Institute (U01CA88173), NINDS (U24NS43562),
-Women's Reproductive Health Research Center (5K12HD001281), and an Integrated Graduate Education and
-Research Traineeship grant to A. Day.
+The work was supported by grants from the National Cancer Institute
+(U01CA88173), NINDS (U24NS43562), Women's Reproductive Health Research Center
+(5K12HD001281), and an Integrated Graduate Education and Research Traineeship
+grant (DGE-9987641) to A. Day.
+
+\subsection*{Appendix \funarichapter --- Cartilage-selective genes identified
+in genome-scale analysis of non-cartilage and cartilage gene expression}
+
+V.A. Funari was the first author of this chapter which was originally published
+in BMC Genomics, volume 8, 2007.  The corresponding author and adviser for this
+project was D.H. Cohn.
+
+This article was reprinted with permission from the American Association for
+BMC Genomics (copyright 2007).
+
+The work was supported by grants from the National Institutes of Health
+(HD22657, RR00425, HL072367, U24NS052108), a Joseph Down Foundation grant to
+Deborah Krakow, and an Integrated Graduate Education and Research Traineeship
+grant (DGE-9987641) to A. Day.
+
 
 }
 
@@ -213,32 +244,45 @@ Research Traineeship grant to A. Day.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \publication {
-R.D. Dowell, R.M. Jokerst, A. Day, S.R. Eddy, L. Stein.
-The Distributed Annotation System.
+R.D. Dowell, R.M. Jokerst, A. Day, S.R. Eddy, L. Stein.  The Distributed
+Annotation System.
 \textsl{BMC Bioinformatics.} 2, 2001.
 }
 
 \publication {
-L.D. Stein, C. Mungall, S.Q. Shu, M. Caudy, M. Mangone, A. Day, E. Nickerson, J.E. Stajich, T.W. Harris, A. Arva, S. Lewis.
-The Generic Genome Browser: A Building Block for a Model Organism System Database.
+L.D. Stein, C. Mungall, S.Q. Shu, M. Caudy, M. Mangone, A. Day, E. Nickerson,
+J.E. Stajich, T.W. Harris, A. Arva, S. Lewis.  The Generic Genome Browser: A
+Building Block for a Model Organism System Database.
 \textsl{Genome Research.} 12(10), 2002.
 }
 
 \publication {
-T.W. Harris, R. Lee, E. Schwarz, K. Bradnam, D. Lawson, W. Chen, D. Blasier, E. Kenny, F. Cunningham, R. Kishore, J. Chan, H.M. Muller, A. Petcherski, G. Thorisson, A. Day, T. Bieri, A. Rogers, C.K. Chen, J. Spieth, P. Sternberg, R. Durbin, L.D. Stein.
-WormBase: a cross-species database for comparative genomics
+T.W. Harris, R. Lee, E. Schwarz, K. Bradnam, D. Lawson, W. Chen, D. Blasier, E.
+Kenny, F. Cunningham, R. Kishore, J. Chan, H.M. Muller, A. Petcherski, G.
+Thorisson, A. Day, T. Bieri, A. Rogers, C.K. Chen, J. Spieth, P. Sternberg, R.
+Durbin, L.D. Stein.  WormBase: a cross-species database for comparative
+genomics
 \textsl{Nucleic Acids Research.} 31(1), 2003.
 }
 
 \publication {
-C.L. Tso, W.A. Freije, A. Day, Z. Chen, B. Merriman, A. Perlina, Y. Lee, E.Q. Dia, K. Yoshimoto, P.S. Mischel, L.M. Liau, T.F. Cloughesy, S.F. Nelson.
-Distinct Transcription Profiles of Primary and Secondary Glioblastoma Subgroups.
+C.L. Tso, W.A. Freije, A. Day, Z. Chen, B. Merriman, A. Perlina, Y. Lee, E.Q.
+Dia, K. Yoshimoto, P.S. Mischel, L.M. Liau, T.F. Cloughesy, S.F. Nelson.
+Distinct Transcription Profiles of Primary and Secondary Glioblastoma
+Subgroups.
 \textsl{Cancer Research.} 66, 2006.
 }
 
 \publication {
-A. Day, M.R.J. Carlson, J. Dong, B.D. O'Connor, S.F. Nelson.
-Celsius: a community resource for Affymetrix microarray data.
+V.F. Funari, A. Day, D. Krakow, Z.A. Cohn, Z. Chen, S.F. Nelson, D.H. Cohn.
+Cartilage-selective genes identified in genome-scale analysis of non-cartilage
+and cartilage gene expression.
+\texttsl{BMC Genomics.} 8, 2007.
+}
+
+\publication {
+A. Day, M.R.J. Carlson, J. Dong, B.D. O'Connor, S.F. Nelson.  Celsius: a
+community resource for Affymetrix microarray data.
 \textsl{Genome Biology.} 8(6), 2007.
 }
 
@@ -268,12 +312,12 @@ Celsius: a community resource for Affymetrix microarray data.
 \chapter{Introduction}
 \include{intros}
 
-%%celsius paper - margins preliminary ok
-%\chapter{Celsius: a community resource for Affymetrix microarray data}
-%\includepdf[pages=1-1, scale=.75,
-%            trim=5mm 15mm 10mm 35mm,
-%            clip, pagecommand={}]{publications/celsius.pdf}
-%
+%celsius paper - margins preliminary ok
+\chapter{Celsius: a community resource for Affymetrix microarray data}
+\includepdf[pages=1-13, scale=.75,
+            trim=5mm 15mm 10mm 25mm,
+            clip, pagecommand={}]{publications/celsius.pdf}
+
 %\chapter{Scalable Classification of Affyemtrix Microarray Samples}
 %\include{cel_classification}
 %
@@ -281,29 +325,38 @@ Celsius: a community resource for Affymetrix microarray data.
 %            trim=5mm 15mm 10mm 20mm,
 %            clip, pagecommand={}]{publications/celsius.pdf}
 %
-%% biopackages manuscript - margins ok
-%\chapter{Biopackages.net: Bioinformatics Libraries, Applications, and Data as Operating System Packages}
-%\include{biopackages_3-16-07}
-%
-%% gmodweb manuscript - margins ok
-%\chapter{GMODWeb: A Web Framework for the Generic Model Organisms Database}
-%\include{gmodweb_03-25-07}
-%
-%%begin appendices, \appendix command replaces the "CHAPTER" from \chapter with "APPENDIX"
-%\appendix
-%%das paper - margins preliminary ok
-%\chapter{The Distributed Annotation System}
-%\includepdf[pages=1-7, scale=.75,
-%            trim=5mm 18mm 10mm 25mm,
-%            clip, pagecommand={}]{publications/das.pdf}
+% biopackages manuscript - margins ok
+\chapter{Biopackages.net: Bioinformatics Libraries, Applications, and Data as Operating System Packages}
+\include{biopackages_3-16-07}
 
-%%cho paper - margins preliminary ok
-%\chapter{Distinct Transcription Profiles of Primary and Secondary Glioblastoma Subgroups}
-%\includepdf[pages=1-1, scale=.75,
-%            trim=5mm 20mm 10mm 25mm,
-%            clip, pagecommand={}]{publications/cho.pdf}
-%\includepdf[pages=2-9, scale=.75,
-%            trim=5mm 20mm 10mm 20mm,
-%            clip, pagecommand={}]{publications/cho.pdf}
+% gmodweb manuscript - margins ok
+\chapter{GMODWeb: A Web Framework for the Generic Model Organisms Database}
+\include{gmodweb_03-25-07}
 
+%begin appendices, \appendix command replaces the "CHAPTER" from \chapter with "APPENDIX"
+\appendix
+%das paper - margins preliminary ok
+\chapter{The Distributed Annotation System}
+\includepdf[pages=1-7, scale=.75,
+            trim=5mm 18mm 10mm 25mm,
+            clip, pagecommand={}]{publications/das.pdf}
+
+%cho paper - margins preliminary ok
+\chapter{Distinct Transcription Profiles of Primary and Secondary Glioblastoma
+Subgroups}
+\includepdf[pages=1-9, scale=.75,
+            trim=5mm 20mm 10mm 20mm,
+            clip, pagecommand={}]{publications/cho.pdf}
+%funari paper - magins preliminary ok
+\chapter{Cartilage-selective genes identified in genome-scale analysis of
+non-cartilage and cartilage gene expression.}
+\includepdf[pages=1-4, scale=.75,
+            trim=10mm 15mm 10mm 20mm,
+            clip, pagecommand={}]{publications/funari.pdf}
+\includepdf[pages=5-6, scale=.75,
+            trim=18mm 15mm 13mm 20mm,
+            clip, pagecommand={}]{publications/funari.pdf}
+\includepdf[pages=7-13, scale=.75,
+            trim=10mm 15mm 10mm 20mm,
+            clip, pagecommand={}]{publications/funari.pdf}
 \end {document}
