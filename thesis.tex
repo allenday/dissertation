@@ -18,8 +18,8 @@
 
 \newcommand{\celsiuschapter}{2}
 \newcommand{\corchapter}{3}
-\newcommand{\biopackageschapter}{4}
-\newcommand{\gmodwebchapter}{5}
+\newcommand{\biopackageschapter}{5}
+\newcommand{\gmodwebchapter}{6}
 \newcommand{\daschapter}{A}
 \newcommand{\chochapter}{B}
 \newcommand{\funarichapter}{C}
@@ -87,35 +87,40 @@ advised my research projects.
 There are also many other people that have helped me with my research over the
 last five years and I sincerely appreciate their advice, contributions, and
 friendship, and support.  For these reasons, I would particularly like to thank
-L. Lee, B. Merriman, M.R.J. Carlson, E. Wong, A. Perry, A. Hodes, C.L. Tso,
-J. Braunstein, and J.M. Mendler.
+L. Lee, B. Merriman, M.R.J. Carlson, J. Dong, V.A. Funari, C.L. Tso, J.
+Braunstein, and J.M. Mendler.
 
-Celsius, the microarray data warehouse project described in Chapter \celsiuschapter, is
-the result of collaboration with M.R.J Carlson, J.Dong, and B.D. O'Connor.  M.R.J.
-Carlson and B.D. O'Connor provided implementation of the web service through which
-Celsius is available to the public.  B.D. O'Connor additionally provided implemention
-for the construction of the data warehouse.  J. Dong provided analytical results
-which demonstrated that almalgamation of microarray data is methodologically sound.
-This project was mentored and originally conceived of by S.F. Nelson.
+Celsius, the microarray data warehouse project described in Chapter
+\celsiuschapter, is the result of collaboration with M.R.J Carlson, J.Dong, and
+B.D. O'Connor.  M.R.J.  Carlson and B.D. O'Connor provided implementation of
+the web service through which Celsius is available to the public.  B.D.
+O'Connor additionally provided implemention for the construction of the data
+warehouse.  J. Dong provided analytical results which demonstrated that
+almalgamation of microarray data is methodologically sound.  This project was
+mentored and originally conceived of by S.F. Nelson.
 
-Biopackages.net, the scientific computing infrastructure project described in Chapter \biopackageschapter,
-is the result of collaboration with B.D. O'Connor, J. Mendler and J. Fox.  All collaborators
-provided new packages to the software repository.  B.D O'Connor and J. Mendler were
-instrumental in implementing, testing, and maintaining the repository and the package
-building system.  This project was mentored by S.F. Nelson and L.D. Stein.
+The gene analysis and annotation work done as part of Chapter \corchapter is
+the result of collaboration with J. Dong.
 
-GMODWeb, the web developer tool described in Chapter \gmodwebchapter, is the result of collaboration
-with B.D. O'Connor.  Both A. Day and B.D. O'Connor provided software implementation.  This project was
-mentored by L.D. Stein.
+Biopackages.net, the scientific computing infrastructure project described in
+Chapter \biopackageschapter, is the result of collaboration with B.D. O'Connor,
+J. Mendler and J. Fox.  All collaborators provided new packages to the software
+repository.  B.D O'Connor and J. Mendler were instrumental in implementing,
+testing, and maintaining the repository and the package building system.  This
+project was mentored by S.F. Nelson and L.D. Stein.
+
+GMODWeb, the web developer tool described in Chapter \gmodwebchapter, is the
+result of collaboration with B.D. O'Connor.  Both A. Day and B.D. O'Connor
+provided software implementation.  This project was mentored by L.D. Stein.
 
 In addition, I would like to thank L.D. Stein, G. Helt, S. Chervitz, S. Cain,
-V. Ruotti, L. Sperling, and O. Arnaiz for their advice on the informatics projects
-I have contributed to including Celsius, Biopackages, GMODWeb, and the
-Distributed Annotation System.  These projects are detailed in Chapters \celsiuschapter,
-\biopackageschapter, and \gmodwebchapter, and in Appendix \daschapter.  I would
-particularly like to acknowledge B.D. O'Connor for being my sounding board and an
-enthusiastic participant and partner in many scientific and software development
-endeavors.
+V. Ruotti, L. Sperling, and O. Arnaiz for their advice on the informatics
+projects I have contributed to including Celsius, Biopackages, GMODWeb, and the
+Distributed Annotation System.  These projects are detailed in Chapters
+\celsiuschapter, \biopackageschapter, and \gmodwebchapter, and in Appendix
+\daschapter.  I would particularly like to acknowledge B.D. O'Connor for being
+my sounding board and an enthusiastic participant and partner in many
+scientific and software development endeavors.
 
 \subsubsection*{Chapter 1 --- Introduction}
 
@@ -125,20 +130,32 @@ endeavors.
 %XXX Figures 1.3 and 1.4 were reproduced from \emph{\dbthesis}\ (2006) with
 %permission from D. Boutz (copyright 2006).
 
-\subsubsection*{Chapter \celsiuschapter --- Celsius: a community resource for Affymetrix microarray data}
+\subsubsection*{Chapter \celsiuschapter --- Celsius: a community resource for
+Affymetrix microarray data}
 
-A. Day was the first author of this chapter which was originally published in Genome Biology,
-volume 8, issue 6, in 2007.  The corresponding author and adviser for this project was S.F. Nelson.
+A. Day was the first author of this chapter which was originally published in
+Genome Biology, volume 8, issue 6, in 2007.  The corresponding author and
+adviser for this project was S.F. Nelson.
 
-This article was reprinted with permission from BioMed Central Ltd. (copyright 2007).
+This article was reprinted with permission from BioMed Central Ltd. (copyright
+2007).
 
-I wish to thank M.R.J. Carlson and B.D. O'Connor for their work on making Celsius accessible via web services.
+I wish to thank M.R.J. Carlson and B.D. O'Connor for their work on making
+Celsius accessible via web services.
 
-The authors thank J. Braunstein for critical comments on the manuscript.
-The work was supported by grants from the NINDS (U24HS052108) and the
-NHLBI (HL72367) with support from the NIH Neuroscience Microarray Consortium.
+The authors thank J. Braunstein for critical comments on the manuscript.  The
+work was supported by grants from the NINDS (U24HS052108) and the NHLBI
+(HL72367) with support from the NIH Neuroscience Microarray Consortium.
 
-\subsubsection*{Chapter \biopackageschapter\ --- Biopackages.net: Bioinformatics Libraries, Applications, and Data as Operating System Packages}
+\subsubsection*{Chapter \corchapter ---Gene Characterization Throught
+Large-Scale Co-expression Analysis}
+
+A. Day and J. Dong contributed equally to this chapter which is a manuscript in
+progress.  S.F. Nelson is the corresponding author and adviser for this
+project.
+
+\subsubsection*{Chapter \biopackageschapter --- Biopackages.net: Bioinformatics
+Libraries, Applications, and Data as Operating System Packages}
 
 A. Day and B.D. O'Connor contributed equally to this chapter which is a
 manuscript in progress. L.D. Stein is the corresponding author and adviser for
@@ -154,18 +171,16 @@ website.
 A. Day was supported by an Integrated Graduate Education and Research
 Traineeship grant (DGE-9987641).
 
-
-\subsubsection*{Chapter \gmodwebchapter\ --- GMODWeb: A Web Framework for the
+\subsubsection*{Chapter \gmodwebchapter --- GMODWeb: A Web Framework for the
 Generic Model Organisms Database}
 
 A. Day and B.D. O'Connor contributed equally to this chapter which is a
 manuscript in progress. L.D. Stein is the corresponding author and adviser for
 this project. 
 
-I wish to thank B.D. O'Connor for his significant contributions to the GMODWeb project
-which forms the basis for this chapter.  I also wish to thank
-S. Cain, O. Arnaiz, and L. Sperling for their extensive testing of the
-GMODWeb software.
+I wish to thank B.D. O'Connor for his significant contributions to the GMODWeb
+project which forms the basis for this chapter.  I also wish to thank S. Cain,
+O. Arnaiz, and L. Sperling for their extensive testing of the GMODWeb software.
 
 O. Arnaiz and L. Sperling were supported by the CNRS and by ACI IMPBio2004
 contract 14.  A. Day was supported by an Integrated Graduate Education and
@@ -317,6 +332,11 @@ community resource for Affymetrix microarray data.
 \includepdf[pages=1-13, scale=.75,
             trim=5mm 15mm 10mm 25mm,
             clip, pagecommand={}]{publications/celsius.pdf}
+
+\chapter{Gene Characterization Throught Large-Scale Co-expression Analysis}
+\includepdf[pages=1-9, scale=.75,
+            trim=5mm 30mm 15mm 17mm,
+            clip, pagecommand={}]{cor.pdf}
 
 %\chapter{Scalable Classification of Affyemtrix Microarray Samples}
 %\include{cel_classification}

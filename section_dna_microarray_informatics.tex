@@ -1,3 +1,90 @@
+%%% XXX old outlining, can probably be tossed.
+%\section{Microarray Informatics}
+%\subsection{Data Storage}
+%\subsection{Data Retrieval}
+%\subsection{Interoperability}
+%\subsubsection{Data Encoding}
+%\subsubsection{Data Modeling}
+%\subsubsection{Exchange Protocols}
+%\subsection{Scalability Concerns In Microarray Informatics}
+%%% XXX end old outlining
+
+%%% XXX FIXME what about these????
+%\section{Infrastructure}
+%\subsection{Resource Administration}
+%\subsection{Package Management}
+%\subsection{Configuration Management}
+%%% XXX
+
+citations to merge in:
+\subsubsection{Maintenance}
+
+The cost of high-performance, horizontal systems is increased complexity.
+
+rocks           \cite{papadopoulos2003}
+puppet          \cite{puppet}
+rpm             \cite{bailey1997}
+
+\subsection{Storage}
+
+%See Also
+postgres        \cite{postgresql}
+chado           \cite{chado}
+
+\subsubsection{Data Representation}
+%\subsubsubsection{Assay Measurements}
+%\subsubsubsection{Annotations}
+
+%See Also
+mged ontology           \cite{mo}
+mp ontology             \cite{mp}
+sequence ontology       \cite{so}
+cell ontology           \cite{cl}
+ncbo                    \cite{ncbo}
+chado                   \cite{chado}
+mage-ml                 \cite{mage}
+
+\subsubsection{Performance}
+%\subsubsubsection{Hardware}
+%\subsubsubsection{Clustering}
+%\subsubsubsection{Partitioning}
+%\subsubsection{Computation}
+%\subsubsubsection{Data Loading}
+etl                     \cite{kimball2004}
+%\subsubsubsection{Data Analysis}
+\subsection{Data Sharing}
+
+%See Also
+das                     \cite{das}
+nation                  \cite{nation}
+spice                   \cite{spice}
+mage-ml                 \cite{mage}
+
+\subsubsection{Data Representation}
+%\subsubsubsection{Standards}
+%\subsubsubsection{XML}
+\subsubsection{MAGE}
+\label{MAGE}
+MAGE-OM and MAGE-ML
+
+das                     \cite{das}
+ncbo                    \cite{ncbo}
+mage-ml                 \cite{mage}
+%\subsubsubsection{URL}
+%\subsubsubsection{Ontology}
+mged ontology           \cite{mo}
+mp ontology             \cite{mp}
+sequence ontology       \cite{so}
+cell ontology           \cite{cl}
+ncbo                    \cite{ncbo}
+%\subsubsubsection{Syntax}
+%\subsubsubsection{Data}
+%\subsubsubsection{Normalization}
+%\subsubsubsection{Reproducibility}
+%\subsubsubsection{Modularity}
+
+
+
 \subsubsection{Data Modeling}
 \label{Data Modeling}
 
@@ -209,3 +296,166 @@ database schema is used in \dbthesis is given in Chapter \dbthesis.
 
 \subsection{Computing Infrastructure}
 \label{Infrastructure}
+
+
+
+
+
+
+
+
+
+%%% XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+\subsubsection{Annotations}
+
+%@ annotation -> ontologies
+Ontologies represent another key crossover from computer science, information
+theory, and artificial intelligence research.  An ontology is a system of
+related terms that is intended to encapsulate the classification of a system.
+They are a way of describing and understanding a facet of the world and, as such,
+serve as natural points of standardization.  As biologists have always faced
+the problems of nomenclature and classification, ontologies are a natural
+extension of these activities.  Many high-profile ontologies have been created
+to annotate and classify a wide variety of biological concepts.  For
+microarrays, much work has gone into defining standards (such as MAGE-ML and
+MIAME) that structure the task of recording information about experimental
+design \cite{brazma2001mim}. Extensive work has also resulted in the use of
+ontologies to describe biological systems and the experiments performed on
+them.  The MAGE ontology is of particular importance in the microarray field
+but others exist such as the extremely useful gene ontology (GO) that aims to
+structure the annotations on gene function and nomenclature
+\cite{stoeckert2003mof,ashburner2000got}.
+
+Many important projects have spearheaded the effort to establish ontologies for
+the biological research community.  The open biomedical ontologies (OBO)
+project provides a range of ontologies designed for use in the biomedical
+fields.  Other related projects include GO, the MGED ontology, and the sequence
+ontology (SO) \cite{stoeckert2003mof,ashburner2000got,eilbeck2006sot}.  Many
+organization exist to support the development of new and existing ontologies
+including the National Center for Biomedical Ontology
+\url{http://www.bioontology.org}, MGED \url{http://www.mged.org}, and OBO
+\url{http://obo.sourceforge.net}.  Ontologies from these projects have been
+made available in Chado and are used extensively in the Celsius project to
+annotate microarray experiments with disease type, tissue type, and other
+important information.  The Celsius system is described in more detail in
+the Appendix.
+
+
+\subsubsection{Analysis}
+
+%@ analysis -> common APIs
+In microarrays, many different algorithms exist that allow a researcher to
+process the raw information from a hybridization into meaningful gene
+expression data.  This process, called normalization and standardization, can
+range from a simple scaling to sophisticated algorithms that model probe
+hybridization efficiency and integrate data from multiple experiments to arrive
+at a more accurate value. With many different options, the need for
+standardizing a mechanism to interact with these algorithms becomes apparent.
+Without common application programming interfaces (APIs), each distinct
+algorithm would require its own input and output format and require many more
+hours to be spent on the trivial task of data formating.  Instead, good
+programming practices from computer science dictate coding abstraction and
+encapsulation.  These ideas can be seen in the Bioconductor or Bioperl APIs for
+biological data and algorithms \cite{stajich2002btp,gentleman2006bos}.  For
+microarrays this translates to a common framework for accessing many different
+normalization techniques with the same programmatic calls, only the flag
+specifying what algorithm to be used changes.  Similarly, the Seq::IO section
+of the Bioperl API allows sequence data to be read and written to and from a
+variety of sequence file formats \cite{stajich2002btp}.  This allows programs
+to access many different formats of data without needing to be rewritten.
+Common APIs clearly are favored by both the open source community and the
+bioinformatics community for these reasons.
+
+\subsubsection{Sharing}
+
+%@ sharing -> web services
+Related to the concept of open APIs for interacting with biological data is the
+concept of web services.  Sharing of biological data, whether it is raw,
+primary data, or processed results, is of the utmost concern for biologist.
+Yet journal articles provide a poor repository for large datasets.  Simply
+downloading large data files is a better approach, yet many times only a few
+pieces of information are needed and the downloading of an entire dataset is
+unnecessary.  For example, if a researcher wants a particular protein structure
+from the protein data bank (PDB, \url{http://www.pdb.org}) downloading the
+thousands of structures in bulk from the PDB is unnecessary.
+
+The emerging web services approach used across the Internet points to a better
+solution.  This model includes technology such as the simple object access
+protocol and REST concepts for interacting with an API remotely over the
+hypertext transport protocol (HTTP) on which the web is based.  This idea is
+that simple requests for data or information calculated on the fly can be made
+by a researcher and the result is calculated or retrieved remotely and returned
+over the Internet.  This type of approach is extremely flexible and can be used
+in a variety of contexts to present biological data to other researchers.
+
+The distributed annotation system, or DAS, is a popular bioinformatics web
+services project geared towards the sharing of genome annotations with the
+larger research community \cite{dowell2004das}.  Organizations looking to share
+genome assemblies, gene annotations, and other genomic features use DAS to make
+this information available over the web.  Implementations of DAS use the
+standard HTTP protocol and XML as an exchange standard.  The next version,
+DAS/2, expands on the genomics focus of DAS by including capabilities to
+exchange ontologies, download experimental assay results such as microarray
+data, and perform on-demand sequence analysis such as BLAST.  The success of
+DAS as a project is due to the ease of which scientists can utilize information
+published with DAS.  Many clients exist, such as GBrowse and IGB, and the web
+services model affords programmatic access to the servers \cite{stein2002ggb}.
+This allows additional applications to be built on top of these public
+repositories.  For example, the Celsius project web interfaces were created
+on top of a DAS/2 server which provided the raw data.  These web tools let an
+end user query the microarray data available via ontology annotations and
+download the corresponding data in a variety of different processed forms.
+
+More information on web services can be found in Chapters \XXXchapter,
+\gmodwebchapter, and the Appendix. Chapter \XXXchapter\ details
+the creation of a web services designed to thread protein sequences onto know
+structures with the end goal of identifying disulfide bonds.  Chapter
+\gmodwebchapter\ examines a model organism website generation framework that
+includes web services tools.
+
+\subsubsection{Standardization}
+
+%@ standardization -> software packaging
+A closely related concept to web services is the concept of software
+standardization.  In the model of web services, a researcher can focus on the
+analysis of data and its biological meaning rather than figuring out how to
+store data locally.  This approach affords abstraction between the researcher
+and the entity providing the web service, making it easier for others to
+either validate existing work by performing the same analysis or expand on the
+work using the same web services.  It allows researchers to easily standardize
+a given dataset or analysis server.  Another technique familiar to all
+computer users on standardization is the versioning of computer programs.  When
+research is being performed on a particular dataset or with a particular
+software program, it is extremely important to track which version was
+used.  Otherwise it becomes impossible to replicate the work.  The idea of
+software packaging, borrowed from the field of information technology, is of
+key importance to bioinformatics.  In addition to simply versioning software,
+many comprehensive systems exist for specifically tracking, installing, and
+updating both software and data in a particular computing environment.  The
+Linux system, for example, uses one of several different package managers to
+perform this task.
+
+The Biopackages project looks to standardize many tools used commonly in
+bioinformatics projects. It encompasses an automated build system that creates
+software packages for particular Linux distributions.  These include packages
+for APIs such as BioPerl and BioConductor, web services such as DAS/2, and
+databases such as Chado.  Details of the construction, public availability, and
+benefits of this standardization tool can be found in Chapter \biopackageschapter.
+
+%@ I have worked on several software solutions for these (maybe just integrate
+%these above) This can just be a "Chapter X shows..." paragraph that maps the
+%topics above to chapters. I'm just going to include these above.
+
+\subsection{Further Work}
+
+%@ Future biologies will be driven by basic needs as biology continues to
+%become integrated with other disciplines.
+Biology will continue to be driven by the basic needs to store, annotate,
+analyze, share, and standardize biological data and practices. As biology
+continues to become more integrated with other disciplines and influences the
+development of other fields at the same time, new and effective technologies
+will continue to be developed. In this section, many facets of computer science
+and information technology were explored as they relate to the common problems
+facing biologists today and in the future.  The use of computer science and
+information technology continues to expand in biological research and provides
+new avenues to address challenges and demands of this transforming field.
