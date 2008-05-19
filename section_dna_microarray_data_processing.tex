@@ -1,41 +1,47 @@
-%XXX Introduce the section on data processing...
+%%% XXX this belongs in a higher-level or dedicated section.
+%To get around this problem of co-processing, Katz \emph{et al.} described a
+%method for large scale, iterative processesing of Affymetrix microarrays
+%\cite{genelogic}.  Because multi-array methods for performing background correction
 
-%%% XXX old outlining.  can probably be tossed
-%\subsection{Quantification}
-%
-%Microarray quantification, also known as \emph{pre-processing}, is the
-%process of estimating the quantity of each gene in the sample that was assayed
-%in the hybridization step of the microarray experiment.
-%
-%\subsubsection{Image Acquisition}
-%\subsubsection{Background Correction}
-%\subsubsection{Normalization}
-%\subsubsection{Perfect Match Correction}
-%\subsubsection{Summarization}
-%\subsection{Scalability Concerns In Microarray Data Processing}
-%%% XXX end old outlining...
-
-citations to merge in:
-liwong                  \cite{mbei,dchip}
-RMA                     \cite{rma}
-genelogic               \cite{genelogic}
-
-
-\subsection{Quantification}
-\label{Quantification}
-
-Microarray pre-processing, also known as \emph{quantification}, is the
-process of estimating the quantity of each gene in the sample that was assayed
-in the hybridization step (Section \ref{Hybridization}) of the experiment.
-Quantification can be broken down into five distinct sub-procedures, executed
+%ok
+Microarray pre-processing, also known as \emph{quantification}, is the process
+of estimating the quantity of each gene in the sample that was assayed in the
+hybridization step (Section \ref{Hybridization}) of the experiment.
+Quantification can be broken down into four distinct sub-procedures, executed
 in the following order: image processing, background correction, normalization,
-PM correction, and summarization.
+and summarization.  Much of the specific details in this section are
+idiosyncratic to the Affymetrix GeneChip platform, but general principles apply
+to all forms of microarray technology.
 
-\subsubsection{Image Processing}
-\label{Image Processing}
+%ok
+\subsection{Image Processing}\label{Image Processing}
 
-\subsubsection{Background Correction}
-\label{Background Correction}
+The term \emph{image processing} is used to describe a set of steps that
+transforms the physical microarray into a digital file suitable for subsequent
+processing by a computer.  The techical details of the protocol vary, but the
+general principles described here remain the same.
+
+As discussed in Section \ref{Hybridization}, fluorescent dyes are linked to the
+synthesized DNA sequences that are hybridized to the microarray.  The
+microarray is placed in a digital scanning apparatus that contains laser(s)
+that can emit light at the excitatory frequency of each dye.  The apparatus
+also contains photosensors that are able to detect the fluorescent light from
+the dye(s).  Each laser, then, is scanned across the surface of the microarray
+and the photosensors record the position and intensity of light for each dye.
+The raw form of these data is typically a series of images encoded using a
+lossless format, such as TIFF.  The image is then processed by an alignment
+algorithm that aligns the captured image to the coordinate system known to have
+been printed/synthesized onto the microarray surface.
+
+Finally, platform-specific protocols are used to represent the raw image in a
+format more suitable for downstream processing.  For example, with
+single-channel Affymetrix microarrays, the TIFF image is converted to an
+alternate format, called \emph{CEL} format, that describes the attributes of
+each microaray feature, such as mean intensity, variance, and number of pixels
+that represent the feature.
+
+%ok
+\subsection{Background Correction}\label{Background Correction}
 
 Background correction is a statistical procedure that estimates and removes low
 levels of noise on the microarray.  Background noise can have many sources.
@@ -68,29 +74,31 @@ correction}-\ref{Summarization}) altogether \cite{affyplm}.
 
 Newer, multi-array background correction methods have leveraged existing data
 to build a models of how background noise is generally distributed.  The gcRMA
-model \cite{gcrma} includes a parameter the sequence composition of each
-probe, while other models such as those used in the RMA and MBEI
-\cite{rma,bioc} methods only include a parameter for concordant each probe is
-with other probes in the same set.  The RMA background correction method is the
-\i{de facto} standard, and corrects perfect match (PM) probe intensities by
-using a global model for the distribution of probe intensities. The model is
-suggested by looking at plots of the empirical distribution of probe
-intensities.  In particular the observed PM probes are modeled as the sum of a
-normal noise component N (Normal with mean $\mu$ and variance $\sigma^2$) and a
-exponential signal component S (exponential with mean $\alpha$). To avoid any
-possibility of negatives, the normal is truncated at zero. Given we have O the
-observed intensity, this then leads to an adjustment, given in Equation
-\ref{rmabg}:
+model \cite{gcrma} includes a parameter the sequence composition of each probe,
+while other models such as those used in the RMA and MBEI (dChip)
+\cite{rma,mbei,dchip,vsn,bioc} methods only include a parameter for concordant
+each probe is with other probes in the same set.  The RMA background correction
+method is the \i{de facto} standard, and corrects perfect match (PM) probe
+intensities by using a global model for the distribution of probe intensities
+\cite{rma,gautier}.
 
-\begin{equation}
-\label{rmabg}
-E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
-\end{equation}
-
-where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
-$\Phi$ are the standard normal distribution density and distribution functions
-respectively.  Note also that MM probe intensities are not corrected by either
-of these routines \cite{rma,bioc}.
+%The model is suggested by looking at plots of the empirical distribution of
+%probe intensities.  In particular the observed PM probes are modeled as the sum
+%of a normal noise component N (Normal with mean $\mu$ and variance $\sigma^2$)
+%and a exponential signal component S (exponential with mean $\alpha$). To avoid
+%any possibility of negatives, the normal is truncated at zero. Given we have O
+%the observed intensity, this then leads to an adjustment, given in Equation
+%\ref{rmabg}:
+%
+%\begin{equation}
+%\label{rmabg}
+%E\left(s \lvert O=o\right) = a + b \frac{\phi\left(\frac{a}{b}\right) - \phi\left(\frac{o-a}{b}\right)}{\Phi\left(\frac{a}{b}\right) + \Phi\left(\frac{o-a}{b}\right) - 1 }
+%\end{equation}
+%
+%where $a =  s- \mu - \sigma^2\alpha$ and $b = \sigma$. Note that $\phi$ and
+%$\Phi$ are the standard normal distribution density and distribution functions
+%respectively.  Note also that MM probe intensities are not corrected by either
+%of these routines \cite{rma,bioc}.
 
 Multi-array background correction methods are able to detect background noise
 due to the manufacturing and hybridization artifacts described above, but the
@@ -103,42 +111,16 @@ microarrays.  While this is not a problem for small-scale analysis on
 individual experiments, it creates difficulties when merging data from multiple
 experiments because all microarrays will need to be re-processed to re-fit the
 parameters of the noise model.  This re-processing problem can become
-intractable for background correcting a very large number of arrays, and is
-discussed in greater detail in Section \ref{Scalability}.
+intractable for background correcting a very large number of arrays.  Further
+attention is given to tractability in Section \ref{Scalability}.
 
-%%%%%%%%DEAD TEXT
-%  Typical sources of probe-independent noise
-%are the miscalibration of the photo-sensor used in Section \ref{Image
-%Processing}, diffuse laser reflection from the microarray, debris and salt left
-%over from hybridization (Section \ref{Hybridization}), and interaction between
-%probes and non-target sequences.  Noise falls into two general categories:
-%probe-independent and probe-specific.
-%
-%The level of probe-independent noise is estimated by measuring the level of
-%fluorescence from featureless regions of the microarray and negative control
-%probes that are not reverse-complementary to any sequences in the hybridization
-%mixture.  These measure background-level reflected light and the level of
-%non-specific hybridization, respectively.  Probe-independent background
-%correction is generally done during image processing because the
-%probe-independent noise tends to be spatially localized or uniformly
-%distributed, although emerging methods include probe sequence in modeling
-%background noise and correct each probe independently
-%\cite{mbei,PMID_12582260}.  The level of probe-dependent noise is
-%estimated by measuring the intensity of probes that differ only by a single
-%nucleotide from their target sequence.  The idea to using these so-called
-%\emph{mismatch probes} (MM) is that because their sequence is nearly identical
-%to the sequence of the \emph{perfect match} (PM) probe that any difference
-%between hybridization between a set of PM/MM pairs is almost entirely
-%sequence-specific and thus provides a probe set-specific measure of noise
-%\cite{rma,bioc}.
-
-\subsubsection{Normalization}
-\label{Normalization}
+%ok
+\subsection{Normalization}\label{Normalization}
 
 After correcting for background noise (Section \ref{Background Correction}),
 microarrays are normalized.  The purpose of normalization is to transform the
-distribution of microarray measurements so that properties of the
-distribution of measurements match expectations.
+distribution of microarray measurements so that properties of the distribution
+of measurements match expectations (e.g., a log-normal distribution).
 
 The most simple form of microarray normalization is a linear scaling.  The
 Affymetrix MAS 5 algorithm \cite{mas5} performs linear scaling by (1) setting
@@ -146,19 +128,32 @@ aside the top and bottom 1\% of measurements as outliers, adjusts the mean of
 the remaining measurements to a constant value, then multiplies each
 measurement, including the outliers, by the factor used to adjust the mean.
 
-some properties of the normalized measurements fit an expected distribution.
+The normalization method used in the dChip software \cite{mbei,dchip} selects a
+baseline microarray.   Then, all microarrays are normalized by selecting
+invariant sets of probes within each of the ``treatment'' and ``baseline''
+conditions.  These are used to fit a non-linear relationship between the two
+conditions, and this relationship is used to carry out the normalization.
 
-\subsubsection{PM correction}
-\label{PM correction}
+Many other normalization methods exist.  The essentially differ in two aspects:
+the theoretical model of how the microarray behaves, and the techniques used to
+fit the observed data to that model.  In this regard, normalization techniques
+are similar to those used for background correction (Section \ref{Background
+Correction}) and summarization (Section \ref{Summarization}).
 
-\subsubsection{Summarization}
+A comparison of the performance of a larg number of normalization methods at
+correctly estimating RNA concentration on a standard, synthetic data sets
+published by Affymetrix is described in \cite{affybench}.
+
+\subsection{Summarization}
 \label{Summarization}
 
 The last step in microarray data preprocessing is to combine the measurements
 from all probes in a probe set into a single value.  This procedure is called
-\emph{summarization}.  The simplest summarization algorithm, called ``average
-difference'' \cite{affy4} computes the mean of difference between each PM/MM
-probe pair (Equation \ref{avgdiffsummary}),
+\emph{summarization}.
+
+The simplest summarization algorithm, called ``average difference''
+\cite{affy4} computes the mean of difference between each PM/MM probe pair
+(Equation \ref{avgdiffsummary}),
 
 \begin{equation}
 \label{avgdiffsummary}
@@ -206,73 +201,8 @@ While this is not a problem theoritically, it introduces unique challenges in
 the implementation of a pre-processing pipeline for a large number of arrays.
 This is discussed in greater detail in Section \ref{Scalability}.
 
-%\subsubsubsection{Normalization}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
-
-You can see the background correction methods that are built into the package
-by examining the variable \verb+bgcorrect.method+.
-
-<<>>=
-normalize.AffyBatch.methods
-@
-The Quantile, Contrast and Loess normalizations have been discussed and compared in \cite{affybench}.
-
-\subsection{quantiles/quantiles.robust}
-
-The quantile method was introduced by \cite{affybench}. The goal is to give each chip the same empirical distribution. To do this we use the following algorithm where $X$ is a matrix of probe intensities (probes by microarrays):
-
-\begin{enumerate}
-\item Given $n$ microarray of length $p$, form $X$  of dimension $p \times n$  where
-each microarray is a column
-\item Sort each column of $X$ to give $X_{\mbox{sort}}$
-\item Take the means across rows of $X_{\mbox{sort}}$ and assign this mean to each element in the row to get $X'_{\mbox{sort}}$
-\item Get $X_{\mbox{normalized}}$ by rearranging each column of $X'_{\mbox{sort}}$ to have the same ordering as original $X$
-\end{enumerate}
-
-The quantile normalization method is a specific case of the transformation $x'_{i} = F^{-1}\left(G\left(x_{i}\right)\right)$, where we estimate $G$ by the empirical distribution of each microarray and $F$ using the empirical distribution of the averaged sample quantiles.  Quantile normalization is pretty fast.
-
-The \emph{quantiles} function performs the algorithm as above. The \emph{quantile.robust} function allows you to exclude or down-weight microarrays in the computation of $\hat G$ above. In most cases we have found that the \emph{quantiles} method is sufficient for use and \emph{quantiles.robust} not required.
-
-\subsection{loess}
-
-There is a discussion of this method in \cite{affybench}. It generalizes the $M$ vs $A$ methodology proposed in \cite{Dudoit:2002} to multiple microarrays. It works in a pairwise manner and is thus slow when used with a large number of microarrays.
-
-\subsection{contrasts}
-
-This method was proposed by \cite{astr:2003}. It is also a variation on the  $M$ vs $A$ methodology, but the normalization is done by transforming the data to a set of contrasts, then normalizing.
-
-\subsection{constant}
-
-A scaling normalization. This means that all the microarrays are scaled so that they have the same mean value. This would be typical of the approach taken by Affymetrix. However, the Affymetrix normalization is usually done after summarization (you can investigate \verb+affy.scalevalue.exprSet+ if you are interested) and this normalization is carried out before summarization.
-
-\subsection{invariantset}
-
-A normalization similar to that used in the dChip software \cite{mbei,dchip}. Using a baseline microarray, microarrays are normalized by selecting invariant sets of genes (or probes) then using them to fit a non-linear relationship between the ``treatment'' and ``baseline'' microarrays. The non-linear relationship is used to carry out the normalization.
-
-\subsection{qspline}
-This method is documented in \cite{workman:etal:2002}. Using a target microarray (either one of the microarrays or a synthetic target), microarrays are normalized by fitting splines to the quantiles, then using the splines to perform the normalization.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
-
-%\subsubsubsection{PM Correct Methods}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%<QUOTE>
-<<>>=
-pmcorrect.methods
-@
-\subsection{mas}
-
-An \emph{ideal mismatch} is subtracted from PM. The ideal mismatch is documented by \cite{affy:tech:2002}. It has been designed so that you subtract MM when possible (i.e. MM is less than PM) or something else when it is not possible. The Ideal Mismatch will always be less than the corresponding PM and thus we can safely subtract it without risk of negative values.
-
-\subsection{pmonly}
-
-Make no adjustment to the pm values.
-
-\subsection{subtractmm}
-
-Subtract MM from PM. This would be the approach taken in MAS 4 \cite{affy4}. It could also be used in conjunction with the Li-Wong model.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</QUOTE>
-
-vsn			\cite{vsn}
-genelogic		\cite{genelogic}
-
-A few sentences to dismiss 2-channel microarrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
-Need data consistency.  How to get it
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%vsn			\cite{vsn}
+%genelogic		\cite{genelogic}
+%A few sentences to dismiss 2-channel microarrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
+%Need data consistency.  How to get it
