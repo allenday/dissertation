@@ -203,10 +203,20 @@ This is discussed in greater detail in Section \ref{Scalability}.
 
 \subsection{Scalability}\label{Scalability}
 
-Katz \emph{et al.} \cite{genelogic}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%vsn			\cite{vsn}
-%genelogic		\cite{genelogic}
-%A few sentences to dismiss 2-channel microarrays.  There is a parallel set of conceptually identical problems, but the details for how to solve them differ.
-%Need data consistency.  How to get it
+While the superiority of multi-array techniques described in Sections
+\ref{Background Correction}-\ref{Summarization} has been established, a major
+impediment to implementing these in practice is that they are not designed to
+scale to large data sets due to the amount of system resources consumed by a
+single quantification process.  One approach to solving this problem is
+``divide and conquer''.  By breaking the matrices up row- or column-wise,
+larger batches of microarrays can be co-processed \cite{aroma}.  While this is
+useful for performing analysis on a static data set, it does not address the
+needs of users performing analysis on constantly growing data sets, because
+each time an additional microarray is added the entire set must be reprocessed.
+Katz \emph{et al.} \cite{genelogic} recognized that the true advantage of
+multi-array over single-array quantification methods is that they fit probe and
+probeset behavior to a model, and that if a theoretical (as opposed to
+emperical) model is used and reasonable estimates can be calculated and saved,
+arrays can be added one by one without reprocessing the whole set.  A similar
+system was implemented in Celsius, and is described in greater detail in
+Chatper \celsiuschapter \cite{celsius}.
