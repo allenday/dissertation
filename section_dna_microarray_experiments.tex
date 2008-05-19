@@ -1,18 +1,19 @@
 Scientific inquiries that use microarray technology to address research
-questions are sometimes called \emph{microarray experiments}.  Experiments can
-be divided into two general classes, pattern detection and predictive modeling.
-These are described in greater detail in Sections \ref{Pattern
-Detection}-\ref{Predictive Modeling}.  The method descriptions given here are
-desribed in terms of the characterization of biological samples, but it is
-important to bear in mind that the samples $x$ genes data matrix can be
-transposed and that these same methods can be used for the characterization of
-genes across multiple phenotypic conditions.  Indeed, this is also an area
-warranting further exploration given that gene-centric analyses are not stymied
-by the ``curse of dimensionality'', discussed in greater detail in Section
-\ref{Feature Selection}.
+questions are referred to as \emph{microarray experiments}.  The majority of
+these experiments can be divided into two classes: pattern detection and
+predictive modeling.  These are described in greater detail in Sections
+\ref{Pattern Detection}-\ref{Predictive Modeling}, and specific examples of
+these experimental classes can be seen in \cite{Dudoit2003ICM, Azuaje2003cge,
+Stanford2003cac, PMID_12413821, PMID_15843092, PMID_15867208}.  The method
+descriptions given here are desribed in terms of the characterization of
+biological samples, but it is important to bear in mind that the
+samples-by-genes data matrices can be transposed and that these same methods
+can be used for the characterization of genes across multiple phenotypic
+conditions.  Indeed, this is also an area warranting further exploration given
+that gene-centric analyses are not stymied by the ``curse of dimensionality'',
+discussed in greater detail in Section \ref{Feature Selection}.
 
-\subsection{Pattern Detection}
-\label{Pattern Detection}
+\subsection{Pattern Detection}\label{Pattern Detection}
 
 The first class of experiment is data-driven, in which an \emph{a-priori}
 hypothesis is not explictly stated and sample metadata in the form of labels
@@ -27,8 +28,7 @@ higher-resolution microarray.   A study by Freije, \emph{et al.} used this
 approach to identify novel subclasses of malignant gliomas
 \cite{PMID_15374961}.
 
-\subsection{Predictive Modeling}
-\label{Predictive Modeling}
+\subsection{Predictive Modeling}\label{Predictive Modeling}
 
 In the second general class of experiment seen in the literature, the emphasis
 is on constructing a function that is able to \emph{classify}, or predict class
@@ -55,58 +55,45 @@ test data that were set aside prior to model building.
 % A study by Day and Dong in Chapter \classchapter demonstrates the usage of
 % both flat and hierarchical classification methods.
 
-\subsection{Feature Selection}
-\label{Feature Selection}
+\subsection{Feature Selection}\label{Feature Selection}
 
 A prominent part of model building for the analysis of microarray data is
 \emph{feature selection}, or the process of identifying which features of
 observations are relevant in the assignment of class labels.  Selected features
 correspond to the microarray feature measurements, or some summarization
-thereof (Section \ref{Summarization}).  Feature selection is essential because
-the analytical methods applied to microarray experiments bear the ``curse of
-dimensionality'' \cite{Bellman_1957}.  In a typical experiment the number of
-samples is small ($1{\times}10^1 \dots 1{\times}10^3$), while the number of
-measurements made on each sample is relatively large ($1{\times}10^3 \dots
-1{\times}10^6$).  Because of this it is possible to correctly partition labeled
-data on one or multiple subsets of all observed features.  Using a subset that
-robustly captures the sample labels is desireable because it increases
-classification accuracy and reduces the computation required required to
-calculate a new sample label, as many classification algorithms scale
-exponentially with the number of features considered \cite{john94irrelevant}.
+thereof (Section \ref{Summarization}).
 
-\subsection{Label Encoding}
-\label{Label Encoding}
+Feature selection has been essential because the analytical methods applied to
+microarray experiments bear the ``curse of dimensionality''
+\cite{Bellman_1957}.  In a typical experiment the number of samples is small
+($1{\times}10^1 \dots 1{\times}10^3$), while the number of measurements made on
+each sample is relatively large ($1{\times}10^3 \dots 1{\times}10^6$).  Because
+of this it is possible to correctly partition labeled data on one or multiple
+subsets of all observed features.  Using a subset that robustly captures the
+sample labels is desireable because it increases classification accuracy and
+reduces the computation required required to calculate a new sample label, as
+many classification algorithms scale exponentially with the number of features
+considered \cite{john94irrelevant}.
 
-In both the pattern detection (Section \ref{Pattern Detection}) and
-predictive modeling (Section \ref{Predictive Modeling}) classes of microarray
-studies, a class label from one or more multiple orthogonal experimental
-factors is attached to a sample.  These set of class labels is ``flat'',
-meaning that it has no hierarchical structure and that the distance between any
-two classes is uniform.  
-%XXX link this up to \ref{Object Metadata} in the informatics section
+However, the work described in Chapter \celsiuschapter presents a mechanism for
+aggregation and analysis of much larger numbers of samples than are commonplace
+in experiments to date.
 
+\subsection{Label Encoding}\label{Label Encoding}
 
-\cite{go,so,mo,obo}
-
-
-It is well-established that such a flat representation is not suitable for representing gene annotation \cite{go}
-
- may not be sufficient to represent the degrees of
-relative similarity between different labels, and may then lead to a higher
-error rate than a labeling that considers the similarities between two label.
-
-
-
-
-
-introduce the problem of the richness of gene annotation, gene ontology,
-hierarchical labels, label dimensions, etc.  this problem is in its infancy for
-the labeling of samples now, but will ultimately be far more complex than gene
-annotation which is currently more mature.
-
-
-
-
-
-
-
+In both the pattern detection (Section \ref{Pattern Detection}) and predictive
+modeling (Section \ref{Predictive Modeling}) classes of microarray studies, a
+class label from one or more multiple orthogonal experimental factors is
+attached to a sample.  Class labels are typically ``flat'', meaning that there
+is no hierarchical structure and that the distance between any two classes is
+uniform.  However, It is well-established that such a flat representation is
+not suitable for representing gene annotation \cite{go}, and it has been
+demonstrated that statistical analyses that consider the structure of
+relationships between annotations bear more power than their flat counterparts
+\cite{ease,gocluster,pachinko}.  Thus, analyses that explicitly model the
+relationship types and distances between class labels of samples are expected
+to become more commonplace as open, community-supported, standard structures
+for encoding sample annotations mature \cite{so, obo, mpath, cl, mo, ma, mpath,
+mp}.  Encoding metadata using open standards also has implications with regard
+to integration of results from multiple studies, or otherwise exchanging data.
+These aspects are discussed in Section \ref{Sharing}.

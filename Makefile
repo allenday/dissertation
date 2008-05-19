@@ -32,7 +32,7 @@ thesis:
 	pdflatex thesis.tex
 	# a hack for the special formating of the TOC
 #	cp thesis.toc.custom thesis.toc
-	pdflatex thesis.tex
+#	pdflatex thesis.tex
 
 #
 # generate dvi from tex 
