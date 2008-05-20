@@ -85,56 +85,61 @@ ncbo                    \cite{ncbo}
 
 
 
-\subsubsection{Data Modeling}
+\subsection{Data Modeling}
 \label{Data Modeling}
 
 In order to be able to perform analyses on the results of a DNA microarray
-experiment, the assay data collected must be structured and stored.  This is
-also true of the experimental \emph{metadata}, or description of the
-experimental design and procedures.  Principles of scalability and
-mass-production prescribe that the encoding of these data be uniform, meaning
-that the structure used to encode the experiment must be sufficiently flexible
-and descriptive to capture the full range of experiments that can be conceived.
+experiment, the digitized assay data (Section \ref{Image Processing}) must be
+structured and stored.  This is also true of the experimental \emph{metadata},
+or description of the experimental design and procedures.  Principles of
+scalability and mass-production prescribe that the encoding of these data be
+uniform, meaning that the structure used to encode the experiment must be
+sufficiently flexible and descriptive to capture the full range of experiments
+that can be conceived.
 
 The \emph{MicroArray Gene Expression} (\emph{MAGE}) Group was established by
 the \emph{MicroArray Gene Expression Data Society} (\emph{MGEDS}, sometimes
 also referred to as \emph{MGED}) to develop a standard for the representation
 of microarray data, with the intent of making those data exchangeable between
-different information systems.  The work of the MAGE Group can be divided into
-two types of projects: those dealing with the syntax used to concretely
-represent microarray data, and those dealing with the semantics used to
-describe the microarray experimental materials and processes, produced data,
-and data derived from processing.
+different information systems \cite{mged}.  The work of the MAGE Group can be
+divided into two types of projects: those dealing with the syntax used to
+concretely represent microarray data, and those dealing with the semantics used
+to describe the microarray experimental materials and processes, produced data,
+and data derived from processing \cite{miame, mage, mo}.
 
-The semantic developments of the MAGE Group are more important for \dbthesis
-than the syntactic developments.  This is because semantics are abstract and
-generally useful for encoding experimental information, while the syntactic
-developments of the MAGE Group have optimized for the purposes of data
-interchange using technologies such as the \emph{eXtensible Markup Language}
-(\emph{XML}) that are not well-suited for systems whose primary purpose is to
-store and retrieve large volumes of quantitative data.
+The semantic developments of the MAGE Group \cite{mage} are more important for
+\dbthesis than the syntactic developments.  This is because semantics are
+abstract and generally useful for encoding experimental information, while the
+syntactic developments of the MAGE Group have optimized for the purposes of
+data interchange using technologies such as the \emph{eXtensible Markup
+Language} (\emph{XML}) that are not well-suited for systems whose primary
+purpose is to store and retrieve large volumes of quantitative data.
 
-Application of the MGED semantic technologies are discussed in other sections
-of this document.  There are two major semantic developments from MGEDS.  The
-first of these is the \emph{MAGE Object Model}, or \emph{MAGE-OM}.  The purpose
-of the MAGE-OM is to provide a standard set of classes that can be used to
+Application of the MGED semantic technologies, such as the MGED Ontology
+\cite{mo}, are discussed elsewhere in this document (Section \ref{Label
+Encoding}).  There are two major semantic developments from MGEDS.  The first
+of these is the \emph{MAGE Object Model}, or \emph{MAGE-OM}.  The purpose of
+the MAGE-OM is to provide a standard set of classes that can be used to
 represent any object or process that may be included in, or referenced from, a
-microarray experiment.  The model employs concepts common to object-oriented
-software design and knowledge engineering, such as subclass/superclass
-relationships between object classes, the notion of abstract classes, and the
-possibility for directional and cardinal relationships between objects.  The
-specification of the MAGE-OM was developed using the \emph{Unified Modeling
-Language} (\emph{UML}), a standard technology used by knowledge and software
-engineers for the composition of object models.  Fitting microarray experiment
-data into the MAGE Object Model is described in greater detail in Section
-\ref{Experimental Metadata}.  Encoding specific information about objects under
-investigation or that are used to facilitate the conduct of an experiment are
-discussed in Section \ref{Object Metadata}.
+microarray experiment \cite{mage}.  It draws heavily from a seminal work by
+Brazma \emph{et al.} describing the ``Minimal Information About a Microarray
+Experiement'', or \emph{MIAME} that should be collected \cite{miame}.  The
+model employs concepts common to object-oriented software design and knowledge
+engineering, such as subclass/superclass relationships between object classes,
+the notion of abstract classes, and the possibility for directional and
+cardinal relationships between objects.  The specification of the MAGE-OM was
+developed using the \emph{Unified Modeling Language} (\emph{UML}), a standard
+technology used by knowledge and software engineers for the composition of
+object models.  Fitting microarray experiment data into the MAGE Object Model
+is described in greater detail in Section \ref{Experimental Metadata}.
+Encoding specific information about objects under investigation or that are
+used to facilitate the conduct of an experiment are discussed in Section
+\ref{Object Metadata}.
 
-Unique syntax-related challenges that have arisen as part of \dbthesis are
-also presented.  Internal data representation and scalability issues are
-discussed in Section \ref{Storage} and interoperability concerns are discussed in
-greater detail in Section \ref{Protocol}.
+Unique syntax-related challenges that have arisen as part of \dbthesis are also
+presented.  Internal data representation and scalability issues are discussed
+in Section \ref{Storage} and interoperability concerns are discussed in greater
+detail in Section \ref{Protocol}.
 
 \subsubsection{Experimental Metadata}
 \label{Experimental Metadata}
@@ -235,28 +240,28 @@ The use of ontologies provides a mechanism for attaching consistent and
 unambiguous descriptions to objects relevant to \dbthesis.  The encodings are
 useful in that they allow for the accurate representation, storage (Section
 \ref{Storage}), retrieval, and exchange (Section \ref{Protocol}) of information
-about these objects.
+about these objects.  Encoding object descriptions as ontologiy terms also
+presents interesting data analysis opportunities because of the ontology
+structure.   The relationship between terms in the ontologies is structured as
+a directed graph, a data structure whose properties are well understood and for
+which a large body of theory and analytical methods already exist.  Indeed,
+several prior studies have leveraged the annotation of genes into the Gene
+Ontology (GO) \cite{go} to predict gene function \cite{shortestpath, pachinko,
+termtissue}, and these techiques can be extrapolated to annotation of the
+hybridized biological source materials as well.
 
-Encoding object descriptions as ontologiy terms also presents interesting
-data analysis opportunities because of the ontology structure.   The
-relationship between terms in the ontologies is structured as a directed graph,
-a data structure whose properties are well understood and for which a large
-body of theory and analytical methods already exist.  Indeed, several prior
-studies have leveraged the annotation of genes into the Gene Ontology (GO)
-\cite{go} to XXX and XXX \cite{XXX,XXX}.
-
-Ontology development continues to be an active area of development in the
+Ontology construction continues to be an active area of development in the
 biological sciences, and many important projects have spearheaded the effort to
 establish ontologies for the biological research community.  The \emph{Open
 Biomedical Ontologies} (\emph{OBO}) project provides a range of ontologies
-designed for use in the biomedical fields.  Other related projects include the
-Gene Ontology, and the Sequence Ontology \cite{go,so}.  Recently, the National
-Institutes of Health recognized the critical role ontologies are playing in the
-organization andinterchange of biological information and founded the National
-Center for Biomedical Ontology \cite{ncbo} as a coordinating center for
-ontologies, similar to what the \emph{National Center for Biological
-Information} (\emph{NCBI}) \cite{ncbi} and \emph{PubMed} \cite{pubmed} do for
-sequence and bibliographical data.
+designed for use in the biomedical fields \cite{obo}.  Other related projects
+include the Gene Ontology, and the Sequence Ontology \cite{go,so}.  Recently,
+the National Institutes of Health recognized the critical role ontologies are
+playing in the organization andinterchange of biological information and
+founded the National Center for Biomedical Ontology \cite{ncbo} as a
+coordinating center for ontologies, similar to what the \emph{National Center
+for Biological Information} (\emph{NCBI}) \cite{ncbi} and \emph{PubMed}
+\cite{pubmed} do for sequence and bibliographical data.
 
 \subsection{Data Storage \& Retrieval}
 \label{Storage}
@@ -266,23 +271,24 @@ Processing}) and fitting the microarray experiment to a uniform data model
 (Section \ref{Data Modeling}) must be stored and made available for retrieval
 at a later time to analysts to perform further processing.
 
-Storage solutions borrowed from computer science and information technology
-include physical media on which to store the data, such as hard drives, and
-also a database system to structure the data in accessible and searchable
-contexts.  Hard drive storage systems have advanced considerably over the
-decades in response to the demand for safe, reliable, and cost effective ways
-of storing large amounts of data.  Systems that link together many individual
-hard drives or storage on groups of computers into contiguous virtual volumes
-are available, making it possible to group together large datasets in a common
-repository.  Implementations of contiguous volumes, such as redundant arrays of
-inexpensive disks (RAID) and storage area networks (SANs) make the storage of
-critical scientific data secure and retrieval speedy.  Database systems
-represent another strategy for meeting the storage needs of bioinformatics
-projects.  Unlike hard disk-based solutions, databases actively index
-information to improve the retrieval of structured data.  Advances in open
-source projects such as MySQL (\url{http://www.mysql.com}) and PostgreSQL
-(\url{http://www.postgresql.org}), have allowed researchers to use very high
-performance relational database systems in their research for minimal cost.
+Storage solutions borrowed from computer science and the information technology
+industry include physical media on which to store the data, such as hard
+drives, and also database systems to structure the data in accessible and
+searchable contexts.  Hard drive storage systems have advanced considerably
+over the decades in response to the demand for safe, reliable, and cost
+effective ways of storing large amounts of data.  Systems that link together
+many individual hard drives or storage on groups of computers into contiguous
+virtual volumes are available, making it possible to group together large
+datasets in a common repository.  Implementations of contiguous volumes, such
+as redundant arrays of inexpensive disks (RAID) and storage area networks
+(SANs) make the storage of critical scientific data secure and retrieval
+speedy.  Database systems represent another strategy for meeting the storage
+needs of bioinformatics projects.  Unlike hard disk-based solutions, databases
+actively index information to improve the retrieval of structured data.
+Advances in open source projects such as MySQL (\url{http://www.mysql.com}) and
+PostgreSQL (\url{http://www.postgresql.org}), have allowed researchers to use
+very high performance relational database systems in their research for minimal
+cost.
 
 Many database solutions exist for representing biological data.  The Generic
 Model Organism Database Project (GMOD, \url{http://www.gmod.org}) provides the
@@ -366,7 +372,7 @@ to access many different formats of data without needing to be rewritten.
 Common APIs clearly are favored by both the open source community and the
 bioinformatics community for these reasons.
 
-\subsubsection{Sharing}
+\subsubsection{Sharing}\label{Sharing}
 
 %@ sharing -> web services
 Related to the concept of open APIs for interacting with biological data is the
